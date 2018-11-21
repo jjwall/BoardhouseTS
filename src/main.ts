@@ -2,6 +2,13 @@ import { GameState } from "./gamestate";
 import { State } from "./state";
 import { Last } from "./helpers";
 
+// TODO: Add unit tests.
+// TODO: Add systems for current core components.
+// TODO: Pull in PixiJS.
+// TODO: Write animation engine.
+// TODO: Write virtual DOM framework for UI components.
+// TODO: Create level editor.
+
 /**
  * 
  * @param canvas Captured Canvas Element
@@ -18,6 +25,7 @@ function main(canvas: HTMLCanvasElement) {
     stateStack.push(new GameState(canvas));
 
     // Event pump - set at about 60fps
+    // CONSIDER: Using requestAnimationFrame for rendering
     setInterval(function() : void {
         if (stateStack.length > 0) {
             // call update on last element in state stack

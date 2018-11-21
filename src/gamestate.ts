@@ -12,7 +12,9 @@ export class GameState implements State {
         this.ctx = Canvas.getContext("2d");
         this.rect = Canvas.getBoundingClientRect();
     }
-    public update() {
+    public update(stateStack: State[]) {
         // ...
+
+        // pull in all system free functions and call each in the proper order
     }
 }
