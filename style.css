@@ -1,0 +1,12 @@
+#container {
+    margin: auto;
+    width: 800px;
+}
+
+.sidebar { 
+    width: 1850px;
+    position: fixed;
+    height: 100%;
+    margin-top: 10%;
+    margin-right: 15%;
+}
