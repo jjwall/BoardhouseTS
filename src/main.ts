@@ -10,13 +10,21 @@ import { Last } from "./helpers";
  * Only dependecy is the canvas element. Also triggers the event pump.
  */
 function main(canvas: HTMLCanvasElement) {
+    // initialize state stack
     let stateStack: State[] = [];
+    // in this example push GameState onto stack
+    // but should probably push like a "MainMenuState" onto stack
+    // which would initialize and push GameState within it's own update method
     stateStack.push(new GameState(canvas));
 
     // Event pump - set at about 60fps
     setInterval(function() : void {
-        if (Last(stateStack) !== undefined) {
-            Last(stateStack).update();
+        if (stateStack.length > 0) {
+            // call update on last element in state stack
+            Last(stateStack).update(stateStack);
+        }
+        else {
+            throw "No states to update";
         }
     }, 16);
 }

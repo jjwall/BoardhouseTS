@@ -3,5 +3,9 @@
  * of these to determine which state the player is in.
  */
 export interface State {
-    update();
+    /**
+     * Needs reference to state stack to have the ability to pop own
+     * state off the stack.
+     */
+    update(stateStack: State[]);
 }
