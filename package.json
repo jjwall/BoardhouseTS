@@ -1,0 +1,48 @@
+{
+  "name": "boardhousets",
+  "version": "1.0.0",
+  "description": "Game framework / scaffolding written in TypeScript to rapidly develop prototypes.",
+  "main": "",
+  "scripts": {
+    "test": "jest tests",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jjwall/BoardhouseTS.git"
+  },
+  "keywords": [
+    "Game",
+    "Framework",
+    "Scaffolding"
+  ],
+  "author": "Jacob Wallace",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jjwall/BoardhouseTS/issues"
+  },
+  "homepage": "https://github.com/jjwall/BoardhouseTS#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.9",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.10.4",
+    "ts-loader": "^5.3.0",
+    "typescript": "^3.1.6",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "collectCoverage": true
+  }
+}
