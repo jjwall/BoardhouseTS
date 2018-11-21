@@ -1,5 +1,5 @@
 # BoardhouseTS
-This is game framework / scaffolding written in TypeScript for my own personal use to rapidly develop prototypes. It may or may not include the following:
+This is a game framework / scaffolding written in TypeScript for my own personal use to rapidly develop prototypes. It may or may not include the following:
 
 * PixiJS rendering library (maybe write my own WebGL 2.0 rendering engine later on)
 * React-like virtual DOM for UI components
