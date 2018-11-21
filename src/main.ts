@@ -1,6 +1,6 @@
 import { GameState } from "./gamestate";
 import { State } from "./state";
-import { Last } from "./last";
+import { Last } from "./helpers";
 
 /**
  * 
