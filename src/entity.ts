@@ -1,7 +1,10 @@
-import { PositionComponent } from "./positioncomponent";
-import { TextureComponent } from "./texturecomponent";
-import { ControllableComponent } from "./controllablecomponent";
-import { HitBoxComponent, HurtBoxComponent } from "./collidablecomponent";
+import { 
+     PositionComponent,
+     TextureComponent,
+     ControllableComponent,
+     HitBoxComponent,
+     HurtBoxComponent,
+} from "./corecomponents";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
