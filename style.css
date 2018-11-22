@@ -1,12 +1,17 @@
-#container {
+/* #container {
     margin: auto;
-    width: 800px;
+    width: 1275px;
 }
 
-.sidebar { 
+#sidebar { 
     width: 1850px;
     position: fixed;
     height: 100%;
-    margin-top: 10%;
+    margin-top: 2%;
     margin-right: 15%;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
 }
