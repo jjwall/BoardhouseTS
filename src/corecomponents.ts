@@ -1,11 +1,45 @@
 /**
+ * Position component.
+ */
+export interface PositionComponent {
+    x: number;
+    y: number;
+    xVel: number;
+    yVel: number;
+}
+
+/**
+ * Texture component. Contingent on changing based on
+ * PixiJS implementation details.
+ * Consider making class to ensure height / width aren't negative
+ */
+export interface TextureComponent {
+    /**
+     * Can be null i.e. invisible texture.
+     */
+    image: HTMLImageElement;
+    height: number;
+    width: number;
+}
+
+/**
+ * Controllable component. Class to maintain invariance between key presses.
+ * Subject to change.
+ */
+export interface ControllableComponent {
+    jump: boolean;
+    left: boolean;
+    right: boolean;
+}
+
+/**
  * HitBox Component that represents the area that when colliding with
  * any of the "collidesWith" enum entries, entity will "hit" them.
  * 
  * Consider making class to ensure height / width aren't negative.
  */
 export interface HitBoxComponent {
-    collidesWith: Collidables[]
+    collidesWith: Collidables[];
     height: number;
     width: number;
 }
@@ -17,7 +51,7 @@ export interface HitBoxComponent {
  * Consider making class to ensure height / width aren't negative.
  */
 export interface HurtBoxComponent {
-    collidesWith: Collidables[]
+    collidesWith: Collidables[];
     height: number;
     width: number;
 }
