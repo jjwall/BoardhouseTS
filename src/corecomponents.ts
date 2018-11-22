@@ -23,11 +23,11 @@ export interface TextureComponent {
 }
 
 /**
- * Controllable component. Class to maintain invariance between key presses.
- * Subject to change.
+ * Controllable component.
  */
 export interface ControllableComponent {
     jump: boolean;
+    attack: boolean;
     left: boolean;
     right: boolean;
 }
@@ -42,6 +42,8 @@ export interface HitBoxComponent {
     collidesWith: Collidables[];
     height: number;
     width: number;
+    x: number;
+    y: number;
 }
 
 /**
@@ -54,6 +56,8 @@ export interface HurtBoxComponent {
     collidesWith: Collidables[];
     height: number;
     width: number;
+    x: number;
+    y: number;
 }
 
 /**
@@ -62,4 +66,17 @@ export interface HurtBoxComponent {
  */
 export enum Collidables {
     // ..
+}
+
+/**
+ * Free function to initialize ControllableComponent to maintain invariance
+ * at creation of the object.
+ */
+function initializeControls(): ControllableComponent {
+    return {
+        jump: false,
+        attack: false,
+        left: false,
+        right: false,
+    };
 }
