@@ -1,6 +1,9 @@
+/// <reference types="pixi.js" />
 import { GameState } from "./gamestate";
 import { State } from "./state";
 import { Last } from "./helpers";
+import * as PIXI from "pixi.js";
+
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
@@ -23,6 +26,9 @@ function main(canvas: HTMLCanvasElement) {
     // but should probably push like a "MainMenuState" onto stack
     // which would initialize and push GameState within it's own update method
     stateStack.push(new GameState(canvas));
+    /// vvv test code vvv
+    // let app = new PIXI.Application({width: 256, height: 256});
+    // document.body.appendChild(app.view);
 
     // Event pump - set at about 60fps
     // CONSIDER: Using requestAnimationFrame for rendering

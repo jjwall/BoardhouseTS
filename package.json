@@ -45,5 +45,8 @@
       "js"
     ],
     "collectCoverage": true
+  },
+  "dependencies": {
+    "pixi.js": "^4.8.2"
   }
 }
