@@ -11,11 +11,19 @@ import { Entity } from "./entity";
 // TODO: Write virtual DOM framework for UI components.
 // TODO: Create level editor.
 
+// Load all png files and call main when finished.
+PIXI.loader
+    .add("data/textures/ship.png")
+    .load(function() {
+        main(<HTMLElement> document.getElementById("letterbox"));
+    });
+
 function setEventListeners(app: PIXI.Application) {
     window.addEventListener("resize", function() {
         app.renderer.resize(window.innerWidth, window.innerHeight);
     });
 }
+
 
 /**
  * 
@@ -44,20 +52,14 @@ function main(canvasContainer: HTMLElement) {
 
     // test entity:
     let ent = new Entity();
-
-    PIXI.loader
-        .add("data/textures/ship.png")
-        .load(function() {
-            ent.sprite = new PIXI.Sprite(
-                PIXI.loader.resources["data/textures/ship.png"].texture
-            );
-            ent.sprite.x = 50;
-            ent.sprite.y = 50;
-            app.stage.addChild(ent.sprite);
-        });
+    ent.sprite = new PIXI.Sprite(
+        PIXI.loader.resources["data/textures/ship.png"].texture
+    );
+    ent.sprite.x = 50;
+    ent.sprite.y = 50;
+    app.stage.addChild(ent.sprite);
 
     gameState.entities.push(ent);
-    console.log(ent);
     // end test ent code
 
     // set up event listeners
@@ -76,5 +78,3 @@ function main(canvasContainer: HTMLElement) {
         }
     }, 16);
 }
-
-main(<HTMLElement> document.getElementById("letterbox"));
