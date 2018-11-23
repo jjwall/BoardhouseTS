@@ -1,6 +1,4 @@
 import { 
-     PositionComponent,
-     TextureComponent,
      ControllableComponent,
      HitBoxComponent,
      HurtBoxComponent,
@@ -13,8 +11,7 @@ import {
  * the properties within the component.
  */
 export class Entity {
-     public pos: PositionComponent;
-     public texture: TextureComponent;
+     public sprite: PIXI.Sprite;
      public control: ControllableComponent;
      public hitBox: HitBoxComponent;
      public hurtBox: HurtBoxComponent;

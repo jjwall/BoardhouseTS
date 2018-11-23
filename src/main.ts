@@ -1,6 +1,6 @@
 import { GameState } from "./gamestate";
 import { State } from "./state";
-import { Last } from "./helpers";
+import { last } from "./helpers";
 import * as PIXI from "pixi.js";
 import { Entity } from "./entity";
 
@@ -44,29 +44,20 @@ function main(canvasContainer: HTMLElement) {
 
     // test entity:
     let ent = new Entity();
-    ent.pos = {
-        x: 50,
-        y: 50,
-        xVel: 0,
-        yVel: 0,
-    };
-
-    ent.texture = {
-        height: 50,
-        width: 50,
-        sprite: null,
-    };
 
     PIXI.loader
         .add("data/textures/ship.png")
         .load(function() {
-            ent.texture.sprite = new PIXI.Sprite(
+            ent.sprite = new PIXI.Sprite(
                 PIXI.loader.resources["data/textures/ship.png"].texture
             );
-            app.stage.addChild(ent.texture.sprite);
+            ent.sprite.x = 50;
+            ent.sprite.y = 50;
+            app.stage.addChild(ent.sprite);
         });
 
     gameState.entities.push(ent);
+    console.log(ent);
     // end test ent code
 
     // set up event listeners
@@ -77,7 +68,8 @@ function main(canvasContainer: HTMLElement) {
     setInterval(function() : void {
         if (stateStack.length > 0) {
             // call update on last element in state stack
-            Last(stateStack).update(stateStack, app);
+            last(stateStack).update(stateStack, app);
+            ent.sprite.x++;
         }
         else {
             throw "No states to update";

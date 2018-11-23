@@ -1,28 +1,4 @@
 /**
- * Position component.
- */
-export interface PositionComponent {
-    x: number;
-    y: number;
-    xVel: number;
-    yVel: number;
-}
-
-/**
- * Texture component. Contingent on changing based on
- * PixiJS implementation details.
- * Consider making class to ensure height / width aren't negative
- */
-export interface TextureComponent {
-    /**
-     * Can be null i.e. invisible texture.
-     */
-    sprite: PIXI.Sprite;
-    height: number;
-    width: number;
-}
-
-/**
  * Controllable component.
  */
 export interface ControllableComponent {
