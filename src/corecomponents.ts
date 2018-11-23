@@ -17,7 +17,7 @@ export interface TextureComponent {
     /**
      * Can be null i.e. invisible texture.
      */
-    image: HTMLImageElement;
+    sprite: PIXI.Sprite;
     height: number;
     width: number;
 }
