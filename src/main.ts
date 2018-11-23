@@ -1,12 +1,12 @@
+import * as PIXI from "pixi.js";
 import { GameState } from "./gamestate";
 import { State } from "./state";
 import { last } from "./helpers";
-import * as PIXI from "pixi.js";
 import { Entity } from "./entity";
+import { setEventListeners } from "./seteventlisteners";
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
-// TODO: Pull in PixiJS.
 // TODO: Write animation engine.
 // TODO: Write virtual DOM framework for UI components.
 // TODO: Create level editor.
@@ -18,19 +18,12 @@ PIXI.loader
         main(<HTMLElement> document.getElementById("letterbox"));
     });
 
-function setEventListeners(app: PIXI.Application) {
-    window.addEventListener("resize", function() {
-        app.renderer.resize(window.innerWidth, window.innerHeight);
-    });
-}
-
-
 /**
  * 
- * @param canvas Captured Canvas Element
+ * @param canvasContainer Captured Canvas Container Element
  * 
  * Main function that gets immediately invoked.
- * Only dependecy is the canvas element. Also triggers the event pump.
+ * Only dependecy is the canvas container element. Also triggers the event pump.
  */
 function main(canvasContainer: HTMLElement) {
     // initialize state stack
@@ -41,13 +34,12 @@ function main(canvasContainer: HTMLElement) {
     let gameState = new GameState();
     stateStack.push(gameState);
 
-    // set up canvas - need to add resize event when changing the size of the window
+    // set up canvas
     let app = new PIXI.Application({width: 1280, height: 720});
-
+    app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
     app.renderer.view.style.position = "absolute";
-    app.renderer.view.style.display = "block";
+    app.renderer.view.style.display = "block"
     app.renderer.autoResize = true;
-    app.renderer.resize(window.innerWidth, window.innerHeight);
     canvasContainer.appendChild(app.view);
 
     // test entity:
@@ -71,6 +63,8 @@ function main(canvasContainer: HTMLElement) {
         if (stateStack.length > 0) {
             // call update on last element in state stack
             last(stateStack).update(stateStack, app);
+
+            // test movement
             ent.sprite.x++;
         }
         else {
