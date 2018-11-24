@@ -1,4 +1,27 @@
 /**
+ * Helper method to add a sprite to the stage.
+ * @param texturePath Path to texture file. Starts at project root.
+ * @param xPos Starting x position.
+ * @param yPos Starting y position.
+ * @param stage PIXI.Container i.e. the stage.
+ * @param pixelRatio Number of pixels to scale texture's height and width by.
+ */
+export function setSprite(texturePath: string, xPos: number, yPos: number, stage: PIXI.Container, pixelRatio: number) : PIXI.Sprite {
+    let sprite = new PIXI.Sprite(
+        PIXI.loader.resources[texturePath].texture
+    );
+    // set scale mode
+    sprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+    sprite.x = xPos;
+    sprite.y = yPos;
+    sprite.width *= pixelRatio;
+    sprite.height *= pixelRatio;
+    stage.addChild(sprite);
+
+    return sprite;
+}
+
+/**
  * 
  * @param array generic array
  * 
