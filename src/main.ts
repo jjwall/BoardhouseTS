@@ -35,20 +35,26 @@ function main(canvasContainer: HTMLElement) {
     stateStack.push(gameState);
 
     // set up canvas
-    let app = new PIXI.Application({width: 1280, height: 720});
+    let app = new PIXI.Application({
+        width: 1280, 
+        height: 720,
+    });
     app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
     app.renderer.view.style.position = "absolute";
     app.renderer.view.style.display = "block"
     app.renderer.autoResize = true;
-    canvasContainer.appendChild(app.view);
+    canvasContainer.appendChild(app.view)
 
     // test entity:
     let ent = new Entity();
     ent.sprite = new PIXI.Sprite(
         PIXI.loader.resources["data/textures/ship.png"].texture
     );
+    ent.sprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
     ent.sprite.x = 50;
     ent.sprite.y = 50;
+    ent.sprite.width *= 8; // scale amount
+    ent.sprite.height *= 8; // scale amount
     app.stage.addChild(ent.sprite);
 
     gameState.entities.push(ent);
@@ -63,9 +69,6 @@ function main(canvasContainer: HTMLElement) {
         if (stateStack.length > 0) {
             // call update on last element in state stack
             last(stateStack).update(stateStack, app);
-
-            // test movement
-            ent.sprite.x++;
         }
         else {
             throw "No states to update";
