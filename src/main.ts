@@ -15,7 +15,7 @@ import { setEventListeners } from "./seteventlisteners";
 PIXI.loader
     .add("data/textures/ship.png")
     .load(function() {
-        main(<HTMLElement> document.getElementById("letterbox"));
+        main(<HTMLElement> document.getElementById("canvasContainer"));
     });
 
 /**
@@ -43,7 +43,7 @@ function main(canvasContainer: HTMLElement) {
     app.renderer.view.style.position = "absolute";
     app.renderer.view.style.display = "block"
     app.renderer.autoResize = true;
-    canvasContainer.appendChild(app.view)
+    canvasContainer.appendChild(app.view);
 
     // test entity:
     let ent = new Entity();
