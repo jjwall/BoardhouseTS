@@ -47,6 +47,7 @@ function main(canvasContainer: HTMLElement) {
 
     // test entity:
     let ent = new Entity();
+    ent.pos = {x: 50, y: 50};
     ent.sprite = setSprite("data/textures/ship.png", 50, 50, app.stage, 8);
 
     gameState.entities.push(ent);
@@ -55,25 +56,42 @@ function main(canvasContainer: HTMLElement) {
     // set up event listeners
     setEventListeners(app);
 
-    let fps: number = 0;
-    let totalTime: number = 0;
-    let currentTime: number = 0;
-    function mainLoop(timeStamp: number){
-        requestAnimationFrame(mainLoop);
-        currentTime = timeStamp - totalTime;
-        totalTime = timeStamp;
-        fps = 1/(currentTime / 1000);
-        console.log("FPS: " + fps);
+    // logic update loop
+    setInterval(function() : void {
         if (stateStack.length > 0) {
             // call update on last element in state stack
             last(stateStack).update(stateStack, app);
-            ent.sprite.x += 2;
+            // test update
+            ent.pos.x += 1;
+        }
+        else {
+            throw "No states to update";
+        }
+    }, 16);
+
+    let fps: number = 0;
+    let totalTime: number = 0;
+    let currentTime: number = 0;
+
+    // render update loop
+    function renderLoop(timeStamp: number){
+        requestAnimationFrame(renderLoop);
+        currentTime = timeStamp - totalTime;
+        totalTime = timeStamp;
+        fps = 1/(currentTime / 1000);
+
+        // log FPS
+        console.log("FPS: " + fps);
+
+        if (stateStack.length > 0) {
+            // call render on last element in state stack
+            last(stateStack).render();
         }
         else {
             throw "No states to update";
         }
     }
 
-    // Start the game.
-    mainLoop(0);
+    // start the render loop
+    renderLoop(0);
 }
