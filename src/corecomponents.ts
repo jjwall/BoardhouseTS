@@ -1,4 +1,12 @@
 /**
+ * Position component.
+ */
+export interface PositionComponent {
+    x: number;
+    y: number;
+}
+
+/**
  * Controllable component.
  */
 export interface ControllableComponent {

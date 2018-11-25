@@ -12,6 +12,10 @@ export class GameState implements State {
     }
     public update(stateStack: State[], app: PIXI.Application) {
         // pull in all system free functions and call each in the proper order
-        renderSystem(app, this.entities);
+        // renderSystem(this.entities);
+    }
+
+    public render() {
+        renderSystem(this.entities);
     }
 }
