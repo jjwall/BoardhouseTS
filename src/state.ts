@@ -9,5 +9,5 @@ export interface State {
      * elements to the canvas.
      */
     update(stateStack: State[], app: PIXI.Application);
-    render();
+    render(canvas: HTMLCanvasElement);
 }

@@ -15,7 +15,7 @@ export class GameState implements State {
         // renderSystem(this.entities);
     }
 
-    public render() {
-        renderSystem(this.entities);
+    public render(canvas: HTMLCanvasElement) {
+        renderSystem(this.entities, canvas);
     }
 }

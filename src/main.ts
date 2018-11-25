@@ -47,8 +47,8 @@ function main(canvasContainer: HTMLElement) {
 
     // test entity:
     let ent = new Entity();
-    ent.pos = {x: 50, y: 50};
-    ent.sprite = setSprite("data/textures/ship.png", 50, 50, app.stage, 8);
+    ent.pos = {x: 0, y: 0};
+    ent.sprite = setSprite("data/textures/ship.png", ent.pos.x, ent.pos.y, app.stage, 8);
 
     gameState.entities.push(ent);
     // end test ent code
@@ -63,6 +63,7 @@ function main(canvasContainer: HTMLElement) {
             last(stateStack).update(stateStack, app);
             // test update
             ent.pos.x += 1;
+            ent.pos.y += 1;
         }
         else {
             throw "No states to update";
@@ -85,10 +86,10 @@ function main(canvasContainer: HTMLElement) {
 
         if (stateStack.length > 0) {
             // call render on last element in state stack
-            last(stateStack).render();
+            last(stateStack).render(app.renderer.view);
         }
         else {
-            throw "No states to update";
+            throw "No states to render";
         }
     }
 
