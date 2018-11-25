@@ -55,9 +55,15 @@ function main(canvasContainer: HTMLElement) {
     // set up event listeners
     setEventListeners(app);
 
-    // Event pump - set at about 60fps
-    // CONSIDER: Using requestAnimationFrame for rendering
-    setInterval(function() : void {
+    let fps: number = 0;
+    let totalTime: number = 0;
+    let currentTime: number = 0;
+    function mainLoop(timeStamp: number){
+        requestAnimationFrame(mainLoop);
+        currentTime = timeStamp - totalTime;
+        totalTime = timeStamp;
+        fps = 1/(currentTime / 1000);
+        console.log("FPS: " + fps);
         if (stateStack.length > 0) {
             // call update on last element in state stack
             last(stateStack).update(stateStack, app);
@@ -66,5 +72,8 @@ function main(canvasContainer: HTMLElement) {
         else {
             throw "No states to update";
         }
-    }, 16);
+    }
+
+    // Start the game.
+    mainLoop(0);
 }
