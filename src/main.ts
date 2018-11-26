@@ -10,6 +10,9 @@ import { setEventListeners } from "./seteventlisteners";
 // TODO: Write animation engine.
 // TODO: Write virtual DOM framework for UI components.
 // TODO: Create level editor.
+// Stretch goals:
+// Screen shake
+// Particle effects
 
 // Load all png files and call main when finished.
 PIXI.loader
