@@ -4,6 +4,7 @@ import { State } from "./state";
 import { last, setSprite } from "./helpers";
 import { Entity } from "./entity";
 import { setEventListeners } from "./seteventlisteners";
+import { BoardhouseUI } from "./boardhouseui";
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
@@ -13,6 +14,7 @@ import { setEventListeners } from "./seteventlisteners";
 // Stretch goals:
 // Screen shake
 // Particle effects
+// Scene transitions
 
 // Load all png files and call main when finished.
 PIXI.loader
@@ -56,6 +58,11 @@ function main(canvasContainer: HTMLElement) {
     gameState.entities.push(ent);
     // end test ent code
 
+    // test button:
+    gameState.rootWidget = new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div);
+    gameState.rootWidget.children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
+    gameState.rootWidget.children[0].children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
+    
     // set up event listeners
     setEventListeners(app);
 
@@ -89,7 +96,7 @@ function main(canvasContainer: HTMLElement) {
 
         if (stateStack.length > 0) {
             // call render on last element in state stack
-            last(stateStack).render(app.renderer.view);
+            last(stateStack).render(app.renderer.view, app.stage);
         }
         else {
             throw "No states to render";

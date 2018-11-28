@@ -1,12 +1,14 @@
 import { State } from "./state";
 import { Entity } from "./entity";
 import { renderSystem } from "./rendersystem";
+import { BoardhouseUI } from "./boardhouseui";
 
 /**
  * GameState that handles updating of all game-related systems.
  */
 export class GameState implements State {
     public entities: Entity[];
+    public rootWidget: BoardhouseUI.Widget;
     constructor(){
         this.entities = [];
     }
@@ -15,7 +17,9 @@ export class GameState implements State {
         // renderSystem(this.entities);
     }
 
-    public render(canvas: HTMLCanvasElement) {
+    public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {
         renderSystem(this.entities, canvas);
+        // check if children needs to be reconciled, then do so
+        BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
     }
 }
