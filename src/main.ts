@@ -60,8 +60,37 @@ function main(canvasContainer: HTMLElement) {
 
     // test button:
     gameState.rootWidget = new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div);
+    gameState.rootWidget.left = 100;
+    gameState.rootWidget.top = 100;
+    gameState.rootWidget.text = "hello";
+    gameState.rootWidget.style = {
+        color: 0x008080,
+        height: 50,
+        width: 100,
+        lineWidth: 4,
+        lineColor: 0xE0FFFF
+    }
     gameState.rootWidget.children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
+    gameState.rootWidget.children[0].left = 100;
+    gameState.rootWidget.children[0].top = 100;
+    gameState.rootWidget.children[0].style = {
+        color: 0x808000,
+        height: 50,
+        width: 100,
+        lineWidth: 4,
+        lineColor: 0x008000
+    }
     gameState.rootWidget.children[0].children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
+    gameState.rootWidget.children[0].children[0].left = 100;
+    gameState.rootWidget.children[0].children[0].top = 100;
+    gameState.rootWidget.children[0].children[0].style = {
+        color: 0x0000FF,
+        height: 50,
+        width: 100,
+        lineWidth: 4,
+        lineColor: 0x000000
+    }
+    // end test button
     
     // set up event listeners
     setEventListeners(app);

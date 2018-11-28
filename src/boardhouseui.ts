@@ -26,11 +26,11 @@ export namespace BoardhouseUI {
     }
 
     interface Style {
-        color: string;
+        color: number;
         height: number;
         width: number;
-        left: number;
-        top: number;
+        // left: number;
+        // top: number;
         lineWidth: number;
         lineColor: number;
     }
@@ -38,6 +38,9 @@ export namespace BoardhouseUI {
     export class Widget {
         selfContainer: PIXI.Container;
         style: Style;
+        left: number;
+        top: number;
+        text: string;
         type: WidgetTypes | Component<BaseProps, object>;
         attributes: {}[];
         children: Widget[];
@@ -48,7 +51,9 @@ export namespace BoardhouseUI {
             // set default attributes based on type;
             // if type label... this.attributes = 
             this.children = [];
-            this.selfContainer = new PIXI.Container;
+            this.selfContainer = new PIXI.Container();
+            this.left = 0;
+            this.top = 0;
         }
         appendChild(child: Widget) {
             this.children.push(child);
@@ -63,19 +68,26 @@ export namespace BoardhouseUI {
         }
         renderTo(outerContainer: PIXI.Container) {
             // if type is sprite // if type is box?
-            let rectangle = new PIXI.Graphics();
-            rectangle.lineStyle(4, 0x000000, 1); // border value
-            rectangle.beginFill(0x66CCFF); // border color
-            rectangle.drawRect(0, 0, 64, 64); // height width
-            rectangle.endFill();
-            // rectangle.x = 170; // left value
-            // rectangle.y = 170; // top value
-            // container.x = 170;
-            // container.y = 170;
+
             outerContainer.addChild(this.selfContainer);
-            this.selfContainer.position.set(170, 170);
-            this.selfContainer.addChild(rectangle)
-            // container.addChild(rectangle);
+            this.selfContainer.position.set(this.left, this.top);
+
+            // fix layering
+            if (this.style !== undefined) {
+                let rectangle = new PIXI.Graphics();
+                rectangle.lineStyle(this.style.lineWidth, this.style.lineColor, 1);
+                rectangle.beginFill(this.style.color);
+                rectangle.drawRect(0,0, this.style.width, this.style.height);
+                rectangle.endFill();
+                this.selfContainer.addChild(rectangle);
+            }
+
+            if (this.text !== undefined) {
+                let message = new PIXI.Text(this.text);
+                message.x += 5;
+                message.y += 5;
+                this.selfContainer.addChild(message);
+            }
         }
     }
 
