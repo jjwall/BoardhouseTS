@@ -90,6 +90,15 @@ function main(canvasContainer: HTMLElement) {
         lineWidth: 4,
         lineColor: 0x000000
     }
+
+    const element = BoardhouseUI.CreateElement(
+        BoardhouseUI.WidgetTypes.Div,
+        {id: "hey"},
+        BoardhouseUI.CreateElement(
+            BoardhouseUI.WidgetTypes.Button,
+            {onClick: e => console.log("hello")}
+        )
+    )
     // end test button
     
     // set up event listeners
