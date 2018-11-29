@@ -71,8 +71,8 @@ function main(canvasContainer: HTMLElement) {
         lineColor: 0xE0FFFF
     }
     gameState.rootWidget.children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
-    gameState.rootWidget.children[0].left = 100;
-    gameState.rootWidget.children[0].top = 100;
+    gameState.rootWidget.children[0].left = 10;
+    gameState.rootWidget.children[0].top = 10;
     gameState.rootWidget.children[0].style = {
         color: 0x808000,
         height: 50,
@@ -81,8 +81,8 @@ function main(canvasContainer: HTMLElement) {
         lineColor: 0x008000
     }
     gameState.rootWidget.children[0].children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
-    gameState.rootWidget.children[0].children[0].left = 100;
-    gameState.rootWidget.children[0].children[0].top = 100;
+    gameState.rootWidget.children[0].children[0].left = 10;
+    gameState.rootWidget.children[0].children[0].top = 10;
     gameState.rootWidget.children[0].children[0].style = {
         color: 0x0000FF,
         height: 50,

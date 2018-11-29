@@ -136,6 +136,8 @@ export namespace BoardhouseUI {
     // PIXI DOM Implementation details:
 
     export function ReconcilePixiDom(parentWidget: Widget, stage: PIXI.Container) {
+        parentWidget.renderTo(stage);
+
         if (parentWidget.children !== undefined && parentWidget.children.length > 0) {
             parentWidget.children.forEach(child => {
                 reconcileChildren(child, parentWidget.selfContainer);
@@ -150,7 +152,5 @@ export namespace BoardhouseUI {
                 });
             }
         }
-
-        parentWidget.renderTo(stage);
     }
 }
