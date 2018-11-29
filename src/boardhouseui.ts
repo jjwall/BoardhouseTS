@@ -21,7 +21,6 @@ export namespace BoardhouseUI {
     }
 
     interface BaseProps {
-        // id: string;
         children: Element[]; 
     }
 
@@ -133,8 +132,29 @@ export namespace BoardhouseUI {
     //     const childElements = props.children || [];
     // }
 
+    /**
+     * Function for creating virtual dom elements.
+     * @param type 
+     * @param config 
+     * @param children 
+     */
+    export function CreateElement(type: WidgetTypes, config: {}, ...args: Element[]) : Element{
+        const props: BaseProps = {...config, children: []};
+
+        if (args.length > 0) {
+            props.children = [].concat(...args);
+        }
+
+        return { type, props };
+    }
+
     // PIXI DOM Implementation details:
 
+    /**
+     * Reconciler for Pixi DOM.
+     * @param parentWidget 
+     * @param stage 
+     */
     export function ReconcilePixiDom(parentWidget: Widget, stage: PIXI.Container) {
         parentWidget.renderTo(stage);
 
