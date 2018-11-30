@@ -33,6 +33,7 @@ PIXI.loader
 function main(canvasContainer: HTMLElement) {
     // initialize state stack
     let stateStack: State[] = [];
+
     // in this example push GameState onto stack
     // but should probably push like a "MainMenuState" onto stack
     // which would initialize and push GameState within it's own update method
@@ -69,6 +70,11 @@ function main(canvasContainer: HTMLElement) {
     });
     rootWidget.left = 500;
     rootWidget.top = 300;
+    let x = 0;
+    rootWidget.onClick = function() {
+        x++;
+        child.text = x.toString();
+    }
 
     let child = BoardhouseUI.CreateWidget();
     child.setText("Start Game");
@@ -83,8 +89,11 @@ function main(canvasContainer: HTMLElement) {
         lineWidth: 4,
         lineColor: 0x000000 
     });
-    grandChild.top = 100;
-    grandChild.left = 100;
+    grandChild.top = 10;
+    grandChild.left = 10;
+    grandChild.onClick = function() {
+        console.log("hello");
+    }
     child.appendChild(grandChild);
 
     gameState.rootWidget = rootWidget;
@@ -97,7 +106,7 @@ function main(canvasContainer: HTMLElement) {
     fpsWidget.setText("FPS:");
 
     // set up event listeners
-    setEventListeners(app);
+    setEventListeners(app.renderer.view, stateStack);
 
     // logic update loop
     setInterval(function (): void {
@@ -111,6 +120,7 @@ function main(canvasContainer: HTMLElement) {
         else {
             throw "No states to update";
         }
+
         // log FPS
         fpsWidget.text = "FPS: " + Math.round(fps);
         BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
