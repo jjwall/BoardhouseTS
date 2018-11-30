@@ -1,14 +1,14 @@
 import * as PIXI from "pixi.js";
-import { GameState } from "./gamestate";
 import { State } from "./state";
-import { last, setSprite } from "./helpers";
-import { Entity } from "./entity";
+import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 import { BoardhouseUI } from "./boardhouseui";
 import { MainMenuState } from "./mainmenustate";
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
+// >> position system, velocity system
+// TODO: Add event listeners for key events (controls)
 // TODO: Write animation engine.
 // TODO: Write virtual DOM framework for UI components.
 // TODO: Create level editor.
@@ -68,7 +68,7 @@ function main(canvasContainer: HTMLElement) {
         }
 
         // log FPS
-        fpsWidget.text = "FPS: " + Math.round(fps);
+        fpsWidget.setText("FPS: " + Math.round(fps));
         BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
     }, 16);
 

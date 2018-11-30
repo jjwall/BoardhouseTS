@@ -14,6 +14,45 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
     canvas.addEventListener("mousedown", function (e: MouseEvent) {
         traverseTreeForOnClick(last(stateStack).rootWidget, e);
     });
+    // keyboard controls
+    window.onkeydown = function(e: KeyboardEvent) {
+        if (e.keyCode === 37) {
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.left = true;
+                }
+            });
+        }
+
+        if (e.keyCode === 39) {
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.right = true;
+                }
+            });
+        }
+    }
+
+    window.onkeyup = function(e) {
+        if (e.keyCode === 37) {
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.left = false;
+                }
+            });
+        }
+        if (e.keyCode === 39) {
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.right = false;
+                }
+            });
+        }
+    }
 }
 
 function traverseTreeForOnClick(widget: BoardhouseUI.Widget, e: MouseEvent) {
