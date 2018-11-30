@@ -22,6 +22,15 @@ export function setSprite(texturePath: string, xPos: number, yPos: number, stage
 }
 
 /**
+ * Clears all rendered elements from container and it's children.
+ * @param baseContainer 
+ */
+export function clearStage(baseContainer: PIXI.Container) {
+    baseContainer.destroy({children:true, texture:true, baseTexture:true});
+
+}
+
+/**
  * 
  * @param array generic array
  * 
