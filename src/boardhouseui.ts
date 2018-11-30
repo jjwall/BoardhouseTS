@@ -10,18 +10,7 @@ export namespace BoardhouseUI {
             this.state = newState;
             // Render(this);
         }
-        componentDidMount(){};
-        componentWillUnmount(){};
         render(){};
-    }
-
-    interface Element {
-        type: WidgetTypes
-        props: BaseProps;
-    }
-
-    interface BaseProps {
-        children: Element[]; 
     }
 
     interface Style {
@@ -37,19 +26,17 @@ export namespace BoardhouseUI {
     export class Widget {
         selfContainer: PIXI.Container;
         style: Style;
+        sprite: PIXI.Sprite;
         left: number;
         top: number;
         text: string;
-        type: WidgetTypes | Component<BaseProps, object>;
-        attributes: {}[];
+        private message: PIXI.Text;
+        attr: {}[];
         parent: Widget;
         children: Widget[];
         onClick: () => void;
         // text: string;
-        constructor(widgetType: WidgetTypes | Component<BaseProps, object>) {
-            this.type = widgetType;
-            // set default attributes based on type;
-            // if type label... this.attributes = 
+        constructor() {
             this.children = [];
             this.selfContainer = new PIXI.Container();
             this.left = 0;
@@ -59,13 +46,24 @@ export namespace BoardhouseUI {
             child.parent = this;
             this.children.push(child);
         }
+
+        setText(text: string, style: PIXI.TextStyle = null) {
+            if (style !== null) {
+                this.message = new PIXI.Text(text, style);
+            }
+            else {
+                this.message = new PIXI.Text(text);
+            }
+            
+            this.text = text;
+        }
         addEventListener(eventType: string, event: () => void) {
             if (eventType === "click") {
                 this.onClick = event;
             }
         }
         setAttributes(key: string, val: string){
-
+            // TODO: Implement
         }
         renderTo(outerContainer: PIXI.Container) {
             // if type is sprite // if type is box?
@@ -83,11 +81,11 @@ export namespace BoardhouseUI {
                 this.selfContainer.addChild(rectangle);
             }
 
-            if (this.text !== undefined) {
-                let message = new PIXI.Text(this.text);
-                message.x += 5;
-                message.y += 5;
-                this.selfContainer.addChild(message);
+            if (this.message !== undefined) {
+                this.message.text = this.text;
+                // message.x += 5;
+                // message.y += 5;
+                this.selfContainer.addChild(this.message);
             }
         }
     }
@@ -98,24 +96,18 @@ export namespace BoardhouseUI {
         Input,
     }
 
-    export function CreateWidget(elementType: WidgetTypes) : Widget {
-        return new Widget(elementType);
-    }
+    export function CreateWidget(style: Style = null, sprite: PIXI.Sprite = null) : Widget {
+        let widget = new Widget();
 
-    /**
-     * Function for creating virtual dom elements.
-     * @param type 
-     * @param config 
-     * @param children 
-     */
-    export function CreateElement(type: WidgetTypes, config: {}, ...args: Element[]) : Element{
-        const props: BaseProps = {...config, children: []};
-
-        if (args.length > 0) {
-            props.children = [].concat(...args);
+        if (style !== null) {
+            widget.style = style;
         }
 
-        return { type, props };
+        if (sprite !== null) {
+            widget.sprite = sprite
+        }
+
+        return widget;
     }
 
     // PIXI DOM Implementation details:

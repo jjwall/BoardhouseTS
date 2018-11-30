@@ -19,8 +19,8 @@ import { BoardhouseUI } from "./boardhouseui";
 // Load all png files and call main when finished.
 PIXI.loader
     .add("data/textures/ship.png")
-    .load(function() {
-        main(<HTMLElement> document.getElementById("canvasContainer"));
+    .load(function () {
+        main(<HTMLElement>document.getElementById("canvasContainer"));
     });
 
 /**
@@ -41,7 +41,7 @@ function main(canvasContainer: HTMLElement) {
 
     // set up canvas
     let app = new PIXI.Application({
-        width: 1280, 
+        width: 1280,
         height: 720,
     });
     app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
@@ -52,85 +52,55 @@ function main(canvasContainer: HTMLElement) {
 
     // test entity:
     let ent = new Entity();
-    ent.pos = {x: 0, y: 0};
+    ent.pos = { x: 0, y: 0 };
     ent.sprite = setSprite("data/textures/ship.png", ent.pos.x, ent.pos.y, app.stage, 8);
 
     gameState.entities.push(ent);
     // end test ent code
 
     // test button:
-    // gameState.rootWidget = new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div);
-    // gameState.rootWidget.left = 100;
-    // gameState.rootWidget.top = 100;
-    // gameState.rootWidget.text = "hello";
-    // gameState.rootWidget.style = {
-    //     color: 0x008080,
-    //     height: 50,
-    //     width: 100,
-    //     lineWidth: 4,
-    //     lineColor: 0xE0FFFF
-    // }
-    // gameState.rootWidget.children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
-    // gameState.rootWidget.children[0].left = 10;
-    // gameState.rootWidget.children[0].top = 10;
-    // gameState.rootWidget.children[0].style = {
-    //     color: 0x808000,
-    //     height: 50,
-    //     width: 100,
-    //     lineWidth: 4,
-    //     lineColor: 0x008000
-    // }
-    // gameState.rootWidget.children[0].children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
-    // gameState.rootWidget.children[0].children[0].left = 10;
-    // gameState.rootWidget.children[0].children[0].top = 10;
-    // gameState.rootWidget.children[0].children[0].style = {
-    //     color: 0x0000FF,
-    //     height: 50,
-    //     width: 100,
-    //     lineWidth: 4,
-    //     lineColor: 0x000000
-    // }
 
-    let rootWidget = BoardhouseUI.CreateWidget(0);
-    rootWidget.left = 100;
-    rootWidget.top = 100;
-    rootWidget.text = "hello";
-    rootWidget.style = {
+    let rootWidget = BoardhouseUI.CreateWidget({
         color: 0x008080,
         height: 50,
-        width: 100,
+        width: 155,
         lineWidth: 4,
         lineColor: 0xE0FFFF
-    }
-    let child = BoardhouseUI.CreateWidget(0);
+    });
+    rootWidget.left = 500;
+    rootWidget.top = 300;
+
+    let child = BoardhouseUI.CreateWidget();
+    child.setText("Start Game");
     rootWidget.appendChild(child);
     child.left = 10;
     child.top = 10;
-    child.style = {
-        color: 0x808000,
+
+    let grandChild = BoardhouseUI.CreateWidget({
+        color: 0x0000FF,
         height: 50,
-        width: 100,
+        width: 175,
         lineWidth: 4,
-        lineColor: 0x008000
-    }
+        lineColor: 0x000000 
+    });
+    grandChild.top = 100;
+    grandChild.left = 100;
+    child.appendChild(grandChild);
+
     gameState.rootWidget = rootWidget;
 
-
-    // const element = BoardhouseUI.CreateElement(
-    //     BoardhouseUI.WidgetTypes.Div,
-    //     {id: "hey"},
-    //     BoardhouseUI.CreateElement(
-    //         BoardhouseUI.WidgetTypes.Button,
-    //         {onClick: e => console.log("hello")}
-    //     )
-    // )
     // end test button
-    
+    let fps: number = 0;
+    let totalTime: number = 0;
+    let currentTime: number = 0;
+    let fpsWidget = BoardhouseUI.CreateWidget();
+    fpsWidget.setText("FPS:");
+
     // set up event listeners
     setEventListeners(app);
 
     // logic update loop
-    setInterval(function() : void {
+    setInterval(function (): void {
         if (stateStack.length > 0) {
             // call update on last element in state stack
             last(stateStack).update(stateStack, app);
@@ -141,21 +111,18 @@ function main(canvasContainer: HTMLElement) {
         else {
             throw "No states to update";
         }
+        // log FPS
+        fpsWidget.text = "FPS: " + Math.round(fps);
+        BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
     }, 16);
 
-    let fps: number = 0;
-    let totalTime: number = 0;
-    let currentTime: number = 0;
 
     // render update loop
-    function renderLoop(timeStamp: number){
+    function renderLoop(timeStamp: number) {
         requestAnimationFrame(renderLoop);
         currentTime = timeStamp - totalTime;
         totalTime = timeStamp;
-        fps = 1/(currentTime / 1000);
-
-        // log FPS
-        console.log("FPS: " + fps);
+        fps = 1 / (currentTime / 1000);
 
         if (stateStack.length > 0) {
             // call render on last element in state stack
