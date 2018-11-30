@@ -42,6 +42,7 @@ export namespace BoardhouseUI {
         text: string;
         type: WidgetTypes | Component<BaseProps, object>;
         attributes: {}[];
+        parent: Widget;
         children: Widget[];
         onClick: () => void;
         // text: string;
@@ -55,6 +56,7 @@ export namespace BoardhouseUI {
             this.top = 0;
         }
         appendChild(child: Widget) {
+            child.parent = this;
             this.children.push(child);
         }
         addEventListener(eventType: string, event: () => void) {
@@ -93,44 +95,12 @@ export namespace BoardhouseUI {
     export enum WidgetTypes {
         Div,
         Button,
+        Input,
     }
 
-    function CreateWidget(elementType: WidgetTypes) : Widget {
+    export function CreateWidget(elementType: WidgetTypes) : Widget {
         return new Widget(elementType);
     }
-
-    function Render(element: Element, parentWidget: Widget) : void {
-        const type: WidgetTypes = element.type;
-        const props: BaseProps = element.props;
-
-        // Create Widget.
-        const widget: Widget = CreateWidget(type);
-
-        Object.keys(props).forEach(propName => {
-            // Add event listeners.
-            if (propName.substring(0,2) === "on") {
-                const eventType = propName.toLowerCase().substring(2);
-                widget.addEventListener(eventType, props[propName]);
-            }
-            // Set properties.
-            if (propName !== "children") {
-                widget.attributes.push({propName: props[propName]})
-            }
-        });
-
-        // Render children
-        const childElements: Element[] = props.children || [];
-        childElements.forEach(childElement => Render(childElement, widget));
-        
-        // Append to parent.
-        parentWidget.appendChild(widget);
-    }
-
-    // function Instantiate(element: Element, parentWidget) {
-    //     const type = element.type;
-    //     const props = element.props;
-    //     const childElements = props.children || [];
-    // }
 
     /**
      * Function for creating virtual dom elements.

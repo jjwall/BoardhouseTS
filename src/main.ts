@@ -59,46 +59,71 @@ function main(canvasContainer: HTMLElement) {
     // end test ent code
 
     // test button:
-    gameState.rootWidget = new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div);
-    gameState.rootWidget.left = 100;
-    gameState.rootWidget.top = 100;
-    gameState.rootWidget.text = "hello";
-    gameState.rootWidget.style = {
+    // gameState.rootWidget = new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div);
+    // gameState.rootWidget.left = 100;
+    // gameState.rootWidget.top = 100;
+    // gameState.rootWidget.text = "hello";
+    // gameState.rootWidget.style = {
+    //     color: 0x008080,
+    //     height: 50,
+    //     width: 100,
+    //     lineWidth: 4,
+    //     lineColor: 0xE0FFFF
+    // }
+    // gameState.rootWidget.children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
+    // gameState.rootWidget.children[0].left = 10;
+    // gameState.rootWidget.children[0].top = 10;
+    // gameState.rootWidget.children[0].style = {
+    //     color: 0x808000,
+    //     height: 50,
+    //     width: 100,
+    //     lineWidth: 4,
+    //     lineColor: 0x008000
+    // }
+    // gameState.rootWidget.children[0].children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
+    // gameState.rootWidget.children[0].children[0].left = 10;
+    // gameState.rootWidget.children[0].children[0].top = 10;
+    // gameState.rootWidget.children[0].children[0].style = {
+    //     color: 0x0000FF,
+    //     height: 50,
+    //     width: 100,
+    //     lineWidth: 4,
+    //     lineColor: 0x000000
+    // }
+
+    let rootWidget = BoardhouseUI.CreateWidget(0);
+    rootWidget.left = 100;
+    rootWidget.top = 100;
+    rootWidget.text = "hello";
+    rootWidget.style = {
         color: 0x008080,
         height: 50,
         width: 100,
         lineWidth: 4,
         lineColor: 0xE0FFFF
     }
-    gameState.rootWidget.children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
-    gameState.rootWidget.children[0].left = 10;
-    gameState.rootWidget.children[0].top = 10;
-    gameState.rootWidget.children[0].style = {
+    let child = BoardhouseUI.CreateWidget(0);
+    rootWidget.appendChild(child);
+    child.left = 10;
+    child.top = 10;
+    child.style = {
         color: 0x808000,
         height: 50,
         width: 100,
         lineWidth: 4,
         lineColor: 0x008000
     }
-    gameState.rootWidget.children[0].children.push(new BoardhouseUI.Widget(BoardhouseUI.WidgetTypes.Div));
-    gameState.rootWidget.children[0].children[0].left = 10;
-    gameState.rootWidget.children[0].children[0].top = 10;
-    gameState.rootWidget.children[0].children[0].style = {
-        color: 0x0000FF,
-        height: 50,
-        width: 100,
-        lineWidth: 4,
-        lineColor: 0x000000
-    }
+    gameState.rootWidget = rootWidget;
 
-    const element = BoardhouseUI.CreateElement(
-        BoardhouseUI.WidgetTypes.Div,
-        {id: "hey"},
-        BoardhouseUI.CreateElement(
-            BoardhouseUI.WidgetTypes.Button,
-            {onClick: e => console.log("hello")}
-        )
-    )
+
+    // const element = BoardhouseUI.CreateElement(
+    //     BoardhouseUI.WidgetTypes.Div,
+    //     {id: "hey"},
+    //     BoardhouseUI.CreateElement(
+    //         BoardhouseUI.WidgetTypes.Button,
+    //         {onClick: e => console.log("hello")}
+    //     )
+    // )
     // end test button
     
     // set up event listeners
