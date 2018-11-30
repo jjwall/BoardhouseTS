@@ -1,8 +1,8 @@
 import { State } from "./state";
 import { Entity } from "./entity";
-import { renderSystem } from "./rendersystem";
+// import { renderSystem } from "./rendersystem";
 import { BoardhouseUI } from "./boardhouseui";
-import { controlSystem } from "./coresystems";
+import { controlSystem, renderSystem } from "./coresystems";
 import { setSprite } from "./helpers";
 import { initializeControls } from "./corecomponents";
 
