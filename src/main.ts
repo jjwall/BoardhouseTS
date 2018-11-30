@@ -5,6 +5,7 @@ import { last, setSprite } from "./helpers";
 import { Entity } from "./entity";
 import { setEventListeners } from "./seteventlisteners";
 import { BoardhouseUI } from "./boardhouseui";
+import { MainMenuState } from "./mainmenustate";
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
@@ -31,15 +32,6 @@ PIXI.loader
  * Only dependecy is the canvas container element. Also triggers the event pump.
  */
 function main(canvasContainer: HTMLElement) {
-    // initialize state stack
-    let stateStack: State[] = [];
-
-    // in this example push GameState onto stack
-    // but should probably push like a "MainMenuState" onto stack
-    // which would initialize and push GameState within it's own update method
-    let gameState = new GameState();
-    stateStack.push(gameState);
-
     // set up canvas
     let app = new PIXI.Application({
         width: 1280,
@@ -51,54 +43,11 @@ function main(canvasContainer: HTMLElement) {
     app.renderer.autoResize = true;
     canvasContainer.appendChild(app.view);
 
-    // test entity:
-    let ent = new Entity();
-    ent.pos = { x: 0, y: 0 };
-    ent.sprite = setSprite("data/textures/ship.png", ent.pos.x, ent.pos.y, app.stage, 8);
+    // initialize state stack
+    let stateStack: State[] = [];
+    let mainMenuState = new MainMenuState(stateStack, app.stage);
+    stateStack.push(mainMenuState);
 
-    gameState.entities.push(ent);
-    // end test ent code
-
-    // test button:
-
-    let rootWidget = BoardhouseUI.CreateWidget({
-        color: 0x008080,
-        height: 50,
-        width: 155,
-        lineWidth: 4,
-        lineColor: 0xE0FFFF
-    });
-    rootWidget.left = 500;
-    rootWidget.top = 300;
-    let x = 0;
-    rootWidget.onClick = function() {
-        x++;
-        child.text = x.toString();
-    }
-
-    let child = BoardhouseUI.CreateWidget();
-    child.setText("Start Game");
-    rootWidget.appendChild(child);
-    child.left = 10;
-    child.top = 10;
-
-    let grandChild = BoardhouseUI.CreateWidget({
-        color: 0x0000FF,
-        height: 50,
-        width: 175,
-        lineWidth: 4,
-        lineColor: 0x000000 
-    });
-    grandChild.top = 10;
-    grandChild.left = 10;
-    grandChild.onClick = function() {
-        console.log("hello");
-    }
-    child.appendChild(grandChild);
-
-    gameState.rootWidget = rootWidget;
-
-    // end test button
     let fps: number = 0;
     let totalTime: number = 0;
     let currentTime: number = 0;
@@ -113,9 +62,6 @@ function main(canvasContainer: HTMLElement) {
         if (stateStack.length > 0) {
             // call update on last element in state stack
             last(stateStack).update(stateStack, app);
-            // test update
-            ent.pos.x += 1;
-            ent.pos.y += 1;
         }
         else {
             throw "No states to update";
