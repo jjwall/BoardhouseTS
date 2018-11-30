@@ -56,7 +56,7 @@ export enum Collidables {
  * Free function to initialize ControllableComponent to maintain invariance
  * at creation of the object.
  */
-function initializeControls(): ControllableComponent {
+export function initializeControls(): ControllableComponent {
     return {
         jump: false,
         attack: false,

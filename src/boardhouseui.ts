@@ -29,12 +29,12 @@ export namespace BoardhouseUI {
         sprite: PIXI.Sprite;
         left: number;
         top: number;
-        text: string;
+        private text: string;
         private message: PIXI.Text;
         attr: {}[];
         parent: Widget;
         children: Widget[];
-        onClick: () => void;
+        onClick: (e?: any) => void;
         // text: string;
         constructor() {
             this.children = [];
@@ -48,11 +48,13 @@ export namespace BoardhouseUI {
         }
 
         setText(text: string, style: PIXI.TextStyle = null) {
-            if (style !== null) {
-                this.message = new PIXI.Text(text, style);
-            }
-            else {
-                this.message = new PIXI.Text(text);
+            if (this.message === undefined) {
+                if (style !== null) {
+                    this.message = new PIXI.Text(text, style);
+                }
+                else {
+                    this.message = new PIXI.Text(text);
+                }
             }
             
             this.text = text;

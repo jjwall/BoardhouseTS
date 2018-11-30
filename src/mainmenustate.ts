@@ -8,8 +8,11 @@ import { setSprite, clearStage } from "./helpers";
  * Main Menu state that handles setting up all the start up processes.
  */
 export class MainMenuState implements State {
+    public entities: Entity[];
     public rootWidget: BoardhouseUI.Widget;
     constructor(stateStack: State[], stage: PIXI.Container) {
+        this.entities = [];
+
         let startButton = BoardhouseUI.CreateWidget({
             color: 0x008080,
             height: 50,
@@ -28,13 +31,7 @@ export class MainMenuState implements State {
 
         startButton.onClick = function() {
             // set up game state
-            let gameState = new GameState();
-            // set up entities
-            let ent = new Entity();
-            ent.pos = { x: 0, y: 0 };
-            ent.sprite = setSprite("data/textures/ship.png", ent.pos.x, ent.pos.y, stage, 8);
-
-            gameState.entities.push(ent);
+            let gameState = new GameState(stage);
 
             // remove all containers from rootWidget before pushing new state
             clearStage(startButton.selfContainer);
