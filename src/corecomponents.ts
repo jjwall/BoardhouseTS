@@ -19,29 +19,25 @@ export interface ControllableComponent {
 /**
  * HitBox Component that represents the area that when colliding with
  * any of the "collidesWith" enum entries, entity will "hit" them.
- * 
- * Consider making class to ensure height / width aren't negative.
  */
 export interface HitBoxComponent {
+    // collideType: Collidables;
     collidesWith: Collidables[];
     height: number;
     width: number;
-    x: number;
-    y: number;
+    onHit: () => void;
 }
 
 /**
  * HurtBox Component that represents the area that when colliding with
  * any of the "collidesWith" enum entries, entity will "hurt" them.
- * 
- * Consider making class to ensure height / width aren't negative.
  */
 export interface HurtBoxComponent {
-    collidesWith: Collidables[];
+    collideType: Collidables;
+    // collidesWith: Collidables[];
     height: number;
     width: number;
-    x: number;
-    y: number;
+    onHurt: () => void;
 }
 
 /**
@@ -49,6 +45,7 @@ export interface HurtBoxComponent {
  * as long as they are properly set in Hit/Hurt Box "collidesWith" property.
  */
 export enum Collidables {
+    test,
     // ..
 }
 
