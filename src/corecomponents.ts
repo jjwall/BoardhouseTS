@@ -22,7 +22,7 @@ export interface ControllableComponent {
  */
 export interface HitBoxComponent {
     // collideType: Collidables;
-    collidesWith: Collidables[];
+    collidesWith: HurtTypes[];
     height: number;
     width: number;
     onHit: () => void;
@@ -33,7 +33,7 @@ export interface HitBoxComponent {
  * any of the "collidesWith" enum entries, entity will "hurt" them.
  */
 export interface HurtBoxComponent {
-    collideType: Collidables;
+    type: HurtTypes;
     // collidesWith: Collidables[];
     height: number;
     width: number;
@@ -44,7 +44,7 @@ export interface HurtBoxComponent {
  * List of all things that can collide with each other. Naming is arbitrary
  * as long as they are properly set in Hit/Hurt Box "collidesWith" property.
  */
-export enum Collidables {
+export enum HurtTypes {
     test,
     // ..
 }
