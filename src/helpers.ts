@@ -22,6 +22,36 @@ export function setSprite(texturePath: string, xPos: number, yPos: number, stage
 }
 
 /**
+ * Helper to set visuals for a hitBox.
+ * @param stage 
+ * @param width 
+ * @param height 
+ */
+export function setHitBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
+        let hitBoxGraphic = new PIXI.Graphics();
+        hitBoxGraphic.lineStyle(1, 0x008000, 1);
+        hitBoxGraphic.drawRect(0, 0, width, height);
+        stage.addChild(hitBoxGraphic);
+
+        return hitBoxGraphic;
+}
+
+/**
+ * Helper to set visuals for a hurtBox.
+ * @param stage 
+ * @param width 
+ * @param height 
+ */
+export function setHurtBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
+        let hurtBoxGraphic = new PIXI.Graphics();
+        hurtBoxGraphic.lineStyle(1, 0x860111, 1);
+        hurtBoxGraphic.drawRect(0, 0, width, height);
+        stage.addChild(hurtBoxGraphic);
+
+        return hurtBoxGraphic;
+}
+
+/**
  * Clears all rendered elements from container and it's children.
  * @param baseContainer 
  */

@@ -14,6 +14,7 @@ import {
 export class Entity {
      public pos: PositionComponent;
      public sprite: PIXI.Sprite;
+     public graphic: PIXI.Graphics;
      public control: ControllableComponent;
      public hitBox: HitBoxComponent;
      public hurtBox: HurtBoxComponent;
