@@ -30,6 +30,10 @@ export function controlSystem(ents: Readonly<Entity>[]) {
             if (ents[i].control.right) {
                 ents[i].pos.x++;
             }
+            // test attack
+            if (ents[i].control.attack) {
+                console.log("attack!");
+            }
         }
     }
 }

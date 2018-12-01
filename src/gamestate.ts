@@ -17,7 +17,7 @@ export class GameState implements State {
         // set up entities
         let player = new Entity();
         player.pos = { x: 0, y: 0 };
-        player.sprite = setSprite("data/textures/ship.png", player.pos.x, player.pos.y, stage, 8);
+        player.sprite = setSprite("data/textures/girl.png", player.pos.x, player.pos.y, stage, 8);
         player.control = initializeControls();
         player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
         player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)

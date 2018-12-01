@@ -20,6 +20,7 @@ import { MainMenuState } from "./mainmenustate";
 // Load all png files and call main when finished.
 PIXI.loader
     .add("data/textures/ship.png")
+    .add("data/textures/girl.png")
     .load(function () {
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });
