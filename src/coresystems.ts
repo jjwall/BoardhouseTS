@@ -43,5 +43,10 @@ export function renderSystem(ents: Readonly<Entity>[], canvas: HTMLCanvasElement
             // if we want to flip sprite's y coordinate
             // ents[i].sprite.y = canvas.height - ents[i].pos.y - ents[i].sprite.height;
         }
+
+        if (ents[i].graphic !== undefined && ents[i].pos !== undefined) {
+            ents[i].graphic.x = ents[i].pos.x;
+            ents[i].graphic.y = ents[i].pos.y;
+        }
     }
 }
