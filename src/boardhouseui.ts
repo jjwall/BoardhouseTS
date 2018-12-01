@@ -34,7 +34,18 @@ export namespace BoardhouseUI {
         attr: {}[];
         parent: Widget;
         children: Widget[];
+        /**
+         * style must be set for this to trigger.
+         */
         onClick: (e?: any) => void;
+        /**
+         * offHover and style must be set for this to trigger.
+         */
+        onHover: (e?: any) => void;
+        /**
+         * onHover and style must be set for this to trigger.
+         */
+        offHover: (e?: any) => void;
         // text: string;
         constructor() {
             this.children = [];

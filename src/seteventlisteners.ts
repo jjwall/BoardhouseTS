@@ -2,8 +2,10 @@ import { scaleToWindow } from "./helpers";
 import { BoardhouseUI } from "./boardhouseui";
 import { State } from "./state";
 import { last } from "./helpers";
+type Widget = BoardhouseUI.Widget;
 
 export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]) {
+    let hoveredWidgets: BoardhouseUI.Widget[] = [];
     // call first to scale to current window dimensions
     scaleToWindow(canvas);
 
@@ -14,6 +16,11 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
     canvas.addEventListener("mousedown", function (e: MouseEvent) {
         traverseTreeForOnClick(last(stateStack).rootWidget, e);
     });
+
+    canvas.addEventListener("mousemove", function (e: MouseEvent) {
+        traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, e);
+    });
+
     // keyboard controls
     window.onkeydown = function(e: KeyboardEvent) {
         if (e.keyCode === 37) {
@@ -55,12 +62,12 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
     }
 }
 
-function traverseTreeForOnClick(widget: BoardhouseUI.Widget, e: MouseEvent) {
+function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
     if (widget.style !== undefined && widget.onClick !== undefined) {
         if (e.offsetY > widget.selfContainer.worldTransform.ty && e.offsetY < widget.selfContainer.worldTransform.ty + widget.style.height
             && e.offsetX > widget.selfContainer.worldTransform.tx && e.offsetX < widget.selfContainer.worldTransform.tx + widget.style.width)
         {
-            widget.onClick();
+            widget.onClick(e);
         }
     }
 
@@ -69,4 +76,32 @@ function traverseTreeForOnClick(widget: BoardhouseUI.Widget, e: MouseEvent) {
             traverseTreeForOnClick(child, e);
         });
     }
+}
+
+function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], e: MouseEvent) {
+    if (widget.style !== undefined && widget.onHover !== undefined && widget.offHover) {
+        let widgetIndex: number = hoveredWidgets.indexOf(widget);
+
+        if (e.offsetY > widget.selfContainer.worldTransform.ty && e.offsetY < widget.selfContainer.worldTransform.ty + widget.style.height
+            && e.offsetX > widget.selfContainer.worldTransform.tx && e.offsetX < widget.selfContainer.worldTransform.tx + widget.style.width)
+        {
+            if (widgetIndex === -1) {
+                hoveredWidgets.push(widget);
+                widget.onHover(e);
+            }
+        }
+        else {
+            if (widgetIndex > -1) {
+                widget.offHover(e);
+                hoveredWidgets.splice(widgetIndex);
+            }
+        }
+    }
+
+    if (widget.children.length > 0) {
+        widget.children.forEach(child => {
+            traverseTreeForOnClick(child, e);
+        });
+    }
+
 }
