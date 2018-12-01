@@ -1,5 +1,26 @@
 import { Entity } from "./entity";
 
+export function collisionSystem(ents: Readonly<Entity>[]) {
+    ents.forEach(hittingEnt => {
+        if (hittingEnt.hitBox !== undefined && hittingEnt.pos !== undefined) {
+            ents.forEach(hurtingEnt => {
+                if (hurtingEnt.hurtBox !== undefined && hurtingEnt.pos !== undefined) {
+                    if (hittingEnt.hitBox.collidesWith.indexOf(hurtingEnt.hurtBox.collideType) > -1) {
+                        if (hittingEnt.pos.x < hurtingEnt.pos.x + hurtingEnt.hurtBox.width &&
+                            hittingEnt.pos.x + hittingEnt.hitBox.width > hurtingEnt.pos.x &&
+                            hittingEnt.pos.y < hurtingEnt.pos.y + hurtingEnt.hurtBox.height &&
+                            hittingEnt.hitBox.height + hittingEnt.pos.y > hurtingEnt.pos.y)
+                        {
+                            hittingEnt.hitBox.onHit();
+                            hurtingEnt.hurtBox.onHurt();
+                        }
+                    }
+                }
+            });
+        }
+    });
+}
+
 export function controlSystem(ents: Readonly<Entity>[]) {
     for (let i = 0; i < ents.length; i++) {
         if (ents[i].control !== undefined && ents[i].pos !== undefined) {
