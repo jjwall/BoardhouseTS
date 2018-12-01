@@ -67,6 +67,9 @@ export namespace BoardhouseUI {
                     this.message = new PIXI.Text(text);
                 }
             }
+            else if (style !== null) {
+                this.message.style = style;
+            }
             
             this.text = text;
         }
