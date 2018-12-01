@@ -4,7 +4,7 @@ import { Entity } from "./entity";
 import { BoardhouseUI } from "./boardhouseui";
 import { controlSystem, renderSystem, collisionSystem } from "./coresystems";
 import { setSprite } from "./helpers";
-import { initializeControls, Collidables } from "./corecomponents";
+import { initializeControls, HurtTypes } from "./corecomponents";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -19,13 +19,13 @@ export class GameState implements State {
         player.pos = { x: 0, y: 0 };
         player.sprite = setSprite("data/textures/ship.png", player.pos.x, player.pos.y, stage, 8);
         player.control = initializeControls();
-        player.hitBox ={ collidesWith: [Collidables.test], height: 32, width: 64, onHit: function() { console.log("hit")}};
+        player.hitBox ={ collidesWith: [HurtTypes.test], height: 32, width: 64, onHit: function() { console.log("hit")}};
 
         let collider = new Entity();
         collider.pos = { x: 500, y: 30 }
         collider.sprite = setSprite("data/textures/ship.png", collider.pos.x, collider.pos.y, stage, 8);
         let ents = this.entities;
-        collider.hurtBox = { collideType: Collidables.test, height: 32, width: 64, 
+        collider.hurtBox = { type: HurtTypes.test, height: 32, width: 64, 
             onHurt: function() { 
                 console.log("hurt");
                 collider.sprite.destroy();

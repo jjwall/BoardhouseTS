@@ -5,7 +5,7 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
         if (hittingEnt.hitBox !== undefined && hittingEnt.pos !== undefined) {
             ents.forEach(hurtingEnt => {
                 if (hurtingEnt.hurtBox !== undefined && hurtingEnt.pos !== undefined) {
-                    if (hittingEnt.hitBox.collidesWith.indexOf(hurtingEnt.hurtBox.collideType) > -1) {
+                    if (hittingEnt.hitBox.collidesWith.indexOf(hurtingEnt.hurtBox.type) > -1) {
                         if (hittingEnt.pos.x < hurtingEnt.pos.x + hurtingEnt.hurtBox.width &&
                             hittingEnt.pos.x + hittingEnt.hitBox.width > hurtingEnt.pos.x &&
                             hittingEnt.pos.y < hurtingEnt.pos.y + hurtingEnt.hurtBox.height &&
