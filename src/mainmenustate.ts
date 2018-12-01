@@ -25,6 +25,7 @@ export class MainMenuState implements State {
         
         let label = BoardhouseUI.CreateWidget();
         label.setText("Start Game");
+
         startButton.appendChild(label);
         label.left = 10;
         label.top = 10;
@@ -41,10 +42,12 @@ export class MainMenuState implements State {
 
         startButton.onHover = function() {
             startButton.style.color = 0x000000;
+            label.setText("Start Button", new PIXI.TextStyle({fill: 0xFFFFFF}));
         }
 
         startButton.offHover = function() {
             startButton.style.color = 0x008080;
+            label.setText("Start Button", new PIXI.TextStyle({fill: 0x000000}));
         }
 
         this.rootWidget = startButton;
