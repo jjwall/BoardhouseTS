@@ -15,10 +15,11 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
 
     canvas.addEventListener("mousedown", function (e: MouseEvent) {
         traverseTreeForOnClick(last(stateStack).rootWidget, e);
+        canvas.setAttribute("class", "default");
     });
 
     canvas.addEventListener("mousemove", function (e: MouseEvent) {
-        traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, e);
+        traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, canvas, e);
     });
 
     // keyboard controls
@@ -78,7 +79,7 @@ function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
     }
 }
 
-function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], e: MouseEvent) {
+function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: HTMLCanvasElement, e: MouseEvent) {
     if (widget.style !== undefined && widget.onHover !== undefined && widget.offHover) {
         let widgetIndex: number = hoveredWidgets.indexOf(widget);
 
@@ -88,19 +89,21 @@ function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], e: Mouse
             if (widgetIndex === -1) {
                 hoveredWidgets.push(widget);
                 widget.onHover(e);
+                canvas.setAttribute("class", "pointer");
             }
         }
         else {
             if (widgetIndex > -1) {
                 widget.offHover(e);
                 hoveredWidgets.splice(widgetIndex);
+                canvas.setAttribute("class", "default");
             }
         }
     }
 
     if (widget.children.length > 0) {
         widget.children.forEach(child => {
-            traverseTreeForOnClick(child, e);
+            traverseTreeForHover(child, hoveredWidgets, canvas, e);
         });
     }
 
