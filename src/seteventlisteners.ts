@@ -41,6 +41,15 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
                 }
             });
         }
+
+        if (e.keyCode === 90) { // spacebar
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.attack = true;
+                }
+            });
+        }
     }
 
     window.onkeyup = function(e) {
@@ -57,6 +66,15 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
             last(stateStack).entities.forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.right = false;
+                }
+            });
+        }
+
+        if (e.keyCode === 90) { // spacebar
+            // handle ui events first then pass to controls
+            last(stateStack).entities.forEach(ent=> {
+                if (ent.control !== undefined) {
+                    ent.control.attack = false;
                 }
             });
         }
