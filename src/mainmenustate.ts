@@ -39,6 +39,14 @@ export class MainMenuState implements State {
             stateStack.push(gameState);
         }
 
+        startButton.onHover = function() {
+            startButton.style.color = 0x000000;
+        }
+
+        startButton.offHover = function() {
+            startButton.style.color = 0x008080;
+        }
+
         this.rootWidget = startButton;
     }
     public update(stateStack: State[], app: PIXI.Application) {
