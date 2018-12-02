@@ -1,0 +1,17 @@
+{
+    "walk": [
+        {
+            "ticks": 40,
+            "texture": "data/textures/girl.png",
+            "nextFrame": 1
+       },
+        {
+            "ticks": 40,
+            "texture": "data/textures/ship.png",
+            "nextFrame": 0
+       }
+    ],
+    "idle":[
+
+    ]
+}

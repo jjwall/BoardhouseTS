@@ -2,6 +2,19 @@ import { Entity } from "./entity";
 import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 
+export function animationSystem(ents: Readonly<Entity>[]) : void {
+    ents.forEach(ent => {
+        if (ent.anim !== undefined && ent.sprite !== undefined) {
+            ent.anim.ticks--;
+            if (ent.anim.ticks <= 0) {
+                ent.anim.frame = ent.anim.animObj[ent.anim.animation][ent.anim.frame]["nextFrame"];
+                ent.anim.ticks = ent.anim.animObj[ent.anim.animation][ent.anim.frame]["ticks"];
+                ent.sprite.texture = PIXI.utils.TextureCache[ent.anim.animObj[ent.anim.animation]["texture"]];
+            }
+        }
+    });
+}
+
 export function collisionSystem(ents: Readonly<Entity>[]) {
     ents.forEach(hittingEnt => {
         if (hittingEnt.hitBox !== undefined && hittingEnt.pos !== undefined) {

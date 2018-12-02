@@ -42,6 +42,13 @@ export interface HurtBoxComponent {
     onHurt: () => void;
 }
 
+export interface AnimationComponent {
+    animation: string;
+    animObj: object;
+    ticks: number;
+    frame: number;
+}
+
 /**
  * Timer for short-lived entities.
  */
@@ -71,4 +78,13 @@ export function initializeControls(): ControllableComponent {
         left: false,
         right: false,
     };
+}
+
+export function initializeAnimation(startingAnim: string, animObj: object) : AnimationComponent {
+    return {
+        animation: startingAnim,
+        animObj: animObj,
+        ticks: animObj[startingAnim][0].ticks,
+        frame: 0,
+    }
 }
