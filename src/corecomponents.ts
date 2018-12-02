@@ -12,6 +12,8 @@ export interface PositionComponent {
 export interface ControllableComponent {
     jump: boolean;
     attack: boolean;
+    attackTimer: number;
+    attacked: boolean;
     left: boolean;
     right: boolean;
 }
@@ -57,6 +59,8 @@ export function initializeControls(): ControllableComponent {
     return {
         jump: false,
         attack: false,
+        attackTimer: 0,
+        attacked: false,
         left: false,
         right: false,
     };

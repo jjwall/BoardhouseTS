@@ -1,4 +1,6 @@
 import { Entity } from "./entity";
+import { setHitBoxGraphic } from "./helpers";
+import { HurtTypes } from "./corecomponents";
 
 export function collisionSystem(ents: Readonly<Entity>[]) {
     ents.forEach(hittingEnt => {
@@ -21,21 +23,41 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
     });
 }
 
-export function controlSystem(ents: Readonly<Entity>[]) {
-    for (let i = 0; i < ents.length; i++) {
-        if (ents[i].control !== undefined && ents[i].pos !== undefined) {
-            if (ents[i].control.left) {
-                ents[i].pos.x--;
+export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
+    ents.forEach(ent => {
+        if (ent.control !== undefined && ent.pos !== undefined) {
+            if (ent.control.left) {
+                ent.pos.x--;
             }
-            if (ents[i].control.right) {
-                ents[i].pos.x++;
+            if (ent.control.right) {
+                ent.pos.x++;
             }
             // test attack
-            if (ents[i].control.attack) {
+            if (ent.control.attack && !ent.control.attacked) {
+                ent.control.attacked = true;
+                let attackAnim = new Entity();
+                attackAnim.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
+                attackAnim.graphic = setHitBoxGraphic(stage, 50, 50);
+                attackAnim.hitBox = { 
+                    collidesWith: [HurtTypes.test], 
+                    height: 50, 
+                    width: 50, 
+                    onHit: function() { console.log("hit")
+                }};
+                ents.push(attackAnim);
                 console.log("attack!");
             }
+
+            if (ent.control.attacked) {
+                ent.control.attackTimer++;
+            }
+
+            if (ent.control.attackTimer > 75) {
+                ent.control.attacked = false;
+                ent.control.attackTimer = 0;
+            }
         }
-    }
+    });
 }
 
 export function renderSystem(ents: Readonly<Entity>[], canvas: HTMLCanvasElement) {
