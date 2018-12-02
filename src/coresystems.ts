@@ -2,6 +2,32 @@ import { Entity } from "./entity";
 import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 
+/**
+ * Rudimentary velocity implementation... will replace directions with
+ * angle and magnitude later on
+ */
+export function velocitySystem(ents: Readonly<Entity>[]) : void {
+    ents.forEach(ent => { 
+        if (ent.vel !== undefined && ent.pos !== undefined) {
+            if (ent.vel.left) {
+                ent.pos.x -= ent.vel.speed;
+            }
+
+            if (ent.vel.right) {
+                ent.pos.x += ent.vel.speed;
+            }
+
+            if (ent.vel.up) {
+                ent.pos.y -= ent.vel.speed;
+            }
+
+            if (ent.vel.down) {
+                ent.pos.y += ent.vel.speed;
+            }
+        }
+    });
+}
+
 export function animationSystem(ents: Readonly<Entity>[]) : void {
     ents.forEach(ent => {
         if (ent.anim !== undefined && ent.sprite !== undefined) {
@@ -38,12 +64,18 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
 
 export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
     ents.forEach(ent => {
-        if (ent.control !== undefined && ent.pos !== undefined) {
+        if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
             if (ent.control.left) {
-                ent.pos.x--;
+                ent.vel.left = true;
+            }
+            else {
+                ent.vel.left = false;
             }
             if (ent.control.right) {
-                ent.pos.x++;
+                ent.vel.right = true;
+            }
+            else {
+                ent.vel.right = false;
             }
             // test attack
             if (ent.control.attack && !ent.control.attacked) {
@@ -78,9 +110,6 @@ export function renderSystem(ents: Readonly<Entity>[], canvas: HTMLCanvasElement
         if (ents[i].sprite !== undefined && ents[i].pos !== undefined) {
             ents[i].sprite.x = ents[i].pos.x;
             ents[i].sprite.y = ents[i].pos.y;
-
-            // if we want to flip sprite's y coordinate
-            // ents[i].sprite.y = canvas.height - ents[i].pos.y - ents[i].sprite.height;
         }
 
         if (ents[i].graphic !== undefined && ents[i].pos !== undefined) {

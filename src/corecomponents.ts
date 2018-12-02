@@ -7,6 +7,18 @@ export interface PositionComponent {
 }
 
 /**
+ * Rudimentary velocity... will replace directions with
+ * angle and magnitude later on
+ */
+export interface VelocityComponent {
+    left: boolean;
+    right: boolean;
+    up: boolean;
+    down: boolean;
+    speed: number;
+}
+
+/**
  * Controllable component.
  */
 export interface ControllableComponent {
