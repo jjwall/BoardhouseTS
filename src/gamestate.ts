@@ -2,7 +2,7 @@ import { State } from "./state";
 import { Entity } from "./entity";
 // import { renderSystem } from "./rendersystem";
 import { BoardhouseUI } from "./boardhouseui";
-import { controlSystem, renderSystem, collisionSystem } from "./coresystems";
+import { controlSystem, renderSystem, collisionSystem, timerSystem } from "./coresystems";
 import { setSprite, setHitBoxGraphic, setHurtBoxGraphic } from "./helpers";
 import { initializeControls, HurtTypes } from "./corecomponents";
 
@@ -44,6 +44,7 @@ export class GameState implements State {
         // pull in all system free functions and call each in the proper order
         controlSystem(this.entities, app.stage);
         collisionSystem(this.entities);
+        timerSystem(this.entities);
     }
 
     public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {

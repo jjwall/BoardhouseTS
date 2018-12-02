@@ -3,6 +3,7 @@ import {
      ControllableComponent,
      HitBoxComponent,
      HurtBoxComponent,
+     TimerComponent,
 } from "./corecomponents";
 
 /**
@@ -18,4 +19,5 @@ export class Entity {
      public control: ControllableComponent;
      public hitBox: HitBoxComponent;
      public hurtBox: HurtBoxComponent;
+     public timer: TimerComponent;
 }
