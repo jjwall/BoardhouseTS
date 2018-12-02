@@ -43,6 +43,13 @@ export interface HurtBoxComponent {
 }
 
 /**
+ * Timer for short-lived entities.
+ */
+export interface TimerComponent {
+    ticks: number;
+}
+
+/**
  * List of all things that can collide with each other. Naming is arbitrary
  * as long as they are properly set in Hit/Hurt Box "collidesWith" property.
  */

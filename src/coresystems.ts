@@ -36,6 +36,7 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
             if (ent.control.attack && !ent.control.attacked) {
                 ent.control.attacked = true;
                 let attackAnim = new Entity();
+                attackAnim.timer = { ticks: 350 };
                 attackAnim.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
                 attackAnim.graphic = setHitBoxGraphic(stage, 50, 50);
                 attackAnim.hitBox = { 
@@ -75,4 +76,27 @@ export function renderSystem(ents: Readonly<Entity>[], canvas: HTMLCanvasElement
             ents[i].graphic.y = ents[i].pos.y;
         }
     }
+}
+
+export function timerSystem(ents: Entity[]) {
+    ents.forEach(ent => {
+        if (ent.timer !== undefined) {
+            ent.timer.ticks--;
+
+            if (ent.timer.ticks <= 0) {
+                // remove ent for ent list
+                ents.splice(ents.indexOf(ent), 1);
+
+                // destroy sprite if ent has one
+                if (ent.sprite !== undefined) {
+                    ent.sprite.destroy();
+                }
+
+                // destroy graphic if ent has one
+                if (ent.graphic !== undefined) {
+                    ent.graphic.destroy();
+                }
+            }
+        }
+    });
 }
