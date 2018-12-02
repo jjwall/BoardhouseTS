@@ -62,7 +62,7 @@ function main(canvasContainer: HTMLElement) {
     setInterval(function (): void {
         if (stateStack.length > 0) {
             // call update on last element in state stack
-            last(stateStack).update(stateStack, app);
+            last(stateStack).update(stateStack, app.stage);
         }
         else {
             throw "No states to update";

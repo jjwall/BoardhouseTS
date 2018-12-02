@@ -52,7 +52,7 @@ export class MainMenuState implements State {
 
         this.rootWidget = startButton;
     }
-    public update(stateStack: State[], app: PIXI.Application) {
+    public update(stateStack: State[], stage: PIXI.Container) {
         // ...
     }
 

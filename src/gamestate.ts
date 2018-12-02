@@ -40,9 +40,10 @@ export class GameState implements State {
         this.entities.push(player);
         this.rootWidget = new BoardhouseUI.Widget();
     }
-    public update(stateStack: State[], app: PIXI.Application) {
+
+    public update(stateStack: State[], stage: PIXI.Container) {
         // pull in all system free functions and call each in the proper order
-        controlSystem(this.entities, app.stage);
+        controlSystem(this.entities, stage);
         collisionSystem(this.entities);
         timerSystem(this.entities);
     }
