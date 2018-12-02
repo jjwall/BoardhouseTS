@@ -1,5 +1,6 @@
 import { 
      PositionComponent,
+     AnimationComponent,
      ControllableComponent,
      HitBoxComponent,
      HurtBoxComponent,
@@ -15,6 +16,7 @@ import {
 export class Entity {
      public pos: PositionComponent;
      public sprite: PIXI.Sprite;
+     public anim: AnimationComponent;
      public graphic: PIXI.Graphics;
      public control: ControllableComponent;
      public hitBox: HitBoxComponent;
