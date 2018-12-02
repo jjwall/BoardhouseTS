@@ -7,9 +7,9 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
         if (ent.anim !== undefined && ent.sprite !== undefined) {
             ent.anim.ticks--;
             if (ent.anim.ticks <= 0) {
-                ent.anim.frame = ent.anim.animObj[ent.anim.animation][ent.anim.frame]["nextFrame"];
-                ent.anim.ticks = ent.anim.animObj[ent.anim.animation][ent.anim.frame]["ticks"];
-                ent.sprite.texture = PIXI.utils.TextureCache[ent.anim.animObj[ent.anim.animation]["texture"]];
+                ent.anim.frame = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["nextFrame"];
+                ent.anim.ticks = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["ticks"];
+                ent.sprite.texture = PIXI.utils.TextureCache[ent.anim.obj[ent.anim.sequence][ent.anim.frame]["texture"]];
             }
         }
     });
