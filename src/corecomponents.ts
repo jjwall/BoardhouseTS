@@ -42,9 +42,14 @@ export interface HurtBoxComponent {
     onHurt: () => void;
 }
 
+/**
+ * Animation Component. Obj is to be set via a json file.
+ * Change the sequence string to change which animation is
+ * being played.
+ */
 export interface AnimationComponent {
-    animation: string;
-    animObj: object;
+    sequence: string;
+    obj: object;
     ticks: number;
     frame: number;
 }
@@ -82,9 +87,9 @@ export function initializeControls(): ControllableComponent {
 
 export function initializeAnimation(startingAnim: string, animObj: object) : AnimationComponent {
     return {
-        animation: startingAnim,
-        animObj: animObj,
-        ticks: animObj[startingAnim][0].ticks,
+        sequence: startingAnim,
+        obj: animObj,
+        ticks: animObj[startingAnim][0]["ticks"],
         frame: 0,
     }
 }
