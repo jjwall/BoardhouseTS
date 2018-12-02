@@ -19,8 +19,8 @@ export class GameState implements State {
         player.pos = { x: 0, y: 0 };
         player.sprite = setSprite("data/textures/girl.png", player.pos.x, player.pos.y, stage, 8);
         player.control = initializeControls();
-        player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
-        player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)
+        // player.hitBox ={ collidesWith: [HurtTypes.test], height: player.sprite.height, width: player.sprite.width, onHit: function() { console.log("hit")}};
+        // player.graphic = setHitBoxGraphic(stage, player.sprite.width, player.sprite.height)
 
         let collider = new Entity();
         collider.pos = { x: 500, y: 30 }
@@ -42,7 +42,7 @@ export class GameState implements State {
     }
     public update(stateStack: State[], app: PIXI.Application) {
         // pull in all system free functions and call each in the proper order
-        controlSystem(this.entities);
+        controlSystem(this.entities, app.stage);
         collisionSystem(this.entities);
     }
 
