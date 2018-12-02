@@ -35,18 +35,17 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
             // test attack
             if (ent.control.attack && !ent.control.attacked) {
                 ent.control.attacked = true;
-                let attackAnim = new Entity();
-                attackAnim.timer = { ticks: 350 };
-                attackAnim.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
-                attackAnim.graphic = setHitBoxGraphic(stage, 50, 50);
-                attackAnim.hitBox = { 
+                let attack = new Entity();
+                attack.timer = { ticks: 15 };
+                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
+                attack.graphic = setHitBoxGraphic(stage, 50, 50);
+                attack.hitBox = { 
                     collidesWith: [HurtTypes.test], 
                     height: 50, 
                     width: 50, 
                     onHit: function() { console.log("hit")
                 }};
-                ents.push(attackAnim);
-                console.log("attack!");
+                ents.push(attack);
             }
 
             if (ent.control.attacked) {
