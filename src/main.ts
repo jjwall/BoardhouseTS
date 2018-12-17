@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { State } from "./state";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
-import { BoardhouseUI } from "./boardhouseui";
+// import { BoardhouseUI } from "./boardhouseui";
 import { MainMenuState } from "./mainmenustate";
 
 // TODO: Add unit tests.
@@ -18,20 +18,11 @@ import { MainMenuState } from "./mainmenustate";
 // Particle effects
 // Scene transitions
 
-// Load all png files and call main when finished.
-PIXI.loader
-    .add("data/textures/ship.png")
-    .add("data/textures/girl.png")
-    .load(function () {
-        main(<HTMLElement>document.getElementById("canvasContainer"));
-    });
-
 var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
+scene.background = new THREE.Color("#FFFFFF");
+var camera = new THREE.PerspectiveCamera( 75, 1280 / 720, 0.1, 1000);
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
+renderer.setSize(1280, 720);
 
 var geometry = new THREE.BoxGeometry( 1, 1, 1 );
 var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
@@ -39,6 +30,8 @@ var cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 
 camera.position.z = 5;
+
+main(<HTMLElement>document.getElementById("canvasContainer"));
 
 /**
  * 
@@ -48,17 +41,7 @@ camera.position.z = 5;
  * Only dependecy is the canvas container element. Also triggers the event pump.
  */
 function main(canvasContainer: HTMLElement) {
-    // set up canvas
-    // let app = new PIXI.Application({
-    //     width: 1280,
-    //     height: 720,
-    // });
-    // app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
-    // app.renderer.view.style.position = "absolute";
-    // app.renderer.view.style.display = "block"
-    // app.renderer.autoResize = true;
-    // canvasContainer.appendChild(app.view);
-
+    canvasContainer.append(renderer.domElement);
     // initialize state stack
     let stateStack: State[] = [];
     // let mainMenuState = new MainMenuState(stateStack, app.stage);
@@ -67,11 +50,11 @@ function main(canvasContainer: HTMLElement) {
     let fps: number = 0;
     let totalTime: number = 0;
     let currentTime: number = 0;
-    let fpsWidget = BoardhouseUI.CreateWidget();
-    fpsWidget.setText("FPS:");
+    // let fpsWidget = BoardhouseUI.CreateWidget();
+    // fpsWidget.setText("FPS:");
 
     // set up event listeners
-    // setEventListeners(app.renderer.view, stateStack);
+    setEventListeners(renderer.domElement, stateStack);
 
     // logic update loop
     setInterval(function (): void {
@@ -84,7 +67,7 @@ function main(canvasContainer: HTMLElement) {
         // }
 
         // log FPS
-        fpsWidget.setText("FPS: " + Math.round(fps));
+        // fpsWidget.setText("FPS: " + Math.round(fps));
         // BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
     }, 16);
 

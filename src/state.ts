@@ -1,4 +1,4 @@
-import { BoardhouseUI } from "./boardhouseui";
+// import { BoardhouseUI } from "./boardhouseui";
 import { Entity } from "./entity";
 
 /**
@@ -17,5 +17,5 @@ export interface State {
     
     render(canvas: HTMLCanvasElement, stage: PIXI.Container);
 
-    rootWidget: BoardhouseUI.Widget;
+    // rootWidget: BoardhouseUI.Widget;
 }

@@ -10,3 +10,8 @@
 .default {
     cursor: default !important;
 }
+
+/* canvas {
+    width: 100%;
+    height: 100%;
+} */
