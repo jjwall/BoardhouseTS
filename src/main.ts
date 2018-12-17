@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import * as THREE from "three";
 import { State } from "./state";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
@@ -25,6 +26,20 @@ PIXI.loader
         main(<HTMLElement>document.getElementById("canvasContainer"));
     });
 
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+var cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+
+camera.position.z = 5;
+
 /**
  * 
  * @param canvasContainer Captured Canvas Container Element
@@ -34,20 +49,20 @@ PIXI.loader
  */
 function main(canvasContainer: HTMLElement) {
     // set up canvas
-    let app = new PIXI.Application({
-        width: 1280,
-        height: 720,
-    });
-    app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
-    app.renderer.view.style.position = "absolute";
-    app.renderer.view.style.display = "block"
-    app.renderer.autoResize = true;
-    canvasContainer.appendChild(app.view);
+    // let app = new PIXI.Application({
+    //     width: 1280,
+    //     height: 720,
+    // });
+    // app.renderer.backgroundColor = 999999; // -> hexadecimal color is dark torquoise?
+    // app.renderer.view.style.position = "absolute";
+    // app.renderer.view.style.display = "block"
+    // app.renderer.autoResize = true;
+    // canvasContainer.appendChild(app.view);
 
     // initialize state stack
     let stateStack: State[] = [];
-    let mainMenuState = new MainMenuState(stateStack, app.stage);
-    stateStack.push(mainMenuState);
+    // let mainMenuState = new MainMenuState(stateStack, app.stage);
+    // stateStack.push(mainMenuState);
 
     let fps: number = 0;
     let totalTime: number = 0;
@@ -56,21 +71,21 @@ function main(canvasContainer: HTMLElement) {
     fpsWidget.setText("FPS:");
 
     // set up event listeners
-    setEventListeners(app.renderer.view, stateStack);
+    // setEventListeners(app.renderer.view, stateStack);
 
     // logic update loop
     setInterval(function (): void {
-        if (stateStack.length > 0) {
-            // call update on last element in state stack
-            last(stateStack).update(stateStack, app.stage);
-        }
-        else {
-            throw "No states to update";
-        }
+        // if (stateStack.length > 0) {
+        //     // call update on last element in state stack
+        //     last(stateStack).update(stateStack, app.stage);
+        // }
+        // else {
+        //     throw "No states to update";
+        // }
 
         // log FPS
         fpsWidget.setText("FPS: " + Math.round(fps));
-        BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
+        // BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
     }, 16);
 
 
@@ -81,13 +96,18 @@ function main(canvasContainer: HTMLElement) {
         totalTime = timeStamp;
         fps = 1 / (currentTime / 1000);
 
-        if (stateStack.length > 0) {
-            // call render on last element in state stack
-            last(stateStack).render(app.renderer.view, app.stage);
-        }
-        else {
-            throw "No states to render";
-        }
+
+            renderer.render( scene, camera );
+
+            				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+        // if (stateStack.length > 0) {
+        //     // call render on last element in state stack
+        //     last(stateStack).render(app.renderer.view, app.stage);
+        // }
+        // else {
+        //     throw "No states to render";
+        // }
     }
 
     // start the render loop
