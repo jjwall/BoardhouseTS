@@ -6,20 +6,20 @@
  * @param stage PIXI.Container i.e. the stage.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function setSprite(texturePath: string, xPos: number, yPos: number, stage: PIXI.Container, pixelRatio: number) : PIXI.Sprite {
-    let sprite = new PIXI.Sprite(
-        PIXI.loader.resources[texturePath].texture
-    );
-    // set scale mode
-    sprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
-    sprite.x = xPos;
-    sprite.y = yPos;
-    sprite.width *= pixelRatio;
-    sprite.height *= pixelRatio;
-    stage.addChild(sprite);
+// export function setSprite(texturePath: string, xPos: number, yPos: number, stage: PIXI.Container, pixelRatio: number) : PIXI.Sprite {
+//     let sprite = new PIXI.Sprite(
+//         PIXI.loader.resources[texturePath].texture
+//     );
+//     // set scale mode
+//     sprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+//     sprite.x = xPos;
+//     sprite.y = yPos;
+//     sprite.width *= pixelRatio;
+//     sprite.height *= pixelRatio;
+//     stage.addChild(sprite);
 
-    return sprite;
-}
+//     return sprite;
+// }
 
 /**
  * Helper to set visuals for a hitBox.
@@ -27,14 +27,14 @@ export function setSprite(texturePath: string, xPos: number, yPos: number, stage
  * @param width 
  * @param height 
  */
-export function setHitBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
-        let hitBoxGraphic = new PIXI.Graphics();
-        hitBoxGraphic.lineStyle(1, 0x008000, 1);
-        hitBoxGraphic.drawRect(0, 0, width, height);
-        stage.addChild(hitBoxGraphic);
+// export function setHitBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
+//         let hitBoxGraphic = new PIXI.Graphics();
+//         hitBoxGraphic.lineStyle(1, 0x008000, 1);
+//         hitBoxGraphic.drawRect(0, 0, width, height);
+//         stage.addChild(hitBoxGraphic);
 
-        return hitBoxGraphic;
-}
+//         return hitBoxGraphic;
+// }
 
 /**
  * Helper to set visuals for a hurtBox.
@@ -42,23 +42,22 @@ export function setHitBoxGraphic(stage: PIXI.Container, width: number, height: n
  * @param width 
  * @param height 
  */
-export function setHurtBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
-        let hurtBoxGraphic = new PIXI.Graphics();
-        hurtBoxGraphic.lineStyle(1, 0x860111, 1);
-        hurtBoxGraphic.drawRect(0, 0, width, height);
-        stage.addChild(hurtBoxGraphic);
+// export function setHurtBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
+//         let hurtBoxGraphic = new PIXI.Graphics();
+//         hurtBoxGraphic.lineStyle(1, 0x860111, 1);
+//         hurtBoxGraphic.drawRect(0, 0, width, height);
+//         stage.addChild(hurtBoxGraphic);
 
-        return hurtBoxGraphic;
-}
+//         return hurtBoxGraphic;
+// }
 
 /**
  * Clears all rendered elements from container and it's children.
  * @param baseContainer 
  */
-export function clearStage(baseContainer: PIXI.Container) {
-    baseContainer.destroy({children:true, texture:true, baseTexture:true});
-
-}
+// export function clearStage(baseContainer: PIXI.Container) {
+//     baseContainer.destroy({children:true, texture:true, baseTexture:true});
+// }
 
 /**
  * 

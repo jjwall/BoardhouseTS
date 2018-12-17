@@ -1,4 +1,4 @@
-import * as PIXI from "pixi.js";
+// import * as PIXI from "pixi.js";
 import * as THREE from "three";
 import { State } from "./state";
 import { last } from "./helpers";
