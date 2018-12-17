@@ -2,7 +2,7 @@
 import { State } from "./state";
 import { Entity } from "./entity";
 // import { renderSystem } from "./rendersystem";
-import { BoardhouseUI } from "./boardhouseui";
+// import { BoardhouseUI } from "./boardhouseui";
 import { controlSystem, renderSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./coresystems";
 import { setSprite, setHitBoxGraphic, setHurtBoxGraphic } from "./helpers";
 import { initializeControls, HurtTypes, initializeAnimation } from "./corecomponents";
@@ -13,7 +13,7 @@ import playerAnim from "../data/animations/player.json";
  */
 export class GameState implements State {
     public entities: Entity[];
-    public rootWidget: BoardhouseUI.Widget;
+    // public rootWidget: BoardhouseUI.Widget;
     constructor(stage: PIXI.Container){
         this.entities = [];
         // set up entities
@@ -43,7 +43,7 @@ export class GameState implements State {
 
         this.entities.push(collider);
         this.entities.push(player);
-        this.rootWidget = new BoardhouseUI.Widget();
+        // this.rootWidget = new BoardhouseUI.Widget();
     }
 
     public update(stateStack: State[], stage: PIXI.Container) {
@@ -58,6 +58,6 @@ export class GameState implements State {
     public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {
         renderSystem(this.entities, canvas);
         // check if children needs to be reconciled, then do so
-        BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
+        // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
     }
 }
