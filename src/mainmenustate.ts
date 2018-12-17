@@ -2,7 +2,7 @@ import { State } from "./state";
 // import { BoardhouseUI } from "./boardhouseui";
 import { GameState } from "./gamestate";
 import { Entity } from "./entity";
-import { setSprite, clearStage } from "./helpers";
+// import { setSprite, clearStage } from "./helpers";
 
 /**
  * Main Menu state that handles setting up all the start up processes.
@@ -10,7 +10,7 @@ import { setSprite, clearStage } from "./helpers";
 export class MainMenuState implements State {
     public entities: Entity[];
     // public rootWidget: BoardhouseUI.Widget;
-    constructor(stateStack: State[], stage: PIXI.Container) {
+    constructor(stateStack: State[]) { //stage: PIXI.Container) {
         this.entities = [];
 
         // let startButton = BoardhouseUI.CreateWidget({
@@ -52,11 +52,11 @@ export class MainMenuState implements State {
 
         // this.rootWidget = startButton;
     }
-    public update(stateStack: State[], stage: PIXI.Container) {
+    public update(stateStack: State[]) {//, stage: PIXI.Container) {
         // ...
     }
 
-    public render(canvas: HTMLCanvasElement, stage: PIXI.Container) {
+    public render(canvas: HTMLCanvasElement) { //, stage: PIXI.Container) {
         // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
     }
 }

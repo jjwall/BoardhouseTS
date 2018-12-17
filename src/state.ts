@@ -13,9 +13,9 @@ export interface State {
      */
     entities: Entity[];
 
-    update(stateStack: State[], stage: PIXI.Container);
+    update(stateStack: State[]);//, stage: PIXI.Container);
     
-    render(canvas: HTMLCanvasElement, stage: PIXI.Container);
+    render(canvas: HTMLCanvasElement);//, stage: PIXI.Container);
 
     // rootWidget: BoardhouseUI.Widget;
 }
