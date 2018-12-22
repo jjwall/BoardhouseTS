@@ -17,6 +17,6 @@ export async function loadTextures(urls: string[]) : Promise<UrlToTextureMap> {
     });
 }
 
-interface UrlToTextureMap {
+export interface UrlToTextureMap {
     [url: string]: THREE.Texture;
 }
