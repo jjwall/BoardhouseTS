@@ -1,11 +1,10 @@
-// import * as PIXI from "pixi.js";
 import * as THREE from "three";
 import { State } from "./state";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 // import { BoardhouseUI } from "./boardhouseui";
 import { MainMenuState } from "./mainmenustate";
-import { loadTextures } from "./assetmanager";
+import { loadTextures, UrlToTextureMap } from "./assetmanager";
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
@@ -19,40 +18,15 @@ import { loadTextures } from "./assetmanager";
 // Particle effects
 // Scene transitions
 
-// set up scene
-const width = 1280; // should grab from canvas element
-const height = 720; // should grab from canvas element
-var scene = new THREE.Scene();
-scene.background = new THREE.Color("#FFFFFF");
-// var camera = new THREE.PerspectiveCamera(75, 1280 / 720, 0.1, 1000);
-var camera = new THREE.OrthographicCamera(width / - 2, width / 2, height / 2, height / -2, -1000, 1000);
-scene.add(camera);
-var renderer = new THREE.WebGLRenderer();
-renderer.setSize(1280, 720); // should grab from canvas element
-
 loadTextures([
-    "../data/textures/msknight.png",
     "../data/textures/cottage.png",
-    "../data/textures/girl.png"
+    "../data/textures/girl.png",
+    "../data/textures/msknight.png",
 ]).then((textures) => {
     console.log(textures);
 
-    // move to helper file
-    // var spriteMap = new THREE.TextureLoader().load( "../data/textures/msknight.png", function(tex) {
-    //     console.log( tex.image.width, tex.image.height );
-    // });
-
-    let spriteMap = textures["../data/textures/msknight.png"];
-    var geometry = new THREE.PlaneGeometry(spriteMap.image.width*4, spriteMap.image.height*4);
-    spriteMap.magFilter = THREE.NearestFilter;
-    var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
-    var sprite = new THREE.Mesh(geometry, material);
-    // console.log(sprite.getWorldPosition
-    scene.add(sprite);
-
-    // camera.position.z = 5;
-
-    main(<HTMLElement>document.getElementById("canvasContainer"));
+    // start game
+    main(<HTMLElement>document.getElementById("canvasContainer"), textures);
 });
 
 /**
@@ -62,8 +36,36 @@ loadTextures([
  * Main function that gets immediately invoked.
  * Only dependecy is the canvas container element. Also triggers the event pump.
  */
-function main(canvasContainer: HTMLElement) {
+function main(canvasContainer: HTMLElement, textures: UrlToTextureMap) {
+    // set up renderer
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(1280, 720);
+    const rendererSize = renderer.getSize();
+
+    // set up scene
+    let scene = new THREE.Scene();
+    scene.background = new THREE.Color("#FFFFFF");
+
+    // set up camera 
+    // var camera = new THREE.PerspectiveCamera(75, 1280 / 720, 0.1, 1000);
+    var camera = new THREE.OrthographicCamera(rendererSize.width / - 2, rendererSize.width / 2, rendererSize.height / 2, rendererSize.height / -2, -1000, 1000);
+    scene.add(camera);
+
     canvasContainer.append(renderer.domElement);
+
+    // vvv test entity code vvv
+
+    // move to helper file
+    let spriteMap = textures["../data/textures/msknight.png"];
+    var geometry = new THREE.PlaneGeometry(spriteMap.image.width*4, spriteMap.image.height*4);
+    spriteMap.magFilter = THREE.NearestFilter;
+    var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
+    var sprite = new THREE.Mesh(geometry, material);
+    // console.log(sprite.getWorldPosition
+    scene.add(sprite);
+
+    // ^^^ end test entity code ^^^
+
     // initialize state stack
     let stateStack: State[] = [];
     // let mainMenuState = new MainMenuState(stateStack, app.stage);
@@ -93,7 +95,6 @@ function main(canvasContainer: HTMLElement) {
         // BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
     }, 16);
 
-
     // render update loop
     function renderLoop(timeStamp: number) {
         requestAnimationFrame(renderLoop);
@@ -102,10 +103,7 @@ function main(canvasContainer: HTMLElement) {
         fps = 1 / (currentTime / 1000);
 
 
-            renderer.render( scene, camera );
-
-            	// 			cube.rotation.x += 0.01;
-                // cube.rotation.y += 0.01;
+        renderer.render(scene, camera);
                 
         // if (stateStack.length > 0) {
         //     // call render on last element in state stack
