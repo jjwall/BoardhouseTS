@@ -5,6 +5,7 @@ import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 // import { BoardhouseUI } from "./boardhouseui";
 import { MainMenuState } from "./mainmenustate";
+import { loadTextures } from "./assetmanager";
 
 // TODO: Add unit tests.
 // TODO: Add systems for current core components.
@@ -18,6 +19,7 @@ import { MainMenuState } from "./mainmenustate";
 // Particle effects
 // Scene transitions
 
+// set up scene
 const width = 1280;
 const height = 720;
 var scene = new THREE.Scene();
@@ -28,19 +30,26 @@ scene.add(camera);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(1280, 720);
 
-// var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-// var spriteMap = new THREE.TextureLoader().load( "../data/textures/girl.png");
-// spriteMap.magFilter = THREE.NearestFilter;
-// var spriteMaterial = new THREE.SpriteMaterial({map: spriteMap});
-// var sprite = new THREE.Sprite(spriteMaterial);
-// scene.add(sprite);
+// load textures
+let textures = loadTextures([
+    "../data/textures/msknight.png",
+    "../data/textures/cottage.png",
+    "../data/textures/girl.png"
+]);
+console.log(textures);
 
-var geometry = new THREE.PlaneGeometry(64, 64)
-var spriteMap = new THREE.TextureLoader().load( "../data/textures/cottage.png");
+// move to helper file
+// var spriteMap = new THREE.TextureLoader().load( "../data/textures/msknight.png", function(tex) {
+//     console.log( tex.image.width, tex.image.height );
+// });
+
+let spriteMap = textures["../data/textures/msknight.png"];
+var geometry = new THREE.PlaneGeometry(spriteMap.image.width*4, spriteMap.image.height*4);
 spriteMap.magFilter = THREE.NearestFilter;
-var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });//, color: 0x00ff00 } );
-var plane = new THREE.Mesh(geometry, material);
-scene.add(plane);
+var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
+var sprite = new THREE.Mesh(geometry, material);
+// console.log(sprite.getWorldPosition
+scene.add(sprite);
 
 // camera.position.z = 5;
 
