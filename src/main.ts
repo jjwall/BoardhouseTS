@@ -20,40 +20,40 @@ import { loadTextures } from "./assetmanager";
 // Scene transitions
 
 // set up scene
-const width = 1280;
-const height = 720;
+const width = 1280; // should grab from canvas element
+const height = 720; // should grab from canvas element
 var scene = new THREE.Scene();
 scene.background = new THREE.Color("#FFFFFF");
 // var camera = new THREE.PerspectiveCamera(75, 1280 / 720, 0.1, 1000);
 var camera = new THREE.OrthographicCamera(width / - 2, width / 2, height / 2, height / -2, -1000, 1000);
 scene.add(camera);
 var renderer = new THREE.WebGLRenderer();
-renderer.setSize(1280, 720);
+renderer.setSize(1280, 720); // should grab from canvas element
 
-// load textures
-let textures = loadTextures([
+loadTextures([
     "../data/textures/msknight.png",
     "../data/textures/cottage.png",
     "../data/textures/girl.png"
-]);
-console.log(textures);
+]).then((textures) => {
+    console.log(textures);
 
-// move to helper file
-// var spriteMap = new THREE.TextureLoader().load( "../data/textures/msknight.png", function(tex) {
-//     console.log( tex.image.width, tex.image.height );
-// });
+    // move to helper file
+    // var spriteMap = new THREE.TextureLoader().load( "../data/textures/msknight.png", function(tex) {
+    //     console.log( tex.image.width, tex.image.height );
+    // });
 
-let spriteMap = textures["../data/textures/msknight.png"];
-var geometry = new THREE.PlaneGeometry(spriteMap.image.width*4, spriteMap.image.height*4);
-spriteMap.magFilter = THREE.NearestFilter;
-var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
-var sprite = new THREE.Mesh(geometry, material);
-// console.log(sprite.getWorldPosition
-scene.add(sprite);
+    let spriteMap = textures["../data/textures/msknight.png"];
+    var geometry = new THREE.PlaneGeometry(spriteMap.image.width*4, spriteMap.image.height*4);
+    spriteMap.magFilter = THREE.NearestFilter;
+    var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
+    var sprite = new THREE.Mesh(geometry, material);
+    // console.log(sprite.getWorldPosition
+    scene.add(sprite);
 
-// camera.position.z = 5;
+    // camera.position.z = 5;
 
-main(<HTMLElement>document.getElementById("canvasContainer"));
+    main(<HTMLElement>document.getElementById("canvasContainer"));
+});
 
 /**
  * 
