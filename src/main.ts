@@ -9,7 +9,7 @@ import { Resources, loadTextures } from "./resourcemanager";
 // TODO: Rework animation engine to use ts files that implement interfaces instead of json files (in progress)
 // TODO: Add unit tests (not started)
 // TODO: Transition from PIXI to THREE (in progress)
-// TODO: Write virtual DOM framework for UI components (in progress)
+// TODO: Rework UI layer (in progress)
 // TODO: Create level editor (not started)
 // TODO: Make generic key binder (not started)
 // TODO: Implement screen shake (not started)
@@ -52,10 +52,6 @@ function main(canvasContainer: HTMLElement) {
     scene.add(camera);
 
     canvasContainer.append(renderer.domElement);
-
-    // vvv test entity code vvv
-    // setSprite("../data/textures/msknight.png", scene, 4);
-    // ^^^ end test entity code ^^^
 
     // initialize state stack
     let stateStack: State[] = [];
