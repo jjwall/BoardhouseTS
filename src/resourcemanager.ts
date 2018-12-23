@@ -4,13 +4,20 @@ export class Resources
 {
     private static _current: Resources;
 
-    public textures: UrlToTextureMap = {};
+    private _textures: UrlToTextureMap = {};
 
     private constructor() {}
 
-    public static get current()
-    {
+    public static get current() {
         return this._current || (this._current = new this());
+    }
+
+    public get textures() {
+        return this._textures;
+    }
+
+    public set textures(value: UrlToTextureMap) {
+        this._textures = value;
     }
 }
 

@@ -3,7 +3,7 @@ import { State } from "./state";
 import { last, setSprite } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 // import { BoardhouseUI } from "./boardhouseui";
-import { MainMenuState } from "./mainmenustate";
+import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
 // TODO: Add unit tests (not started)
@@ -52,13 +52,13 @@ function main(canvasContainer: HTMLElement) {
     canvasContainer.append(renderer.domElement);
 
     // vvv test entity code vvv
-    setSprite("../data/textures/msknight.png", scene, 4);
+    // setSprite("../data/textures/msknight.png", scene, 4);
     // ^^^ end test entity code ^^^
 
     // initialize state stack
     let stateStack: State[] = [];
-    // let mainMenuState = new MainMenuState(stateStack, app.stage);
-    // stateStack.push(mainMenuState);
+    let gameState = new GameState(scene);
+    stateStack.push(gameState);
 
     let fps: number = 0;
     let totalTime: number = 0;
@@ -71,13 +71,13 @@ function main(canvasContainer: HTMLElement) {
 
     // logic update loop
     setInterval(function (): void {
-        // if (stateStack.length > 0) {
-        //     // call update on last element in state stack
-        //     last(stateStack).update(stateStack, app.stage);
-        // }
-        // else {
-        //     throw "No states to update";
-        // }
+        if (stateStack.length > 0) {
+            // call update on last element in state stack
+            last(stateStack).update();
+        }
+        else {
+            throw "No states to update";
+        }
 
         // log FPS
         // fpsWidget.setText("FPS: " + Math.round(fps));
@@ -92,15 +92,15 @@ function main(canvasContainer: HTMLElement) {
         fps = 1 / (currentTime / 1000);
 
 
-        renderer.render(scene, camera);
+        // renderer.render(scene, camera);
                 
-        // if (stateStack.length > 0) {
-        //     // call render on last element in state stack
-        //     last(stateStack).render(app.renderer.view, app.stage);
-        // }
-        // else {
-        //     throw "No states to render";
-        // }
+        if (stateStack.length > 0) {
+            // call render on last element in state stack
+            last(stateStack).render(renderer, camera, scene);
+        }
+        else {
+            throw "No states to render";
+        }
     }
 
     // start the render loop

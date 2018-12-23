@@ -52,11 +52,11 @@ export class MainMenuState implements State {
 
         // this.rootWidget = startButton;
     }
-    public update(stateStack: State[]) {//, stage: PIXI.Container) {
+    public update() {//, stage: PIXI.Container) {
         // ...
     }
 
-    public render(canvas: HTMLCanvasElement) { //, stage: PIXI.Container) {
+    public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {
         // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
     }
 }

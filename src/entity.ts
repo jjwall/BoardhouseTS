@@ -17,7 +17,7 @@ import {
 export class Entity {
      public pos: PositionComponent;
      public vel: VelocityComponent;
-     // public sprite: PIXI.Sprite;
+     public sprite: THREE.Mesh;
      public anim: AnimationComponent;
      // public graphic: PIXI.Graphics;
      public control: ControllableComponent;
