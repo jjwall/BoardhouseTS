@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import { Resources } from "./resourcemanager";
+import { AnimationComponent } from "./corecomponents";
+import { SequenceTypes } from "./animationschema";
 
 /**
  * Helper method to add a sprite to the stage.
@@ -19,6 +21,18 @@ export function setSprite(url: string, scene: THREE.Scene, pixelRatio: number) :
     scene.add(sprite);
 
     return sprite;
+}
+
+/**
+ * Helper for swapping out an animation sequence.
+ * @param sequence 
+ * @param anim 
+ * @param frame 
+ */
+export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent, frame: number = 0) : AnimationComponent {
+    anim.sequence = sequence;
+    anim.frame = frame;
+    return anim;
 }
 
 /**

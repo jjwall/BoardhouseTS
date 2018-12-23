@@ -88,10 +88,6 @@ function main(canvasContainer: HTMLElement) {
         currentTime = timeStamp - totalTime;
         totalTime = timeStamp;
         fps = 1 / (currentTime / 1000);
-        console.log(fps);
-
-
-        // renderer.render(scene, camera);
                 
         if (stateStack.length > 0) {
             // call render on last element in state stack

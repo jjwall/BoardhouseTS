@@ -3,6 +3,8 @@ import { Entity } from "./entity";
 // import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 import { Resources } from "./resourcemanager";
+import { changeSequence } from "./helpers";
+import { SequenceTypes } from "./animationschema";
 
 /**
  * Rudimentary velocity implementation... will replace directions with
@@ -66,17 +68,21 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
     });
 }
 
-export function controlSystem(ents: Readonly<Entity>[]){//, stage: PIXI.Container) {
+export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
     ents.forEach(ent => {
         if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
             if (ent.control.left) {
                 ent.vel.left = true;
+                // test change seq
+                ent.anim = changeSequence(SequenceTypes.attack, ent.anim);
             }
             else {
                 ent.vel.left = false;
             }
             if (ent.control.right) {
                 ent.vel.right = true;
+                // test change seq
+                ent.anim = changeSequence(SequenceTypes.walk, ent.anim);
             }
             else {
                 ent.vel.right = false;

@@ -3,19 +3,16 @@ import { AnimationSchema, SequenceTypes} from "../../src/animationschema";
 export const playerAnim: AnimationSchema = {
     [SequenceTypes.walk]: [
         {
-            ticks: 40,
+            ticks: 0,
             texture: "../data/textures/msknight.png",
-            nextFrame: 1
+            nextFrame: 0
        },
+    ],
+    [SequenceTypes.attack]: [
         {
-            ticks: 40,
+            ticks: 0,
             texture: "../data/textures/snow.png",
             nextFrame: 0
-       }
+       },
     ],
-    [SequenceTypes.attack]: [{
-        ticks: 5,
-        texture: "test",
-        nextFrame: 5,
-    }],
 }
