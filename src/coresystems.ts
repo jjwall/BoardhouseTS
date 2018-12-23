@@ -1,6 +1,8 @@
+import * as THREE from "three";
 import { Entity } from "./entity";
-import { setHitBoxGraphic } from "./helpers";
+// import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
+import { Resources } from "./resourcemanager";
 
 /**
  * Rudimentary velocity implementation... will replace directions with
@@ -35,7 +37,9 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
             if (ent.anim.ticks <= 0) {
                 ent.anim.frame = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["nextFrame"];
                 ent.anim.ticks = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["ticks"];
-                ent.sprite.texture = PIXI.utils.TextureCache[ent.anim.obj[ent.anim.sequence][ent.anim.frame]["texture"]];
+                const newSpriteMap = Resources.current.textures[ent.anim.obj[ent.anim.sequence][ent.anim.frame]["texture"]];
+                newSpriteMap.magFilter = THREE.NearestFilter;
+                ent.sprite.material = new THREE.MeshBasicMaterial({ map: newSpriteMap, transparent: true });
             }
         }
     });
@@ -62,7 +66,7 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
     });
 }
 
-export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
+export function controlSystem(ents: Readonly<Entity>[]){//, stage: PIXI.Container) {
     ents.forEach(ent => {
         if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
             if (ent.control.left) {
@@ -82,8 +86,8 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
                 ent.control.attacked = true;
                 let attack = new Entity();
                 attack.timer = { ticks: 15 };
-                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
-                attack.graphic = setHitBoxGraphic(stage, 50, 50);
+                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50, z: 5};
+                // attack.graphic = setHitBoxGraphic(stage, 50, 50);
                 attack.hitBox = { 
                     collidesWith: [HurtTypes.test], 
                     height: 50, 
@@ -105,17 +109,13 @@ export function controlSystem(ents: Readonly<Entity>[], stage: PIXI.Container) {
     });
 }
 
-export function renderSystem(ents: Readonly<Entity>[], canvas: HTMLCanvasElement) {
+export function positionSystem(ents: Readonly<Entity>[]) {
     for (let i = 0; i < ents.length; i++) {
-        if (ents[i].sprite !== undefined && ents[i].pos !== undefined) {
-            ents[i].sprite.x = ents[i].pos.x;
-            ents[i].sprite.y = ents[i].pos.y;
-        }
-
-        if (ents[i].graphic !== undefined && ents[i].pos !== undefined) {
-            ents[i].graphic.x = ents[i].pos.x;
-            ents[i].graphic.y = ents[i].pos.y;
-        }
+        ents.forEach(ent => {
+            if (ent.sprite !== undefined && ent.pos !== undefined) {
+                ent.sprite.position.set(ent.pos.x, ent.pos.y, ent.pos.z); 
+            }
+        });
     }
 }
 
@@ -128,15 +128,15 @@ export function timerSystem(ents: Entity[]) {
                 // remove ent for ent list
                 ents.splice(ents.indexOf(ent), 1);
 
-                // destroy sprite if ent has one
-                if (ent.sprite !== undefined) {
-                    ent.sprite.destroy();
-                }
+                // // destroy sprite if ent has one
+                // if (ent.sprite !== undefined) {
+                //     ent.sprite.destroy();
+                // }
 
-                // destroy graphic if ent has one
-                if (ent.graphic !== undefined) {
-                    ent.graphic.destroy();
-                }
+                // // destroy graphic if ent has one
+                // if (ent.graphic !== undefined) {
+                //     ent.graphic.destroy();
+                // }
             }
         }
     });

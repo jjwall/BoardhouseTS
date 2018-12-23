@@ -1,4 +1,4 @@
-import { BoardhouseUI } from "./boardhouseui";
+// import { BoardhouseUI } from "./boardhouseui";
 import { Entity } from "./entity";
 
 /**
@@ -13,9 +13,9 @@ export interface State {
      */
     entities: Entity[];
 
-    update(stateStack: State[], stage: PIXI.Container);
+    update();
     
-    render(canvas: HTMLCanvasElement, stage: PIXI.Container);
+    render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene);
 
-    rootWidget: BoardhouseUI.Widget;
+    // rootWidget: BoardhouseUI.Widget;
 }

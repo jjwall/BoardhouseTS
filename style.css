@@ -10,3 +10,7 @@
 .default {
     cursor: default !important;
 }
+
+#canvasContainer {
+    height: 0;
+}
