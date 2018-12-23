@@ -82,7 +82,7 @@ export function controlSystem(ents: Readonly<Entity>[]){//, stage: PIXI.Containe
                 ent.control.attacked = true;
                 let attack = new Entity();
                 attack.timer = { ticks: 15 };
-                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50};
+                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50, z: 5};
                 // attack.graphic = setHitBoxGraphic(stage, 50, 50);
                 attack.hitBox = { 
                     collidesWith: [HurtTypes.test], 
@@ -105,19 +105,24 @@ export function controlSystem(ents: Readonly<Entity>[]){//, stage: PIXI.Containe
     });
 }
 
-// export function renderSystem(ents: Readonly<Entity>[], canvas: HTMLCanvasElement) {
-//     for (let i = 0; i < ents.length; i++) {
-//         if (ents[i].sprite !== undefined && ents[i].pos !== undefined) {
-//             ents[i].sprite.x = ents[i].pos.x;
-//             ents[i].sprite.y = ents[i].pos.y;
-//         }
+export function renderSystem(ents: Readonly<Entity>[]) {
+    for (let i = 0; i < ents.length; i++) {
+        // if (ents[i].sprite !== undefined && ents[i].pos !== undefined) {
+        //     ents[i].sprite.x = ents[i].pos.x;
+        //     ents[i].sprite.y = ents[i].pos.y;
+        // }
 
-//         if (ents[i].graphic !== undefined && ents[i].pos !== undefined) {
-//             ents[i].graphic.x = ents[i].pos.x;
-//             ents[i].graphic.y = ents[i].pos.y;
-//         }
-//     }
-// }
+        // if (ents[i].graphic !== undefined && ents[i].pos !== undefined) {
+        //     ents[i].graphic.x = ents[i].pos.x;
+        //     ents[i].graphic.y = ents[i].pos.y;
+        // }
+        ents.forEach(ent => {
+            if (ent.sprite !== undefined && ent.pos !== undefined) {
+                ent.sprite.position.set(ent.pos.x, ent.pos.y, ent.pos.z); 
+            }
+        });
+    }
+}
 
 export function timerSystem(ents: Entity[]) {
     ents.forEach(ent => {
