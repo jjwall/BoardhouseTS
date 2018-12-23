@@ -1,6 +1,8 @@
+import * as THREE from "three";
 import { Entity } from "./entity";
 // import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
+import { Resources } from "./resourcemanager";
 
 /**
  * Rudimentary velocity implementation... will replace directions with
@@ -30,12 +32,14 @@ export function velocitySystem(ents: Readonly<Entity>[]) : void {
 
 export function animationSystem(ents: Readonly<Entity>[]) : void {
     ents.forEach(ent => {
-        if (ent.anim !== undefined) {// && ent.sprite !== undefined) {
+        if (ent.anim !== undefined && ent.sprite !== undefined) {
             ent.anim.ticks--;
             if (ent.anim.ticks <= 0) {
                 ent.anim.frame = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["nextFrame"];
                 ent.anim.ticks = ent.anim.obj[ent.anim.sequence][ent.anim.frame]["ticks"];
-                // ent.sprite.texture = PIXI.utils.TextureCache[ent.anim.obj[ent.anim.sequence][ent.anim.frame]["texture"]];
+                const newSpriteMap = Resources.current.textures[ent.anim.obj[ent.anim.sequence][ent.anim.frame]["texture"]];
+                newSpriteMap.magFilter = THREE.NearestFilter;
+                ent.sprite.material = new THREE.MeshBasicMaterial({ map: newSpriteMap, transparent: true });
             }
         }
     });
@@ -105,17 +109,8 @@ export function controlSystem(ents: Readonly<Entity>[]){//, stage: PIXI.Containe
     });
 }
 
-export function renderSystem(ents: Readonly<Entity>[]) {
+export function positionSystem(ents: Readonly<Entity>[]) {
     for (let i = 0; i < ents.length; i++) {
-        // if (ents[i].sprite !== undefined && ents[i].pos !== undefined) {
-        //     ents[i].sprite.x = ents[i].pos.x;
-        //     ents[i].sprite.y = ents[i].pos.y;
-        // }
-
-        // if (ents[i].graphic !== undefined && ents[i].pos !== undefined) {
-        //     ents[i].graphic.x = ents[i].pos.x;
-        //     ents[i].graphic.y = ents[i].pos.y;
-        // }
         ents.forEach(ent => {
             if (ent.sprite !== undefined && ent.pos !== undefined) {
                 ent.sprite.position.set(ent.pos.x, ent.pos.y, ent.pos.z); 

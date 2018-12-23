@@ -2,12 +2,12 @@
     "walk": [
         {
             "ticks": 40,
-            "texture": "data/textures/ship.png",
+            "texture": "../data/textures/msknight.png",
             "nextFrame": 1
        },
         {
             "ticks": 40,
-            "texture": "data/textures/girl.png",
+            "texture": "../data/textures/snow.png",
             "nextFrame": 0
        }
     ],
