@@ -1,3 +1,5 @@
+import { SequenceTypes, AnimationSchema } from "./animationschema";
+
 /**
  * Position component.
  */
@@ -61,8 +63,8 @@ export interface HurtBoxComponent {
  * being played.
  */
 export interface AnimationComponent {
-    sequence: string;
-    obj: object;
+    sequence: SequenceTypes;
+    blob: AnimationSchema;
     ticks: number;
     frame: number;
 }
@@ -98,11 +100,11 @@ export function initializeControls(): ControllableComponent {
     };
 }
 
-export function initializeAnimation(startingAnim: string, animObj: object) : AnimationComponent {
+export function initializeAnimation(startingSequence: SequenceTypes, animBlob: AnimationSchema) : AnimationComponent {
     return {
-        sequence: startingAnim,
-        obj: animObj,
-        ticks: animObj[startingAnim][0]["ticks"],
+        sequence: startingSequence,
+        blob: animBlob,
+        ticks: animBlob[startingSequence][0].ticks,
         frame: 0,
     }
 }

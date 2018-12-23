@@ -12,7 +12,10 @@ import {
 } from "./coresystems";
 import { setSprite } from "./helpers";
 import { initializeControls, HurtTypes, initializeAnimation } from "./corecomponents";
-import playerAnim from "../data/animations/player.json";
+// import playerAnim from "../data/animations/player.json";
+import { playerAnim } from "../data/animations/player";
+import { SequenceTypes } from "./animationschema";
+
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -28,7 +31,7 @@ export class GameState implements State {
         player.sprite = setSprite("../data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
-        player.anim = initializeAnimation("walk", playerAnim);
+        player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
 
         this.entities.push(player);
         // this.rootWidget = new BoardhouseUI.Widget();

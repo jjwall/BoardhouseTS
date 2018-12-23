@@ -1,4 +1,4 @@
-import { AnimationSchema, SequenceTypes} from "../../src/types/animation-schema";
+import { AnimationSchema, SequenceTypes} from "../../src/animationschema";
 
 export const playerAnim: AnimationSchema = {
     [SequenceTypes.walk]: [
