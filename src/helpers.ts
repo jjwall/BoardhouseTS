@@ -1,25 +1,25 @@
+import * as THREE from "three";
+import { Resources } from "./resourcemanager";
+
 /**
  * Helper method to add a sprite to the stage.
- * @param texturePath Path to texture file. Starts at project root.
- * @param xPos Starting x position.
- * @param yPos Starting y position.
- * @param stage PIXI.Container i.e. the stage.
+ * @param url Path to texture file. Starts at project root.
+ * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-// export function setSprite(texturePath: string, xPos: number, yPos: number, stage: PIXI.Container, pixelRatio: number) : PIXI.Sprite {
-//     let sprite = new PIXI.Sprite(
-//         PIXI.loader.resources[texturePath].texture
-//     );
-//     // set scale mode
-//     sprite.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
-//     sprite.x = xPos;
-//     sprite.y = yPos;
-//     sprite.width *= pixelRatio;
-//     sprite.height *= pixelRatio;
-//     stage.addChild(sprite);
+export function setSprite(url: string, scene: THREE.Scene, pixelRatio: number) : THREE.Mesh {
+    // get texture from cached resources
+    let spriteMap = Resources.current.textures[url];
+    // load geometry (consider caching these as well)
+    var geometry = new THREE.PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
+    // set magFilter to nearest for crisp looking pixels
+    spriteMap.magFilter = THREE.NearestFilter;
+    var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
+    var sprite = new THREE.Mesh(geometry, material);
+    scene.add(sprite);
 
-//     return sprite;
-// }
+    return sprite;
+}
 
 /**
  * Helper to set visuals for a hitBox.

@@ -1,32 +1,30 @@
 import * as THREE from "three";
 import { State } from "./state";
-import { last } from "./helpers";
+import { last, setSprite } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 // import { BoardhouseUI } from "./boardhouseui";
 import { MainMenuState } from "./mainmenustate";
-import { loadTextures, UrlToTextureMap } from "./assetmanager";
+import { Resources, loadTextures } from "./resourcemanager";
 
-// TODO: Add unit tests.
-// TODO: Add systems for current core components.
-// >> position system, velocity system
-// TODO: Add event listeners for key events (controls)
-// TODO: Write animation engine.
-// TODO: Write virtual DOM framework for UI components.
-// TODO: Create level editor.
-// Stretch goals:
-// Screen shake
-// Particle effects
-// Scene transitions
+// TODO: Add unit tests (not started)
+// TODO: Transition from PIXI to THREE (in progress)
+// TODO: Write virtual DOM framework for UI components (in progress)
+// TODO: Create level editor (not started)
+// TODO: Make generic key binder (not started)
+// TODO: Implement screen shake (not started)
+// TODO: Add particle effect renderer (not started)
+// TODO: Add scene transitions
 
 loadTextures([
     "../data/textures/cottage.png",
     "../data/textures/girl.png",
     "../data/textures/msknight.png",
 ]).then((textures) => {
-    console.log(textures);
+    // cache off textures
+    Resources.current.textures = textures;
 
     // start game
-    main(<HTMLElement>document.getElementById("canvasContainer"), textures);
+    main(<HTMLElement>document.getElementById("canvasContainer"));
 });
 
 /**
@@ -36,7 +34,7 @@ loadTextures([
  * Main function that gets immediately invoked.
  * Only dependecy is the canvas container element. Also triggers the event pump.
  */
-function main(canvasContainer: HTMLElement, textures: UrlToTextureMap) {
+function main(canvasContainer: HTMLElement) {
     // set up renderer
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(1280, 720);
@@ -54,16 +52,7 @@ function main(canvasContainer: HTMLElement, textures: UrlToTextureMap) {
     canvasContainer.append(renderer.domElement);
 
     // vvv test entity code vvv
-
-    // move to helper file
-    let spriteMap = textures["../data/textures/msknight.png"];
-    var geometry = new THREE.PlaneGeometry(spriteMap.image.width*4, spriteMap.image.height*4);
-    spriteMap.magFilter = THREE.NearestFilter;
-    var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
-    var sprite = new THREE.Mesh(geometry, material);
-    // console.log(sprite.getWorldPosition
-    scene.add(sprite);
-
+    setSprite("../data/textures/msknight.png", scene, 4);
     // ^^^ end test entity code ^^^
 
     // initialize state stack

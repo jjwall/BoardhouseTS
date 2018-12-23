@@ -1,5 +1,19 @@
 import * as THREE from "three";
 
+export class Resources
+{
+    private static _current: Resources;
+
+    public textures: UrlToTextureMap = {};
+
+    private constructor() {}
+
+    public static get current()
+    {
+        return this._current || (this._current = new this());
+    }
+}
+
 export async function loadTextures(urls: string[]) : Promise<UrlToTextureMap> {
     let loader = new THREE.TextureLoader();
     let cachedTextures: UrlToTextureMap = {};
