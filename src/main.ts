@@ -6,6 +6,7 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
+// TODO: Rework animation engine to use ts files that implement interfaces instead of json files (in progress)
 // TODO: Add unit tests (not started)
 // TODO: Transition from PIXI to THREE (in progress)
 // TODO: Write virtual DOM framework for UI components (in progress)
@@ -13,12 +14,13 @@ import { Resources, loadTextures } from "./resourcemanager";
 // TODO: Make generic key binder (not started)
 // TODO: Implement screen shake (not started)
 // TODO: Add particle effect renderer (not started)
-// TODO: Add scene transitions
+// TODO: Add scene transitions (not started)
 
 loadTextures([
     "../data/textures/cottage.png",
     "../data/textures/girl.png",
     "../data/textures/msknight.png",
+    "../data/textures/snow.png",
 ]).then((textures) => {
     // cache off textures
     Resources.current.textures = textures;
@@ -90,6 +92,7 @@ function main(canvasContainer: HTMLElement) {
         currentTime = timeStamp - totalTime;
         totalTime = timeStamp;
         fps = 1 / (currentTime / 1000);
+        console.log(fps);
 
 
         // renderer.render(scene, camera);

@@ -4,7 +4,7 @@ import { Entity } from "./entity";
 // import { BoardhouseUI } from "./boardhouseui";
 import { 
     controlSystem, 
-    renderSystem, 
+    positionSystem, 
     collisionSystem, 
     timerSystem, 
     animationSystem, 
@@ -28,6 +28,7 @@ export class GameState implements State {
         player.sprite = setSprite("../data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
+        player.anim = initializeAnimation("walk", playerAnim);
 
         this.entities.push(player);
         // this.rootWidget = new BoardhouseUI.Widget();
@@ -35,7 +36,7 @@ export class GameState implements State {
 
     public update(){
         // pull in all system free functions and call each in the proper order
-        controlSystem(this.entities);//, stage);
+        controlSystem(this.entities);
         velocitySystem(this.entities);
         collisionSystem(this.entities);
         animationSystem(this.entities);
@@ -43,7 +44,7 @@ export class GameState implements State {
     }
 
     public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {
-        renderSystem(this.entities);
+        positionSystem(this.entities);
 
         renderer.render(scene, camera);
         // check if children needs to be reconciled, then do so
