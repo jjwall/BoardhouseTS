@@ -1,11 +1,11 @@
 import * as THREE from "three";
 import { Resources } from "./resourcemanager";
-import { AnimationComponent } from "./corecomponents";
+import { AnimationComponent, HurtBoxComponent } from "./corecomponents";
 import { SequenceTypes } from "./animationschema";
 
 /**
  * Helper method to add a sprite to the stage.
- * @param url Path to texture file. Starts at project root.
+ * @param url Path to texture file. Starts at current file path.
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
@@ -36,27 +36,25 @@ export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent
 }
 
 /**
- * Helper to set visuals for a hitBox.
+ * Helper to set visuals for a hurtBox.
+ * Used for testing hit collision assumptions.
+ * @param entMesh
+ * @param entHurtBox
+ */
+export function setHurtBoxGraphic(entMesh: THREE.Mesh, entHurtBox: HurtBoxComponent) : void {
+    const hurtBoxGeometry = new THREE.PlaneGeometry(entHurtBox.width, entHurtBox.height);
+    const hurtBoxMaterial = new THREE.MeshBasicMaterial({ color: "#DC143C" });
+    const hurtBoxMesh = new THREE.Mesh(hurtBoxGeometry, hurtBoxMaterial);
+    entMesh.add(hurtBoxMesh);
+}
+
+/**
+ * Helper to set visuals for a hittBox.
  * @param stage 
  * @param width 
  * @param height 
  */
 // export function setHitBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
-//         let hitBoxGraphic = new PIXI.Graphics();
-//         hitBoxGraphic.lineStyle(1, 0x008000, 1);
-//         hitBoxGraphic.drawRect(0, 0, width, height);
-//         stage.addChild(hitBoxGraphic);
-
-//         return hitBoxGraphic;
-// }
-
-/**
- * Helper to set visuals for a hurtBox.
- * @param stage 
- * @param width 
- * @param height 
- */
-// export function setHurtBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
 //         let hurtBoxGraphic = new PIXI.Graphics();
 //         hurtBoxGraphic.lineStyle(1, 0x860111, 1);
 //         hurtBoxGraphic.drawRect(0, 0, width, height);

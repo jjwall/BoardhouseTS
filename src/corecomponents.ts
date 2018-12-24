@@ -117,6 +117,7 @@ export function initializeAnimation(startingSequence: SequenceTypes, animBlob: A
 
 /**
  * Helper for initializing an entity's hurt box.
+ * Note: ``onHurt`` callback should be set independently.
  * @param entMesh An entity's mesh A.K.A. sprite to be set before calling this function.
  * @param hurtType HurtBox type.
  * @param offSetX (Default 0) Number of pixels to offset the hurtbox's x position from the entity's x position.
@@ -124,9 +125,9 @@ export function initializeAnimation(startingSequence: SequenceTypes, animBlob: A
  * @param offSetY (Default 0) Number of pixels to offset the hurtbox's y position from the entity's y position.
  * A positive number will result in a downward shift of the hurtbox.
  * @param manualHeight (Optional) Exact number of pixels to set for the hurtBox's height.
- * Must also set manualWidth for this to take effect.
+ * Must also set ``manualWidth`` for this to take effect.
  * @param manualWidth (Optional) Exact number of pixels to set for the hurtBox's width.
- * Must also set manualHeight for this to take effect.
+ * Must also set ``manualHeight`` for this to take effect.
  */
 export function initializeHurtBox(entMesh: THREE.Mesh, hurtType: HurtTypes, offSetX: number = 0, offSetY: number = 0, manualHeight?: number, manualWidth?: number) : HurtBoxComponent {
     let hurtBox: HurtBoxComponent = { type: hurtType, height: 0, width: 0 };
