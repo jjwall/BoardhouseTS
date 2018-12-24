@@ -6,14 +6,19 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
-// TODO: Add unit tests (not started)
-// TODO: Transition from PIXI to THREE (in progress)
-// TODO: Rework UI layer (in progress) -> USE OPTIONAL PROPS FOR PROP INTERFACE
-// TODO: Create level editor (not started)
-// TODO: Make generic key binder (not started)
+// TODO: Get hit collision system back online (in progress)
+// -> test new hit/hurt box offsetters
+// TODO: Rework UI layer (in progress) 
+// -> USE OPTIONAL PROPS FOR PROP INTERFACE
+// TODO: Rework velocity system (not started)
+// TODO: Add acceleration system (not started)
+// TODO: Add scene transitions (not started)
+// ----- (start sbo prototype at this point)
 // TODO: Implement screen shake (not started)
 // TODO: Add particle effect renderer (not started)
-// TODO: Add scene transitions (not started)
+// TODO: Make generic key binder (not started)
+// TODO: Add unit tests (not started)
+// TODO: Create level editor (not started)
 
 loadTextures([
     "../data/textures/cottage.png",
