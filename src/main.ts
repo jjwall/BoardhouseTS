@@ -6,10 +6,9 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
-// TODO: Rework animation engine to use ts files that implement interfaces instead of json files (in progress)
 // TODO: Add unit tests (not started)
 // TODO: Transition from PIXI to THREE (in progress)
-// TODO: Rework UI layer (in progress)
+// TODO: Rework UI layer (in progress) -> USE OPTIONAL PROPS FOR PROP INTERFACE
 // TODO: Create level editor (not started)
 // TODO: Make generic key binder (not started)
 // TODO: Implement screen shake (not started)
@@ -48,7 +47,7 @@ function main(canvasContainer: HTMLElement) {
 
     // set up camera 
     // var camera = new THREE.PerspectiveCamera(75, 1280 / 720, 0.1, 1000);
-    var camera = new THREE.OrthographicCamera(rendererSize.width / - 2, rendererSize.width / 2, rendererSize.height / 2, rendererSize.height / -2, -1000, 1000);
+    const camera = new THREE.OrthographicCamera(rendererSize.width / - 2, rendererSize.width / 2, rendererSize.height / 2, rendererSize.height / -2, -1000, 1000);
     scene.add(camera);
 
     canvasContainer.append(renderer.domElement);

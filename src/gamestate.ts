@@ -1,4 +1,4 @@
-/// <reference path="./types/json.d.ts" />
+import * as THREE from "three";
 import { State } from "./state";
 import { Entity } from "./entity";
 // import { BoardhouseUI } from "./boardhouseui";
@@ -12,7 +12,6 @@ import {
 } from "./coresystems";
 import { setSprite } from "./helpers";
 import { initializeControls, HurtTypes, initializeAnimation } from "./corecomponents";
-// import playerAnim from "../data/animations/player.json";
 import { playerAnim } from "../data/animations/player";
 import { SequenceTypes } from "./animationschema";
 
@@ -33,6 +32,17 @@ export class GameState implements State {
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
 
+
+        // test hurt box
+        const playerBox = new THREE.Box3().setFromObject(player.sprite);
+        // console.log(playerBox.min, playerBox.max);
+        player.hurtBox = { type: HurtTypes.test, height: playerBox.max.y - playerBox.min.y, width: playerBox.max.x - playerBox.min.x };//, onHurt: function(){}};
+        console.log(player.hurtBox);
+        var hurtBoxGeometry = new THREE.PlaneGeometry(player.hurtBox.width, player.hurtBox.height);
+        var hurtBoxMaterial = new THREE.MeshBasicMaterial({ color: "#DC143C" });
+        var hurtBoxMesh = new THREE.Mesh(hurtBoxGeometry, hurtBoxMaterial);
+        player.sprite.add(hurtBoxMesh);
+        // end test hurt box
         this.entities.push(player);
         // this.rootWidget = new BoardhouseUI.Widget();
     }
