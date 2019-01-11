@@ -2,14 +2,14 @@ import * as THREE from "three";
 
 export class Resources
 {
-    private static _current: Resources;
+    private static _instance: Resources;
 
     private _textures: UrlToTextureMap = {};
 
     private constructor() {}
 
-    public static get current() {
-        return this._current || (this._current = new this());
+    public static get instance() {
+        return this._instance || (this._instance = new this());
     }
 
     public get textures() {
@@ -22,12 +22,12 @@ export class Resources
 }
 
 export async function loadTextures(urls: string[]) : Promise<UrlToTextureMap> {
-    let loader = new THREE.TextureLoader();
+    const loader = new THREE.TextureLoader();
     let cachedTextures: UrlToTextureMap = {};
 
     return new Promise((resolve: (value: UrlToTextureMap) => void, reject) => {
-        for(let i = 0; i < urls.length; i++) {
-            let texture = loader.load( urls[i], function(tex) {
+        for (let i = 0; i < urls.length; i++) {
+            let texture = loader.load(urls[i], function(tex) {
                 if (i === (urls.length - 1)) {
                     resolve(cachedTextures);
                 }

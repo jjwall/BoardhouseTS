@@ -27,7 +27,7 @@ loadTextures([
     "../data/textures/snow.png",
 ]).then((textures) => {
     // cache off textures
-    Resources.current.textures = textures;
+    Resources.instance.textures = textures;
 
     // start game
     main(<HTMLElement>document.getElementById("canvasContainer"));
