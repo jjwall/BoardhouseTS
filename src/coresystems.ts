@@ -39,7 +39,7 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
             if (ent.anim.ticks <= 0) {
                 ent.anim.frame = ent.anim.blob[ent.anim.sequence][ent.anim.frame].nextFrame;
                 ent.anim.ticks = ent.anim.blob[ent.anim.sequence][ent.anim.frame].ticks;
-                const newSpriteMap = Resources.instance.textures[ent.anim.blob[ent.anim.sequence][ent.anim.frame].texture];
+                const newSpriteMap = Resources.instance.getTexture(ent.anim.blob[ent.anim.sequence][ent.anim.frame].texture);
                 newSpriteMap.magFilter = THREE.NearestFilter;
                 ent.sprite.material = new THREE.MeshBasicMaterial({ map: newSpriteMap, transparent: true });
             }

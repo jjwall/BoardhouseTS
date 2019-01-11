@@ -12,8 +12,12 @@ export class Resources
         return this._instance || (this._instance = new this());
     }
 
-    public get textures() {
-        return this._textures;
+    public getTexture(url: string) {
+        if (this._textures[url] === undefined) {
+            throw new Error("Texture not found. Check url and ensure texture is being loaded.");
+        }
+
+        return this._textures[url];
     }
 
     public set textures(value: UrlToTextureMap) {

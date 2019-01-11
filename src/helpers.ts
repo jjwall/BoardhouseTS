@@ -11,7 +11,7 @@ import { SequenceTypes } from "./animationschema";
  */
 export function setSprite(url: string, scene: THREE.Scene, pixelRatio: number) : THREE.Mesh {
     // get texture from cached resources
-    let spriteMap = Resources.instance.textures[url];
+    let spriteMap = Resources.instance.getTexture(url);
     // load geometry (consider caching these as well)
     var geometry = new THREE.PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
     // set magFilter to nearest for crisp looking pixels
