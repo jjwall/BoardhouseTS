@@ -27,10 +27,10 @@ import { Resources, loadTextures } from "./resourcemanager";
 // TODO: Create level editor (not started)
 
 loadTextures([
-    "../data/textures/cottage.png",
-    "../data/textures/girl.png",
-    "../data/textures/msknight.png",
-    "../data/textures/snow.png",
+    "./data/textures/cottage.png",
+    "./data/textures/girl.png",
+    "./data/textures/msknight.png",
+    "./data/textures/snow.png",
 ]).then((textures) => {
     // cache off textures
     Resources.instance.textures = textures;

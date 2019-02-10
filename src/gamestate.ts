@@ -27,7 +27,7 @@ export class GameState implements State {
         // set up entities
         let player = new Entity();
         player.pos = { x: -100, y: -100, z: 5 };
-        player.sprite = setSprite("../data/textures/msknight.png", scene, 4);
+        player.sprite = setSprite("./data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
         player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
