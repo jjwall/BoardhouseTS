@@ -1,25 +1,24 @@
 import * as THREE from "three";
+import { Entity } from "./entity";
 import { SequenceTypes, AnimationSchema } from "./animationschema";
 
 /**
  * Position component.
  */
 export interface PositionComponent {
-    x: number;
-    y: number;
-    z: number;
+    /** Location vector. */
+    loc: THREE.Vector3;
+    /** Direction vector. */
+    dir: THREE.Vector3;
 }
 
 /**
- * Rudimentary velocity... will replace directions with
- * angle and magnitude later on
+ * Velocity component.
  */
 export interface VelocityComponent {
-    left: boolean;
-    right: boolean;
-    up: boolean;
-    down: boolean;
-    speed: number;
+    positional: THREE.Vector3;
+    rotational: THREE.Euler;
+    friction?: number;
 }
 
 /**
@@ -43,7 +42,7 @@ export interface HitBoxComponent {
     collidesWith: HurtTypes[];
     height: number;
     width: number;
-    onHit: () => void;
+    onHit?: (hittingEnt: Entity, hurtingEnt: Entity) => void;
 }
 
 /**
@@ -55,7 +54,7 @@ export interface HurtBoxComponent {
     // collidesWith: Collidables[];
     height: number;
     width: number;
-    onHurt?: () => void;
+    onHurt?: (hurtingEnt: Entity, hittingEnt: Entity) => void;
 }
 
 /**

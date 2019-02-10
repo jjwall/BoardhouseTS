@@ -12,22 +12,12 @@ import { SequenceTypes } from "./animationschema";
  */
 export function velocitySystem(ents: Readonly<Entity>[]) : void {
     ents.forEach(ent => { 
-        if (ent.vel !== undefined && ent.pos !== undefined) {
-            if (ent.vel.left) {
-                ent.pos.x -= ent.vel.speed;
+        if (ent.vel && ent.pos) {
+            if (ent.vel.friction) {
+                ent.vel.positional.multiplyScalar(ent.vel.friction);
             }
-
-            if (ent.vel.right) {
-                ent.pos.x += ent.vel.speed;
-            }
-
-            if (ent.vel.up) {
-                ent.pos.y -= ent.vel.speed;
-            }
-
-            if (ent.vel.down) {
-                ent.pos.y += ent.vel.speed;
-            }
+            ent.pos.loc.add(ent.vel.positional);
+            ent.pos.dir.applyEuler(ent.vel.rotational);
         }
     });
 }
@@ -49,17 +39,21 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
 
 export function collisionSystem(ents: Readonly<Entity>[]) {
     ents.forEach(hittingEnt => {
-        if (hittingEnt.hitBox !== undefined && hittingEnt.pos !== undefined) {
+        if (hittingEnt.hitBox && hittingEnt.pos) {
             ents.forEach(hurtingEnt => {
-                if (hurtingEnt.hurtBox !== undefined && hurtingEnt.pos !== undefined) {
+                if (hurtingEnt.hurtBox && hurtingEnt.pos) {
                     if (hittingEnt.hitBox.collidesWith.indexOf(hurtingEnt.hurtBox.type) > -1) {
-                        if (hittingEnt.pos.x < hurtingEnt.pos.x + hurtingEnt.hurtBox.width &&
-                            hittingEnt.pos.x + hittingEnt.hitBox.width > hurtingEnt.pos.x &&
-                            hittingEnt.pos.y < hurtingEnt.pos.y + hurtingEnt.hurtBox.height &&
-                            hittingEnt.hitBox.height + hittingEnt.pos.y > hurtingEnt.pos.y)
-                        {
-                            hittingEnt.hitBox.onHit();
-                            hurtingEnt.hurtBox.onHurt();
+                        if (hittingEnt.pos.loc.x - hittingEnt.hitBox.width / 2 < hurtingEnt.pos.loc.x + hurtingEnt.hurtBox.width/2 &&
+                            hittingEnt.pos.loc.x + hittingEnt.hitBox.width / 2 > hurtingEnt.pos.loc.x - hurtingEnt.hurtBox.width/2 &&
+                            hittingEnt.pos.loc.y - hittingEnt.hitBox.height / 2 < hurtingEnt.pos.loc.y + hurtingEnt.hurtBox.height/2 &&
+                            hittingEnt.pos.loc.y + hittingEnt.hitBox.height / 2 > hurtingEnt.pos.loc.y - hurtingEnt.hurtBox.height/2) {
+                            if (hittingEnt.hitBox.onHit) {
+                                hittingEnt.hitBox.onHit(hittingEnt, hurtingEnt);
+                            }
+
+                            if (hurtingEnt.hurtBox.onHurt) {
+                                hurtingEnt.hurtBox.onHurt(hurtingEnt, hittingEnt);
+                            }
                         }
                     }
                 }
@@ -69,30 +63,26 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
 }
 
 export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
+    const posAccel: number = 0.1;
+
     ents.forEach(ent => {
         if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
             if (ent.control.left) {
-                ent.vel.left = true;
+                ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(-posAccel));
                 // test change seq
                 ent.anim = changeSequence(SequenceTypes.attack, ent.anim);
             }
-            else {
-                ent.vel.left = false;
-            }
             if (ent.control.right) {
-                ent.vel.right = true;
+                ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(posAccel));
                 // test change seq
                 ent.anim = changeSequence(SequenceTypes.walk, ent.anim);
-            }
-            else {
-                ent.vel.right = false;
             }
             // test attack
             if (ent.control.attack && !ent.control.attacked) {
                 ent.control.attacked = true;
                 let attack = new Entity();
                 attack.timer = { ticks: 15 };
-                attack.pos = {x: ent.pos.x + 100, y: ent.pos.y + 50, z: 5};
+                attack.pos.loc = ent.pos.loc;//x: ent.pos.x + 100, y: ent.pos.y + 50, z: 5};
                 // attack.graphic = setHitBoxGraphic(stage, 50, 50);
                 attack.hitBox = { 
                     collidesWith: [HurtTypes.test], 
@@ -118,8 +108,9 @@ export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
 export function positionSystem(ents: Readonly<Entity>[]) {
     for (let i = 0; i < ents.length; i++) {
         ents.forEach(ent => {
-            if (ent.sprite !== undefined && ent.pos !== undefined) {
-                ent.sprite.position.set(ent.pos.x, ent.pos.y, ent.pos.z); 
+            if (ent.sprite && ent.pos) {
+                ent.sprite.position.copy(ent.pos.loc);
+                ent.sprite.rotation.set(0, 0, Math.atan2(ent.pos.dir.y, ent.pos.dir.x));
             }
         });
     }

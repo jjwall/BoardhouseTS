@@ -26,10 +26,10 @@ export class GameState implements State {
         this.entities = [];
         // set up entities
         let player = new Entity();
-        player.pos = { x: -100, y: -100, z: 5 };
+        player.pos = { loc: new THREE.Vector3(100, -100, 5), dir: new THREE.Vector3(1, 0, 0)};
         player.sprite = setSprite("./data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
-        player.vel = { left: false, right: false, up: false, down: false, speed: 2 };
+        player.vel = { positional: new THREE.Vector3(), rotational: new THREE.Euler() };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtTypes.test);
         setHurtBoxGraphic(player.sprite, player.hurtBox);
