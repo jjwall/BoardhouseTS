@@ -5,10 +5,12 @@
         <!-- below commented out section is for mobile support -->
         <!-- <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=0.6, user-scalable=0"> -->
         <title>My Game</title>
-        <script src="./dist/bundle.js" defer="defer"></script>
-		<link rel="stylesheet" href="./style.css">
+        <!-- Consider pulling three.min.js from a CDN -->
+        <script src="./node_modules/three/build/three.min.js" defer="defer"></script>
+        <script src="./dist/boardhouse.bundle.js" defer="defer"></script>
+	    <link rel="stylesheet" href="./style.css">
 	</head>
 	<body>
-        <div id="canvasContainer"></div>
+            <div id="canvasContainer"></div>
 	</body>
 </html>
