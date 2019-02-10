@@ -1,6 +1,7 @@
 import * as THREE from "three";
+import { Entity } from "./entity";
 import { Resources } from "./resourcemanager";
-import { AnimationComponent, HurtBoxComponent } from "./corecomponents";
+import { AnimationComponent, HurtBoxComponent, HitBoxComponent } from "./corecomponents";
 import { SequenceTypes } from "./animationschema";
 
 /**
@@ -49,19 +50,31 @@ export function setHurtBoxGraphic(entMesh: THREE.Mesh, entHurtBox: HurtBoxCompon
 }
 
 /**
- * Helper to set visuals for a hittBox.
- * @param stage 
- * @param width 
- * @param height 
+ * Helper to set visuals for a hitBox.
+ * Used for testing hit collision assumptions.
+ * @param entMesh
+ * @param entHurtBox
  */
-// export function setHitBoxGraphic(stage: PIXI.Container, width: number, height: number) : PIXI.Graphics {
-//         let hurtBoxGraphic = new PIXI.Graphics();
-//         hurtBoxGraphic.lineStyle(1, 0x860111, 1);
-//         hurtBoxGraphic.drawRect(0, 0, width, height);
-//         stage.addChild(hurtBoxGraphic);
+export function setHitBoxGraphic(entMesh: THREE.Mesh, entHitBox: HitBoxComponent) : void {
+    const hitBoxGeometry = new THREE.PlaneGeometry(entHitBox.width, entHitBox.height);
+    const hitBoxMaterial = new THREE.MeshBasicMaterial({ color: "#860111" });
+    const hitBoxMesh = new THREE.Mesh(hitBoxGeometry, hitBoxMaterial);
+    entMesh.add(hitBoxMesh);
+}
 
-//         return hurtBoxGraphic;
-// }
+/**
+ * Removes an entity from the entity list, and it's corresponding sprite component (if exists).
+ * @param ent Entity to be removed.
+ * @param ents List to remove from. CONSIDER: List of list to remove ent from specific entity registers.
+ * @param scene 
+ */
+export function removeEntity(ent: Entity, ents: Entity[], scene: THREE.Scene) {
+    if (ent.sprite) {
+        scene.remove(ent.sprite);
+    }
+
+    ents.splice(ents.indexOf(ent), 1);
+}
 
 /**
  * Clears all rendered elements from container and it's children.
