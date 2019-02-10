@@ -8,6 +8,11 @@ import { Resources, loadTextures } from "./resourcemanager";
 
 // TODO: Get hit collision system back online (in progress)
 // -> test new hit/hurt box offsetters
+// TODO: Write audio loader
+// TODO: Write geometry loader
+// TODO: DeepReadonly for component systems
+// TODO: Entity registery / setComponent function for special components
+    // (always add to Global Entity list, add to special entity list for special components)
 // TODO: Rework UI layer (in progress) 
 // -> USE OPTIONAL PROPS FOR PROP INTERFACE
 // TODO: Rework velocity system (not started)
@@ -15,6 +20,7 @@ import { Resources, loadTextures } from "./resourcemanager";
 // TODO: Add scene transitions (not started)
 // ----- (start sbo prototype at this point)
 // TODO: Implement screen shake (not started)
+// TODO: Write custom shaders
 // TODO: Add particle effect renderer (not started)
 // TODO: Make generic key binder (not started)
 // TODO: Add unit tests (not started)
