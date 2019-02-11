@@ -44,7 +44,7 @@ export class GameState implements State {
         velocitySystem(this.entities);
         collisionSystem(this.entities);
         animationSystem(this.entities);
-        timerSystem(this.entities);
+        // timerSystem(this.entities);
     }
 
     public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {

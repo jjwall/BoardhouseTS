@@ -3,7 +3,7 @@ import { Entity } from "./entity";
 // import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 import { Resources } from "./resourcemanager";
-import { changeSequence } from "./helpers";
+import { changeSequence, removeEntity } from "./helpers";
 import { SequenceTypes } from "./animationschema";
 
 /**
@@ -22,13 +22,18 @@ export function velocitySystem(ents: Readonly<Entity>[]) : void {
     });
 }
 
+/**
+ * Animation System.
+ * @param ents Lists of ents to run system with. Must have anim and sprite components.
+ */
 export function animationSystem(ents: Readonly<Entity>[]) : void {
     ents.forEach(ent => {
-        if (ent.anim !== undefined && ent.sprite !== undefined) {
+        if (ent.anim && ent.sprite) {
             ent.anim.ticks--;
             if (ent.anim.ticks <= 0) {
                 ent.anim.frame = ent.anim.blob[ent.anim.sequence][ent.anim.frame].nextFrame;
                 ent.anim.ticks = ent.anim.blob[ent.anim.sequence][ent.anim.frame].ticks;
+
                 const newSpriteMap = Resources.instance.getTexture(ent.anim.blob[ent.anim.sequence][ent.anim.frame].texture);
                 newSpriteMap.magFilter = THREE.NearestFilter;
                 ent.sprite.material = new THREE.MeshBasicMaterial({ map: newSpriteMap, transparent: true });
@@ -37,6 +42,11 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
     });
 }
 
+/**
+ * Collision system.
+ * @param ents List of ents to run system with. Hitting ents must have hitBox and pos components.
+ * Hurting ents must have hurtBox and pos components.
+ */
 export function collisionSystem(ents: Readonly<Entity>[]) {
     ents.forEach(hittingEnt => {
         if (hittingEnt.hitBox && hittingEnt.pos) {
@@ -62,11 +72,15 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
     });
 }
 
+/**
+ * Control system.
+ * @param ents Set up special registry for ents with control system.
+ */
 export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
     const posAccel: number = 0.1;
 
     ents.forEach(ent => {
-        if (ent.control !== undefined && ent.vel !== undefined && ent.pos !== undefined) {
+        if (ent.control && ent.vel && ent.pos) {
             if (ent.control.left) {
                 ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(-posAccel));
                 // test change seq
@@ -105,35 +119,31 @@ export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
     });
 }
 
+/**
+ * Position system.
+ * @param ents
+ */
 export function positionSystem(ents: Readonly<Entity>[]) {
-    for (let i = 0; i < ents.length; i++) {
-        ents.forEach(ent => {
-            if (ent.sprite && ent.pos) {
-                ent.sprite.position.copy(ent.pos.loc);
-                ent.sprite.rotation.set(0, 0, Math.atan2(ent.pos.dir.y, ent.pos.dir.x));
-            }
-        });
-    }
+    ents.forEach(ent => {
+        if (ent.sprite && ent.pos) {
+            ent.sprite.position.copy(ent.pos.loc);
+            ent.sprite.rotation.set(0, 0, Math.atan2(ent.pos.dir.y, ent.pos.dir.x));
+        }
+    });
 }
 
-export function timerSystem(ents: Entity[]) {
+/**
+ * Timer system.
+ * @param ents 
+ * @param scene 
+ */
+export function timerSystem(ents: Entity[], scene: THREE.Scene) {
     ents.forEach(ent => {
-        if (ent.timer !== undefined) {
+        if (ent.timer) {
             ent.timer.ticks--;
 
             if (ent.timer.ticks <= 0) {
-                // remove ent for ent list
-                ents.splice(ents.indexOf(ent), 1);
-
-                // // destroy sprite if ent has one
-                // if (ent.sprite !== undefined) {
-                //     ent.sprite.destroy();
-                // }
-
-                // // destroy graphic if ent has one
-                // if (ent.graphic !== undefined) {
-                //     ent.graphic.destroy();
-                // }
+                removeEntity(ent, ents, scene);
             }
         }
     });
