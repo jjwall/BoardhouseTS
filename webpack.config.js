@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: './src/main.ts',
@@ -13,6 +14,14 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CopyWebpackPlugin([
+        { from: './index.html' },
+        { from: './style.css' },
+        { from: './data', to: './data' },
+        { from: './node_modules/three/build/three.min.js', to: './scripts' }
+    ])
+  ],
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ]
   },
@@ -20,7 +29,7 @@ module.exports = {
     three: 'THREE',
   },
   output: {
-    filename: 'boardhouse.bundle.js',
+    filename: 'scripts/boardhouse.bundle.js',
     path: path.resolve(__dirname, 'dist')
   }
 }
