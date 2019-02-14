@@ -7,10 +7,10 @@ var PORT = process.env.PORT || 8080;
 
 var server = http.createServer(app);
 
-app.use(express.static('./'));
+app.use(express.static('./dist'));
 
 app.get("/", function(req, res) {
-	res.sendFile(path.join(__dirname, "/dist/index.html"));
+	res.sendFile(path.join(__dirname, "/index.html"));
 });
 
 server.listen(PORT, function () {
