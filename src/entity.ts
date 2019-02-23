@@ -7,6 +7,7 @@ import {
      HurtBoxComponent,
      TimerComponent,
 } from "./corecomponents";
+import { Mesh } from "three";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
@@ -17,7 +18,7 @@ import {
 export class Entity {
      public pos: PositionComponent;
      public vel: VelocityComponent;
-     public sprite: THREE.Mesh;
+     public sprite: Mesh;
      public anim: AnimationComponent;
      public control: ControllableComponent;
      public hitBox: HitBoxComponent;

@@ -1,6 +1,10 @@
+import { 
+    Scene,
+    Camera,
+    WebGLRenderer
+} from "THREE";
 import { Entity, EntityRegistry } from "./entity";
 import { DeepReadonly } from "./deepreadonly";
-import { Scene } from "THREE";
 
 export abstract class BaseState {
     protected constructor(scene: Scene, stateStack: BaseState[]) {
@@ -17,7 +21,7 @@ export abstract class BaseState {
         }
     }
     public abstract update() : void;
-    public abstract render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) : void;
+    public abstract render(renderer: WebGLRenderer, camera: Camera, scene: Scene) : void;
     public scene: Scene;
     public stateStack: BaseState[];
     private entityRegistry: EntityRegistry;
@@ -36,7 +40,7 @@ export abstract class BaseState {
      * @param ent Entity to be removed.
      * @param scene Scene entity should be removed from.
      */
-    protected removeEntity(ent: Entity, scene: THREE.Scene) {
+    protected removeEntity(ent: Entity, scene: Scene) {
         // Remove sprite from scene if exists.
         if (ent.sprite) {
             scene.remove(ent.sprite);

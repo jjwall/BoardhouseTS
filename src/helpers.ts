@@ -1,7 +1,16 @@
-import * as THREE from "three";
-import { Entity } from "./entity";
+import {
+    Scene,
+    Mesh,
+    MeshBasicMaterial,
+    PlaneGeometry,
+    NearestFilter,
+} from "three";
+import { 
+    AnimationComponent,
+    HurtBoxComponent,
+    HitBoxComponent,
+} from "./corecomponents";
 import { Resources } from "./resourcemanager";
-import { AnimationComponent, HurtBoxComponent, HitBoxComponent } from "./corecomponents";
 import { SequenceTypes } from "./animationschema";
 
 /**
@@ -10,15 +19,15 @@ import { SequenceTypes } from "./animationschema";
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function setSprite(url: string, scene: THREE.Scene, pixelRatio: number) : THREE.Mesh {
+export function setSprite(url: string, scene: Scene, pixelRatio: number) : Mesh {
     // get texture from cached resources
     let spriteMap = Resources.instance.getTexture(url);
     // load geometry (consider caching these as well)
-    var geometry = new THREE.PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
+    var geometry = new PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
     // set magFilter to nearest for crisp looking pixels
-    spriteMap.magFilter = THREE.NearestFilter;
-    var material = new THREE.MeshBasicMaterial( { map: spriteMap, transparent: true });
-    var sprite = new THREE.Mesh(geometry, material);
+    spriteMap.magFilter = NearestFilter;
+    var material = new MeshBasicMaterial( { map: spriteMap, transparent: true });
+    var sprite = new Mesh(geometry, material);
     scene.add(sprite);
 
     return sprite;
@@ -42,10 +51,10 @@ export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent
  * @param entMesh
  * @param entHurtBox
  */
-export function setHurtBoxGraphic(entMesh: THREE.Mesh, entHurtBox: HurtBoxComponent) : void {
-    const hurtBoxGeometry = new THREE.PlaneGeometry(entHurtBox.width, entHurtBox.height);
-    const hurtBoxMaterial = new THREE.MeshBasicMaterial({ color: "#DC143C" });
-    const hurtBoxMesh = new THREE.Mesh(hurtBoxGeometry, hurtBoxMaterial);
+export function setHurtBoxGraphic(entMesh: Mesh, entHurtBox: HurtBoxComponent) : void {
+    const hurtBoxGeometry = new PlaneGeometry(entHurtBox.width, entHurtBox.height);
+    const hurtBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
+    const hurtBoxMesh = new Mesh(hurtBoxGeometry, hurtBoxMaterial);
     entMesh.add(hurtBoxMesh);
 }
 
@@ -55,10 +64,10 @@ export function setHurtBoxGraphic(entMesh: THREE.Mesh, entHurtBox: HurtBoxCompon
  * @param entMesh
  * @param entHurtBox
  */
-export function setHitBoxGraphic(entMesh: THREE.Mesh, entHitBox: HitBoxComponent) : void {
-    const hitBoxGeometry = new THREE.PlaneGeometry(entHitBox.width, entHitBox.height);
-    const hitBoxMaterial = new THREE.MeshBasicMaterial({ color: "#860111" });
-    const hitBoxMesh = new THREE.Mesh(hitBoxGeometry, hitBoxMaterial);
+export function setHitBoxGraphic(entMesh: Mesh, entHitBox: HitBoxComponent) : void {
+    const hitBoxGeometry = new PlaneGeometry(entHitBox.width, entHitBox.height);
+    const hitBoxMaterial = new MeshBasicMaterial({ color: "#860111" });
+    const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
     entMesh.add(hitBoxMesh);
 }
 

@@ -1,4 +1,9 @@
-import * as THREE from "three";
+import {
+    Vector3,
+    Euler,
+    Mesh,
+    Box3
+} from "three";
 import { Entity } from "./entity";
 import { SequenceTypes, AnimationSchema } from "./animationschema";
 
@@ -7,17 +12,17 @@ import { SequenceTypes, AnimationSchema } from "./animationschema";
  */
 export interface PositionComponent {
     /** Location vector. */
-    loc: THREE.Vector3;
+    loc: Vector3;
     /** Direction vector. */
-    dir: THREE.Vector3;
+    dir: Vector3;
 }
 
 /**
  * Velocity component.
  */
 export interface VelocityComponent {
-    positional: THREE.Vector3;
-    rotational: THREE.Euler;
+    positional: Vector3;
+    rotational: Euler;
     friction?: number;
 }
 
@@ -128,7 +133,7 @@ export function initializeAnimation(startingSequence: SequenceTypes, animBlob: A
  * @param manualWidth (Optional) Exact number of pixels to set for the hurtBox's width.
  * Must also set ``manualHeight`` for this to take effect.
  */
-export function initializeHurtBox(entMesh: THREE.Mesh, hurtType: HurtTypes, offSetX: number = 0, offSetY: number = 0, manualHeight?: number, manualWidth?: number) : HurtBoxComponent {
+export function initializeHurtBox(entMesh: Mesh, hurtType: HurtTypes, offSetX: number = 0, offSetY: number = 0, manualHeight?: number, manualWidth?: number) : HurtBoxComponent {
     let hurtBox: HurtBoxComponent = { type: hurtType, height: 0, width: 0 };
 
     if (manualHeight !== undefined && manualWidth !== undefined) {
@@ -136,7 +141,7 @@ export function initializeHurtBox(entMesh: THREE.Mesh, hurtType: HurtTypes, offS
         hurtBox.width = manualWidth + offSetX;
     }
     else {
-        const boundingBox = new THREE.Box3().setFromObject(entMesh);
+        const boundingBox = new Box3().setFromObject(entMesh);
         hurtBox.height = boundingBox.max.y - boundingBox.min.y - offSetY;
         hurtBox.width =  boundingBox.max.x - boundingBox.min.x + offSetX;
     }

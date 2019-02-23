@@ -13,14 +13,14 @@ export class Resources
     }
 
     public getTexture(url: string) {
-        if (this._textures[url] === undefined) {
+        if (!this._textures[url]) {
             throw new Error("Texture not found. Check url and ensure texture url is being passed in to loadTextures().");
         }
 
         return this._textures[url];
     }
 
-    public set textures(value: UrlToTextureMap) {
+    public setTextures(value: UrlToTextureMap) {
         this._textures = value;
     }
 }

@@ -1,4 +1,9 @@
-import * as THREE from "three";
+import {
+    WebGLRenderer,
+    Scene,
+    Color,
+    OrthographicCamera,
+} from "three";
 import { BaseState } from "./basestate";
 import { last, setSprite } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
@@ -6,7 +11,6 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
-// TODO: Import specific THREE exports to simplify type names
 // TODO: Move control system to it's own file
 // TODO: Add camera/scene as state properties (see pale blue dot)
 // TODO: Get hit collision system back online (in progress)
@@ -37,7 +41,7 @@ loadTextures([
     "./data/textures/snow.png",
 ]).then((textures) => {
     // cache off textures
-    Resources.instance.textures = textures;
+    Resources.instance.setTextures(textures);
 
     // start game
     main(<HTMLElement>document.getElementById("canvasContainer"));
@@ -52,17 +56,17 @@ loadTextures([
  */
 function main(canvasContainer: HTMLElement) {
     // set up renderer
-    const renderer = new THREE.WebGLRenderer();
+    const renderer = new WebGLRenderer();
     renderer.setSize(1280, 720);
     const rendererSize = renderer.getSize();
 
     // set up scene
-    let scene = new THREE.Scene();
-    scene.background = new THREE.Color("#FFFFFF");
+    let scene = new Scene();
+    scene.background = new Color("#FFFFFF");
 
     // set up camera 
     // var camera = new THREE.PerspectiveCamera(75, 1280 / 720, 0.1, 1000);
-    const camera = new THREE.OrthographicCamera(rendererSize.width / - 2, rendererSize.width / 2, rendererSize.height / 2, rendererSize.height / -2, -1000, 1000);
+    const camera = new OrthographicCamera(rendererSize.width / - 2, rendererSize.width / 2, rendererSize.height / 2, rendererSize.height / -2, -1000, 1000);
     scene.add(camera);
 
     canvasContainer.append(renderer.domElement);

@@ -1,4 +1,8 @@
-import * as THREE from "three";
+import {
+    Scene,
+    MeshBasicMaterial,
+    NearestFilter,
+} from "three";
 import { Entity } from "./entity";
 // import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
@@ -35,8 +39,8 @@ export function animationSystem(ents: ReadonlyArray<Entity>) : void {
                 ent.anim.ticks = ent.anim.blob[ent.anim.sequence][ent.anim.frame].ticks;
 
                 const newSpriteMap = Resources.instance.getTexture(ent.anim.blob[ent.anim.sequence][ent.anim.frame].texture);
-                newSpriteMap.magFilter = THREE.NearestFilter;
-                ent.sprite.material = new THREE.MeshBasicMaterial({ map: newSpriteMap, transparent: true });
+                newSpriteMap.magFilter = NearestFilter;
+                ent.sprite.material = new MeshBasicMaterial({ map: newSpriteMap, transparent: true });
             }
         }
     });
@@ -137,7 +141,7 @@ export function positionSystem(ents: ReadonlyArray<Entity>) {
  * @param ents 
  * @param scene 
  */
-export function timerSystem(ents: ReadonlyArray<Entity>, removeEntity: (ent:Entity, scene: THREE.Scene) => void, scene: THREE.Scene) {
+export function timerSystem(ents: ReadonlyArray<Entity>, removeEntity: (ent:Entity, scene: Scene) => void, scene: Scene) {
     ents.forEach(ent => {
         if (ent.timer) {
             ent.timer.ticks--;
