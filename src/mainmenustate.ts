@@ -1,4 +1,4 @@
-import { State } from "./state";
+import { BaseState } from "./basestate";
 // import { BoardhouseUI } from "./boardhouseui";
 import { GameState } from "./gamestate";
 import { Entity } from "./entity";
@@ -7,11 +7,11 @@ import { Entity } from "./entity";
 /**
  * Main Menu state that handles setting up all the start up processes.
  */
-export class MainMenuState implements State {
-    public entities: Entity[];
+// export class MainMenuState extends BaseState {
+    // public entities: Entity[];
     // public rootWidget: BoardhouseUI.Widget;
-    constructor(stateStack: State[]) { //stage: PIXI.Container) {
-        this.entities = [];
+    // constructor(stateStack: BaseState[]) { //stage: PIXI.Container) {
+    //     super();
 
         // let startButton = BoardhouseUI.CreateWidget({
         //     color: 0x008080,
@@ -51,12 +51,12 @@ export class MainMenuState implements State {
         // }
 
         // this.rootWidget = startButton;
-    }
-    public update() {//, stage: PIXI.Container) {
+    // }
+    // public update() {//, stage: PIXI.Container) {
         // ...
-    }
+    // }
 
-    public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {
+    // public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {
         // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
-    }
-}
+//     }
+// }

@@ -1,10 +1,10 @@
 import { scaleToWindow } from "./helpers";
 // import { BoardhouseUI } from "./boardhouseui";
-import { State } from "./state";
+import { BaseState } from "./basestate";
 import { last } from "./helpers";
 // type Widget = BoardhouseUI.Widget;
 
-export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]) {
+export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
     // let hoveredWidgets: BoardhouseUI.Widget[] = [];
     // call first to scale to current window dimensions
     scaleToWindow(canvas);
@@ -26,7 +26,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
     window.onkeydown = function(e: KeyboardEvent) {
         if (e.keyCode === 37) {
             // handle ui events first then pass to controls
-            last(stateStack).entities.forEach(ent=> {
+            last(stateStack).getControllableEnts().forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.left = true;
                 }
@@ -35,7 +35,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
 
         if (e.keyCode === 39) {
             // handle ui events first then pass to controls
-            last(stateStack).entities.forEach(ent=> {
+            last(stateStack).getControllableEnts().forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.right = true;
                 }
@@ -44,7 +44,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
 
         if (e.keyCode === 90) { // spacebar
             // handle ui events first then pass to controls
-            last(stateStack).entities.forEach(ent=> {
+            last(stateStack).getControllableEnts().forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.attack = true;
                 }
@@ -55,7 +55,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
     window.onkeyup = function(e) {
         if (e.keyCode === 37) {
             // handle ui events first then pass to controls
-            last(stateStack).entities.forEach(ent=> {
+            last(stateStack).getControllableEnts().forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.left = false;
                 }
@@ -63,7 +63,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
         }
         if (e.keyCode === 39) {
             // handle ui events first then pass to controls
-            last(stateStack).entities.forEach(ent=> {
+            last(stateStack).getControllableEnts().forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.right = false;
                 }
@@ -72,7 +72,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: State[]
 
         if (e.keyCode === 90) { // spacebar
             // handle ui events first then pass to controls
-            last(stateStack).entities.forEach(ent=> {
+            last(stateStack).getControllableEnts().forEach(ent=> {
                 if (ent.control !== undefined) {
                     ent.control.attack = false;
                 }

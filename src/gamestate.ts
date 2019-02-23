@@ -1,6 +1,5 @@
 import * as THREE from "three";
-import { State } from "./state";
-import { Entity } from "./entity";
+import { Entity, EntityRegistry } from "./entity";
 // import { BoardhouseUI } from "./boardhouseui";
 import { 
     controlSystem, 
@@ -14,16 +13,15 @@ import { setSprite, setHurtBoxGraphic } from "./helpers";
 import { initializeControls, HurtTypes, initializeAnimation, initializeHurtBox } from "./corecomponents";
 import { playerAnim } from "../data/animations/player";
 import { SequenceTypes } from "./animationschema";
+import { BaseState } from "./basestate";
 
 
 /**
  * GameState that handles updating of all game-related systems.
  */
-export class GameState implements State {
-    public entities: Entity[];
-    // public rootWidget: BoardhouseUI.Widget;
-    constructor(scene: THREE.Scene){
-        this.entities = [];
+export class GameState extends BaseState {
+    constructor(scene: THREE.Scene, stateStack: BaseState[]){
+        super(scene, stateStack);
         // set up entities
         let player = new Entity();
         player.pos = { loc: new THREE.Vector3(100, -100, 5), dir: new THREE.Vector3(1, 0, 0)};
@@ -32,23 +30,23 @@ export class GameState implements State {
         player.vel = { positional: new THREE.Vector3(), rotational: new THREE.Euler() };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtTypes.test);
+        this.registerEntity(player);
         setHurtBoxGraphic(player.sprite, player.hurtBox);
-        
-        this.entities.push(player);
+
         // this.rootWidget = new BoardhouseUI.Widget();
     }
 
     public update(){
         // pull in all system free functions and call each in the proper order
-        controlSystem(this.entities);
-        velocitySystem(this.entities);
-        collisionSystem(this.entities);
-        animationSystem(this.entities);
-        // timerSystem(this.entities);
+        controlSystem(this.getControllableEnts());
+        velocitySystem(this.getGlobalEnts());
+        collisionSystem(this.getGlobalEnts());
+        animationSystem(this.getGlobalEnts());
+        timerSystem(this.getGlobalEnts(), this.removeEntity, this.scene);
     }
 
     public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {
-        positionSystem(this.entities);
+        positionSystem(this.getGlobalEnts());
 
         renderer.render(scene, camera);
         // check if children needs to be reconciled, then do so

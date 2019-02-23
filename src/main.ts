@@ -1,14 +1,18 @@
 import * as THREE from "three";
-import { State } from "./state";
+import { BaseState } from "./basestate";
 import { last, setSprite } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 // import { BoardhouseUI } from "./boardhouseui";
 import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
+// TODO: Import specific THREE exports to simplify type names
+// TODO: Move control system to it's own file
+// TODO: Add camera/scene as state properties (see pale blue dot)
 // TODO: Get hit collision system back online (in progress)
 // -> test new hit/hurt box offsetters
 // TODO: Write audio loader
+// TODO: Fix callback hell scenario when adding additional loaders
 // TODO: Write geometry loader
 // TODO: DeepReadonly for component systems
 // TODO: Entity registery / setComponent function for special components
@@ -64,8 +68,8 @@ function main(canvasContainer: HTMLElement) {
     canvasContainer.append(renderer.domElement);
 
     // initialize state stack
-    let stateStack: State[] = [];
-    let gameState = new GameState(scene);
+    let stateStack: BaseState[] = [];
+    let gameState = new GameState(scene, stateStack);
     stateStack.push(gameState);
 
     let fps: number = 0;

@@ -3,14 +3,14 @@ import { Entity } from "./entity";
 // import { setHitBoxGraphic } from "./helpers";
 import { HurtTypes } from "./corecomponents";
 import { Resources } from "./resourcemanager";
-import { changeSequence, removeEntity } from "./helpers";
+import { changeSequence } from "./helpers";
 import { SequenceTypes } from "./animationschema";
 
 /**
  * Rudimentary velocity implementation... will replace directions with
  * angle and magnitude later on
  */
-export function velocitySystem(ents: Readonly<Entity>[]) : void {
+export function velocitySystem(ents: ReadonlyArray<Entity>) : void {
     ents.forEach(ent => { 
         if (ent.vel && ent.pos) {
             if (ent.vel.friction) {
@@ -26,7 +26,7 @@ export function velocitySystem(ents: Readonly<Entity>[]) : void {
  * Animation System.
  * @param ents Lists of ents to run system with. Must have anim and sprite components.
  */
-export function animationSystem(ents: Readonly<Entity>[]) : void {
+export function animationSystem(ents: ReadonlyArray<Entity>) : void {
     ents.forEach(ent => {
         if (ent.anim && ent.sprite) {
             ent.anim.ticks--;
@@ -47,7 +47,7 @@ export function animationSystem(ents: Readonly<Entity>[]) : void {
  * @param ents List of ents to run system with. Hitting ents must have hitBox and pos components.
  * Hurting ents must have hurtBox and pos components.
  */
-export function collisionSystem(ents: Readonly<Entity>[]) {
+export function collisionSystem(ents: ReadonlyArray<Entity>) {
     ents.forEach(hittingEnt => {
         if (hittingEnt.hitBox && hittingEnt.pos) {
             ents.forEach(hurtingEnt => {
@@ -76,7 +76,7 @@ export function collisionSystem(ents: Readonly<Entity>[]) {
  * Control system.
  * @param ents Set up special registry for ents with control system.
  */
-export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
+export function controlSystem(ents: ReadonlyArray<Entity>){
     const posAccel: number = 0.1;
 
     ents.forEach(ent => {
@@ -104,7 +104,7 @@ export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
                     width: 50, 
                     onHit: function() { console.log("hit")
                 }};
-                ents.push(attack);
+                //ents.push(attack);
             }
 
             if (ent.control.attacked) {
@@ -123,7 +123,7 @@ export function controlSystem(ents: Entity[]) {//ents: Readonly<Entity>[]){
  * Position system.
  * @param ents
  */
-export function positionSystem(ents: Readonly<Entity>[]) {
+export function positionSystem(ents: ReadonlyArray<Entity>) {
     ents.forEach(ent => {
         if (ent.sprite && ent.pos) {
             ent.sprite.position.copy(ent.pos.loc);
@@ -137,13 +137,13 @@ export function positionSystem(ents: Readonly<Entity>[]) {
  * @param ents 
  * @param scene 
  */
-export function timerSystem(ents: Entity[], scene: THREE.Scene) {
+export function timerSystem(ents: ReadonlyArray<Entity>, removeEntity: (ent:Entity, scene: THREE.Scene) => void, scene: THREE.Scene) {
     ents.forEach(ent => {
         if (ent.timer) {
             ent.timer.ticks--;
 
             if (ent.timer.ticks <= 0) {
-                removeEntity(ent, ents, scene);
+                removeEntity(ent, scene);
             }
         }
     });

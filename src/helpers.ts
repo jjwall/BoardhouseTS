@@ -63,20 +63,6 @@ export function setHitBoxGraphic(entMesh: THREE.Mesh, entHitBox: HitBoxComponent
 }
 
 /**
- * Removes an entity from the entity list, and it's corresponding sprite component (if exists).
- * @param ent Entity to be removed.
- * @param ents List to remove from. CONSIDER: List of list to remove ent from specific entity registers.
- * @param scene 
- */
-export function removeEntity(ent: Entity, ents: Entity[], scene: THREE.Scene) {
-    if (ent.sprite) {
-        scene.remove(ent.sprite);
-    }
-
-    ents.splice(ents.indexOf(ent), 1);
-}
-
-/**
  * Clears all rendered elements from container and it's children.
  * @param baseContainer 
  */

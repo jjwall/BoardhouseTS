@@ -19,9 +19,16 @@ export class Entity {
      public vel: VelocityComponent;
      public sprite: THREE.Mesh;
      public anim: AnimationComponent;
-     // public graphic: PIXI.Graphics;
      public control: ControllableComponent;
      public hitBox: HitBoxComponent;
      public hurtBox: HurtBoxComponent;
      public timer: TimerComponent;
 }
+
+/**
+ * Entity Registry.
+ */
+export interface EntityRegistry {
+     globalEntities: Entity[];
+     controllableEntities: Entity[];
+ }
