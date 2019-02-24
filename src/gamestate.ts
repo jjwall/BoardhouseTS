@@ -54,6 +54,7 @@ export class GameState extends BaseState {
         player.vel = { positional: new Vector3(), rotational: new Euler() };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtTypes.test);
+        player.timer = { ticks: 250, ontimeout: () => { this.removeEntity(player, scene); } };
         this.registerEntity(player);
         setHurtBoxGraphic(player.sprite, player.hurtBox);
 
@@ -66,7 +67,7 @@ export class GameState extends BaseState {
         velocitySystem(this.getGlobalEnts());
         collisionSystem(this.getGlobalEnts());
         animationSystem(this.getGlobalEnts());
-        timerSystem(this.getGlobalEnts(), this.removeEntity, this.scene);
+        timerSystem(this.getGlobalEnts());
     }
 
     public render(renderer: WebGLRenderer, camera: Camera, scene: Scene) : void {

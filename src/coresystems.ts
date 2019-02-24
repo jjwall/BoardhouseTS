@@ -99,7 +99,7 @@ export function controlSystem(ents: ReadonlyArray<Entity>){
             if (ent.control.attack && !ent.control.attacked) {
                 ent.control.attacked = true;
                 let attack = new Entity();
-                attack.timer = { ticks: 15 };
+                // attack.timer = { ticks: 15 };
                 attack.pos.loc = ent.pos.loc;//x: ent.pos.x + 100, y: ent.pos.y + 50, z: 5};
                 // attack.graphic = setHitBoxGraphic(stage, 50, 50);
                 attack.hitBox = { 
@@ -141,13 +141,17 @@ export function positionSystem(ents: ReadonlyArray<Entity>) {
  * @param ents 
  * @param scene 
  */
-export function timerSystem(ents: ReadonlyArray<Entity>, removeEntity: (ent:Entity, scene: Scene) => void, scene: Scene) {
+export function timerSystem(ents: ReadonlyArray<Entity>) {
     ents.forEach(ent => {
         if (ent.timer) {
             ent.timer.ticks--;
 
             if (ent.timer.ticks <= 0) {
-                removeEntity(ent, scene);
+                // Trigger ontimeout callback function.
+                ent.timer.ontimeout();
+
+                // Remove timer component from the entity.
+                ent.timer = undefined;
             }
         }
     });
