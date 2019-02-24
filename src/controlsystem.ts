@@ -1,6 +1,6 @@
 import { Entity } from "./entity";
 import { changeSequence } from "./helpers";
-import { HurtTypes, SequenceTypes } from "./enums";
+import { HurtBoxTypes, SequenceTypes } from "./enums";
 
 /**
  * Control system.
@@ -29,7 +29,7 @@ export function controlSystem(ents: ReadonlyArray<Entity>){
                 attack.pos.loc = ent.pos.loc;//x: ent.pos.x + 100, y: ent.pos.y + 50, z: 5};
                 // attack.graphic = setHitBoxGraphic(stage, 50, 50);
                 attack.hitBox = { 
-                    collidesWith: [HurtTypes.test], 
+                    collidesWith: [HurtBoxTypes.test], 
                     height: 50, 
                     width: 50, 
                     onHit: function() { console.log("hit")

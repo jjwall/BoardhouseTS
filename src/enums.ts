@@ -1,10 +1,19 @@
+ /**
+  * List of component keys from the Entity class.
+  * Add components' keys to this enum for components
+  * that warrant special entity registration. String
+  * must match up with key from Entity object.
+  */
+ export const enum ComponentKeys {
+      control = "control",
+ }
 
 /**
- * List of all things that can collide get hurt. Naming is arbitrary
+ * Enum for all possible types of HurtBoxes. Naming is arbitrary
  * as long as they are properly set in HitBox "collidesWith" property
  * and HurtBox "type" property.
  */
-export enum HurtTypes {
+export const enum HurtBoxTypes {
     test,
     // ..
 }
@@ -12,7 +21,7 @@ export enum HurtTypes {
 /**
  * List of all possible animation sequences.
  */
-export enum SequenceTypes {
+export const enum SequenceTypes {
     idle,
     walk,
     run,

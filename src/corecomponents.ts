@@ -7,7 +7,7 @@ import {
 import { Entity } from "./entity";
 import { AnimationSchema } from "./animationschema";
 import { ControlComponent } from "./controlcomponent";
-import { HurtTypes, SequenceTypes } from "./enums";
+import { HurtBoxTypes, SequenceTypes } from "./enums";
 
 /**
  * Position component.
@@ -34,7 +34,7 @@ export interface VelocityComponent {
  */
 export interface HitBoxComponent {
     // collideType: Collidables;
-    collidesWith: HurtTypes[];
+    collidesWith: HurtBoxTypes[];
     height: number;
     width: number;
     onHit?: (hittingEnt: Entity, hurtingEnt: Entity) => void;
@@ -45,7 +45,7 @@ export interface HitBoxComponent {
  * any of the "collidesWith" enum entries, entity will "hurt" them.
  */
 export interface HurtBoxComponent {
-    type: HurtTypes;
+    type: HurtBoxTypes;
     // collidesWith: Collidables[];
     height: number;
     width: number;
@@ -113,7 +113,7 @@ export function initializeAnimation(startingSequence: SequenceTypes, animBlob: A
  * @param manualWidth (Optional) Exact number of pixels to set for the hurtBox's width.
  * Must also set ``manualHeight`` for this to take effect.
  */
-export function initializeHurtBox(entMesh: Mesh, hurtType: HurtTypes, offSetX: number = 0, offSetY: number = 0, manualHeight?: number, manualWidth?: number) : HurtBoxComponent {
+export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, offSetX: number = 0, offSetY: number = 0, manualHeight?: number, manualWidth?: number) : HurtBoxComponent {
     let hurtBox: HurtBoxComponent = { type: hurtType, height: 0, width: 0 };
 
     if (manualHeight !== undefined && manualWidth !== undefined) {

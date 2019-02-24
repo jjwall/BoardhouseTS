@@ -22,7 +22,7 @@ import { Entity } from "./entity";
 import { setSprite, setHurtBoxGraphic, playAudio } from "./helpers";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
-import { HurtTypes, SequenceTypes } from "./enums";
+import { HurtBoxTypes, SequenceTypes } from "./enums";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -42,7 +42,7 @@ export class GameState extends BaseState {
         player.control = initializeControls();
         player.vel = { positional: new Vector3(), rotational: new Euler() };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
-        player.hurtBox = initializeHurtBox(player.sprite, HurtTypes.test);
+        player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test);
         player.timer = { ticks: 250, ontimeout: () => { this.removeEntity(player, scene); } };
         this.registerEntity(player);
         setHurtBoxGraphic(player.sprite, player.hurtBox);
