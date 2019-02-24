@@ -11,20 +11,16 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 import { Resources, loadTextures } from "./resourcemanager";
 
-// TODO: Move control system to it's own file
+// TODO: Test: collisionSystem, entityRegistry, removeEntity (in progress)
+// TODO: Set up VSCode debugging (in progress)
+// TODO: Move control system to it's own file (not started)
 // TODO: Add camera/scene as state properties (see pale blue dot)
-// TODO: Get hit collision system back online (in progress)
-// -> test new hit/hurt box offsetters
-// TODO: Write audio loader
-// TODO: Fix callback hell scenario when adding additional loaders
-// TODO: Write geometry loader
-// TODO: DeepReadonly for component systems
-// TODO: Entity registery / setComponent function for special components
-    // (always add to Global Entity list, add to special entity list for special components)
+// TODO: Write audio loader (not started)
+// TODO: Fix callback hell scenario when adding additional loaders (not started)
+// TODO: Write geometry loader (not started)
 // TODO: Rework UI layer (in progress) 
 // -> USE OPTIONAL PROPS FOR PROP INTERFACE
-// TODO: Rework velocity system (not started)
-// TODO: Add acceleration system (not started)
+// TODO: Scan & sweep alg for collision system (not started)
 // TODO: Add scene transitions (not started)
 // ----- (start sbo prototype at this point)
 // TODO: Implement screen shake (not started)
