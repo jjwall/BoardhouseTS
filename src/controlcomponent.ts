@@ -8,4 +8,6 @@ export interface ControlComponent {
     attacked: boolean;
     left: boolean;
     right: boolean;
+    up: boolean;
+    down: boolean;
 }

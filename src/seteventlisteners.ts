@@ -24,28 +24,46 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
     // keyboard controls
     window.onkeydown = function(e: KeyboardEvent) {
+        // left
         if (e.keyCode === 37) {
-            // handle ui events first then pass to controls
             last(stateStack).getControllableEnts().forEach(ent=> {
-                if (ent.control !== undefined) {
+                if (ent.control) {
                     ent.control.left = true;
                 }
             });
         }
 
+        // right
         if (e.keyCode === 39) {
-            // handle ui events first then pass to controls
             last(stateStack).getControllableEnts().forEach(ent=> {
-                if (ent.control !== undefined) {
+                if (ent.control) {
                     ent.control.right = true;
                 }
             });
         }
 
-        if (e.keyCode === 90) { // spacebar
-            // handle ui events first then pass to controls
+        // up
+        if (e.keyCode === 38 || e.key === 'w') {
             last(stateStack).getControllableEnts().forEach(ent=> {
-                if (ent.control !== undefined) {
+                if (ent.control) {
+                    ent.control.up = true;
+                }
+            });
+        }
+
+        // down
+        if (e.keyCode === 40 || e.key === 's') {
+            last(stateStack).getControllableEnts().forEach(ent=> {
+                if (ent.control) {
+                    ent.control.down = true;
+                }
+            });
+        }
+
+        // spacebar
+        if (e.keyCode === 90) {
+            last(stateStack).getControllableEnts().forEach(ent=> {
+                if (ent.control) {
                     ent.control.attack = true;
                 }
             });
@@ -53,27 +71,46 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     }
 
     window.onkeyup = function(e) {
+        // left
         if (e.keyCode === 37) {
-            // handle ui events first then pass to controls
             last(stateStack).getControllableEnts().forEach(ent=> {
-                if (ent.control !== undefined) {
+                if (ent.control) {
                     ent.control.left = false;
                 }
             });
         }
+
+        // right
         if (e.keyCode === 39) {
-            // handle ui events first then pass to controls
             last(stateStack).getControllableEnts().forEach(ent=> {
-                if (ent.control !== undefined) {
+                if (ent.control) {
                     ent.control.right = false;
                 }
             });
         }
 
-        if (e.keyCode === 90) { // spacebar
-            // handle ui events first then pass to controls
+        // up
+        if (e.keyCode === 38 || e.key === 'w') {
             last(stateStack).getControllableEnts().forEach(ent=> {
-                if (ent.control !== undefined) {
+                if (ent.control) {
+                    ent.control.up = false;
+                }
+            });
+        }
+
+        // down
+        if (e.keyCode === 40 || e.key === 's') {
+            last(stateStack).getControllableEnts().forEach(ent=> {
+                if (ent.control) {
+                    ent.control.down = false;
+                }
+            });
+        }
+
+        // spacebar
+        if (e.keyCode === 90) {
+            last(stateStack).getControllableEnts().forEach(ent=> {
+                if (ent.control) {
                     ent.control.attack = false;
                 }
             });

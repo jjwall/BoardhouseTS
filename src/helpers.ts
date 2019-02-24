@@ -79,7 +79,7 @@ export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent
  */
 export function setHurtBoxGraphic(entMesh: Mesh, entHurtBox: HurtBoxComponent) : void {
     const hurtBoxGeometry = new PlaneGeometry(entHurtBox.width, entHurtBox.height);
-    const hurtBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
+    const hurtBoxMaterial = new MeshBasicMaterial({ color: "#228B22" });
     const hurtBoxMesh = new Mesh(hurtBoxGeometry, hurtBoxMaterial);
     entMesh.add(hurtBoxMesh);
 }
@@ -92,7 +92,7 @@ export function setHurtBoxGraphic(entMesh: Mesh, entHurtBox: HurtBoxComponent) :
  */
 export function setHitBoxGraphic(entMesh: Mesh, entHitBox: HitBoxComponent) : void {
     const hitBoxGeometry = new PlaneGeometry(entHitBox.width, entHitBox.height);
-    const hitBoxMaterial = new MeshBasicMaterial({ color: "#860111" });
+    const hitBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
     const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
     entMesh.add(hitBoxMesh);
 }

@@ -15,11 +15,12 @@ import {
 import { 
     initializeControls,
     initializeAnimation,
-    initializeHurtBox
+    initializeHurtBox,
+    initializeHitBox
 } from "./corecomponents";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
-import { setSprite, setHurtBoxGraphic, playAudio } from "./helpers";
+import { setSprite, setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./helpers";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
 import { HurtBoxTypes, SequenceTypes } from "./enums";
@@ -35,17 +36,29 @@ export class GameState extends BaseState {
 
         //playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
-        // set up entities
+        // Set up player entity.
         let player = new Entity();
         player.pos = { loc: new Vector3(100, -100, 5), dir: new Vector3(1, 0, 0)};
         player.sprite = setSprite("./data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
         player.vel = { positional: new Vector3(), rotational: new Euler() };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
-        player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test);
-        player.timer = { ticks: 250, ontimeout: () => { this.removeEntity(player, scene); } };
-        this.registerEntity(player);
+        player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, -50, -50);
+        // player.timer = { ticks: 250, ontimeout: () => { this.removeEntity(player, scene); } };
         setHurtBoxGraphic(player.sprite, player.hurtBox);
+        this.registerEntity(player);
+
+        // Set up enemy entity.
+        let enemy = new Entity()
+        enemy.pos = { loc: new Vector3(-300, -100, 4), dir: new Vector3(1, 0, 0) };
+        enemy.sprite = setSprite("./data/textures/cottage.png", scene, 4);
+        enemy.hitBox = initializeHitBox(enemy.sprite, [HurtBoxTypes.test]);
+        setHitBoxGraphic(enemy.sprite, enemy.hitBox);
+        enemy.hitBox.onHit = function() {
+            console.log("ouch!");
+        }
+        this.registerEntity(enemy);
+        // enemy.hitBox = init
 
         // this.rootWidget = new BoardhouseUI.Widget();
     }
