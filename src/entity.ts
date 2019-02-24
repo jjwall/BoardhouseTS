@@ -33,3 +33,10 @@ export interface EntityRegistry {
      globalEntities: Entity[];
      controllableEntities: Entity[];
  }
+
+ /**
+  * Components that warrant special entity registration.
+  */
+ export const Components = {
+      control: "control",
+ }

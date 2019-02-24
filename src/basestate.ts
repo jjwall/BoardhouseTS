@@ -3,7 +3,7 @@ import {
     Camera,
     WebGLRenderer
 } from "THREE";
-import { Entity, EntityRegistry } from "./entity";
+import { Entity, EntityRegistry, Components } from "./entity";
 import { DeepReadonly } from "./deepreadonly";
 
 export abstract class BaseState {
@@ -52,7 +52,7 @@ export abstract class BaseState {
         }
 
         for (var component in ent) {
-            if (component === "control") {
+            if (component === Components.control) {
                 // Remove entity from controllable ent list if registered.
                 if (this.entityRegistry.controllableEntities.indexOf(ent) !== -1) {
                     this.entityRegistry.controllableEntities.splice(this.entityRegistry.controllableEntities.indexOf(ent), 1);
@@ -60,18 +60,28 @@ export abstract class BaseState {
             }
         }
     }
+
     protected registerEntity(ent: Entity) : void {
+        let entityComponents: Array<string> = [];
         // Register Entity to global ent list if not already registered.
         if (this.entityRegistry.globalEntities.indexOf(ent) === -1) {
             this.entityRegistry.globalEntities.push(ent);
         }
 
         for (var component in ent) {
-            if (component === "control") {
+            entityComponents.push(component);
+            if (component === Components.control) {
                 // Register Entity to controllable ent list if not already registered.
                 if (this.entityRegistry.controllableEntities.indexOf(ent) === -1) {
                     this.entityRegistry.controllableEntities.push(ent);
                 }
+            }
+        }
+
+        // If control component is not one of Entity's components, remove entity from controllable ent list if registered.
+        if (entityComponents.indexOf(Components.control) === -1)  {
+            if (this.entityRegistry.controllableEntities.indexOf(ent) !== -1) {
+                this.entityRegistry.controllableEntities.splice(this.entityRegistry.controllableEntities.indexOf(ent), 1);
             }
         }
     }
