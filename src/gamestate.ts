@@ -14,7 +14,6 @@ import {
 } from "./coresystems";
 import { 
     initializeControls,
-    HurtTypes,
     initializeAnimation,
     initializeHurtBox
 } from "./corecomponents";
@@ -22,8 +21,8 @@ import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { setSprite, setHurtBoxGraphic, playAudio } from "./helpers";
 import { playerAnim } from "../data/animations/player";
-import { SequenceTypes } from "./animationschema";
 import { BaseState } from "./basestate";
+import { HurtTypes, SequenceTypes } from "./enums";
 // import { BoardhouseUI } from "./boardhouseui";
 
 

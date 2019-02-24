@@ -1,4 +1,5 @@
-import { AnimationSchema, SequenceTypes} from "../../src/animationschema";
+import { AnimationSchema } from "../../src/animationschema";
+import { SequenceTypes } from "../../src/enums";
 
 export const playerAnim: AnimationSchema = {
     [SequenceTypes.walk]: [

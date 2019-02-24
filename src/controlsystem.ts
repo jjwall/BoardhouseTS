@@ -1,7 +1,6 @@
 import { Entity } from "./entity";
 import { changeSequence } from "./helpers";
-import { SequenceTypes } from "./animationschema";
-import { HurtTypes } from "./corecomponents";
+import { HurtTypes, SequenceTypes } from "./enums";
 
 /**
  * Control system.

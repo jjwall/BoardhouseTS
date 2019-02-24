@@ -5,8 +5,9 @@ import {
     Box3
 } from "three";
 import { Entity } from "./entity";
-import { SequenceTypes, AnimationSchema } from "./animationschema";
+import { AnimationSchema } from "./animationschema";
 import { ControlComponent } from "./controlcomponent";
+import { HurtTypes, SequenceTypes } from "./enums";
 
 /**
  * Position component.
@@ -67,15 +68,6 @@ export interface AnimationComponent {
 export interface TimerComponent {
     ticks: number;
     ontimeout: () => void;
-}
-
-/**
- * List of all things that can collide with each other. Naming is arbitrary
- * as long as they are properly set in Hit/Hurt Box "collidesWith" property.
- */
-export enum HurtTypes {
-    test,
-    // ..
 }
 
 /**

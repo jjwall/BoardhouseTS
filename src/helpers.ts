@@ -11,7 +11,7 @@ import {
     HitBoxComponent,
 } from "./corecomponents";
 import { Resources } from "./resourcemanager";
-import { SequenceTypes } from "./animationschema";
+import { SequenceTypes } from "./enums";
 
 /**
  * Helper method to add a sprite to the stage.
