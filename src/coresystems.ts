@@ -139,7 +139,6 @@ export function positionSystem(ents: ReadonlyArray<Entity>) {
 /**
  * Timer system.
  * @param ents 
- * @param scene 
  */
 export function timerSystem(ents: ReadonlyArray<Entity>) {
     ents.forEach(ent => {
