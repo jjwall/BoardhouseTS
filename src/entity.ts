@@ -2,11 +2,11 @@ import {
      PositionComponent,
      VelocityComponent,
      AnimationComponent,
-     ControllableComponent,
      HitBoxComponent,
      HurtBoxComponent,
      TimerComponent,
 } from "./corecomponents";
+import { ControlComponent } from "./controlcomponent";
 import { Mesh } from "three";
 
 /**
@@ -20,7 +20,7 @@ export class Entity {
      public vel: VelocityComponent;
      public sprite: Mesh;
      public anim: AnimationComponent;
-     public control: ControllableComponent;
+     public control: ControlComponent;
      public hitBox: HitBoxComponent;
      public hurtBox: HurtBoxComponent;
      public timer: TimerComponent;

@@ -6,6 +6,7 @@ import {
 } from "three";
 import { Entity } from "./entity";
 import { SequenceTypes, AnimationSchema } from "./animationschema";
+import { ControlComponent } from "./controlcomponent";
 
 /**
  * Position component.
@@ -24,18 +25,6 @@ export interface VelocityComponent {
     positional: Vector3;
     rotational: Euler;
     friction?: number;
-}
-
-/**
- * Controllable component.
- */
-export interface ControllableComponent {
-    jump: boolean;
-    attack: boolean;
-    attackTimer: number;
-    attacked: boolean;
-    left: boolean;
-    right: boolean;
 }
 
 /**
@@ -93,7 +82,7 @@ export enum HurtTypes {
  * Free function to initialize ControllableComponent to maintain invariance
  * at creation of the object.
  */
-export function initializeControls(): ControllableComponent {
+export function initializeControls(): ControlComponent {
     return {
         jump: false,
         attack: false,

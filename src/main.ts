@@ -4,24 +4,28 @@ import {
     Color,
     OrthographicCamera,
 } from "three";
+import {
+    Resources,
+    loadTextures,
+    loadAudioElements,
+} from "./resourcemanager";
 import { BaseState } from "./basestate";
-import { last, setSprite } from "./helpers";
+import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
-// import { BoardhouseUI } from "./boardhouseui";
 import { GameState } from "./gamestate";
-import { Resources, loadTextures, loadAudioElements } from "./resourcemanager";
+// import { BoardhouseUI } from "./boardhouseui";
 
-// TODO: Test: collisionSystem, entityRegistry, removeEntity (in progress)
-// TODO: Set up VSCode debugging (in progress)
+// TODO: Test: collisionSystem, entityRegistry (in progress)
 // TODO: Move control system to it's own file (not started)
 // TODO: Add camera/scene as state properties (see pale blue dot)
-// TODO: Write audio loader (not started)
-// TODO: Fix callback hell scenario when adding additional loaders (not started)
-// TODO: Write geometry loader (not started)
+// TODO: Rework main menu state/screen (not started)
 // TODO: Rework UI layer (in progress) 
 // -> USE OPTIONAL PROPS FOR PROP INTERFACE
 // TODO: Scan & sweep alg for collision system (not started)
+// TODO: Fix callback hell scenario when adding additional loaders (not started)
 // TODO: Add scene transitions (not started)
+// TODO: Write geometry loader (not started)
+// TODO: Set up VSCode debugging (in progress)
 // ----- (start sbo prototype at this point)
 // TODO: Implement screen shake (not started)
 // TODO: Write custom shaders
@@ -29,6 +33,7 @@ import { Resources, loadTextures, loadAudioElements } from "./resourcemanager";
 // TODO: Make generic key binder (not started)
 // TODO: Add unit tests (not started)
 // TODO: Create level editor (not started)
+// TODO: Swap out usage of HTMLAudioElement with web audio API (not started)
 
 loadTextures([
     "./data/textures/cottage.png",

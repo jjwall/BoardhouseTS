@@ -6,7 +6,6 @@ import {
     Euler,
 } from "three";
 import { 
-    controlSystem, 
     positionSystem, 
     collisionSystem, 
     timerSystem, 
@@ -19,6 +18,7 @@ import {
     initializeAnimation,
     initializeHurtBox
 } from "./corecomponents";
+import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { setSprite, setHurtBoxGraphic, playAudio } from "./helpers";
 import { playerAnim } from "../data/animations/player";
@@ -34,7 +34,7 @@ export class GameState extends BaseState {
     constructor(scene: Scene, stateStack: BaseState[]) {
         super(scene, stateStack);
 
-        playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
+        //playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
         // set up entities
         let player = new Entity();
