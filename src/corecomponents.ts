@@ -63,9 +63,7 @@ export interface HurtBoxComponent {
 }
 
 /**
- * Animation Component. Obj is to be set via a json file.
- * Change the sequence string to change which animation is
- * being played.
+ * Animation Component.
  */
 export interface AnimationComponent {
     sequence: SequenceTypes;
@@ -79,7 +77,7 @@ export interface AnimationComponent {
  */
 export interface TimerComponent {
     ticks: number;
-    ontimeout: (...args: any) => void;
+    ontimeout: () => void;
 }
 
 /**
