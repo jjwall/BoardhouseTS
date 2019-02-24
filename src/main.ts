@@ -9,7 +9,7 @@ import { last, setSprite } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 // import { BoardhouseUI } from "./boardhouseui";
 import { GameState } from "./gamestate";
-import { Resources, loadTextures } from "./resourcemanager";
+import { Resources, loadTextures, loadAudioElements } from "./resourcemanager";
 
 // TODO: Test: collisionSystem, entityRegistry, removeEntity (in progress)
 // TODO: Set up VSCode debugging (in progress)
@@ -39,8 +39,15 @@ loadTextures([
     // cache off textures
     Resources.instance.setTextures(textures);
 
-    // start game
-    main(<HTMLElement>document.getElementById("canvasContainer"));
+    loadAudioElements([
+        "./data/audio/Pale_Blue.mp3"
+    ]).then((audioElements) => {
+        // cache off audio elements
+        Resources.instance.setAudioElements(audioElements);
+
+        // start game
+        main(<HTMLElement>document.getElementById("canvasContainer"));
+    });
 });
 
 /**
