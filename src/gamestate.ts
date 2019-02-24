@@ -20,11 +20,10 @@ import {
     initializeHurtBox
 } from "./corecomponents";
 import { Entity } from "./entity";
-import { setSprite, setHurtBoxGraphic } from "./helpers";
+import { setSprite, setHurtBoxGraphic, playAudio } from "./helpers";
 import { playerAnim } from "../data/animations/player";
 import { SequenceTypes } from "./animationschema";
 import { BaseState } from "./basestate";
-import { Resources } from "./resourcemanager";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -35,16 +34,7 @@ export class GameState extends BaseState {
     constructor(scene: Scene, stateStack: BaseState[]) {
         super(scene, stateStack);
 
-        // const song = Resources.instance.getAudioElement("./data/audio/Pale_Blue.mp3");
-        //const songPromise = 
-        Resources.instance.getAudioElement("./data/audio/Pale_Blue.mp3").play()
-            .catch(function(ex) {
-                alert(`Your browser threw "${ex}". To resolve this on Chrome, go to chrome://flags/#autoplay-policy and set the Autoplay-policy to "No user gesture is required."`);
-                console.log(ex);
-            });
-        // if (songPromise !== null) {
-        //     songPromise.catch(() => {song.play()});
-        // }
+        playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
         // set up entities
         let player = new Entity();

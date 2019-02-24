@@ -15,7 +15,7 @@ import { SequenceTypes } from "./animationschema";
 
 /**
  * Helper method to add a sprite to the stage.
- * @param url Path to texture file. Starts at current file path.
+ * @param url Path to texture file.
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
@@ -31,6 +31,32 @@ export function setSprite(url: string, scene: Scene, pixelRatio: number) : Mesh 
     scene.add(sprite);
 
     return sprite;
+}
+
+/**
+ * Helper method to play audio.
+ * @param url Path to audio file.
+ * @param volume Optional param to set the volume. Must be >= 0 && <= 1.
+ * @param loop Optional param to determine if the audio should loop.
+ */
+export function playAudio(url: string, volume?: number, loop?: boolean) : void {
+    let audio = Resources.instance.getAudioElement(url);
+
+    if (volume) {
+        if (volume < 0 || volume > 1)
+            throw Error("volume can't be a value less than 0 or greater than 1.");
+
+        audio.volume = volume;
+    }
+
+    if (loop) {
+        audio.loop = loop;
+    }
+
+    audio.play()
+        .catch(function(ex) {
+            throw Error(`Your browser threw "${ex}". To resolve this on Chrome, go to chrome://flags/#autoplay-policy and set the Autoplay-policy to "No user gesture is required."`);
+        });
 }
 
 /**

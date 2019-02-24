@@ -63,11 +63,8 @@ export async function loadAudioElements(urls: string[]) : Promise<UrlToAudioMap>
     const promises = urls.map((url) =>
         new Promise<HTMLAudioElement>((resolve) => {
             const audioElement = new Audio(url);
-            console.log(audioElement.readyState);
 
-            // audioElement.addEventListener("loadeddata", () => {
             audioElement.oncanplaythrough = () => {
-                console.log(audioElement.readyState);
                 return resolve(audioElement);
             }
         })
