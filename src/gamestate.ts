@@ -57,10 +57,8 @@ export class GameState extends BaseState {
         enemy.hitBox.onHit = function() {
             console.log("ouch!");
         }
-        this.registerEntity(enemy);
-        // enemy.hitBox = init
 
-        // this.rootWidget = new BoardhouseUI.Widget();
+        this.registerEntity(enemy);
     }
 
     public update() : void {

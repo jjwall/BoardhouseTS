@@ -1,7 +1,7 @@
-import { scaleToWindow } from "./helpers";
-// import { BoardhouseUI } from "./boardhouseui";
+import { scaleToWindow } from "./scaletowindow";
 import { BaseState } from "./basestate";
 import { last } from "./helpers";
+// import { BoardhouseUI } from "./boardhouseui";
 // type Widget = BoardhouseUI.Widget;
 
 export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
