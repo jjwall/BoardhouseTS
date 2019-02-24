@@ -17,7 +17,7 @@ import {
     initializeAnimation,
     initializeHurtBox,
     initializeHitBox
-} from "./corecomponents";
+} from "./initializers";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { setSprite, setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./helpers";
