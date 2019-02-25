@@ -15,8 +15,6 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 // import { BoardhouseUI } from "./boardhouseui";
 
-// TODO: modifyX, modifyY, offsetX, offsetY form collision initializers (in progress)
-// TODO: Test: collisionSystem, entityRegistry (in progress)
 // TODO: Add camera/scene as state properties (see pale blue dot)
 // TODO: Rework main menu state/screen (not started)
 // TODO: Rework UI layer (in progress) 

@@ -54,7 +54,7 @@ export class GameState extends BaseState {
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
-        //player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
+        player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
         this.registerEntity(player);
 

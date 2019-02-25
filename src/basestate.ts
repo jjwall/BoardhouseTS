@@ -27,7 +27,7 @@ export abstract class BaseState {
     public scene: Scene;
     public stateStack: BaseState[];
     private entityRegistry: EntityRegistry;
-    public get getEntReg() : DeepReadonly<EntityRegistry> {
+    public getEntReg() : DeepReadonly<EntityRegistry> {
         return this.entityRegistry;
     }
     public getGlobalEnts() : ReadonlyArray<Entity> {
