@@ -56,22 +56,25 @@ export function initializeControls(): ControlComponent {
 }
 
 /**
- * 
- * @param entMesh 
- * @param collidesWith 
- * @param overrideHeight 
- * @param overrideWidth 
- * @param offsetX 
- * @param offsetY 
+ * Helper for initializing an entity's hit box component.
+ * Note: ``onHit`` callback should be set independently.
+ * @param entMesh An entity's mesh A.K.A. sprite to be set before calling this function.
+ * @param collidesWith List of HurtBox types the HitBox can collide with.
+ * @param heightOverride (Optional) Exact number of pixels to set for the hurtBox's height.
+ * Must also set ``widthOverride`` for this to take effect.
+ * @param widthOverride (Optional) Exact number of pixels to set for the hurtBox's width.
+ * Must also set ``heightOverride`` for this to take effect.
+ * @param offsetX (Default 0) Number of pixels to offset the hurtbox's x position.
+ * @param offsetY (Default 0) Number of pixels to offset the hurtbox's y position.
  */
-export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], overrideHeight?: number, overrideWidth?: number, offsetX: number = 0, offsetY: number = 0) : HitBoxComponent {
+export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], heightOverride?: number, widthOverride?: number, offsetX: number = 0, offsetY: number = 0) : HitBoxComponent {
     let hitBox: HitBoxComponent = { collidesWith: collidesWith, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
 
-    if (overrideHeight && overrideWidth) {
-        if (overrideHeight <= 0 || overrideWidth <= 0)
+    if (heightOverride && widthOverride) {
+        if (heightOverride <= 0 || widthOverride <= 0)
             throw Error("overrides can't be less than or equal to 0.");
-        hitBox.height = overrideHeight;
-        hitBox.width = overrideWidth;
+        hitBox.height = heightOverride;
+        hitBox.width = widthOverride;
     }
     else {
         const boundingBox = new Box3().setFromObject(entMesh);
@@ -88,24 +91,27 @@ export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], ov
  * Note: ``onHurt`` callback should be set independently.
  * @param entMesh An entity's mesh A.K.A. sprite to be set before calling this function.
  * @param hurtType HurtBox type.
- * @param xShift (Default 0) Number of pixels to change the hurtbox's x-axis by.
- * @param yShift (Default 0) Number of pixels to change the hurtbox's y-axis by.
- * @param manualHeight (Optional) Exact number of pixels to set for the hurtBox's height.
- * Must also set ``manualWidth`` for this to take effect.
- * @param manualWidth (Optional) Exact number of pixels to set for the hurtBox's width.
- * Must also set ``manualHeight`` for this to take effect.
+ * @param heightOverride (Optional) Exact number of pixels to set for the hurtBox's height.
+ * Must also set ``widthOverride`` for this to take effect.
+ * @param widthOverride (Optional) Exact number of pixels to set for the hurtBox's width.
+ * Must also set ``heightOverride`` for this to take effect.
+ * @param offsetX (Default 0) Number of pixels to offset the hurtbox's x position.
+ * @param offsetY (Default 0) Number of pixels to offset the hurtbox's y position.
  */
-export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, xShift: number = 0, yShift: number = 0, manualHeight?: number, manualWidth?: number) : HurtBoxComponent {
-    let hurtBox: HurtBoxComponent = { type: hurtType, height: 0, width: 0 };
+export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, heightOverride?: number, widthOverride?: number, offsetX: number = 0, offsetY: number = 0) : HurtBoxComponent {
+    let hurtBox: HurtBoxComponent = { type: hurtType, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
 
-    if (manualHeight !== undefined && manualWidth !== undefined) {
-        hurtBox.height = manualHeight + yShift;
-        hurtBox.width = manualWidth + xShift;
+    if (heightOverride && widthOverride) {
+        if (heightOverride <= 0 || widthOverride <= 0)
+            throw Error("overrides can't be less than or equal to 0.");
+        hurtBox.height = heightOverride;
+        hurtBox.width = widthOverride;
     }
     else {
         const boundingBox = new Box3().setFromObject(entMesh);
-        hurtBox.height = boundingBox.max.y - boundingBox.min.y + yShift;
-        hurtBox.width =  boundingBox.max.x - boundingBox.min.x + xShift;
+
+        hurtBox.height = boundingBox.max.y - boundingBox.min.y;
+        hurtBox.width =  boundingBox.max.x - boundingBox.min.x;
     }
 
     return hurtBox;

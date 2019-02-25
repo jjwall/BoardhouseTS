@@ -49,6 +49,8 @@ export interface HurtBoxComponent {
     // collidesWith: Collidables[];
     height: number;
     width: number;
+    offsetX: number;
+    offsetY: number;
     onHurt?: (hurtingEnt: Entity, hittingEnt: Entity) => void;
 }
 

@@ -53,12 +53,14 @@ export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent
  * Helper to set visuals for a hurtBox.
  * Used for testing hit collision assumptions.
  * @param entMesh
- * @param entHurtBox
+ * @param hurtBox
  */
-export function setHurtBoxGraphic(entMesh: Mesh, entHurtBox: HurtBoxComponent) : void {
-    const hurtBoxGeometry = new PlaneGeometry(entHurtBox.width, entHurtBox.height);
+export function setHurtBoxGraphic(entMesh: Mesh, hurtBox: HurtBoxComponent) : void {
+    const hurtBoxGeometry = new PlaneGeometry(hurtBox.width, hurtBox.height);
     const hurtBoxMaterial = new MeshBasicMaterial({ color: "#228B22" });
     const hurtBoxMesh = new Mesh(hurtBoxGeometry, hurtBoxMaterial);
+    hurtBoxMesh.position.x += hurtBox.offsetX;
+    hurtBoxMesh.position.y += hurtBox.offsetY;
     entMesh.add(hurtBoxMesh);
 }
 
@@ -66,14 +68,14 @@ export function setHurtBoxGraphic(entMesh: Mesh, entHurtBox: HurtBoxComponent) :
  * Helper to set visuals for a hitBox.
  * Used for testing hit collision assumptions.
  * @param entMesh
- * @param entHurtBox
+ * @param hitBox
  */
-export function setHitBoxGraphic(entMesh: Mesh, entHitBox: HitBoxComponent) : void {
-    const hitBoxGeometry = new PlaneGeometry(entHitBox.width, entHitBox.height);
+export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent) : void {
+    const hitBoxGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
     const hitBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
     const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
-    hitBoxMesh.position.x += entHitBox.offsetX;
-    hitBoxMesh.position.y += entHitBox.offsetY;
+    hitBoxMesh.position.x += hitBox.offsetX;
+    hitBoxMesh.position.y += hitBox.offsetY;
     entMesh.add(hitBoxMesh);
 }
 
