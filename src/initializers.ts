@@ -18,6 +18,7 @@ import {
     HurtBoxComponent,
     PositionComponent,
     VelocityComponent,
+    TimerComponent,
 } from "./corecomponents";
 import { Resources } from "./resourcemanager";
 import { ControlComponent } from "./controlcomponent";
@@ -128,7 +129,7 @@ export function initializePosition(xPos: number, yPos: number, zPos: number, sta
 }
 
 /**
- * Helper method to add a sprite to the stage.
+ * Helper method to initialize sprite component for an entity. Also adds sprite to stage.
  * @param url Path to texture file.
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
@@ -147,6 +148,22 @@ export function initializeSprite(url: string, scene: Scene, pixelRatio: number) 
     return sprite;
 }
 
+/**
+ * Helper to initialize timer component for an entity.
+ * @param ticksUntilTimeout 
+ * @param ontimeout 
+ */
+export function initializeTimer(ticksUntilTimeout: number, ontimeout: () => void): TimerComponent {
+    return { ticks: ticksUntilTimeout, ontimeout: ontimeout };
+}
+
+/**
+ * Helper to intialize velocity component for any entity.
+ * @param acceleration 
+ * @param positionalVel 
+ * @param rotationalVel 
+ * @param friction 
+ */
 export function initializeVelocity(acceleration: number, positionalVel?: Vector3, rotationalVel?: Euler, friction?: number): VelocityComponent {
     let velocity: VelocityComponent = { 
         acceleration: acceleration,

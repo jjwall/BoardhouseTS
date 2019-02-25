@@ -20,6 +20,7 @@ import {
     initializeSprite,
     initializePosition,
     initializeVelocity,
+    initializeTimer,
 } from "./initializers";
 import {
     setHurtBoxGraphic,
@@ -55,7 +56,7 @@ export class GameState extends BaseState {
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, -50, -50);
-        // player.timer = { ticks: 250, ontimeout: () => { this.removeEntity(player, scene); } };
+        player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
         this.registerEntity(player);
 
