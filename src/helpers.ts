@@ -1,9 +1,7 @@
 import {
-    Scene,
     Mesh,
     MeshBasicMaterial,
     PlaneGeometry,
-    NearestFilter,
 } from "three";
 import { 
     AnimationComponent,
@@ -12,26 +10,6 @@ import {
 } from "./corecomponents";
 import { Resources } from "./resourcemanager";
 import { SequenceTypes } from "./enums";
-
-/**
- * Helper method to add a sprite to the stage.
- * @param url Path to texture file.
- * @param scene THREE.Scene.
- * @param pixelRatio Number of pixels to scale texture's height and width by.
- */
-export function setSprite(url: string, scene: Scene, pixelRatio: number) : Mesh {
-    // get texture from cached resources
-    let spriteMap = Resources.instance.getTexture(url);
-    // load geometry (consider caching these as well)
-    var geometry = new PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
-    // set magFilter to nearest for crisp looking pixels
-    spriteMap.magFilter = NearestFilter;
-    var material = new MeshBasicMaterial( { map: spriteMap, transparent: true });
-    var sprite = new Mesh(geometry, material);
-    scene.add(sprite);
-
-    return sprite;
-}
 
 /**
  * Helper method to play audio.

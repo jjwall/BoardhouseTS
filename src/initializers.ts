@@ -1,6 +1,10 @@
 import {
     Box3,
     Mesh,
+    Scene,
+    NearestFilter,
+    PlaneGeometry,
+    MeshBasicMaterial,
 } from "three";
 import { 
     HurtBoxTypes,
@@ -11,11 +15,26 @@ import {
     HitBoxComponent,
     HurtBoxComponent,
 } from "./corecomponents";
+import { Resources } from "./resourcemanager";
 import { ControlComponent } from "./controlcomponent";
 import { AnimationSchema } from "./interfaces";
 
 /**
- * Free function to initialize ControllableComponent to maintain invariance
+ * Helper for intializing an entity's animation blob and starting sequence.
+ * @param startingSequence 
+ * @param animBlob 
+ */
+export function initializeAnimation(startingSequence: SequenceTypes, animBlob: AnimationSchema) : AnimationComponent {
+    return {
+        sequence: startingSequence,
+        blob: animBlob,
+        ticks: animBlob[startingSequence][0].ticks,
+        frame: 0,
+    }
+}
+
+/**
+ * Helper for initializing ControlComponent with starting values.
  * at creation of the object.
  */
 export function initializeControls(): ControlComponent {
@@ -32,17 +51,28 @@ export function initializeControls(): ControlComponent {
 }
 
 /**
- * Helper for intializing an entity's animation blob and starting sequence.
- * @param startingSequence 
- * @param animBlob 
+ * See initializeHurtBox comments.
+ * @param entMesh 
+ * @param collidesWith 
+ * @param xShift 
+ * @param yShift 
+ * @param manualHeight 
+ * @param manualWidth 
  */
-export function initializeAnimation(startingSequence: SequenceTypes, animBlob: AnimationSchema) : AnimationComponent {
-    return {
-        sequence: startingSequence,
-        blob: animBlob,
-        ticks: animBlob[startingSequence][0].ticks,
-        frame: 0,
+export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], xShift: number = 0, yShift: number = 0, manualHeight?: number, manualWidth?: number) : HitBoxComponent {
+    let hitBox: HitBoxComponent = { collidesWith: collidesWith, height: 0, width: 0 };
+
+    if (manualHeight !== undefined && manualWidth !== undefined) {
+        hitBox.height = manualHeight - yShift;
+        hitBox.width = manualWidth + xShift;
     }
+    else {
+        const boundingBox = new Box3().setFromObject(entMesh);
+        hitBox.height = boundingBox.max.y - boundingBox.min.y - yShift;
+        hitBox.width =  boundingBox.max.x - boundingBox.min.x + xShift;
+    }
+
+    return hitBox;
 }
 
 /**
@@ -74,26 +104,21 @@ export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, xShift:
 }
 
 /**
- * See initializeHurtBox comments.
- * @param entMesh 
- * @param collidesWith 
- * @param xShift 
- * @param yShift 
- * @param manualHeight 
- * @param manualWidth 
+ * Helper method to add a sprite to the stage.
+ * @param url Path to texture file.
+ * @param scene THREE.Scene.
+ * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], xShift: number = 0, yShift: number = 0, manualHeight?: number, manualWidth?: number) : HitBoxComponent {
-    let hitBox: HitBoxComponent = { collidesWith: collidesWith, height: 0, width: 0 };
+export function initializeSprite(url: string, scene: Scene, pixelRatio: number) : Mesh {
+    // get texture from cached resources
+    let spriteMap = Resources.instance.getTexture(url);
+    // load geometry (consider caching these as well)
+    var geometry = new PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
+    // set magFilter to nearest for crisp looking pixels
+    spriteMap.magFilter = NearestFilter;
+    var material = new MeshBasicMaterial( { map: spriteMap, transparent: true });
+    var sprite = new Mesh(geometry, material);
+    scene.add(sprite);
 
-    if (manualHeight !== undefined && manualWidth !== undefined) {
-        hitBox.height = manualHeight - yShift;
-        hitBox.width = manualWidth + xShift;
-    }
-    else {
-        const boundingBox = new Box3().setFromObject(entMesh);
-        hitBox.height = boundingBox.max.y - boundingBox.min.y - yShift;
-        hitBox.width =  boundingBox.max.x - boundingBox.min.x + xShift;
-    }
-
-    return hitBox;
+    return sprite;
 }

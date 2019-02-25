@@ -13,17 +13,25 @@ import {
     velocitySystem 
 } from "./coresystems";
 import { 
-    initializeControls,
     initializeAnimation,
+    initializeControls,
+    initializeHitBox,
     initializeHurtBox,
-    initializeHitBox
+    initializeSprite,
 } from "./initializers";
+import {
+    setHurtBoxGraphic,
+    playAudio,
+    setHitBoxGraphic
+} from "./helpers";
+import {
+    HurtBoxTypes,
+    SequenceTypes,
+} from "./enums";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
-import { setSprite, setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./helpers";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
-import { HurtBoxTypes, SequenceTypes } from "./enums";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -39,7 +47,7 @@ export class GameState extends BaseState {
         // Set up player entity.
         let player = new Entity();
         player.pos = { loc: new Vector3(100, -100, 5), dir: new Vector3(1, 0, 0)};
-        player.sprite = setSprite("./data/textures/msknight.png", scene, 4);
+        player.sprite = initializeSprite("./data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
         player.vel = { positional: new Vector3(), rotational: new Euler() };
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
@@ -51,7 +59,7 @@ export class GameState extends BaseState {
         // Set up enemy entity.
         let enemy = new Entity()
         enemy.pos = { loc: new Vector3(-300, -100, 4), dir: new Vector3(1, 0, 0) };
-        enemy.sprite = setSprite("./data/textures/cottage.png", scene, 4);
+        enemy.sprite = initializeSprite("./data/textures/cottage.png", scene, 4);
         enemy.hitBox = initializeHitBox(enemy.sprite, [HurtBoxTypes.test]);
         setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
