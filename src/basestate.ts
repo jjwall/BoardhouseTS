@@ -3,7 +3,8 @@ import {
     Camera,
     WebGLRenderer
 } from "THREE";
-import { Entity, EntityRegistry } from "./entity";
+import { Entity } from "./entity";
+import { EntityRegistry } from "./interfaces";
 import { ComponentKeys } from "./enums";
 import { DeepReadonly } from "./deepreadonly";
 

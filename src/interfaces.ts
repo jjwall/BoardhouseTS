@@ -1,3 +1,8 @@
+import { Entity } from "./entity";
+
+/**
+ * Interface used to define format for TypeScript animation data files.
+ */
 export interface AnimationSchema {
     /**
      * Key into an animation sequence using the
@@ -18,3 +23,11 @@ export interface AnimationSchema {
         nextFrame: number
     }>;
 }
+
+/**
+ * Entity Registry.
+ */
+export interface EntityRegistry {
+     globalEntities: Entity[];
+     controllableEntities: Entity[];
+ }

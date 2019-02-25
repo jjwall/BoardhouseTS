@@ -12,7 +12,7 @@ import {
     HurtBoxComponent,
 } from "./corecomponents";
 import { ControlComponent } from "./controlcomponent";
-import { AnimationSchema } from "./animationschema";
+import { AnimationSchema } from "./interfaces";
 
 /**
  * Free function to initialize ControllableComponent to maintain invariance

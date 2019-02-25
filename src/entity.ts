@@ -25,11 +25,3 @@ export class Entity {
      public hurtBox: HurtBoxComponent;
      public timer: TimerComponent;
 }
-
-/**
- * Entity Registry.
- */
-export interface EntityRegistry {
-     globalEntities: Entity[];
-     controllableEntities: Entity[];
- }
