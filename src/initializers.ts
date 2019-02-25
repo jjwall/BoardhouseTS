@@ -2,9 +2,11 @@ import {
     Box3,
     Mesh,
     Scene,
+    Euler,
     NearestFilter,
     PlaneGeometry,
     MeshBasicMaterial,
+    Vector3,
 } from "three";
 import { 
     HurtBoxTypes,
@@ -14,6 +16,8 @@ import {
     AnimationComponent,
     HitBoxComponent,
     HurtBoxComponent,
+    PositionComponent,
+    VelocityComponent,
 } from "./corecomponents";
 import { Resources } from "./resourcemanager";
 import { ControlComponent } from "./controlcomponent";
@@ -104,6 +108,26 @@ export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, xShift:
 }
 
 /**
+ * Helper for initializing an entity's position.
+ * @param xPos 
+ * @param yPos 
+ * @param zPos 
+ * @param startingDirection optional param. If not specified, direction will be: Vector3(1, 0, 0).
+ */
+export function initializePosition(xPos: number, yPos: number, zPos: number, startingDirection?: Vector3): PositionComponent {
+    let position: PositionComponent = { loc: new Vector3(xPos, yPos, zPos), dir: null };
+
+    if (startingDirection) {
+        position.dir = startingDirection;
+    }
+    else {
+        position.dir = new Vector3(1, 0, 0);
+    }
+      
+    return position;
+}
+
+/**
  * Helper method to add a sprite to the stage.
  * @param url Path to texture file.
  * @param scene THREE.Scene.
@@ -121,4 +145,33 @@ export function initializeSprite(url: string, scene: Scene, pixelRatio: number) 
     scene.add(sprite);
 
     return sprite;
+}
+
+export function initializeVelocity(acceleration: number, positionalVel?: Vector3, rotationalVel?: Euler, friction?: number): VelocityComponent {
+    let velocity: VelocityComponent = { 
+        acceleration: acceleration,
+        positional: null,
+        rotational: null,
+        friction: undefined
+    };
+
+    if (positionalVel) {
+        velocity.positional = positionalVel;
+    }
+    else {
+        velocity.positional = new Vector3();
+    }
+
+    if (rotationalVel) {
+        velocity.rotational = rotationalVel;
+    }
+    else {
+        velocity.rotational = new Euler();
+    }
+
+    if (friction) {
+        velocity.friction = friction;
+    }
+
+    return velocity;
 }

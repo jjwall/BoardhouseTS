@@ -18,6 +18,8 @@ import {
     initializeHitBox,
     initializeHurtBox,
     initializeSprite,
+    initializePosition,
+    initializeVelocity,
 } from "./initializers";
 import {
     setHurtBoxGraphic,
@@ -46,10 +48,11 @@ export class GameState extends BaseState {
 
         // Set up player entity.
         let player = new Entity();
-        player.pos = { loc: new Vector3(100, -100, 5), dir: new Vector3(1, 0, 0)};
+        player.pos = initializePosition(100, -100, 5);
         player.sprite = initializeSprite("./data/textures/msknight.png", scene, 4);
         player.control = initializeControls();
-        player.vel = { positional: new Vector3(), rotational: new Euler() };
+        player.vel = initializeVelocity(1);
+        player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, -50, -50);
         // player.timer = { ticks: 250, ontimeout: () => { this.removeEntity(player, scene); } };
@@ -57,8 +60,8 @@ export class GameState extends BaseState {
         this.registerEntity(player);
 
         // Set up enemy entity.
-        let enemy = new Entity()
-        enemy.pos = { loc: new Vector3(-300, -100, 4), dir: new Vector3(1, 0, 0) };
+        let enemy = new Entity();
+        enemy.pos = initializePosition(-300, -100, 4);
         enemy.sprite = initializeSprite("./data/textures/cottage.png", scene, 4);
         enemy.hitBox = initializeHitBox(enemy.sprite, [HurtBoxTypes.test]);
         setHitBoxGraphic(enemy.sprite, enemy.hitBox);

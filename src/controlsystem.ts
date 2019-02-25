@@ -8,32 +8,30 @@ import { Vector3 } from "three";
  * @param ents Ents from the controllableEntities registry.
  */
 export function controlSystem(ents: ReadonlyArray<Entity>){
-    const posAccel: number = 0.1;
-
     ents.forEach(ent => {
         if (ent.control && ent.vel && ent.pos) {
             // Left
             if (ent.control.left) {
-                ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(-posAccel));
+                ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(-ent.vel.acceleration));
                 // test change seq
                 ent.anim = changeSequence(SequenceTypes.attack, ent.anim);
             }
 
             // Right
             if (ent.control.right) {
-                ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(posAccel));
+                ent.vel.positional.add(ent.pos.dir.clone().multiplyScalar(ent.vel.acceleration));
                 // test change seq
                 ent.anim = changeSequence(SequenceTypes.walk, ent.anim);
             }
 
             // Up
             if (ent.control.up) {
-                ent.vel.positional.add(new Vector3(-ent.pos.dir.y, ent.pos.dir.x, ent.pos.dir.z).multiplyScalar(posAccel));
+                ent.vel.positional.add(new Vector3(-ent.pos.dir.y, ent.pos.dir.x, ent.pos.dir.z).multiplyScalar(ent.vel.acceleration));
             }
 
             // Down
             if (ent.control.down) {
-                ent.vel.positional.add(new Vector3(ent.pos.dir.y, -ent.pos.dir.x, -ent.pos.dir.z).multiplyScalar(posAccel));
+                ent.vel.positional.add(new Vector3(ent.pos.dir.y, -ent.pos.dir.x, -ent.pos.dir.z).multiplyScalar(ent.vel.acceleration));
             }
 
             // Space

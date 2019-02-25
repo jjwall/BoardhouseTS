@@ -20,6 +20,7 @@ export interface PositionComponent {
  * Velocity component.
  */
 export interface VelocityComponent {
+    acceleration: number;
     positional: Vector3;
     rotational: Euler;
     friction?: number;
