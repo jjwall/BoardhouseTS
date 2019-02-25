@@ -72,6 +72,8 @@ export function setHitBoxGraphic(entMesh: Mesh, entHitBox: HitBoxComponent) : vo
     const hitBoxGeometry = new PlaneGeometry(entHitBox.width, entHitBox.height);
     const hitBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
     const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
+    hitBoxMesh.position.x += entHitBox.offsetX;
+    hitBoxMesh.position.y += entHitBox.offsetY;
     entMesh.add(hitBoxMesh);
 }
 

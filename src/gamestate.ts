@@ -2,8 +2,6 @@ import {
     Scene,
     Camera,
     WebGLRenderer,
-    Vector3,
-    Euler,
 } from "three";
 import { 
     positionSystem, 
@@ -55,8 +53,8 @@ export class GameState extends BaseState {
         player.vel = initializeVelocity(1);
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
-        player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, -50, -50);
-        player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
+        player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test);
+        //player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
         this.registerEntity(player);
 
@@ -64,7 +62,7 @@ export class GameState extends BaseState {
         let enemy = new Entity();
         enemy.pos = initializePosition(-300, -100, 4);
         enemy.sprite = initializeSprite("./data/textures/cottage.png", scene, 4);
-        enemy.hitBox = initializeHitBox(enemy.sprite, [HurtBoxTypes.test]);
+        enemy.hitBox = initializeHitBox(enemy.sprite, [HurtBoxTypes.test], 50, 50, 100, 200);
         setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
             console.log("ouch!");

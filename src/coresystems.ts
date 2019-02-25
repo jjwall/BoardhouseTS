@@ -52,10 +52,10 @@ export function collisionSystem(ents: ReadonlyArray<Entity>) {
             ents.forEach(hurtingEnt => {
                 if (hurtingEnt.hurtBox && hurtingEnt.pos) {
                     if (hittingEnt.hitBox.collidesWith.indexOf(hurtingEnt.hurtBox.type) > -1) {
-                        if (hittingEnt.pos.loc.x - hittingEnt.hitBox.width/2 < hurtingEnt.pos.loc.x + hurtingEnt.hurtBox.width/2 &&
-                            hittingEnt.pos.loc.x + hittingEnt.hitBox.width/2 > hurtingEnt.pos.loc.x - hurtingEnt.hurtBox.width/2 &&
-                            hittingEnt.pos.loc.y - hittingEnt.hitBox.height/2 < hurtingEnt.pos.loc.y + hurtingEnt.hurtBox.height/2 &&
-                            hittingEnt.pos.loc.y + hittingEnt.hitBox.height/2 > hurtingEnt.pos.loc.y - hurtingEnt.hurtBox.height/2) {
+                        if (hittingEnt.pos.loc.x + hittingEnt.hitBox.offsetX - hittingEnt.hitBox.width/2 < hurtingEnt.pos.loc.x + hurtingEnt.hurtBox.width/2 &&
+                            hittingEnt.pos.loc.x + hittingEnt.hitBox.offsetX + hittingEnt.hitBox.width/2 > hurtingEnt.pos.loc.x - hurtingEnt.hurtBox.width/2 &&
+                            hittingEnt.pos.loc.y + hittingEnt.hitBox.offsetY - hittingEnt.hitBox.height/2 < hurtingEnt.pos.loc.y + hurtingEnt.hurtBox.height/2 &&
+                            hittingEnt.pos.loc.y + hittingEnt.hitBox.offsetY + hittingEnt.hitBox.height/2 > hurtingEnt.pos.loc.y - hurtingEnt.hurtBox.height/2) {
                             if (hittingEnt.hitBox.onHit) {
                                 hittingEnt.hitBox.onHit(hittingEnt, hurtingEnt);
                             }

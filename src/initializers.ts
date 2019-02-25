@@ -56,25 +56,28 @@ export function initializeControls(): ControlComponent {
 }
 
 /**
- * See initializeHurtBox comments.
+ * 
  * @param entMesh 
  * @param collidesWith 
- * @param xShift 
- * @param yShift 
- * @param manualHeight 
- * @param manualWidth 
+ * @param overrideHeight 
+ * @param overrideWidth 
+ * @param offsetX 
+ * @param offsetY 
  */
-export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], xShift: number = 0, yShift: number = 0, manualHeight?: number, manualWidth?: number) : HitBoxComponent {
-    let hitBox: HitBoxComponent = { collidesWith: collidesWith, height: 0, width: 0 };
+export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], overrideHeight?: number, overrideWidth?: number, offsetX: number = 0, offsetY: number = 0) : HitBoxComponent {
+    let hitBox: HitBoxComponent = { collidesWith: collidesWith, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
 
-    if (manualHeight !== undefined && manualWidth !== undefined) {
-        hitBox.height = manualHeight - yShift;
-        hitBox.width = manualWidth + xShift;
+    if (overrideHeight && overrideWidth) {
+        if (overrideHeight <= 0 || overrideWidth <= 0)
+            throw Error("overrides can't be less than or equal to 0.");
+        hitBox.height = overrideHeight;
+        hitBox.width = overrideWidth;
     }
     else {
         const boundingBox = new Box3().setFromObject(entMesh);
-        hitBox.height = boundingBox.max.y - boundingBox.min.y - yShift;
-        hitBox.width =  boundingBox.max.x - boundingBox.min.x + xShift;
+
+        hitBox.height = boundingBox.max.y - boundingBox.min.y;
+        hitBox.width =  boundingBox.max.x - boundingBox.min.x;
     }
 
     return hitBox;
