@@ -43,6 +43,14 @@ export class GameState extends BaseState {
     constructor(scene: Scene, stateStack: BaseState[]) {
         super(scene, stateStack);
 
+        // Register systems.
+        this.registerSystem(controlSystem, "control");
+        this.registerSystem(velocitySystem);
+        this.registerSystem(collisionSystem);
+        this.registerSystem(animationSystem);
+        this.registerSystem(animationSystem);
+        this.registerSystem(positionSystem);
+
         //playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
         // Set up player entity.
@@ -56,7 +64,7 @@ export class GameState extends BaseState {
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
         player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
-        this.registerEntity(player);
+        this.registerEntity(player, "control");
 
         // Set up enemy entity.
         let enemy = new Entity();
@@ -73,15 +81,16 @@ export class GameState extends BaseState {
 
     public update() : void {
         // pull in all system free functions and call each in the proper order
-        controlSystem(this.getControllableEnts());
-        velocitySystem(this.getGlobalEnts());
-        collisionSystem(this.getGlobalEnts());
-        animationSystem(this.getGlobalEnts());
-        timerSystem(this.getGlobalEnts());
+        this.runSystems();
+        // controlSystem(this.getControllableEnts());
+        // velocitySystem(this.getGlobalEnts());
+        // collisionSystem(this.getGlobalEnts());
+        // animationSystem(this.getGlobalEnts());
+        // timerSystem(this.getGlobalEnts());
     }
 
     public render(renderer: WebGLRenderer, camera: Camera, scene: Scene) : void {
-        positionSystem(this.getGlobalEnts());
+        // positionSystem(this.getGlobalEnts());
 
         renderer.render(scene, camera);
         // check if children needs to be reconciled, then do so
