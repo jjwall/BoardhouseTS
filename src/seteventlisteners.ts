@@ -1,5 +1,6 @@
 import { scaleToWindow } from "./scaletowindow";
 import { BaseState } from "./basestate";
+import { Entity } from "./entity";
 import { last } from "./helpers";
 // import { BoardhouseUI } from "./boardhouseui";
 // type Widget = BoardhouseUI.Widget;
@@ -26,7 +27,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     window.onkeydown = function(e: KeyboardEvent) {
         // left
         if (e.keyCode === 37) {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.left = true;
                 }
@@ -35,7 +36,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // right
         if (e.keyCode === 39) {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.right = true;
                 }
@@ -44,7 +45,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // up
         if (e.keyCode === 38 || e.key === 'w') {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.up = true;
                 }
@@ -53,7 +54,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // down
         if (e.keyCode === 40 || e.key === 's') {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.down = true;
                 }
@@ -62,7 +63,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // spacebar
         if (e.keyCode === 90) {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.attack = true;
                 }
@@ -73,7 +74,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     window.onkeyup = function(e) {
         // left
         if (e.keyCode === 37) {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.left = false;
                 }
@@ -82,7 +83,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // right
         if (e.keyCode === 39) {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.right = false;
                 }
@@ -91,7 +92,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // up
         if (e.keyCode === 38 || e.key === 'w') {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.up = false;
                 }
@@ -100,7 +101,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // down
         if (e.keyCode === 40 || e.key === 's') {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.down = false;
                 }
@@ -109,7 +110,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
         // spacebar
         if (e.keyCode === 90) {
-            last(stateStack).getControllableEnts().forEach(ent=> {
+            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                 if (ent.control) {
                     ent.control.attack = false;
                 }

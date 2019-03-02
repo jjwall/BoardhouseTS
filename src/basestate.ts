@@ -4,11 +4,8 @@ import {
     WebGLRenderer,
     Mesh
 } from "THREE";
-// import { Entity } from "./entity";
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
 import { ComponentKeys } from "./enums";
-import { DeepReadonly } from "./deepreadonly";
-import { Entity } from "./entity";
 
 export abstract class BaseState {
     protected constructor(scene: Scene, stateStack: BaseState[]) {
@@ -22,15 +19,9 @@ export abstract class BaseState {
     private ecsRegistrationKeys: Array<string> = [];
     private entityRegistry: RegistryKeyToEntityListMap = {};
     private systemRegistry: Array<RegistryKeyToSystemMap> = [];
-    // public getEntReg() : DeepReadonly<EntityRegistry> {
-    //     return this.entityRegistry;
-    // }
-    // public getGlobalEnts() : ReadonlyArray<Object> {
-    //     return this.entityRegistry.globalEntities;
-    // }
-    public getControllableEnts() : ReadonlyArray<Entity> {
-        // return this.entityRegistry.controllableEntities;
-        return this.entityRegistry["control"] as Entity[];
+
+    public getEntitiesByKey<T>(ecsRegistrationKey: string) {
+        return this.entityRegistry[ecsRegistrationKey] as T[];
     }
 
     /**

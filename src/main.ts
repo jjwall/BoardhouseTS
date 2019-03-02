@@ -15,6 +15,8 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 // import { BoardhouseUI } from "./boardhouseui";
 
+// TODO: Rework removeEntity method (removing sprite from scene goes elsewhere)
+// TODO: Add custom Vector3 method.
 // TODO: Add camera/scene as state properties (see pale blue dot)
 // TODO: Rework main menu state/screen (not started)
 // TODO: Rework UI layer (in progress) 
