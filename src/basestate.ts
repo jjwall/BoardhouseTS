@@ -19,7 +19,7 @@ export abstract class BaseState {
     public abstract render(renderer: WebGLRenderer, camera: Camera, scene: Scene) : void;
     public scene: Scene;
     public stateStack: BaseState[];
-    protected ecsRegistryKeys: Array<string> = [];
+    private ecsRegistrationKeys: Array<string> = [];
     private entityRegistry: RegistryKeyToEntityListMap = {};
     private systemRegistry: Array<RegistryKeyToSystemMap> = [];
     // public getEntReg() : DeepReadonly<EntityRegistry> {
@@ -84,28 +84,28 @@ export abstract class BaseState {
     //     }
     // }
 
-    protected registerEntity(ent: Object, ecsRegistryKey?: string) {
+    protected registerEntity(ent: Object) {
         let entityComponents: Array<string> = [];
 
-        if (ecsRegistryKey) {
-            for (var component in ent) {
-                entityComponents.push(component);
-            }
-
-            if (entityComponents.indexOf(ecsRegistryKey) === -1) {
-                throw Error(`Component "${ecsRegistryKey}" is not set on entity.`);
-            }
-
-            // Initialize ecsRegistryKey entity list if not already defined.
-            if (!this.entityRegistry[ecsRegistryKey]) {
-                this.entityRegistry[ecsRegistryKey] = [];
-            }
-
-            // If not already registered, register entity to specified entity list.
-            if (this.entityRegistry[ecsRegistryKey].indexOf(ent) === -1) {
-                this.entityRegistry[ecsRegistryKey].push(ent);
-            }
+        for (var component in ent) {
+            entityComponents.push(component);
         }
+
+        this.ecsRegistrationKeys.forEach(key => {
+            // If Entity-Component-System registration key found in entity's components.
+            if (entityComponents.indexOf(key) !== -1) {
+                // Initialize ecsRegistrationKey's entity list if not already defined.
+                if (!this.entityRegistry[key]) {
+                    this.entityRegistry[key] = [];
+                }
+
+                // If not already registered, register entity to specified entity list.
+                if (this.entityRegistry[key].indexOf(ent) === -1) {
+                    this.entityRegistry[key].push(ent);
+                }
+
+            }
+        });
 
         // Initialize global entity list if not already defined.
         if (!this.entityRegistry["global"]) {
@@ -116,12 +116,12 @@ export abstract class BaseState {
         if (this.entityRegistry["global"].indexOf(ent) === -1) {
             this.entityRegistry["global"].push(ent);
         }
-
     }
 
-    protected registerSystem(system: (ents: ReadonlyArray<Object>, state: BaseState) => void, ecsRegistryKey?: string) {
-        if (ecsRegistryKey) {
-            this.systemRegistry.push({ [ecsRegistryKey]: system });
+    protected registerSystem(system: (ents: ReadonlyArray<Object>, state: BaseState) => void, ecsRegistrationKey?: string) {
+        if (ecsRegistrationKey) {
+            this.systemRegistry.push({ [ecsRegistrationKey]: system });
+            this.ecsRegistrationKeys.push(ecsRegistrationKey);
         }
         else {
             this.systemRegistry.push({ "global": system });

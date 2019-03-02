@@ -64,7 +64,7 @@ export class GameState extends BaseState {
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
         player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
-        this.registerEntity(player, "control");
+        this.registerEntity(player);
 
         // Set up enemy entity.
         let enemy = new Entity();
