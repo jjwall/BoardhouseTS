@@ -25,57 +25,24 @@ export abstract class BaseState {
     }
 
     /**
-     * Removes an entity from each entity list it's registered to, and it's corresponding sprite component (if exists).
-     * @param ent Entity to be removed.
-     * @param scene Scene entity should be removed from.
+     * Removes Entity from each Entity list it is registered to.
+     * @param ent 
      */
-    protected removeEntity<T extends Object & { sprite: Mesh }>(ent: T, scene: Scene) {
-        // Remove sprite from scene if exists.
-        if (ent.sprite) {
-            scene.remove(ent.sprite);
-        }
-
+    protected removeEntity(ent: object) {
         // Remove entity from global ent list if registered.
-        if (this.entityRegistry.globalEntities.indexOf(ent) !== -1) {
-            this.entityRegistry.globalEntities.splice(this.entityRegistry.globalEntities.indexOf(ent), 1);
+        if (this.entityRegistry["global"].indexOf(ent) !== -1) {
+            this.entityRegistry["global"].splice(this.entityRegistry["global"].indexOf(ent), 1);
         }
 
-        for (var component in ent) {
-            if (component === ComponentKeys.control) {
-                // Remove entity from controllable ent list if registered.
-                if (this.entityRegistry.controllableEntities.indexOf(ent) !== -1) {
-                    this.entityRegistry.controllableEntities.splice(this.entityRegistry.controllableEntities.indexOf(ent), 1);
-                }
+        // Remove entity from each specified ent list if registered.
+        this.ecsRegistrationKeys.forEach(key => {
+            if (this.entityRegistry[key].indexOf(ent) !== -1) {
+                this.entityRegistry[key].splice(this.entityRegistry[key].indexOf(ent), 1);
             }
-        }
+        });
     }
 
-    // protected registerEntity(ent: Object) : void {
-    //     let entityComponents: Array<string> = [];
-    //     // Register Entity to global ent list if not already registered.
-    //     if (this.entityRegistry.globalEntities.indexOf(ent) === -1) {
-    //         this.entityRegistry.globalEntities.push(ent);
-    //     }
-
-    //     for (var component in ent) {
-    //         entityComponents.push(component);
-    //         if (component === ComponentKeys.control) {
-    //             // Register Entity to controllable ent list if not already registered.
-    //             if (this.entityRegistry.controllableEntities.indexOf(ent) === -1) {
-    //                 this.entityRegistry.controllableEntities.push(ent);
-    //             }
-    //         }
-    //     }
-
-    //     // If control component is not one of Entity's components, remove entity from controllable ent list if registered.
-    //     if (entityComponents.indexOf(ComponentKeys.control) === -1)  {
-    //         if (this.entityRegistry.controllableEntities.indexOf(ent) !== -1) {
-    //             this.entityRegistry.controllableEntities.splice(this.entityRegistry.controllableEntities.indexOf(ent), 1);
-    //         }
-    //     }
-    // }
-
-    protected registerEntity(ent: Object) {
+    protected registerEntity(ent: object) {
         let entityComponents: Array<string> = [];
 
         for (var component in ent) {
@@ -94,7 +61,11 @@ export abstract class BaseState {
                 if (this.entityRegistry[key].indexOf(ent) === -1) {
                     this.entityRegistry[key].push(ent);
                 }
+            }
 
+            // If registered to specified list, but component is undefined, remove entity from list due to re-registering.
+            if (this.entityRegistry[key].indexOf(ent) !== -1 && !ent[key]) {
+                this.entityRegistry[key].splice(this.entityRegistry[key].indexOf(ent), 1);
             }
         });
 
@@ -109,8 +80,11 @@ export abstract class BaseState {
         }
     }
 
-    protected registerSystem(system: (ents: ReadonlyArray<Object>, state: BaseState) => void, ecsRegistrationKey?: string) {
+    protected registerSystem(system: (ents: ReadonlyArray<object>, state: BaseState) => void, ecsRegistrationKey?: string) {
         if (ecsRegistrationKey) {
+            if (ecsRegistrationKey === "global")
+                throw Error (`"global" is a reserved keyword for non-specific entity component systems.`);
+
             this.systemRegistry.push({ [ecsRegistrationKey]: system });
             this.ecsRegistrationKeys.push(ecsRegistrationKey);
         }
@@ -122,7 +96,7 @@ export abstract class BaseState {
     protected runSystems() {
         this.systemRegistry.forEach(systemMap => {
             const key = Object.keys(systemMap)[0];
-            // systemMap[key[0]](this.entityRegistry[key], this);
+
             systemMap[key](this.entityRegistry[key], this);
         });
     }

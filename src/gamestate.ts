@@ -48,7 +48,7 @@ export class GameState extends BaseState {
         this.registerSystem(velocitySystem);
         this.registerSystem(collisionSystem);
         this.registerSystem(animationSystem);
-        this.registerSystem(animationSystem);
+        this.registerSystem(timerSystem);
         this.registerSystem(positionSystem);
 
         //playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
@@ -62,7 +62,11 @@ export class GameState extends BaseState {
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
-        player.timer = initializeTimer(250, () => { this.removeEntity(player, scene); });
+        player.timer = initializeTimer(250, () => { 
+            this.removeEntity(player);
+            // Remove player sprite from scene.
+            scene.remove(player.sprite);
+        });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
         this.registerEntity(player);
 
