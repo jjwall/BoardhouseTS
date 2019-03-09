@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
 .pointer {
     cursor: pointer !important;
 }
@@ -13,5 +17,5 @@
 
 #canvasContainer {
     height: 0;
-    display: block;
+    /* display: block; */
 }

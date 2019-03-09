@@ -5,7 +5,6 @@ import {
     Mesh
 } from "THREE";
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
-import { ComponentKeys } from "./enums";
 
 export abstract class BaseState {
     protected constructor(scene: Scene, stateStack: BaseState[]) {
