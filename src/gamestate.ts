@@ -42,13 +42,15 @@ import { BaseState } from "./basestate";
  * GameState that handles updating of all game-related systems.
  */
 export class GameState extends BaseState {
+    public gameScene: Scene;
+    public gameCamera: Camera;
     constructor(stateStack: BaseState[]) {
         super(stateStack);
-        // set up game scene
+        // Set up game scene.
         this.gameScene = new Scene();
         this.gameScene.background = new Color("#FFFFFF");
 
-        // set up game camera
+        // Set up game camera.
         this.gameCamera = new OrthographicCamera(1280 / - 2, 1280 / 2, 720 / 2, 720 / -2, -1000, 1000);
         this.gameScene.add(this.gameCamera);
 

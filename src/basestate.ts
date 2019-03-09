@@ -15,10 +15,6 @@ export abstract class BaseState {
 
     public abstract render(renderer: WebGLRenderer) : void;
 
-    protected gameScene: Scene;
-
-    protected gameCamera: Camera;
-
     protected stateStack: BaseState[];
 
     private ecsKeys: Array<string> = [];
