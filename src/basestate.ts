@@ -12,44 +12,61 @@ export abstract class BaseState {
         this.scene = scene;
         this.stateStack = stateStack;
     }
+
     public abstract update() : void;
+
     public abstract render(renderer: WebGLRenderer, camera: Camera, scene: Scene) : void;
+
     public scene: Scene;
+
     public stateStack: BaseState[];
-    private ecsRegistrationKeys: Array<string> = [];
+
+    private ecsKeys: Array<string> = [];
+
     private entityRegistry: RegistryKeyToEntityListMap = {};
+
     private systemRegistry: Array<RegistryKeyToSystemMap> = [];
 
-    public getEntitiesByKey<T>(ecsRegistrationKey: string) {
-        return this.entityRegistry[ecsRegistrationKey] as T[];
+    /**
+     * Get's an entity list by ecsKey. Will return undefined if a system hasn't been
+     * registered under the provided key.
+     * @param ecsKey 
+     */
+    public getEntitiesByKey<E>(ecsKey: keyof E) {
+        return this.entityRegistry[ecsKey.toString()] as E[];
     }
 
     /**
      * Removes Entity from each Entity list it is registered to.
      * @param ent 
      */
-    protected removeEntity(ent: object) {
+    protected removeEntity<E>(ent: E) {
         // Remove entity from global ent list if registered.
         if (this.entityRegistry["global"].indexOf(ent) !== -1) {
             this.entityRegistry["global"].splice(this.entityRegistry["global"].indexOf(ent), 1);
         }
 
         // Remove entity from each specified ent list if registered.
-        this.ecsRegistrationKeys.forEach(key => {
+        this.ecsKeys.forEach(key => {
             if (this.entityRegistry[key].indexOf(ent) !== -1) {
                 this.entityRegistry[key].splice(this.entityRegistry[key].indexOf(ent), 1);
             }
         });
     }
 
-    protected registerEntity(ent: object) {
+    /**
+     * Call after setting up an Entity's components. Will add Entity to global registry
+     * and every specific registry for each ecsKey component match.
+     * @param ent 
+     */
+    protected registerEntity<E>(ent: E) {
         let entityComponents: Array<string> = [];
 
         for (var component in ent) {
             entityComponents.push(component);
         }
 
-        this.ecsRegistrationKeys.forEach(key => {
+        this.ecsKeys.forEach(key => {
             // If Entity-Component-System registration key found in entity's components.
             if (entityComponents.indexOf(key) !== -1) {
                 // Initialize ecsRegistrationKey's entity list if not already defined.
@@ -80,19 +97,35 @@ export abstract class BaseState {
         }
     }
 
-    protected registerSystem(system: (ents: ReadonlyArray<object>, state: BaseState) => void, ecsRegistrationKey?: string) {
-        if (ecsRegistrationKey) {
-            if (ecsRegistrationKey === "global")
-                throw Error (`"global" is a reserved keyword for non-specific entity component systems.`);
+    /**
+     * Should be called at the top of the state's constructor for each system used by the state.
+     * Systems registered with provided ecsKeys will be given their own registry. Should provide
+     * an ecsKey for systems that aren't shared among many entities.
+     * @param system 
+     * @param ecsKey Optional.
+     */
+    protected registerSystem<E>(system: (ents: ReadonlyArray<E>, state: BaseState) => void, ecsKey?: keyof E) {
+        if (ecsKey) {
+            const ecsKeyValue = ecsKey.toString();
 
-            this.systemRegistry.push({ [ecsRegistrationKey]: system });
-            this.ecsRegistrationKeys.push(ecsRegistrationKey);
+            if (ecsKeyValue === "global")
+                throw Error(`"global" is a reserved keyword for non-specific entity component systems.`);
+
+            if (this.ecsKeys.indexOf(ecsKeyValue) !== -1) {
+                throw Error(`"${ecsKeyValue}" is already being used to register a system.`);
+            }
+
+            this.systemRegistry.push({ [ecsKeyValue]: system });
+            this.ecsKeys.push(ecsKeyValue);
         }
         else {
             this.systemRegistry.push({ "global": system });
         }
     }
 
+    /**
+     * Should be called by the state's update method.
+     */
     protected runSystems() {
         this.systemRegistry.forEach(systemMap => {
             const key = Object.keys(systemMap)[0];
