@@ -70,22 +70,14 @@ function main(canvasContainer: HTMLElement) {
     // set up renderer
     const renderer = new WebGLRenderer();
     renderer.setSize(1280, 720);
-    const rendererSize = renderer.getSize();
+    renderer.autoClear = false;
 
-    // set up scene
-    let scene = new Scene();
-    scene.background = new Color("#FFFFFF");
-
-    // set up camera 
-    // var camera = new THREE.PerspectiveCamera(75, 1280 / 720, 0.1, 1000);
-    const camera = new OrthographicCamera(rendererSize.width / - 2, rendererSize.width / 2, rendererSize.height / 2, rendererSize.height / -2, -1000, 1000);
-    scene.add(camera);
-
+    // append canvas element to canvas container
     canvasContainer.append(renderer.domElement);
 
     // initialize state stack
     let stateStack: BaseState[] = [];
-    let gameState = new GameState(scene, stateStack);
+    let gameState = new GameState(stateStack);
     stateStack.push(gameState);
 
     let fps: number = 0;
@@ -121,7 +113,7 @@ function main(canvasContainer: HTMLElement) {
                 
         if (stateStack.length > 0) {
             // call render on last element in state stack
-            last(stateStack).render(renderer, camera, scene);
+            last(stateStack).render(renderer);
         }
         else {
             throw "No states to render";

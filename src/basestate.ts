@@ -7,18 +7,19 @@ import {
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
 
 export abstract class BaseState {
-    protected constructor(scene: Scene, stateStack: BaseState[]) {
-        this.scene = scene;
+    protected constructor(stateStack: BaseState[]) {
         this.stateStack = stateStack;
     }
 
     public abstract update() : void;
 
-    public abstract render(renderer: WebGLRenderer, camera: Camera, scene: Scene) : void;
+    public abstract render(renderer: WebGLRenderer) : void;
 
-    public scene: Scene;
+    protected gameScene: Scene;
 
-    public stateStack: BaseState[];
+    protected gameCamera: Camera;
+
+    protected stateStack: BaseState[];
 
     private ecsKeys: Array<string> = [];
 
