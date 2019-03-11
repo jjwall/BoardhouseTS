@@ -143,7 +143,11 @@ export function initializePosition(xPos: number, yPos: number, zPos: number, sta
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function initializeSprite(url: string, scene: Scene, pixelRatio: number) : Mesh {
+export function initializeSprite(url: string, scene: Scene, pixelRatio?: number) : Mesh {
+    if (!pixelRatio) {
+        pixelRatio = 1;
+    }
+    
     // get texture from cached resources
     let spriteMap = Resources.instance.getTexture(url);
     // load geometry (consider caching these as well)

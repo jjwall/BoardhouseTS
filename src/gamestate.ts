@@ -35,6 +35,7 @@ import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
+import { createWidget, ReconcileThreeDom, Widget } from "./widget";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -46,6 +47,7 @@ export class GameState extends BaseState {
     public gameCamera: Camera;
     public uiScene: Scene;
     public uiCamera: Camera;
+    public rootWidget: Widget;
     constructor(stateStack: BaseState[]) {
         super(stateStack);
         // Set up game scene.
@@ -54,7 +56,6 @@ export class GameState extends BaseState {
 
         // Set up game camera.
         this.gameCamera = new OrthographicCamera(0, 1280, 720, 0, -1000, 1000);
-        this.gameScene.add(this.gameCamera);
 
         // Set up ui scene.
         this.uiScene = new Scene();
@@ -63,7 +64,7 @@ export class GameState extends BaseState {
         this.uiCamera = new OrthographicCamera(0, 1280, 720, 0, -1000, 1000);
 
         // Example ui element.
-        const ui = initializeSprite("./data/textures/cottage.png", this.uiScene, 1);
+        const ui = initializeSprite("./data/textures/cottage.png", this.uiScene);
         ui.position.set(200, 50, 0);
 
         // Register systems.
@@ -104,6 +105,9 @@ export class GameState extends BaseState {
         }
 
         this.registerEntity(enemy);
+
+        // set up ui
+        this.rootWidget = createWidget("div", {height: 50, width: 50});
     }
 
     public update() : void {
@@ -117,6 +121,7 @@ export class GameState extends BaseState {
         renderer.render(this.uiScene, this.uiCamera);
 
         // check if children needs to be reconciled, then do so
+        // ReconcileThreeDom(this.rootWidget, this.uiScene);
         // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
     }
 }
