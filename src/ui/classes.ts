@@ -1,9 +1,14 @@
 import { Object3D } from "THREE";
 
 export class Widget extends Object3D {
+    private _type: string;
     private _parent: Widget;
     private _children: Widget[];
     private _attributes: AttrKeyToAttrValueMap;
+    constructor(type: string) {
+        super();
+        this._type = type;
+    }
     public getParent(): Widget {
         return this._parent;
     }

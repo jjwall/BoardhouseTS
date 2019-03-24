@@ -35,7 +35,8 @@ import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
-import { createWidget, ReconcileThreeDom, Widget } from "./widget";
+// import { createWidget, ReconcileThreeDom, Widget } from "./widget";
+import { Element } from "./ui/interfaces";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -47,7 +48,7 @@ export class GameState extends BaseState {
     public gameCamera: Camera;
     public uiScene: Scene;
     public uiCamera: Camera;
-    public rootWidget: Widget;
+    // public rootWidget: Widget;
     constructor(stateStack: BaseState[]) {
         super(stateStack);
         // Set up game scene.
@@ -107,7 +108,15 @@ export class GameState extends BaseState {
         this.registerEntity(enemy);
 
         // set up ui
-        this.rootWidget = createWidget("div", {height: 50, width: 50});
+        const uiElement: Element = {
+            type: 'div',
+            props: {
+                height: 50,
+                width: 50,
+            }
+        }
+
+        // this.rootWidget = createWidget("div", {height: 50, width: 50});
     }
 
     public update() : void {

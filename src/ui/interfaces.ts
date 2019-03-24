@@ -1,9 +1,9 @@
 import { Widget } from "./classes";
 
 export interface Element {
-    type: string | object;
+    type: string;
     props: object;
-    children: Element[];
+    children?: Element[];
 }
 
 export interface Instance {
