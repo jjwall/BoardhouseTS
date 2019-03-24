@@ -129,6 +129,4 @@ export abstract class BaseState {
             systemMap[key](this.entityRegistry[key], this);
         });
     }
-
-    // public rootWidget: BoardhouseUI.Widget;
 }
