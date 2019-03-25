@@ -1,4 +1,4 @@
-import { Object3D, Mesh } from "THREE";
+import { Mesh } from "THREE";
 
 export class Widget extends Mesh {
     private _type: string;

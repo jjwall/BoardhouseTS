@@ -1,6 +1,7 @@
-import { PlaneGeometry, MeshBasicMaterial, Scene } from "three";
+import { PlaneGeometry, MeshBasicMaterial, Scene, NearestFilter, Mesh } from "three";
 import { Widget } from "./classes";
 import { Element } from "./interfaces";
+import { Resources } from "../resourcemanager";
 
 /**
  * React-like render method for widgets.
@@ -53,12 +54,37 @@ function createWidget(type: string, scene: Scene): Widget {
  * @param widget 
  */
 function layoutWidget(widget: Widget): void {
-    // cycle through attrs and update visible properties using Object3D base class
+    // Update plane geometry with height and width attributes.
     if (widget.attr("height") && widget.attr("width")) {
         widget.geometry = new PlaneGeometry(Number(widget.attr("width")), Number(widget.attr("height")));
     }
 
+    // Update mesh's material with color attribute.
     if (widget.attr("color")) {
         widget.material = new MeshBasicMaterial({color: widget.attr("color")});
+    }
+
+    // Update mesh's material and geometry based on img attribute.
+    if (widget.attr("img")) {
+        // Get scaleFactor if exists.
+        const scaleFactor: number = widget.attr("scale-factor") ? Number(widget.attr("scale-factor")) : 1;
+        const hasColor: boolean = widget.attr("color") ? true : false;
+        // Get texture from cached resources.
+        let imgMap = Resources.instance.getTexture(widget.attr("img"));
+        // Set magFilter to nearest for crisp looking pixels.
+        imgMap.magFilter = NearestFilter;
+
+        // If color attr exists, add img mesh to widget.
+        if (hasColor) {
+            var geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
+            var material = new MeshBasicMaterial( { map: imgMap, transparent: true });
+            var img = new Mesh(geometry, material);
+            widget.add(img);
+        }
+        // Otherwise, set widget's geometry and material to img mesh.
+        else {
+            widget.geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
+            widget.material = new MeshBasicMaterial( { map: imgMap, transparent: true });
+        }
     }
 }

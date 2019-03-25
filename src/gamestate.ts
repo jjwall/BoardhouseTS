@@ -66,10 +66,6 @@ export class GameState extends BaseState {
         // Set up ui camera.
         this.uiCamera = new OrthographicCamera(0, 1280, 720, 0, -1000, 1000);
 
-        // Example ui element.
-        const ui = initializeSprite("./data/textures/cottage.png", this.uiScene);
-        ui.position.set(200, 50, 0);
-
         // Register systems.
         this.registerSystem(controlSystem, "control");
         this.registerSystem(velocitySystem);
@@ -117,6 +113,7 @@ export class GameState extends BaseState {
                 width: 50,
                 color: "#228B22",
                 onClick: () => console.log("event!!!"),
+                img: "./data/textures/cottage.png",
             }
         }
 
