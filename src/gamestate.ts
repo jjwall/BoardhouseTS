@@ -37,6 +37,8 @@ import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
 // import { createWidget, ReconcileThreeDom, Widget } from "./widget";
 import { Element } from "./ui/interfaces";
+import { Widget } from "./ui/classes";
+import { renderWidget } from "./ui/functions";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -48,7 +50,7 @@ export class GameState extends BaseState {
     public gameCamera: Camera;
     public uiScene: Scene;
     public uiCamera: Camera;
-    // public rootWidget: Widget;
+    public rootWidget: Widget;
     constructor(stateStack: BaseState[]) {
         super(stateStack);
         // Set up game scene.
@@ -107,16 +109,22 @@ export class GameState extends BaseState {
 
         this.registerEntity(enemy);
 
-        // set up ui
+        // vvv test ui vvv
         const uiElement: Element = {
             type: 'div',
             props: {
                 height: 50,
                 width: 50,
+                color: "#228B22",
             }
         }
 
-        // this.rootWidget = createWidget("div", {height: 50, width: 50});
+        let rootWidget = new Widget("div");
+        this.uiScene.add(rootWidget);
+        this.rootWidget = rootWidget;
+
+        renderWidget(uiElement, this.rootWidget, this.uiScene);
+        // ^^^ end test ui ^^^
     }
 
     public update() : void {

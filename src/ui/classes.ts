@@ -1,10 +1,10 @@
-import { Object3D } from "THREE";
+import { Object3D, Mesh } from "THREE";
 
-export class Widget extends Object3D {
+export class Widget extends Mesh {
     private _type: string;
     private _parent: Widget;
-    private _children: Widget[];
-    private _attributes: AttrKeyToAttrValueMap;
+    private _children: Widget[] = [];
+    private _attributes: AttrKeyToAttrValueMap = {};
     constructor(type: string) {
         super();
         this._type = type;
@@ -20,11 +20,11 @@ export class Widget extends Object3D {
             this._children.splice(this._children.indexOf(child), 1);
         }
     }
-    public setAttr(attrKey: string, attrVal): void {
-        this._attributes[attrKey] = attrVal;
+    public setAttr(name: string, value: string): void {
+        this._attributes[name] = value;
     }
-    public getAttrs(): AttrKeyToAttrValueMap {
-        return this._attributes;
+    public attr(name: string): string {
+        return this._attributes[name];
     }
 }
 
