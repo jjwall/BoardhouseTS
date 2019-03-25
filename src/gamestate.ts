@@ -116,6 +116,7 @@ export class GameState extends BaseState {
                 height: 50,
                 width: 50,
                 color: "#228B22",
+                onClick: () => console.log("event!!!"),
             }
         }
 
@@ -124,6 +125,8 @@ export class GameState extends BaseState {
         this.rootWidget = rootWidget;
 
         renderWidget(uiElement, this.rootWidget, this.uiScene);
+        this.rootWidget.childNodes[0].trigger('click');
+        console.log(this.rootWidget.childNodes[0].attr('height'));
         // ^^^ end test ui ^^^
     }
 

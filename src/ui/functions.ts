@@ -14,24 +14,33 @@ export function renderWidget(element: Element, parentWidget: Widget, scene: Scen
 
     // Add event listeners.
     const isListener = name => name.startsWith("on");
-    // Object.keys(props).filter(isListener).forEach(name => {
-    //     const eventType = name.toLowerCase().substring(2);
-    //     widget._addEventListener(eventType, props[name]);
-    // });
+    Object.keys(props).filter(isListener).forEach(name => {
+        const eventType = name.toLowerCase().substring(2);
+        widget.setEventListener(eventType, props[name]);
+    });
 
-    // Add remaining attributes.
+    // Add attributes.
     const isAttribute = name => !isListener(name);
     Object.keys(props).filter(isAttribute).forEach(name => {
         widget.setAttr(name, props[name]);
     });
 
+    // Render child widgets.
     const childElement = element.children || [];
     childElement.forEach(childElement => renderWidget(childElement, widget, scene));
 
-    parentWidget.appendChild(widget);
+    // Layout widget.
     layoutWidget(widget);
+
+    // Append widget to parent widget.
+    parentWidget.appendChild(widget);
 }
 
+/**
+ * Returns new Widget and add it's mesh to the scene.
+ * @param type 
+ * @param scene 
+ */
 function createWidget(type: string, scene: Scene): Widget {
     let widget = new Widget(type);
     scene.add(widget);
