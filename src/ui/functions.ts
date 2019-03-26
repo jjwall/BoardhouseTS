@@ -36,7 +36,6 @@ export function renderWidget(element: Element, parentWidget: Widget, scene: Scen
     // Render child widgets.
     const childElements = element.children || [];
     childElements.forEach(childElement => renderWidget(childElement, widget, scene));
-
 }
 
 /**
@@ -78,9 +77,9 @@ function layoutWidget(widget: Widget): void {
 
         // If color attr exists, add img mesh to widget.
         if (hasColor) {
-            var geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
-            var material = new MeshBasicMaterial( { map: imgMap, transparent: true });
-            var img = new Mesh(geometry, material);
+            const geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
+            const material = new MeshBasicMaterial( { map: imgMap, transparent: true });
+            const img = new Mesh(geometry, material);
             widget.add(img);
         }
         // Otherwise, set widget's geometry and material to img mesh.
@@ -111,6 +110,10 @@ function layoutWidget(widget: Widget): void {
 
     if (widget.attr("left")) {
         widget.position.x += Number(widget.attr("left"));
+    }
+
+    if (widget.attr("z_index")) {
+        widget.position.z = Number(widget.attr("z_index"));
     }
 
     // if (widget.attr("padding")) {

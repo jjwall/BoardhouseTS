@@ -122,10 +122,12 @@ export class GameState extends BaseState {
                     type: "div",
                     props: {
                         height: 50,
-                        widget: 50,
-                        color: "#228B22",
+                        width: 50,
+                        color: "#ff0000",
                         img: "./data/textures/cottage.png",
-                        left: 100,
+                        top: 20,
+                        left: 20,
+                        z_index: 1
                     }
                 }
             ]
