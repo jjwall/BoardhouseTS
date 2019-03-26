@@ -64,7 +64,7 @@ export class GameState extends BaseState {
         this.uiScene = new Scene();
 
         // Set up ui camera.
-        this.uiCamera = new OrthographicCamera(0, 1280, 720, 0, -1000, 1000);
+        this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);
 
         // Register systems.
         this.registerSystem(controlSystem, "control");
