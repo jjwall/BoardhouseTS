@@ -114,16 +114,30 @@ export class GameState extends BaseState {
                 color: "#228B22",
                 onClick: () => console.log("event!!!"),
                 img: "./data/textures/cottage.png",
-            }
+                top: 50,
+                left: 100,
+            },
+            children: [
+                {
+                    type: "div",
+                    props: {
+                        height: 50,
+                        widget: 50,
+                        color: "#228B22",
+                        img: "./data/textures/cottage.png",
+                        left: 100,
+                    }
+                }
+            ]
         }
 
-        let rootWidget = new Widget("div");
-        this.uiScene.add(rootWidget);
-        this.rootWidget = rootWidget;
+        // let rootWidget = new Widget("div");
+        // this.uiScene.add(rootWidget);
+        // this.rootWidget = rootWidget;
 
-        renderWidget(uiElement, this.rootWidget, this.uiScene);
-        this.rootWidget.childNodes[0].trigger('click');
-        console.log(this.rootWidget.childNodes[0].attr('height'));
+        renderWidget(uiElement, null, this.uiScene);
+        // this.rootWidget.childNodes[0].trigger('click');
+        // console.log(this.rootWidget.childNodes[0].attr('height'));
         // ^^^ end test ui ^^^
     }
 

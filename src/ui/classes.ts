@@ -17,6 +17,7 @@ export class Widget extends Mesh {
         return this._children;
     }
     public appendChild(child: Widget): void {
+        child._parent = this;
         this._children.push(child);
     }
     public removeChild(child: Widget): void {

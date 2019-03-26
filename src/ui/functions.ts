@@ -26,15 +26,17 @@ export function renderWidget(element: Element, parentWidget: Widget, scene: Scen
         widget.setAttr(name, props[name]);
     });
 
-    // Render child widgets.
-    const childElement = element.children || [];
-    childElement.forEach(childElement => renderWidget(childElement, widget, scene));
+    // Append widget to parent widget.
+    if (parentWidget)
+        parentWidget.appendChild(widget);
 
     // Layout widget.
     layoutWidget(widget);
 
-    // Append widget to parent widget.
-    parentWidget.appendChild(widget);
+    // Render child widgets.
+    const childElements = element.children || [];
+    childElements.forEach(childElement => renderWidget(childElement, widget, scene));
+
 }
 
 /**
@@ -87,4 +89,31 @@ function layoutWidget(widget: Widget): void {
             widget.material = new MeshBasicMaterial( { map: imgMap, transparent: true });
         }
     }
+
+    if (widget.attr("position")) {
+        if (widget.attr("position") === "relative") {
+            if (widget.getParent()) {
+                widget.position.y = widget.getParent().position.y;
+                widget.position.x = widget.getParent().position.x;
+            }
+        }
+    }
+    else { // default to "relative"
+        if (widget.getParent()) {
+            widget.position.y = widget.getParent().position.y;
+                widget.position.x = widget.getParent().position.x;
+        }
+    }
+
+    if (widget.attr("top")) {
+        widget.position.y -= Number(widget.attr("top"));
+    }
+
+    if (widget.attr("left")) {
+        widget.position.x += Number(widget.attr("left"));
+    }
+
+    // if (widget.attr("padding")) {
+
+    // }
 }
