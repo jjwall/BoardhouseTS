@@ -1,60 +1,12 @@
-import { PlaneGeometry, MeshBasicMaterial, Scene, NearestFilter, Mesh, FontLoader, ShapeBufferGeometry } from "three";
-import { Widget } from "./classes";
-import { Element } from "./interfaces";
-import { Resources } from "../resourcemanager";
-
-/**
- * React-like render method for widgets.
- * @param element 
- * @param parentWidget 
- * @param scene 
- */
-export function renderWidget(element: Element, parentWidget: Widget, scene: Scene): void {
-    const { type, props } = element;
-    const widget = createWidget(type, scene);
-
-    // Add event listeners.
-    const isListener = name => name.startsWith("on");
-    Object.keys(props).filter(isListener).forEach(name => {
-        const eventType = name.toLowerCase().substring(2);
-        widget.setEventListener(eventType, props[name]);
-    });
-
-    // Add attributes.
-    const isAttribute = name => !isListener(name);
-    Object.keys(props).filter(isAttribute).forEach(name => {
-        widget.setAttr(name, props[name]);
-    });
-
-    // Append widget to parent widget.
-    if (parentWidget)
-        parentWidget.appendChild(widget);
-
-    // Layout widget.
-    layoutWidget(widget);
-
-    // Render child widgets.
-    const childElements = element.children || [];
-    childElements.forEach(childElement => renderWidget(childElement, widget, scene));
-}
-
-/**
- * Returns new Widget and add it's mesh to the scene.
- * @param type 
- * @param scene 
- */
-function createWidget(type: string, scene: Scene): Widget {
-    let widget = new Widget(type);
-    scene.add(widget);
-    return widget;
-}
-
+import { Mesh, MeshBasicMaterial, PlaneGeometry, NearestFilter, ShapeBufferGeometry, FontLoader } from "three";
+import { Resources } from "./../resourcemanager";
+import { Widget } from "./widget";
 /**
  * Layout widget by updating Mesh properties for any relevant attribute.
  * Gets called when Widget is create or setState is called.
  * @param widget 
  */
-function layoutWidget(widget: Widget): void {
+export function layoutWidget(widget: Widget): void {
     // Update plane geometry with height and width attributes.
     if (widget.attr("height") && widget.attr("width")) {
         widget.geometry = new PlaneGeometry(Number(widget.attr("width")), Number(widget.attr("height")));

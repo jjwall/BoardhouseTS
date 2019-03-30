@@ -1,4 +1,4 @@
-import { Mesh } from "THREE";
+import { Mesh, Scene } from "THREE";
 
 export class Widget extends Mesh {
     private _type: string;
@@ -44,6 +44,17 @@ export class Widget extends Mesh {
         if (this._events[name])
             this._events[name]();
     }
+}
+
+/**
+ * Returns new Widget and add it's mesh to the scene.
+ * @param type 
+ * @param scene 
+ */
+export function createWidget(type: string, scene: Scene): Widget {
+    let widget = new Widget(type);
+    scene.add(widget);
+    return widget;
 }
 
 interface AttrKeyToAttrValueMap {

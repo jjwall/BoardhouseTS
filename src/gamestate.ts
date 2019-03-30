@@ -37,8 +37,8 @@ import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
 // import { createWidget, ReconcileThreeDom, Widget } from "./widget";
 import { Element } from "./ui/interfaces";
-import { Widget } from "./ui/classes";
-import { renderWidget } from "./ui/functions";
+import { Widget } from "./ui/widget";
+import { renderWidget } from "./ui/renderwidget";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
