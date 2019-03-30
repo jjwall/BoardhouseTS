@@ -85,7 +85,7 @@ function layoutPanelAttributes(widget: Widget) {
 
 function layoutLabelAttributes(widget: Widget) {
     let color: string;
-    let font: string;
+    let fontUrl: string;
     let font_size: number;
     
     // Default color is black if not specified.
@@ -96,9 +96,9 @@ function layoutLabelAttributes(widget: Widget) {
 
     // Default font is helvetiker if not specified.
     if (!widget.attr("font"))
-        font = "../../data/fonts/helvetiker_regular_typeface.json";
+        fontUrl = "./data/fonts/helvetiker_regular_typeface.json";
     else
-        font = widget.attr("font");
+        fontUrl = widget.attr("font");
     
     // Default font size is 16 if not specified.
     if (!widget.attr("font_size"))
@@ -106,19 +106,22 @@ function layoutLabelAttributes(widget: Widget) {
     else
         font_size = Number(widget.attr("font_size"));
 
-    let loader = new FontLoader();
-    loader.load(font, function(font) {
-        var matLite = new MeshBasicMaterial( {
-            color: color,
-            transparent: true,
-        });
+    // Obtain font from resource cache.
+    let font = Resources.instance.getFont(fontUrl);
 
-        const shapes = font.generateShapes(widget.attr("nodeValue"), font_size, 0);
-        const geometry = new ShapeBufferGeometry(shapes);
-        geometry.computeBoundingBox();
-        const xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
-        geometry.translate(xMid, 0, 0);
-        const text = new Mesh(geometry, matLite);
-        widget.add(text);
+    var material = new MeshBasicMaterial( {
+        color: color,
+        transparent: true,
     });
+
+    const shapes = font.generateShapes(widget.attr("nodeValue"), font_size, 0);
+    const geometry = new ShapeBufferGeometry(shapes);
+
+    // Ensure font is centered on (parent) widget.
+    geometry.computeBoundingBox();
+    const xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
+    geometry.translate(xMid, 0, 0);
+
+    const text = new Mesh(geometry, material);
+    widget.add(text);
 }

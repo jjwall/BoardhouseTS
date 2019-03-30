@@ -8,6 +8,7 @@ import {
     Resources,
     loadTextures,
     loadAudioElements,
+    loadFonts,
 } from "./resourcemanager";
 import { BaseState } from "./basestate";
 import { last } from "./helpers";
@@ -48,14 +49,21 @@ loadTextures([
     // cache off textures
     Resources.instance.setTextures(textures);
 
-    loadAudioElements([
-        "./data/audio/Pale_Blue.mp3"
-    ]).then((audioElements) => {
-        // cache off audio elements
-        Resources.instance.setAudioElements(audioElements);
+    loadFonts([
+        "./data/fonts/helvetiker_regular_typeface.json"
+    ]).then((fonts) => {
+        // cache off fonts
+        Resources.instance.setFonts(fonts);
 
-        // start game
-        main(<HTMLElement>document.getElementById("canvasContainer"));
+        loadAudioElements([
+            "./data/audio/Pale_Blue.mp3"
+        ]).then((audioElements) => {
+            // cache off audio elements
+            Resources.instance.setAudioElements(audioElements);
+
+            // start game
+            main(<HTMLElement>document.getElementById("canvasContainer"));
+        });
     });
 });
 

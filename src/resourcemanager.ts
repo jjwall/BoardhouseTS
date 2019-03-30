@@ -1,10 +1,12 @@
-import { Texture, TextureLoader } from "three";
+import { Texture, TextureLoader, Font, FontLoader} from "three";
 
 export class Resources
 {
     private static _instance: Resources;
 
     private _textures: UrlToTextureMap = {};
+
+    private _fonts: UrlToFontMap = {};
 
     private _audioElements: UrlToAudioMap = {};
 
@@ -24,6 +26,18 @@ export class Resources
 
     public setTextures(value: UrlToTextureMap) {
         this._textures = value;
+    }
+
+    public getFont(url: string) {
+        if (!this._fonts[url]) {
+            throw new Error("Font not found. Check url and ensure font url is being passed in to loadFonts().");
+        }
+
+        return this._fonts[url];
+    }
+
+    public setFonts(value: UrlToFontMap) {
+        this._fonts = value;
     }
 
     public getAudioElement(url: string) {
@@ -59,6 +73,26 @@ export async function loadTextures(urls: string[]) : Promise<UrlToTextureMap> {
     return cachedTextures;
 }
 
+export async function loadFonts(urls: string[]) : Promise<UrlToFontMap> {
+    const loader = new FontLoader();
+
+    const promises = urls.map((url) =>
+        new Promise<Font>((resolve) => {
+            loader.load(url, (font) => resolve(font));
+        })
+    );
+
+    const fonts = await Promise.all(promises);
+
+    const cachedFonts: UrlToFontMap = {};
+    
+    fonts.forEach((font, i) => {
+        cachedFonts[urls[i]] = font;
+    });
+
+    return cachedFonts;
+}
+
 export async function loadAudioElements(urls: string[]) : Promise<UrlToAudioMap> {
     const promises = urls.map((url) =>
         new Promise<HTMLAudioElement>((resolve) => {
@@ -83,6 +117,10 @@ export async function loadAudioElements(urls: string[]) : Promise<UrlToAudioMap>
 
 export interface UrlToTextureMap {
     [url: string]: Texture;
+}
+
+export interface UrlToFontMap {
+    [url: string]: Font;
 }
 
 export interface UrlToAudioMap {
