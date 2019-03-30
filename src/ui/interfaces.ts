@@ -1,4 +1,4 @@
-import { Widget } from "./classes";
+import { Widget } from "./widget";
 
 export interface Element {
     type: string;
