@@ -127,7 +127,8 @@ export class GameState extends BaseState {
                         img: "./data/textures/cottage.png",
                         top: 20,
                         left: 20,
-                        z_index: 1
+                        z_index: 1,
+                        text: "blah"
                     }
                 }
             ]

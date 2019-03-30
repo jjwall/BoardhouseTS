@@ -116,6 +116,14 @@ function layoutWidget(widget: Widget): void {
         widget.position.z = Number(widget.attr("z_index"));
     }
 
+    if (widget.attr("text")) {
+        // const text = new TextGeometry("test test");
+        // const material = new MeshBasicMaterial({transparent: true});
+        // const mesh = new Mesh(text, material);
+        // widget.add(mesh);
+        // const font = new THREE.Font().generateShapes()
+    }
+
     // if (widget.attr("padding")) {
 
     // }
