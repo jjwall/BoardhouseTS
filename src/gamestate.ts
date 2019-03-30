@@ -107,7 +107,7 @@ export class GameState extends BaseState {
 
         // vvv test ui vvv
         const uiElement: Element = {
-            type: 'div',
+            type: "panel",
             props: {
                 height: 50,
                 width: 50,
@@ -119,17 +119,27 @@ export class GameState extends BaseState {
             },
             children: [
                 {
-                    type: "div",
+                    type: "panel",
                     props: {
                         height: 50,
                         width: 50,
-                        color: "#ff0000",
+                        color: "#00FFFF",
                         img: "./data/textures/cottage.png",
-                        top: 20,
+                        top: 10,
                         left: 20,
                         z_index: 1,
-                        text: "blah"
-                    }
+                    },
+                    children: [
+                        {
+                            type: "label",
+                            props: {
+                                nodeValue: "blah",
+                                top: 10,
+                                color: "#0000FF",
+                                // font_size: 30,
+                            }
+                        }
+                    ]
                 }
             ]
         }

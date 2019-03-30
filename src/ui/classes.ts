@@ -10,6 +10,9 @@ export class Widget extends Mesh {
         super();
         this._type = type;
     }
+    public getType(): string {
+        return this._type;
+    }
     public getParent(): Widget {
         return this._parent;
     }
@@ -18,6 +21,9 @@ export class Widget extends Mesh {
     }
     public appendChild(child: Widget): void {
         child._parent = this;
+        if (this.attr("z_index")) {
+            child.setAttr("z_index", this.attr("z_index"));
+        }
         this._children.push(child);
     }
     public removeChild(child: Widget): void {
