@@ -1,9 +1,11 @@
 import { Widget } from "./widget";
 
-export interface Element {
-    type: string;
-    props: object;
-    children?: Element[];
+export namespace JSX {
+    export interface Element {
+        type: string;
+        props: object;
+        children?: Element[];
+    }
 }
 
 export interface Instance {

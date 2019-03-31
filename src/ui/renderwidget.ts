@@ -1,6 +1,6 @@
 import { Widget, createWidget } from "./widget";
 import { layoutWidget } from "./layoutwidget";
-import { Element } from "./interfaces";
+import { JSX } from "./interfaces";
 import { Scene} from "three";
 
 /**
@@ -9,7 +9,7 @@ import { Scene} from "three";
  * @param parentWidget 
  * @param scene 
  */
-export function renderWidget(element: Element, parentWidget: Widget, scene: Scene): void {
+export function renderWidget(element: JSX.Element, parentWidget: Widget, scene: Scene): void {
     const { type, props } = element;
     const widget = createWidget(type, scene);
 

@@ -36,9 +36,11 @@ import { Entity } from "./entity";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
 // import { createWidget, ReconcileThreeDom, Widget } from "./widget";
-import { Element } from "./ui/interfaces";
+import { JSX } from "./ui/interfaces";
 import { Widget } from "./ui/widget";
 import { renderWidget } from "./ui/renderwidget";
+// import { createElement } from "./ui/createelement";
+import { createGameUi } from "./gameui";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -106,49 +108,72 @@ export class GameState extends BaseState {
         this.registerEntity(enemy);
 
         // vvv test ui vvv
-        const uiElement: Element = {
-            type: "panel",
-            props: {
-                height: 50,
-                width: 50,
-                color: "#228B22",
-                onClick: () => console.log("event!!!"),
-                img: "./data/textures/cottage.png",
-                top: 50,
-                left: 100,
-            },
-            children: [
-                {
-                    type: "panel",
-                    props: {
-                        height: 50,
-                        width: 50,
-                        color: "#00FFFF",
-                        img: "./data/textures/cottage.png",
-                        top: 10,
-                        left: 20,
-                        z_index: 1,
-                    },
-                    children: [
-                        {
-                            type: "label",
-                            props: {
-                                nodeValue: "blah",
-                                top: 10,
-                                color: "#0000FF",
-                                // font_size: 30,
-                            }
-                        }
-                    ]
-                }
-            ]
-        }
+        const uiElement: JSX.Element = createGameUi();
+        // createElement(
+        //     "panel",
+        //     {
+        //         height: 70,
+        //         width: 300,
+        //         color: "#228B22",
+        //         onClick: () => console.log("event!!!"),
+        //         img: "./data/textures/cottage.png",
+        //         top: 50,
+        //         left: 500,
+        //     },
+        //     createElement("panel",
+        //         {
+        //             height: 50,
+        //             width: 50,
+        //             color: "#00FFFF",
+        //             img: "./data/textures/cottage.png",
+        //             // top: 0,
+        //             // left: 0,
+        //             z_index: 1,
+        //         },
+        //         createElement(
+        //                 "label",
+        //                 {
+        //                     nodeValue: "blah",
+        //                     top: 10,
+        //                     color: "#0000FF",
+        //                     // font_size: 30,
+        //                 }
+        //         )
+        //     )
+        // );
+                // {
+                //     type: "panel",
+                //     props: {
+                //         height: 50,
+                //         width: 50,
+                //         color: "#00FFFF",
+                //         img: "./data/textures/cottage.png",
+                //         // top: 0,
+                //         left: -100,
+                //         z_index: 1,
+                //     },
+                // },
+                // {
+                //     type: "panel",
+                //     props: {
+                //         height: 50,
+                //         width: 50,
+                //         color: "#00FFFF",
+                //         img: "./data/textures/cottage.png",
+                //         // top: 0,
+                //         left: 100,
+                //         z_index: 1,
+                //     },
+                // },
+            // ]
+        //}
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);
-        // this.rootWidget = rootWidget;
+        // this.rootWidget = null;
 
         renderWidget(uiElement, null, this.uiScene);
+        // console.log(this.rootWidget);
         // this.rootWidget.childNodes[0].trigger('click');
         // console.log(this.rootWidget.childNodes[0].attr('height'));
         // ^^^ end test ui ^^^

@@ -9,6 +9,11 @@ module.exports = {
         test: /\.ts$/,
         use: 'ts-loader',
         exclude: /node_modules/
+      },
+      {
+        test: /\.tsx$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
       }
     ]
   },
@@ -21,7 +26,7 @@ module.exports = {
     ])
   ],
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ]
+    extensions: [ '.tsx', '.jsx', '.ts', '.js' ]
   },
   externals: {
     three: 'THREE',
