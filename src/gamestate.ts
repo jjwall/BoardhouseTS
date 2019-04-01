@@ -109,64 +109,6 @@ export class GameState extends BaseState {
 
         // vvv test ui vvv
         const uiElement: JSX.Element = createGameUi();
-        // createElement(
-        //     "panel",
-        //     {
-        //         height: 70,
-        //         width: 300,
-        //         color: "#228B22",
-        //         onClick: () => console.log("event!!!"),
-        //         img: "./data/textures/cottage.png",
-        //         top: 50,
-        //         left: 500,
-        //     },
-        //     createElement("panel",
-        //         {
-        //             height: 50,
-        //             width: 50,
-        //             color: "#00FFFF",
-        //             img: "./data/textures/cottage.png",
-        //             // top: 0,
-        //             // left: 0,
-        //             z_index: 1,
-        //         },
-        //         createElement(
-        //                 "label",
-        //                 {
-        //                     nodeValue: "blah",
-        //                     top: 10,
-        //                     color: "#0000FF",
-        //                     // font_size: 30,
-        //                 }
-        //         )
-        //     )
-        // );
-                // {
-                //     type: "panel",
-                //     props: {
-                //         height: 50,
-                //         width: 50,
-                //         color: "#00FFFF",
-                //         img: "./data/textures/cottage.png",
-                //         // top: 0,
-                //         left: -100,
-                //         z_index: 1,
-                //     },
-                // },
-                // {
-                //     type: "panel",
-                //     props: {
-                //         height: 50,
-                //         width: 50,
-                //         color: "#00FFFF",
-                //         img: "./data/textures/cottage.png",
-                //         // top: 0,
-                //         left: 100,
-                //         z_index: 1,
-                //     },
-                // },
-            // ]
-        //}
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);

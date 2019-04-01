@@ -11,6 +11,13 @@ import { Scene} from "three";
  */
 export function renderWidget(element: JSX.Element, parentWidget: Widget, scene: Scene): void {
     const { type, props } = element;
+
+    if (!type) {
+        parentWidget.setAttr("nodeValue", element as unknown as string);
+        layoutWidget(parentWidget);
+        return;
+    }
+
     const widget = createWidget(type, scene);
 
     // Add event listeners.
@@ -31,7 +38,8 @@ export function renderWidget(element: JSX.Element, parentWidget: Widget, scene: 
         parentWidget.appendChild(widget);
 
     // Layout widget.
-    layoutWidget(widget);
+    if (type !== "label")
+        layoutWidget(widget);
 
     // Render child widgets.
     const childElements = element.children || [];
