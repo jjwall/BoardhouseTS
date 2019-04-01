@@ -36,7 +36,7 @@ import { Entity } from "./entity";
 import { playerAnim } from "../data/animations/player";
 import { BaseState } from "./basestate";
 // import { createWidget, ReconcileThreeDom, Widget } from "./widget";
-import { JSX } from "./ui/interfaces";
+import { JSXElement } from "./ui/interfaces";
 import { Widget } from "./ui/widget";
 import { renderWidget } from "./ui/renderwidget";
 // import { createElement } from "./ui/createelement";
@@ -108,7 +108,7 @@ export class GameState extends BaseState {
         this.registerEntity(enemy);
 
         // vvv test ui vvv
-        const uiElement: JSX.Element = createGameUi();
+        const uiElement: JSXElement = createGameUi();
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);

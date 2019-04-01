@@ -1,16 +1,14 @@
 import { Widget } from "./widget";
 
-export namespace JSX {
-    export interface Element {
-        type: string;
-        props: object;
-        children?: Element[];
-    }
+export interface JSXElement {
+    type: string;
+    props: object;
+    children?: JSXElement[];
 }
 
 export interface Instance {
     widget: Widget;
-    element: Element;
+    element: JSXElement;
 }
 
 export interface WidgetInstance extends Instance {
