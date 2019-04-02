@@ -18,7 +18,7 @@ export function renderWidget(element: JSXElement, parentWidget: Widget, scene: S
         return;
     }
 
-    const widget = createWidget(type, scene);
+    const widget = createWidget(type);
 
     // Add event listeners.
     const isListener = name => name.startsWith("on");
@@ -33,9 +33,11 @@ export function renderWidget(element: JSXElement, parentWidget: Widget, scene: S
         widget.setAttr(name, props[name]);
     });
 
-    // Append widget to parent widget.
-    if (parentWidget)
-        parentWidget.appendChild(widget);
+    // Append to parent or replace parent's last child.
+    if (!parentWidget.lastChild)
+        parentWidget.appendChild(widget, scene);
+    else
+        parentWidget.replaceChild(widget, parentWidget.lastChild);
 
     // Layout widget.
     if (type !== "label")

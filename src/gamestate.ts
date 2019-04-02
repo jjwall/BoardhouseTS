@@ -108,15 +108,15 @@ export class GameState extends BaseState {
         this.registerEntity(enemy);
 
         // vvv test ui vvv
-        const uiElement: JSXElement = createGameUi();
+        const uiElement: JSXElement = createGameUi(this.uiScene);
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);
         // this.rootWidget = null;
 
-        renderWidget(uiElement, null, this.uiScene);
+        // renderWidget(uiElement, null, this.uiScene);
         // console.log(this.rootWidget);
-        // this.rootWidget.childNodes[0].trigger('click');
+        // uiElement.trigger('click');
         // console.log(this.rootWidget.childNodes[0].attr('height'));
         // ^^^ end test ui ^^^
     }

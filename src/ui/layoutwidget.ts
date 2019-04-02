@@ -1,4 +1,4 @@
-import { Mesh, MeshBasicMaterial, PlaneGeometry, NearestFilter, ShapeBufferGeometry, FontLoader } from "three";
+import { Mesh, MeshBasicMaterial, PlaneGeometry, NearestFilter, ShapeBufferGeometry } from "three";
 import { Resources } from "./../resourcemanager";
 import { Widget } from "./widget";
 /**
@@ -73,7 +73,11 @@ function layoutPanelAttributes(widget: Widget) {
             const geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
             const material = new MeshBasicMaterial( { map: imgMap, transparent: true });
             const img = new Mesh(geometry, material);
-            widget.add(img);
+
+            if (!widget.image)
+                widget.add(img);
+
+            widget.image = img;
         }
         // Otherwise, set widget's geometry and material to img mesh.
         else {
@@ -123,5 +127,14 @@ function layoutLabelAttributes(widget: Widget) {
     geometry.translate(xMid, 0, 0);
 
     const text = new Mesh(geometry, material);
-    widget.add(text);
+
+
+    if (!widget.text) {
+        widget.add(text);
+        widget.text = text;
+    }
+    else {
+        widget.text.geometry = geometry;
+        widget.text.material = material;
+    }
 }

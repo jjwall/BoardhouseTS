@@ -6,6 +6,8 @@ export class Widget extends Mesh {
     private _children: Widget[] = [];
     private _attributes: AttrKeyToAttrValueMap = {};
     private _events: EventKeyToEventMap = {};
+    public image: Mesh;
+    public text: Mesh;
     constructor(type: string) {
         super();
         this._type = type;
@@ -19,7 +21,11 @@ export class Widget extends Mesh {
     public get childNodes(): Widget[] {
         return this._children;
     }
-    public appendChild(child: Widget): void {
+    public get lastChild(): Widget {
+        return this._children[this._children.length - 1];
+    }
+    public appendChild(child: Widget, scene: Scene): void {
+        scene.add(child);
         child._parent = this;
         if (this.attr("z_index")) {
             child.setAttr("z_index", this.attr("z_index"));
@@ -30,6 +36,17 @@ export class Widget extends Mesh {
         if (this._children.indexOf(child) !== -1) {
             this._children.splice(this._children.indexOf(child), 1);
         }
+    }
+    public replaceChild(newChild: Widget, childToReplace: Widget): void {
+        const index = this._children.indexOf(childToReplace);
+
+        if (childToReplace.text)
+            newChild.text = childToReplace.text;
+
+        if (childToReplace.image)
+            newChild.image = childToReplace.image;
+
+        this._children[index] = newChild;
     }
     public setAttr(name: string, value: string): void {
         this._attributes[name] = value;
@@ -51,9 +68,8 @@ export class Widget extends Mesh {
  * @param type 
  * @param scene 
  */
-export function createWidget(type: string, scene: Scene): Widget {
+export function createWidget(type: string): Widget {
     let widget = new Widget(type);
-    scene.add(widget);
     return widget;
 }
 
