@@ -16,15 +16,32 @@ export function renderWidget(element: JSXElement, container: Widget, scene: Scen
     rootInstance = nextInstance;
 }
 
-function reconcile(parentWidget: Widget, instance: Instance, element: JSXElement, scene: Scene): Instance {
+function reconcile(parentWidget: Widget, instance: WidgetInstance, element: JSXElement, scene: Scene): Instance {
     if (instance == null) {
+        // Create instance.
         const newInstance = instantiate(element, scene);
         parentWidget.appendChild(newInstance.widget, scene);
         layoutWidget(newInstance.widget);
 
         return newInstance;
     }
+    else if (element == null) {
+        // Remove instance.
+        parentWidget.removeChild(instance.widget);
+        // TODO: layout widget to remove visual attributes here?
+
+        return null;
+    }
+    else if (instance.element.type === element.type) {
+        // Update instance.
+        updateWidgetProperties(instance.widget, instance.element.props, element.props);
+        instance.children = reconcileChildren(instance, element, scene);
+        instance.element = element;
+        layoutWidget(instance.widget);
+        return instance;
+    }
     else {
+        // Replace instance.
         const newInstance = instantiate(element, scene);
         parentWidget.replaceChild(newInstance.widget, instance.widget);
         layoutWidget(newInstance.widget);
@@ -33,7 +50,24 @@ function reconcile(parentWidget: Widget, instance: Instance, element: JSXElement
     }
 }
 
-function instantiate(element: JSXElement, scene: Scene): Instance {
+function reconcileChildren(instance: WidgetInstance, element: JSXElement, scene: Scene): WidgetInstance[] {
+    const widget = instance.widget;
+    const childInstances = instance.children;
+    const nextChildElements = element.children || [];
+    const newChildInstances = [];
+    const count = Math.max(childInstances.length, nextChildElements.length);
+
+    for (let i = 0; i < count; i++) {
+        const childInstance = childInstances[i];
+        const childElement = nextChildElements[i];
+        const newChildInstance = reconcile(widget, childInstance, childElement, scene);
+        newChildInstances.push(newChildInstance);
+    }
+
+    return newChildInstances.filter(instance => instance != null);
+}
+
+function instantiate(element: JSXElement, scene: Scene): WidgetInstance {
     if (typeof element === "string")
         throw Error('If you are trying to set text try: <label contents="Hello world!"/>');
 

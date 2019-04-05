@@ -12,7 +12,7 @@ export interface Instance {
 }
 
 export interface WidgetInstance extends Instance {
-    children: Instance[];
+    children: WidgetInstance[];
 }
 
 export interface ComponentInstance extends Instance {

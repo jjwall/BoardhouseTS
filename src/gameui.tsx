@@ -22,7 +22,7 @@ export function createGameUi(scene: Scene): JSXElement {
 
         function tick() {
             const time = new Date().toLocaleTimeString();
-            // clockElement = <panel><label top="50" left="60">{time}</label></panel>;
+            // clockElement = <panel><label top="50" left="60" contents={time}></label></panel>;
             clockElement = <label top="50" left="60" contents={time} />;
             renderWidget(clockElement, rootWidget, scene);
         }
