@@ -1,5 +1,5 @@
-// /** @jsx createElement */
-import { createElement } from "./ui/createelement";
+// /** @jsx createJSXElement */
+import { createJSXElement } from "./ui/createjsxelement";
 import { JSXElement } from "./ui/interfaces";
 import { renderWidget } from "./ui/renderwidget";
 import { Scene } from "THREE";
