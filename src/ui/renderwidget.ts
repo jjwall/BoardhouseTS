@@ -1,22 +1,43 @@
 import { Widget, createWidget } from "./widget";
 import { layoutWidget } from "./layoutwidget";
-import { JSXElement } from "./interfaces";
+import { JSXElement, Instance, WidgetInstance } from "./interfaces";
 import { Scene} from "three";
 
+let rootInstance = null;
 /**
  * React-like render method for widgets.
  * @param element 
  * @param parentWidget 
  * @param scene 
  */
-export function renderWidget(element: JSXElement, parentWidget: Widget, scene: Scene): void {
-    const { type, props } = element;
+export function renderWidget(element: JSXElement, container: Widget, scene: Scene): void {
+    const prevInstance = rootInstance;
+    const nextInstance = reconcile(container, prevInstance, element, scene)
+    rootInstance = nextInstance;
+}
 
-    if (!type) {
-        parentWidget.setAttr("nodeValue", element as unknown as string);
-        layoutWidget(parentWidget);
-        return;
+function reconcile(parentWidget: Widget, instance: Instance, element: JSXElement, scene: Scene): Instance {
+    if (instance == null) {
+        const newInstance = instantiate(element, scene);
+        parentWidget.appendChild(newInstance.widget, scene);
+        layoutWidget(newInstance.widget);
+
+        return newInstance;
     }
+    else {
+        const newInstance = instantiate(element, scene);
+        parentWidget.replaceChild(newInstance.widget, instance.widget);
+        layoutWidget(newInstance.widget);
+
+        return newInstance;
+    }
+}
+
+function instantiate(element: JSXElement, scene: Scene): Instance {
+    if (typeof element === "string")
+        throw Error('If you are trying to set text try: <label contents="Hello world!"/>');
+
+    const { type, props } = element;
 
     const widget = createWidget(type);
 
@@ -33,17 +54,17 @@ export function renderWidget(element: JSXElement, parentWidget: Widget, scene: S
         widget.setAttr(name, props[name]);
     });
 
-    // Append to parent or replace parent's last child.
-    if (!parentWidget.lastChild)
-        parentWidget.appendChild(widget, scene);
-    else
-        parentWidget.replaceChild(widget, parentWidget.lastChild);
-
-    // Layout widget.
-    if (type !== "label")
-        layoutWidget(widget);
-
-    // Render child widgets.
+    // Instantiate and append children.
     const childElements = element.children || [];
-    childElements.forEach(childElement => renderWidget(childElement, widget, scene));
+    const childInstances = childElements.map(childElement => instantiate(childElement, scene));
+    const childWidgets = childInstances.map(childInstance => childInstance.widget);
+    childWidgets.forEach(childWidget => widget.appendChild(childWidget, scene));
+
+    const instance: WidgetInstance = {
+        widget: widget,
+        element: element,
+        children: childInstances,
+    }
+
+    return instance;
 }

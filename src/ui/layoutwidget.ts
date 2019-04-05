@@ -13,7 +13,7 @@ export function layoutWidget(widget: Widget): void {
         layoutPanelAttributes(widget);
     }
 
-    if (widget.getType() === "label" && widget.attr("nodeValue")) {
+    if (widget.getType() === "label" && widget.attr("contents")) {
         layoutLabelAttributes(widget);
     }
 }
@@ -118,7 +118,7 @@ function layoutLabelAttributes(widget: Widget) {
         transparent: true,
     });
 
-    const shapes = font.generateShapes(widget.attr("nodeValue"), font_size, 0);
+    const shapes = font.generateShapes(widget.attr("contents"), font_size, 0);
     const geometry = new ShapeBufferGeometry(shapes);
 
     // Ensure font is centered on (parent) widget.
