@@ -57,6 +57,9 @@ export class Widget extends Mesh {
     public setEventListener(eventType: string, event: () => void): void {
         this._events[eventType] = event;
     }
+    public detachEventListener(eventType: string): void {
+        this._events[eventType] = undefined;
+    }
     public trigger(name: string): void {
         if (this._events[name])
             this._events[name]();

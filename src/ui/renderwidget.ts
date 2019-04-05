@@ -41,18 +41,7 @@ function instantiate(element: JSXElement, scene: Scene): Instance {
 
     const widget = createWidget(type);
 
-    // Add event listeners.
-    const isListener = name => name.startsWith("on");
-    Object.keys(props).filter(isListener).forEach(name => {
-        const eventType = name.toLowerCase().substring(2);
-        widget.setEventListener(eventType, props[name]);
-    });
-
-    // Add attributes.
-    const isAttribute = name => !isListener(name);
-    Object.keys(props).filter(isAttribute).forEach(name => {
-        widget.setAttr(name, props[name]);
-    });
+    updateWidgetProperties(widget, {}, props);
 
     // Instantiate and append children.
     const childElements = element.children || [];
@@ -67,4 +56,31 @@ function instantiate(element: JSXElement, scene: Scene): Instance {
     }
 
     return instance;
+}
+
+function updateWidgetProperties(widget: Widget, prevProps: object, nextProps: object): void {
+    const isEvent = name => name.startsWith("on");
+    const isAttribute = name => !isEvent(name);
+
+    // Remove event listeners.
+    Object.keys(prevProps).filter(isEvent).forEach(name => {
+        const eventType = name.toLowerCase().substring(2);
+        widget.detachEventListener(eventType);
+    });
+
+    // Remove attributes.
+    Object.keys(prevProps).filter(isAttribute).forEach(name => {
+        widget.setAttr(name, undefined);
+    });
+
+    // Add event listeners.
+    Object.keys(nextProps).filter(isEvent).forEach(name => {
+        const eventType = name.toLowerCase().substring(2);
+        widget.setEventListener(eventType, nextProps[name]);
+    });
+
+    // Add attributes.
+    Object.keys(nextProps).filter(isAttribute).forEach(name => {
+        widget.setAttr(name, nextProps[name]);
+    });
 }
