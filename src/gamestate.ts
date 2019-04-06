@@ -108,7 +108,8 @@ export class GameState extends BaseState {
         this.registerEntity(enemy);
 
         // vvv test ui vvv
-        const uiElement: JSXElement = createGameUi(this.uiScene);
+        // const uiElement: JSXElement = 
+        createGameUi(this.uiScene);
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);

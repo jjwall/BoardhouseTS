@@ -1,7 +1,9 @@
 import { Widget } from "./widget";
+import { Component } from "./component";
+import { Scene } from "three";
 
 export interface JSXElement {
-    type: string;
+    type: string | { new(props: {}, scene: Scene): Component<{}, any> } ;
     props: object;
     children?: JSXElement[];
 }
@@ -12,14 +14,10 @@ export interface Instance {
 }
 
 export interface WidgetInstance extends Instance {
-    children: WidgetInstance[];
+    children: Instance[];
 }
 
 export interface ComponentInstance extends Instance {
     child: Instance;
-    componentInstance: Component;
-}
-
-export interface Component {
-    internalInstnace: Instance;
+    component: Component<{}, any>;
 }

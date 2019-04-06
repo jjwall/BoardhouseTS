@@ -1,7 +1,8 @@
 import { Widget, createWidget } from "./widget";
 import { layoutWidget } from "./layoutwidget";
-import { JSXElement, Instance, WidgetInstance } from "./interfaces";
+import { JSXElement, Instance, WidgetInstance, ComponentInstance } from "./interfaces";
 import { Scene} from "three";
+import { createComponent } from "./component";
 
 let rootInstance = null;
 /**
@@ -16,7 +17,7 @@ export function renderWidget(element: JSXElement, container: Widget, scene: Scen
     rootInstance = nextInstance;
 }
 
-function reconcile(parentWidget: Widget, instance: WidgetInstance, element: JSXElement, scene: Scene): Instance {
+export function reconcile(parentWidget: Widget, instance: Instance, element: JSXElement, scene: Scene): Instance {
     if (instance == null) {
         // Create instance.
         const newInstance = instantiate(element, scene);
@@ -32,21 +33,35 @@ function reconcile(parentWidget: Widget, instance: WidgetInstance, element: JSXE
 
         return null;
     }
-    else if (instance.element.type === element.type) {
-        // Update instance.
-        updateWidgetProperties(instance.widget, instance.element.props, element.props);
-        instance.children = reconcileChildren(instance, element, scene);
-        instance.element = element;
-        layoutWidget(instance.widget);
-        return instance;
-    }
-    else {
+    else if (instance.element.type !== element.type) {
         // Replace instance.
         const newInstance = instantiate(element, scene);
         parentWidget.replaceChild(newInstance.widget, instance.widget);
         layoutWidget(newInstance.widget);
 
         return newInstance;
+    }
+    else if (typeof element.type === "string") {
+        // Update widget instance.
+        let widgetInstance = instance as WidgetInstance;
+        updateWidgetProperties(widgetInstance.widget, widgetInstance.element.props, element.props);
+        layoutWidget(widgetInstance.widget);
+        widgetInstance.children = reconcileChildren(widgetInstance, element, scene);
+        widgetInstance.element = element;
+        return widgetInstance;
+    }
+    else {
+        // Update component instance.
+        let componentInstance = instance as ComponentInstance;
+        componentInstance.component.props = element.props;
+        const childElement = componentInstance.component.render();
+        const oldChildInstance = componentInstance.child;
+        const childInstance = reconcile(parentWidget, oldChildInstance, childElement, scene);
+        componentInstance.widget = childInstance.widget;
+        componentInstance.child = childInstance;
+        componentInstance.element = element;
+        
+        return componentInstance;
     }
 }
 
@@ -67,29 +82,54 @@ function reconcileChildren(instance: WidgetInstance, element: JSXElement, scene:
     return newChildInstances.filter(instance => instance != null);
 }
 
-function instantiate(element: JSXElement, scene: Scene): WidgetInstance {
+function instantiate(element: JSXElement, scene: Scene): Instance {
     if (typeof element === "string")
         throw Error('If you are trying to set text try: <label contents="Hello world!"/>');
 
     const { type, props } = element;
+    const isWidgetElement = typeof type === "string";
 
-    const widget = createWidget(type);
+    if (isWidgetElement) {
+        // Instantiate Widget element.
 
-    updateWidgetProperties(widget, {}, props);
+        const widget = createWidget(type as string);
 
-    // Instantiate and append children.
-    const childElements = element.children || [];
-    const childInstances = childElements.map(childElement => instantiate(childElement, scene));
-    const childWidgets = childInstances.map(childInstance => childInstance.widget);
-    childWidgets.forEach(childWidget => widget.appendChild(childWidget, scene));
+        updateWidgetProperties(widget, {}, props);
 
-    const instance: WidgetInstance = {
-        widget: widget,
-        element: element,
-        children: childInstances,
+        // Instantiate and append children.
+        const childElements = element.children || [];
+        const childInstances = childElements.map(childElement => instantiate(childElement, scene));
+        const childWidgets = childInstances.map(childInstance => childInstance.widget);
+        childWidgets.forEach(childWidget => widget.appendChild(childWidget, scene));
+
+        const instance: WidgetInstance = {
+            widget: widget,
+            element: element,
+            children: childInstances,
+        }
+
+        return instance;
     }
+    else {
+        // Instantiate component element.
+        let instance: ComponentInstance = {
+            component: undefined,
+            child: undefined,
+            widget: undefined,
+            element: undefined
+        };
+        const component = createComponent(element, instance, scene);
+        const childElement = component.render();
+        const childInstance = instantiate(childElement, scene);
+        const widget = childInstance.widget;
 
-    return instance;
+        instance.component = component;
+        instance.child = childInstance;
+        instance.widget = widget;
+        instance.element = element;
+
+        return instance;
+    }
 }
 
 function updateWidgetProperties(widget: Widget, prevProps: object, nextProps: object): void {
