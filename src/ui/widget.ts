@@ -1,4 +1,12 @@
-import { Mesh, Scene } from "THREE";
+import { Mesh, Scene } from "three";
+
+interface AttrKeyToAttrValueMap {
+    [key: string]: string;
+}
+
+interface EventKeyToEventMap {
+    [key: string]: () => void;
+}
 
 export class Widget extends Mesh {
     private _type: string;
@@ -74,12 +82,4 @@ export class Widget extends Mesh {
 export function createWidget(type: string): Widget {
     let widget = new Widget(type);
     return widget;
-}
-
-interface AttrKeyToAttrValueMap {
-    [key: string]: string;
-}
-
-interface EventKeyToEventMap {
-    [key: string]: () => void;
 }

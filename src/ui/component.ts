@@ -1,5 +1,5 @@
 import { ComponentInstance, JSXElement } from "./interfaces";
-import { reconcile } from "./renderwidget";
+import { reconcile } from "./reconcile";
 import { Scene } from "THREE";
 
 export abstract class Component<Props, State> {
