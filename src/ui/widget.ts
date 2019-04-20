@@ -5,7 +5,7 @@ interface AttrKeyToAttrValueMap {
 }
 
 interface EventKeyToEventMap {
-    [key: string]: () => void;
+    [key: string]: (e?: Event) => void;
 }
 
 export class Widget extends Mesh {
@@ -62,15 +62,24 @@ export class Widget extends Mesh {
     public attr(name: string): string {
         return this._attributes[name];
     }
+    public event(name: string): (e?: Event) => void {
+        return this._events[name];
+    }
     public setEventListener(eventType: string, event: () => void): void {
         this._events[eventType] = event;
     }
     public detachEventListener(eventType: string): void {
         this._events[eventType] = undefined;
     }
-    public trigger(name: string): void {
-        if (this._events[name])
-            this._events[name]();
+    public trigger(name: string, event?: Event): void {
+        if (this._events[name]) {
+            if (event) {
+                this._events[name](event);
+            }
+            else {
+                this._events[name]();
+            }
+        }
     }
 }
 

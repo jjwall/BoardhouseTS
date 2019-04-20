@@ -1,10 +1,6 @@
-import { 
-    Scene,
-    Camera,
-    WebGLRenderer,
-    Mesh
-} from "THREE";
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
+import { WebGLRenderer } from "THREE";
+import { Widget } from "./ui/widget";
 
 export abstract class BaseState {
     protected constructor(stateStack: BaseState[]) {
@@ -14,6 +10,8 @@ export abstract class BaseState {
     public abstract update() : void;
 
     public abstract render(renderer: WebGLRenderer) : void;
+
+    public rootWidget: Widget;
 
     protected stateStack: BaseState[];
 

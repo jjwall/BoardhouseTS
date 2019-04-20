@@ -1,9 +1,8 @@
 import { scaleToWindow } from "./scaletowindow";
 import { BaseState } from "./basestate";
+import { Widget } from "./ui/widget";
 import { Entity } from "./entity";
 import { last } from "./helpers";
-// import { BoardhouseUI } from "./boardhouseui";
-// type Widget = BoardhouseUI.Widget;
 
 export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
     // let hoveredWidgets: BoardhouseUI.Widget[] = [];
@@ -15,13 +14,13 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     });
 
     canvas.addEventListener("mousedown", function (e: MouseEvent) {
-        // traverseTreeForOnClick(last(stateStack).rootWidget, e);
+        traverseTreeForOnClick(last(stateStack).rootWidget, e);
         canvas.setAttribute("class", "default");
     });
 
-    canvas.addEventListener("mousemove", function (e: MouseEvent) {
-        // traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, canvas, e);
-    });
+    // canvas.addEventListener("mousemove", function (e: MouseEvent) {
+    //     traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, canvas, e);
+    // });
 
     // keyboard controls
     window.onkeydown = function(e: KeyboardEvent) {
@@ -119,21 +118,28 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     }
 }
 
-// function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
-//     if (widget.style !== undefined && widget.onClick !== undefined) {
-//         if (e.offsetY > widget.selfContainer.worldTransform.ty && e.offsetY < widget.selfContainer.worldTransform.ty + widget.style.height
-//             && e.offsetX > widget.selfContainer.worldTransform.tx && e.offsetX < widget.selfContainer.worldTransform.tx + widget.style.width)
-//         {
-//             widget.onClick(e);
-//         }
-//     }
+function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
+    if (widget.event("click") && widget.attr("height") && widget.attr("width")) {
+        const halfWidth: number = Number(widget.attr("width"))/2;
+        const halfHeight: number = Number(widget.attr("height"))/2;
 
-//     if (widget.children.length > 0) {
-//         widget.children.forEach(child => {
-//             traverseTreeForOnClick(child, e);
-//         });
-//     }
-// }
+        if (e.offsetY > -widget.position.y - halfHeight
+            && e.offsetY - halfHeight < -widget.position.y
+            && e.offsetX > widget.position.x - halfWidth
+            && e.offsetX - halfWidth < widget.position.x)
+        {
+            // TODO: Make sure only top most widget's click event is triggered.
+            // Right now it's triggering all widgets' click events if they are stacked.
+            widget.trigger("click", e);
+        }
+    }
+
+    if (widget.childNodes.length > 0) {
+        widget.childNodes.forEach(child => {
+            traverseTreeForOnClick(child, e);
+        });
+    }
+}
 
 // function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: HTMLCanvasElement, e: MouseEvent) {
 //     if (widget.style !== undefined && widget.onHover !== undefined && widget.offHover) {

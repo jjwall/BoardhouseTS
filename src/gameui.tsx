@@ -48,18 +48,18 @@ export function createGameUi(scene: Scene, rootWidget: Widget) {
 }
 
 interface Props {
-    name: string
+    name: string;
 }
 
 interface State {
-    ticks: number
-    test: string
+    ticks: number;
+    clicks: number;
 }
 
 class Test extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
-        this.state = { ticks: 50, test: "Hey"};
+        this.state = { ticks: 50, clicks: 0};
 
         setInterval(() => this.tick(), 1000);
     }
@@ -68,17 +68,23 @@ class Test extends Component<Props, State> {
             ticks: this.state.ticks + 1
         });
     }
+    doWork(): void {
+        this.setState({
+            clicks: this.state.clicks + 1
+        });
+    }
     render(): JSXElement {
         // const text = `Hello ${this.props.name}`;
 
         return(
-            <panel height="70" width="300" color="#228B22" top="50" left="500" onClick={()=> console.log("hello")}>
+            <panel height="70" width="300" color="#228B22" top="250" left="500" >
                 <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
                     <label z_index="2" top="10" color="#0000FF" contents={this.state.ticks.toString()}></label>
                 </panel>
                 <panel left="-100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
                 </panel>
-                <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.doWork()}>
+                    <label z_index="2" top="10" color="#FF0000" contents={this.state.clicks.toString()}></label>
                 </panel>
             </panel>
             // <panel>
