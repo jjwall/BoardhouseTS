@@ -16,6 +16,10 @@ export function layoutWidget(widget: Widget): void {
     if (widget.getType() === "label" && widget.attr("contents")) {
         layoutLabelAttributes(widget);
     }
+
+    widget.childNodes.forEach(child => {
+        layoutWidget(child);
+    })
 }
 
 function layoutCommonAttributes(widget: Widget) {

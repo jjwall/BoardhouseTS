@@ -41,6 +41,8 @@ import { Widget } from "./ui/widget";
 import { renderWidget } from "./ui/renderwidget";
 // import { createElement } from "./ui/createelement";
 import { createGameUi } from "./gameui";
+import { createWidget } from "./ui/widget";
+import { layoutWidget } from "./ui/layoutwidget";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -109,7 +111,8 @@ export class GameState extends BaseState {
 
         // vvv test ui vvv
         // const uiElement: JSXElement = 
-        createGameUi(this.uiScene);
+        this.rootWidget = createWidget("root");
+        createGameUi(this.uiScene, this.rootWidget);
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);
@@ -131,6 +134,8 @@ export class GameState extends BaseState {
         renderer.render(this.gameScene, this.gameCamera);
         renderer.clearDepth();
         renderer.render(this.uiScene, this.uiCamera);
+
+        layoutWidget(this.rootWidget);
 
         // check if children needs to be reconciled, then do so
         // ReconcileThreeDom(this.rootWidget, this.uiScene);

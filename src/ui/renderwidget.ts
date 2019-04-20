@@ -1,10 +1,9 @@
 import { Widget, createWidget } from "./widget";
-import { layoutWidget } from "./layoutwidget";
 import { JSXElement, Instance, WidgetInstance, ComponentInstance } from "./interfaces";
 import { Scene} from "three";
 import { createComponent } from "./component";
 
-let rootInstance = null;
+let rootInstance: Instance = null;
 /**
  * React-like render method for widgets.
  * @param element 
@@ -22,7 +21,6 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
         // Create instance.
         const newInstance = instantiate(element, scene);
         parentWidget.appendChild(newInstance.widget, scene);
-        layoutWidget(newInstance.widget);
 
         return newInstance;
     }
@@ -37,7 +35,6 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
         // Replace instance.
         const newInstance = instantiate(element, scene);
         parentWidget.replaceChild(newInstance.widget, instance.widget);
-        layoutWidget(newInstance.widget);
 
         return newInstance;
     }
@@ -45,7 +42,6 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
         // Update widget instance.
         let widgetInstance = instance as WidgetInstance;
         updateWidgetProperties(widgetInstance.widget, widgetInstance.element.props, element.props);
-        layoutWidget(widgetInstance.widget);
         widgetInstance.children = reconcileChildren(widgetInstance, element, scene);
         widgetInstance.element = element;
         return widgetInstance;

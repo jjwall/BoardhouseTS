@@ -6,7 +6,7 @@ import { Scene } from "THREE";
 import { Widget } from "./ui/widget";
 import { Component } from "./ui/component";
 
-export function createGameUi(scene: Scene) {
+export function createGameUi(scene: Scene, rootWidget: Widget) {
     /* example 1 */
 
     let testui = (
@@ -40,7 +40,7 @@ export function createGameUi(scene: Scene) {
 
     /* example 3 */
 
-        const rootWidget = new Widget("root");
+        // const rootWidget = new Widget("root");
         // renderWidget(testui, rootWidget, scene);
         renderWidget(<Test name="world!" />, rootWidget, scene);
 
@@ -64,7 +64,6 @@ class Test extends Component<Props, State> {
         setInterval(() => this.tick(), 1000);
     }
     tick(): void {
-        console.log(this.state.ticks);
         this.setState({
             ticks: this.state.ticks + 1
         });
