@@ -5,7 +5,7 @@ import { Entity } from "./entity";
 import { last } from "./helpers";
 
 export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
-    // let hoveredWidgets: BoardhouseUI.Widget[] = [];
+    let hoveredWidgets: Widget[] = [];
     // call first to scale to current window dimensions
     scaleToWindow(canvas);
 
@@ -18,9 +18,9 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
         canvas.setAttribute("class", "default");
     });
 
-    // canvas.addEventListener("mousemove", function (e: MouseEvent) {
-    //     traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, canvas, e);
-    // });
+    canvas.addEventListener("mousemove", function (e: MouseEvent) {
+        traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, canvas, e);
+    });
 
     // keyboard controls
     window.onkeydown = function(e: KeyboardEvent) {
@@ -141,32 +141,38 @@ function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
     }
 }
 
-// function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: HTMLCanvasElement, e: MouseEvent) {
-//     if (widget.style !== undefined && widget.onHover !== undefined && widget.offHover) {
-//         let widgetIndex: number = hoveredWidgets.indexOf(widget);
+function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: HTMLCanvasElement, e: MouseEvent) {
+    if (widget.event("hover") && widget.event("plunge") && widget.attr("height") && widget.attr("width")) {
+        const halfWidth: number = Number(widget.attr("width"))/2;
+        const halfHeight: number = Number(widget.attr("height"))/2;
+        let widgetIndex: number = hoveredWidgets.indexOf(widget);
 
-//         if (e.offsetY > widget.selfContainer.worldTransform.ty && e.offsetY < widget.selfContainer.worldTransform.ty + widget.style.height
-//             && e.offsetX > widget.selfContainer.worldTransform.tx && e.offsetX < widget.selfContainer.worldTransform.tx + widget.style.width)
-//         {
-//             if (widgetIndex === -1) {
-//                 hoveredWidgets.push(widget);
-//                 widget.onHover(e);
-//                 canvas.setAttribute("class", "pointer");
-//             }
-//         }
-//         else {
-//             if (widgetIndex > -1) {
-//                 widget.offHover(e);
-//                 hoveredWidgets.splice(widgetIndex);
-//                 canvas.setAttribute("class", "default");
-//             }
-//         }
-//     }
+        if (e.offsetY > -widget.position.y - halfHeight
+            && e.offsetY - halfHeight < -widget.position.y
+            && e.offsetX > widget.position.x - halfWidth
+            && e.offsetX - halfWidth < widget.position.x)
+        {
+            if (widgetIndex === -1) {
+                hoveredWidgets.push(widget);
+                widget.trigger("hover", e);
+                
+                // TODO: Remove this eventually...
+                canvas.setAttribute("class", "pointer");
+            }
+        }
+        else {
+            if (widgetIndex > -1) {
+                widget.trigger("plunge", e);
+                hoveredWidgets.splice(widgetIndex);
+                canvas.setAttribute("class", "default");
+            }
+        }
+    }
 
-//     if (widget.children.length > 0) {
-//         widget.children.forEach(child => {
-//             traverseTreeForHover(child, hoveredWidgets, canvas, e);
-//         });
-//     }
+    if (widget.childNodes.length > 0) {
+        widget.childNodes.forEach(child => {
+            traverseTreeForHover(child, hoveredWidgets, canvas, e);
+        });
+    }
 
-// }
+}

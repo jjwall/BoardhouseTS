@@ -54,12 +54,13 @@ interface Props {
 interface State {
     ticks: number;
     clicks: number;
+    color: string;
 }
 
 class Test extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
-        this.state = { ticks: 50, clicks: 0};
+        this.state = { ticks: 50, clicks: 0, color: "#00FFFF" };
 
         setInterval(() => this.tick(), 1000);
     }
@@ -73,6 +74,16 @@ class Test extends Component<Props, State> {
             clicks: this.state.clicks + 1
         });
     }
+    hover(): void {
+        this.setState({
+            color: "#FF0000"
+        });
+    }
+    plunge(): void {
+        this.setState({
+            color: "#00FFFF"
+        });
+    }
     render(): JSXElement {
         // const text = `Hello ${this.props.name}`;
 
@@ -81,7 +92,9 @@ class Test extends Component<Props, State> {
                 <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
                     <label z_index="2" top="10" color="#0000FF" contents={this.state.ticks.toString()}></label>
                 </panel>
-                <panel left="-100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                <panel left="-100" height="50" width="50" color={this.state.color} img="./data/textures/cottage.png"
+                onHover={() => this.hover()}
+                onPlunge={() => this.plunge()}>
                 </panel>
                 <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.doWork()}>
                     <label z_index="2" top="10" color="#FF0000" contents={this.state.clicks.toString()}></label>
