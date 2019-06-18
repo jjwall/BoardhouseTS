@@ -16,9 +16,9 @@ import { setEventListeners } from "./seteventlisteners";
 import { GameState } from "./gamestate";
 // import { BoardhouseUI } from "./boardhouseui";
 
-// TODO: Add camera/scene as state properties (see pale blue dot)
+// TODO: (done) Add camera/scene as state properties (see pale blue dot)
 // TODO: Rework main menu state/screen (not started)
-// TODO: Rework UI layer (in progress) 
+// TODO: (done) Rework UI layer
 // -> USE OPTIONAL PROPS FOR PROP INTERFACE
 // TODO: Remove hurtBox component. Only use HitBox. HitBox will take a type and a
 // list of things it collided with (flags). Component will be "hitBoxes" and it will
