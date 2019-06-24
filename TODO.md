@@ -1,6 +1,7 @@
 ``TO-DO (06/19/2019):``
 
 * See and transfer to-dos from ``main.ts``
+* Create new ``builds`` branch
 * Define interface for system function
 * Component design for ``<root />`` element so global UI state can be passed from the game state and filter down to all UI components.
     > See current parent -> child passing usage with state
@@ -19,12 +20,12 @@
     ```json
     "boardhouse-pure-browser": {
         "front-end": "../src/app",
-        "engine": "../src/engine"
+        "back-end": "../src/framework"
     },
     "boardhouse-full-stack": {
         "front-end": "../src/app",
-        "engine": "../src/engine",
-        "node": "../src/node"
+        "middleware": "../src/node",
+        "back-end": "../src/framework"
     }
 
     // Search engine: "typescript module resolution"
