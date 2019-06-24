@@ -1,3 +1,0 @@
-[submodule "ext/pixi.js"]
-	path = ext/pixi.js
-	url = https://github.com/pixijs/pixi.js.git
