@@ -3,7 +3,7 @@ import { reconcile } from "./reconcile";
 import { Scene } from "THREE";
 
 export abstract class Component<Props, State> {
-    protected state: State;
+    public state: State;
     public props: Readonly<Props>;
     private scene: Scene;
     public _internalInstance: ComponentInstance;
@@ -12,7 +12,7 @@ export abstract class Component<Props, State> {
         this.state = this.state || {} as State;
         this.scene = scene;
     };
-    protected setState(partialState: Partial<State>) {
+    public setState(partialState: Partial<State>) {
         this.state = Object.assign({}, this.state, partialState);
         updateInstance(this._internalInstance, this.scene);
     }

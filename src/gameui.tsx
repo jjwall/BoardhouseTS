@@ -1,12 +1,12 @@
 // /** @jsx createJSXElement */
 import { createJSXElement } from "./ui/createjsxelement";
-import { JSXElement } from "./ui/interfaces";
+import { JSXElement, ComponentInstance } from "./ui/interfaces";
 import { renderWidget } from "./ui/renderwidget";
 import { Scene } from "THREE";
 import { Widget } from "./ui/widget";
 import { Component } from "./ui/component";
 
-export function createGameUi(scene: Scene, rootWidget: Widget) {
+export function createGameUi(scene: Scene, rootWidget: Widget): ComponentInstance {
     /* example 1 */
 
     let testui = (
@@ -42,9 +42,9 @@ export function createGameUi(scene: Scene, rootWidget: Widget) {
 
         // const rootWidget = new Widget("root");
         // renderWidget(testui, rootWidget, scene);
-        renderWidget(<Test name="world!" />, rootWidget, scene);
+        let rootInstance = renderWidget(<Test name="world!" />, rootWidget, scene);
 
-
+        return rootInstance;
 }
 
 interface Props {

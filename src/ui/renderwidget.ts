@@ -1,9 +1,9 @@
-import { JSXElement, Instance } from "./interfaces";
+import { JSXElement, Instance, ComponentInstance } from "./interfaces";
 import { reconcile } from "./reconcile";
 import { Widget } from "./widget";
 import { Scene} from "three";
 
-let rootInstance: Instance = null;
+let rootInstance: ComponentInstance = null;
 
 /**
  * React-like render method for widgets.
@@ -11,8 +11,10 @@ let rootInstance: Instance = null;
  * @param parentWidget 
  * @param scene 
  */
-export function renderWidget(element: JSXElement, container: Widget, scene: Scene): void {
+export function renderWidget(element: JSXElement, container: Widget, scene: Scene): ComponentInstance {
     const prevInstance = rootInstance;
     const nextInstance = reconcile(container, prevInstance, element, scene)
-    rootInstance = nextInstance;
+    rootInstance = nextInstance as ComponentInstance;
+
+    return rootInstance;
 }

@@ -70,6 +70,10 @@ export class GameState extends BaseState {
         // Set up ui camera.
         this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);
 
+        // Set up ui widget and instance.
+        this.rootWidget = createWidget("root");
+        let rootInstance = createGameUi(this.uiScene, this.rootWidget);
+
         // Register systems.
         this.registerSystem(controlSystem, "control");
         this.registerSystem(velocitySystem);
@@ -105,14 +109,13 @@ export class GameState extends BaseState {
         setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
             console.log("ouch!");
+            rootInstance.component.setState({clicks: rootInstance.component.state.clicks + 1});
         }
 
         this.registerEntity(enemy);
 
         // vvv test ui vvv
         // const uiElement: JSXElement = 
-        this.rootWidget = createWidget("root");
-        createGameUi(this.uiScene, this.rootWidget);
 
         // let rootWidget = new Widget("div");
         // this.uiScene.add(rootWidget);
