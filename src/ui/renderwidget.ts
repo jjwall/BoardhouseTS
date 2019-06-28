@@ -2,6 +2,7 @@ import { JSXElement, Instance, ComponentInstance } from "./interfaces";
 import { reconcile } from "./reconcile";
 import { Widget } from "./widget";
 import { Scene} from "three";
+import { Root } from "../rootgameui";
 
 let rootInstance: ComponentInstance = null;
 

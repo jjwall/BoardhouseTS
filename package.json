@@ -24,11 +24,13 @@
   },
   "homepage": "https://github.com/jjwall/BoardhouseTS#readme",
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "^23.3.14",
     "@types/node": "^10.14.10",
     "@types/three": "^0.93.31",
     "babel-loader": "^8.0.6",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
     "copy-webpack-plugin": "^4.6.0",
     "jest": "^24.8.0",

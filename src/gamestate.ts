@@ -40,9 +40,10 @@ import { JSXElement } from "./ui/interfaces";
 import { Widget } from "./ui/widget";
 import { renderWidget } from "./ui/renderwidget";
 // import { createElement } from "./ui/createelement";
-import { createGameUi } from "./gameui";
+// import { createGameUi } from "./gameui";
 import { createWidget } from "./ui/widget";
 import { layoutWidget } from "./ui/layoutwidget";
+import { renderGameUi, Root } from "./rootgameui";
 // import { BoardhouseUI } from "./boardhouseui";
 
 
@@ -72,7 +73,7 @@ export class GameState extends BaseState {
 
         // Set up ui widget and instance.
         this.rootWidget = createWidget("root");
-        let rootInstance = createGameUi(this.uiScene, this.rootWidget);
+        let rootComponent = renderGameUi(this.uiScene, this.rootWidget);
 
         // Register systems.
         this.registerSystem(controlSystem, "control");
@@ -109,7 +110,9 @@ export class GameState extends BaseState {
         setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
             console.log("ouch!");
-            rootInstance.component.setState({clicks: rootInstance.component.state.clicks + 1});
+            // rootInstance.component.
+            rootComponent.addClick();
+            // .setState({clicks: rootInstance.component.state.clicks + 1});
         }
 
         this.registerEntity(enemy);
