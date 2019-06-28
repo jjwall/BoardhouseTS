@@ -110,25 +110,10 @@ export class GameState extends BaseState {
         setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
             console.log("ouch!");
-            // rootInstance.component.
             rootComponent.addClick();
-            // .setState({clicks: rootInstance.component.state.clicks + 1});
         }
 
         this.registerEntity(enemy);
-
-        // vvv test ui vvv
-        // const uiElement: JSXElement = 
-
-        // let rootWidget = new Widget("div");
-        // this.uiScene.add(rootWidget);
-        // this.rootWidget = null;
-
-        // renderWidget(uiElement, null, this.uiScene);
-        // console.log(this.rootWidget);
-        // uiElement.trigger('click');
-        // console.log(this.rootWidget.childNodes[0].attr('height'));
-        // ^^^ end test ui ^^^
     }
 
     public update() : void {
@@ -141,10 +126,7 @@ export class GameState extends BaseState {
         renderer.clearDepth();
         renderer.render(this.uiScene, this.uiCamera);
 
+        // Render UI updates.
         layoutWidget(this.rootWidget);
-
-        // check if children needs to be reconciled, then do so
-        // ReconcileThreeDom(this.rootWidget, this.uiScene);
-        // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
     }
 }

@@ -5,21 +5,21 @@ import { Scene } from "THREE";
 import { Component } from "./ui/component";
 
 interface Props {
-    ticks,
-    clicks,
-    color,
-    hover,
-    plunge,
-    doWork,
+    ticks: number,
+    clicks: number,
+    color: string,
+    hover: () => void,
+    plunge: () => void,
+    addClick: () => void,
 }
 
-// interface State {
+interface State {
 //     ticks: number;
 //     clicks: number;
 //     color: string;
-// }
+}
 
-export class Test extends Component<Props, {}> {
+export class Test extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
     }
@@ -31,10 +31,10 @@ export class Test extends Component<Props, {}> {
                     <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
                 </panel>
                 <panel left="-100" height="50" width="50" color={this.props.color} img="./data/textures/cottage.png"
-                onHover={() => this.props.hover()}
-                onPlunge={() => this.props.plunge()}>
+                    onHover={() => this.props.hover()}
+                    onPlunge={() => this.props.plunge()}>
                 </panel>
-                <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.props.doWork()}>
+                <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.props.addClick()}>
                     <label z_index="2" top="10" color="#FF0000" contents={this.props.clicks.toString()}></label>
                 </panel>
             </panel>

@@ -9,12 +9,8 @@ import { Test } from "./gameui";
 
 
 export function renderGameUi(scene: Scene, rootWidget: Widget): Root {
-    // let root = new Root({name: "hellow world!"}, scene);
-    // let root: Root = <Root name = "hello world!" />
     let rootInstance = renderWidget(<Root />, rootWidget, scene);
-    // rootInstance.component = new Root({name: "gg"}, scene);
 
-    // return rootInstance;
     return rootInstance.component as Root;
 }
 
@@ -37,27 +33,20 @@ export class Root extends Component<Props, State> {
             ticks: 50, 
             clicks: 0, 
             color: "#00FFFF",
-            // hover: this.hover,
-            // plunge: this.plunge,
-            // do_work: this.doWork
         };
 
         setInterval(() => this.tick(), 1000);
     }
 
-    public addClick(): void {
-        this.setState({clicks: this.state.clicks + 1});
-    }
-
-    public tick(): void {
+    public addClick = (): void => {
         this.setState({
-            ticks: this.state.ticks + 1
+            clicks: this.state.clicks + 1
         });
     }
 
-    public doWork = (): void => {
+    public tick = (): void => {
         this.setState({
-            clicks: this.state.clicks + 1
+            ticks: this.state.ticks + 1
         });
     }
 
@@ -80,7 +69,7 @@ export class Root extends Component<Props, State> {
                 color = {this.state.color}
                 hover = {this.hover}
                 plunge = {this.plunge}
-                doWork = {this.doWork}
+                addClick = {this.addClick}
             />
         )
     }
