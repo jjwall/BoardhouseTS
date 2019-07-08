@@ -1,7 +1,3 @@
-import { BaseState } from "./basestate";
-
-// import { Entity } from "./entity";
-
 /**
  * Interface used to define format for TypeScript animation data files.
  */
@@ -24,24 +20,4 @@ export interface AnimationSchema {
          */
         nextFrame: number
     }>;
-}
-
-/**
- * Entity Registry.
- */
-// export interface EntityRegistry {
-//      globalEntities: Object[];
-//      controllableEntities: Object[];
-// }
-
-// export interface Entity {
-//     [propName: string]: object;
-// }
-
-export interface RegistryKeyToSystemMap {
-    [key: string]: (ents: ReadonlyArray<Object>, state: BaseState) => void;
-}
-
-export interface RegistryKeyToEntityListMap {
-    [key: string]: Array<Object>;
 }

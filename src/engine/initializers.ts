@@ -22,7 +22,7 @@ import {
 } from "./corecomponents";
 import { Resources } from "../resourcemanager";
 import { ControlComponent } from "./controlcomponent";
-import { AnimationSchema } from "../interfaces";
+import { AnimationSchema } from "./engineinterfaces";
 
 /**
  * Helper for intializing an entity's animation blob and starting sequence.

@@ -1,4 +1,4 @@
-import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
+import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./frameworkinterfaces";
 import { WebGLRenderer } from "THREE";
 import { Widget } from "./ui/widget";
 

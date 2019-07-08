@@ -1,4 +1,4 @@
-import { AnimationSchema } from "../../src/interfaces";
+import { AnimationSchema } from "../../src/engine/engineinterfaces";
 import { SequenceTypes } from "../../src/engine/enums";
 
 export const playerAnim: AnimationSchema = {

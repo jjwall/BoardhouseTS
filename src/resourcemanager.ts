@@ -1,3 +1,4 @@
+import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./frameworkinterfaces";
 import { Texture, TextureLoader, Font, FontLoader} from "three";
 
 export class Resources
@@ -113,16 +114,4 @@ export async function loadAudioElements(urls: string[]) : Promise<UrlToAudioMap>
     });
 
     return cachedAudioElements;
-}
-
-export interface UrlToTextureMap {
-    [url: string]: Texture;
-}
-
-export interface UrlToFontMap {
-    [url: string]: Font;
-}
-
-export interface UrlToAudioMap {
-    [url: string]: HTMLAudioElement;
 }
