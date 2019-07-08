@@ -3,7 +3,7 @@ import {
     NearestFilter,
 } from "three";
 import { Entity } from "./entity";
-import { Resources } from "./resourcemanager";
+import { Resources } from "../resourcemanager";
 
 /**
  * Rudimentary velocity implementation... will replace directions with

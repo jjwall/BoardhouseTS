@@ -20,9 +20,9 @@ import {
     VelocityComponent,
     TimerComponent,
 } from "./corecomponents";
-import { Resources } from "./resourcemanager";
+import { Resources } from "../resourcemanager";
 import { ControlComponent } from "./controlcomponent";
-import { AnimationSchema } from "./interfaces";
+import { AnimationSchema } from "../interfaces";
 
 /**
  * Helper for intializing an entity's animation blob and starting sequence.

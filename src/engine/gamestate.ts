@@ -33,16 +33,16 @@ import {
 } from "./enums";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
-import { playerAnim } from "../data/animations/player";
-import { BaseState } from "./basestate";
+import { playerAnim } from "../../data/animations/player";
+import { BaseState } from "../basestate";
 // import { createWidget, ReconcileThreeDom, Widget } from "./widget";
-import { JSXElement } from "./ui/interfaces";
-import { Widget } from "./ui/widget";
-import { renderWidget } from "./ui/renderwidget";
+import { JSXElement } from "../ui/interfaces";
+import { Widget } from "../ui/widget";
+import { renderWidget } from "../ui/renderwidget";
 // import { createElement } from "./ui/createelement";
 // import { createGameUi } from "./gameui";
-import { createWidget } from "./ui/widget";
-import { layoutWidget } from "./ui/layoutwidget";
+import { createWidget } from "../ui/widget";
+import { layoutWidget } from "../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootgameui";
 // import { BoardhouseUI } from "./boardhouseui";
 

@@ -3,7 +3,7 @@ import {
     Euler,
 } from "three";
 import { Entity } from "./entity";
-import { AnimationSchema } from "./interfaces";
+import { AnimationSchema } from "../interfaces";
 import { HurtBoxTypes, SequenceTypes } from "./enums";
 
 /**

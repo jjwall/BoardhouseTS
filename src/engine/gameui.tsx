@@ -1,8 +1,8 @@
 // /** @jsx createJSXElement */
-import { createJSXElement } from "./ui/createjsxelement";
-import { JSXElement } from "./ui/interfaces";
+import { createJSXElement } from "../ui/createjsxelement";
+import { JSXElement } from "../ui/interfaces";
 import { Scene } from "THREE";
-import { Component } from "./ui/component";
+import { Component } from "../ui/component";
 
 interface Props {
     ticks: number,

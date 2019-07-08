@@ -1,6 +1,6 @@
-import { scaleToWindow } from "./scaletowindow";
-import { BaseState } from "./basestate";
-import { Widget } from "./ui/widget";
+import { scaleToWindow } from "../scaletowindow";
+import { BaseState } from "../basestate";
+import { Widget } from "../ui/widget";
 import { Entity } from "./entity";
 import { last } from "./helpers";
 
