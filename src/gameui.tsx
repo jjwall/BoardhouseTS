@@ -12,7 +12,7 @@ interface Props {
     hover: () => void,
     plunge: () => void,
     addClick: () => void,
-    hide: () => void,
+    toggle: () => void,
 }
 
 interface State {
@@ -36,7 +36,7 @@ export class Test extends Component<Props, State> {
                     <panel left="-100" height="50" width="50" color={this.props.color} img="./data/textures/cottage.png"
                         onHover={() => this.props.hover()}
                         onPlunge={() => this.props.plunge()} 
-                        onClick={() => this.props.hide()}>
+                        onClick={() => this.props.toggle()}>
                     </panel>
                     <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.props.addClick()}>
                         <label z_index="2" top="10" color="#FF0000" contents={this.props.clicks.toString()}></label>
@@ -53,7 +53,7 @@ export class Test extends Component<Props, State> {
                     <panel left="-100" height="50" width="50" color={this.props.color} img="./data/textures/cottage.png"
                         onHover={() => this.props.hover()}
                         onPlunge={() => this.props.plunge()}
-                        onClick={() => this.props.hide()}>
+                        onClick={() => this.props.toggle()}>
                     </panel>
                 </panel>
             )

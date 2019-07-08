@@ -64,8 +64,7 @@ export class Root extends Component<Props, State> {
         });
     }
 
-    public hide = (): void => {
-        console.log("hide");
+    public toggle = (): void => {
         if (this.state.hidden) {
             this.setState({
                 hidden: false
@@ -87,7 +86,7 @@ export class Root extends Component<Props, State> {
                 hover = {this.hover}
                 plunge = {this.plunge}
                 addClick = {this.addClick}
-                hide = {this.hide}
+                toggle = {this.toggle}
             />
         )
     }
