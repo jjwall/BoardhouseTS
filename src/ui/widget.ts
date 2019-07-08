@@ -40,9 +40,18 @@ export class Widget extends Mesh {
         }
         this._children.push(child);
     }
-    public removeChild(child: Widget): void {
+    public removeChild(child: Widget, scene: Scene): void {
         if (this._children.indexOf(child) !== -1) {
             this._children.splice(this._children.indexOf(child), 1);
+            
+            for (let i = 0; i < child._children.length; i++) {
+                if (child._children[i]._type === "label") {
+                    scene.remove(child._children[i]);
+                }
+            }
+
+            if (child.image)
+                scene.remove(child);
         }
     }
     public replaceChild(newChild: Widget, childToReplace: Widget): void {

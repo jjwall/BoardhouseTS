@@ -14,8 +14,7 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
     }
     else if (element == null) {
         // Remove instance.
-        parentWidget.removeChild(instance.widget);
-        // TODO: layout widget to remove visual attributes here?
+        parentWidget.removeChild(instance.widget, scene);
 
         return null;
     }

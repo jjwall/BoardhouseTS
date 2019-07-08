@@ -24,6 +24,7 @@ interface State {
     ticks: number;
     clicks: number;
     color: string;
+    hidden: boolean;
 }
 
 export class Root extends Component<Props, State> {
@@ -33,6 +34,7 @@ export class Root extends Component<Props, State> {
             ticks: 50, 
             clicks: 0, 
             color: "#00FFFF",
+            hidden: false,
         };
 
         setInterval(() => this.tick(), 1000);
@@ -62,14 +64,30 @@ export class Root extends Component<Props, State> {
         });
     }
 
+    public hide = (): void => {
+        console.log("hide");
+        if (this.state.hidden) {
+            this.setState({
+                hidden: false
+            });
+        }
+        else {
+            this.setState({
+                hidden: true
+            });
+        }
+    }
+
     render(): JSXElement {
         return(
             <Test ticks = {this.state.ticks}
                 clicks = {this.state.clicks}
                 color = {this.state.color}
+                hidden = {this.state.hidden}
                 hover = {this.hover}
                 plunge = {this.plunge}
                 addClick = {this.addClick}
+                hide = {this.hide}
             />
         )
     }
