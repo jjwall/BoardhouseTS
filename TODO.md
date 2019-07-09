@@ -36,7 +36,7 @@
 
     // Search engine: "typescript module resolution"
 * Put current example code in new ``builds`` dir, call this new dir "ex1" and pull in library
-* :Runner: Remove ``HurtBox`` component. ``HitBoxes`` will take a type and a list of types it can collid with (use flags). A new component will be required, essentially a merge of existing HitBox and HurtBox components. This new component will be called ``HitBoxes`` and it will have a list of "hit boxes" as one of the component's properties. Another property will be a self-reference to the Entity that has the component. This will be used for the mark and sweep algorithm. Setting hurt box and hit box graphics helper methods can be merged, just add a color parameter to pass in whatever color you want.
+* :runner: Remove ``HurtBox`` component. ``HitBoxes`` will take a type and a list of types it can collid with (use flags). A new component will be required, essentially a merge of existing HitBox and HurtBox components. This new component will be called ``HitBoxes`` and it will have a list of "hit boxes" as one of the component's properties. Another property will be a self-reference to the Entity that has the component. This will be used for the mark and sweep algorithm. Setting hurt box and hit box graphics helper methods can be merged, just add a color parameter to pass in whatever color you want.
     > Consider hit/hurt box helper method changes with new ``HitBoxes`` component
 
     > Check to see if you can render multiple colored panels on same sprite
