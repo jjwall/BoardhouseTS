@@ -64,6 +64,7 @@ export class GameState extends BaseState {
             // this.removeEntity(player);
             // Remove player sprite from scene.
             // this.gameScene.remove(player.sprite);
+            // this.stateStack.pop();
         });
         setHurtBoxGraphic(player.sprite, player.hurtBox);
         this.registerEntity(player);

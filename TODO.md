@@ -1,11 +1,17 @@
 ``TO-DO (06/19/2019):``
 
+|   Mark  | Description |
+|:-------:|:---------:|
+| bullet | work not started |
+| :runner:| in progress  |
+| :heavy_check_mark: | complete |
+
 * See and transfer to-dos from ``main.ts``
 * Create new ``builds`` branch
 * Define interface for system function
-* Component design for ``<root />`` element so global UI state can be passed from the game state and filter down to all UI components.
+* :heavy_check_mark: Component design for ``<root />`` element so global UI state can be passed from the game state and filter down to all UI components.
     > See current parent -> child passing usage with state
-* Add ``removeChild()`` method on ``Widget`` class so UI can be hidden and/or deleted. Use empty three JS methods for both text and sprite properties.
+* :heavy_check_mark: Update ``removeChild()`` method on ``Widget`` class so UI can be hidden and/or deleted. Use empty three JS methods for both text and sprite properties.
 * Set up ``builds`` directory
     > See journal notes on new file structure
 * Add intex.ts file for ``pure-browser`` build, and for ``full-stack``, or, ``node-and-browser`` build
@@ -30,7 +36,7 @@
 
     // Search engine: "typescript module resolution"
 * Put current example code in new ``builds`` dir, call this new dir "ex1" and pull in library
-* Remove ``HurtBox`` component. ``HitBoxes`` will take a type and a list of types it can collid with (use flags). A new component will be required, essentially a merge of existing HitBox and HurtBox components. This new component will be called ``HitBoxes`` and it will have a list of "hit boxes" as one of the component's properties. Another property will be a self-reference to the Entity that has the component. This will be used for the mark and sweep algorithm. Setting hurt box and hit box graphics helper methods can be merged, just add a color parameter to pass in whatever color you want.
+* :Runner: Remove ``HurtBox`` component. ``HitBoxes`` will take a type and a list of types it can collid with (use flags). A new component will be required, essentially a merge of existing HitBox and HurtBox components. This new component will be called ``HitBoxes`` and it will have a list of "hit boxes" as one of the component's properties. Another property will be a self-reference to the Entity that has the component. This will be used for the mark and sweep algorithm. Setting hurt box and hit box graphics helper methods can be merged, just add a color parameter to pass in whatever color you want.
     > Consider hit/hurt box helper method changes with new ``HitBoxes`` component
 
     > Check to see if you can render multiple colored panels on same sprite
