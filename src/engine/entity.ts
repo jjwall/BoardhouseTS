@@ -1,11 +1,4 @@
-import { 
-     PositionComponent,
-     VelocityComponent,
-     AnimationComponent,
-     HitBoxComponent,
-     HurtBoxComponent,
-     TimerComponent,
-} from "./corecomponents";
+import { PositionComponent, VelocityComponent, AnimationComponent, HitBoxComponent, HurtBoxComponent, TimerComponent } from "./corecomponents";
 import { ControlComponent } from "./controlcomponent";
 import { Mesh } from "three";
 

@@ -1,62 +1,44 @@
-// import { BaseState } from "./basestate";
-// import { BoardhouseUI } from "./boardhouseui";
-// import { GameState } from "./gamestate";
-// import { Entity } from "./entity";
-// import { setSprite, clearStage } from "./helpers";
+import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
+import { BaseState } from "../basestate";
+import { layoutWidget } from "../ui/layoutwidget";
+import { Widget, createWidget } from "../ui/widget";
+import { GameState } from "./gamestate";
+import { renderMainMenuUi, MainMenuRoot } from "./rootmainmenuui";
 
-/**
- * Main Menu state that handles setting up all the start up processes.
- */
-// export class MainMenuState extends BaseState {
-    // public entities: Entity[];
-    // public rootWidget: BoardhouseUI.Widget;
-    // constructor(stateStack: BaseState[]) { //stage: PIXI.Container) {
-    //     super();
+export class MainMenuState extends BaseState {
+    public uiScene: Scene;
+    public uiCamera: Camera;
+    public rootWidget: Widget;
+    constructor(stateStack: BaseState[]) {
+        super(stateStack);
 
-        // let startButton = BoardhouseUI.CreateWidget({
-        //     color: 0x008080,
-        //     height: 50,
-        //     width: 155,
-        //     lineWidth: 4,
-        //     lineColor: 0xE0FFFF
-        // });
-        // startButton.left = 500;
-        // startButton.top = 300;
-        
-        // let label = BoardhouseUI.CreateWidget();
-        // label.setText("Start Game");
+        // Set up ui scene.
+        this.uiScene = new Scene();
+        this.uiScene.background = new Color("#FFFFFF");
 
-        // startButton.appendChild(label);
-        // label.left = 10;
-        // label.top = 10;
+        // Set up ui camera.
+        this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);
 
-        // startButton.onClick = function() {
-        //     // set up game state
-        //     let gameState = new GameState(stage);
+        // Set up ui widget and instance.
+        this.rootWidget = createWidget("root1");
+        //let rootComponent = 
+        renderMainMenuUi(this.uiScene, this.rootWidget, this.startGame);
+    }
 
-        //     // remove all containers from rootWidget before pushing new state
-        //     clearStage(startButton.selfContainer);
-            
-        //     stateStack.push(gameState);
-        // }
+    private startGame = (): void => {
+        // this.uiCamera.remove();
+        let gameState = new GameState(this.stateStack);
+        this.stateStack.push(gameState);
+    }
 
-        // startButton.onHover = function() {
-        //     startButton.style.color = 0x000000;
-        //     label.setText("Start Button", new PIXI.TextStyle({fill: 0xFFFFFF}));
-        // }
+    public update(): void {}
 
-        // startButton.offHover = function() {
-        //     startButton.style.color = 0x008080;
-        //     label.setText("Start Button", new PIXI.TextStyle({fill: 0x000000}));
-        // }
+    public render(renderer: WebGLRenderer) : void {
+        renderer.clear();
+        renderer.clearDepth();
+        renderer.render(this.uiScene, this.uiCamera);
 
-        // this.rootWidget = startButton;
-    // }
-    // public update() {//, stage: PIXI.Container) {
-        // ...
-    // }
-
-    // public render(renderer: THREE.WebGLRenderer, camera: THREE.Camera, scene: THREE.Scene) {
-        // BoardhouseUI.ReconcilePixiDom(this.rootWidget, stage);
-//     }
-// }
+        // Render UI updates.
+        layoutWidget(this.rootWidget);
+    }
+}

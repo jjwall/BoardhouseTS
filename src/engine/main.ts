@@ -3,8 +3,8 @@ import { Resources, loadTextures, loadAudioElements, loadFonts } from "../resour
 import { BaseState } from "../basestate";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
+import { MainMenuState } from "./mainmenustate";
 import { GameState } from "./gamestate";
-// import { BoardhouseUI } from "./boardhouseui";
 
 // TODO: (done) Add camera/scene as state properties (see pale blue dot)
 // TODO: Rework main menu state/screen (not started)
@@ -75,8 +75,10 @@ function main(canvasContainer: HTMLElement) {
 
     // initialize state stack
     let stateStack: BaseState[] = [];
-    let gameState = new GameState(stateStack);
-    stateStack.push(gameState);
+    let mainMenuState = new MainMenuState(stateStack);
+    stateStack.push(mainMenuState);
+    // let gameState = new GameState(stateStack);
+    // stateStack.push(gameState);
 
     let fps: number = 0;
     let totalTime: number = 0;

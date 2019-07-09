@@ -1,50 +1,16 @@
-import {
-    Scene,
-    Camera,
-    Color,
-    WebGLRenderer,
-    OrthographicCamera,
-} from "three";
-import { 
-    positionSystem, 
-    collisionSystem, 
-    timerSystem, 
-    animationSystem, 
-    velocitySystem 
-} from "./coresystems";
-import { 
-    initializeAnimation,
-    initializeControls,
-    initializeHitBox,
-    initializeHurtBox,
-    initializeSprite,
-    initializePosition,
-    initializeVelocity,
-    initializeTimer,
-} from "./initializers";
-import {
-    setHurtBoxGraphic,
-    playAudio,
-    setHitBoxGraphic
-} from "./helpers";
-import {
-    HurtBoxTypes,
-    SequenceTypes,
-} from "./enums";
+import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializePosition, initializeVelocity, initializeTimer } from "./initializers";
+import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./coresystems";
+import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
+import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./helpers";
+import { HurtBoxTypes, SequenceTypes } from "./enums";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { playerAnim } from "../../data/animations/player";
 import { BaseState } from "../basestate";
-// import { createWidget, ReconcileThreeDom, Widget } from "./widget";
-import { JSXElement } from "../ui/interfaces";
 import { Widget } from "../ui/widget";
-import { renderWidget } from "../ui/renderwidget";
-// import { createElement } from "./ui/createelement";
-// import { createGameUi } from "./gameui";
 import { createWidget } from "../ui/widget";
 import { layoutWidget } from "../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootgameui";
-// import { BoardhouseUI } from "./boardhouseui";
 
 
 /**
