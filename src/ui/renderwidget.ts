@@ -3,8 +3,6 @@ import { reconcile } from "./reconcile";
 import { Widget } from "./widget";
 import { Scene} from "three";
 
-let rootInstance: ComponentInstance = null;
-
 /**
  * React-like render method for widgets.
  * @param element 
@@ -12,6 +10,7 @@ let rootInstance: ComponentInstance = null;
  * @param scene 
  */
 export function renderWidget(element: JSXElement, container: Widget, scene: Scene): ComponentInstance {
+    let rootInstance: ComponentInstance = null;
     const prevInstance = rootInstance;
     const nextInstance = reconcile(container, prevInstance, element, scene)
     rootInstance = nextInstance as ComponentInstance;

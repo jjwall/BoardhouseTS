@@ -52,7 +52,7 @@ export class MainMenuRoot extends Component<Props, State> {
 
     render(): JSXElement {
         return(
-            <panel height="70" width="300" color={this.state.panelColor} top="250" left="500"
+            <panel height="70" width="300" color={this.state.panelColor} top="360" left="640"
                 onHover={() => this.hover()}
                 onPlunge={() => this.plunge()}
                 onClick={() => this.triggerStartGame()}>

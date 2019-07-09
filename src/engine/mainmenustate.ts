@@ -20,13 +20,12 @@ export class MainMenuState extends BaseState {
         this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);
 
         // Set up ui widget and instance.
-        this.rootWidget = createWidget("root1");
+        this.rootWidget = createWidget("root");
         //let rootComponent = 
         renderMainMenuUi(this.uiScene, this.rootWidget, this.startGame);
     }
 
     private startGame = (): void => {
-        // this.uiCamera.remove();
         let gameState = new GameState(this.stateStack);
         this.stateStack.push(gameState);
     }
