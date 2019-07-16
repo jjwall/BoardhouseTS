@@ -49,7 +49,7 @@ export class GameState extends BaseState {
         this.registerSystem(timerSystem);
         this.registerSystem(positionSystem);
 
-        //playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
+        playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
         // Set up player entity.
         let player = new Entity();

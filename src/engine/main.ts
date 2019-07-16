@@ -6,10 +6,6 @@ import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./mainmenustate";
 import { GameState } from "./gamestate";
 
-// TODO: (done) Add camera/scene as state properties (see pale blue dot)
-// TODO: Rework main menu state/screen (not started)
-// TODO: (done) Rework UI layer
-// -> USE OPTIONAL PROPS FOR PROP INTERFACE
 // TODO: Remove hurtBox component. Only use HitBox. HitBox will take a type and a
 // list of things it collided with (flags). Component will be "hitBoxes" and it will
 // have a list of hitbox components each entity can have. Each hitbox will have a reference
