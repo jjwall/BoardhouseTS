@@ -44,8 +44,11 @@ export function playAudio(url: string, volume?: number, loop?: boolean) : void {
  * @param frame 
  */
 export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent, frame: number = 0) : AnimationComponent {
-    anim.sequence = sequence;
-    anim.frame = frame;
+    if (anim.sequence !== sequence) {
+        anim.sequence = sequence;
+        anim.frame = frame;
+    }
+    
     return anim;
 }
 
