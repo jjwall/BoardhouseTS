@@ -84,7 +84,7 @@ export class GameState extends BaseState {
     }
 
     public update() : void {
-        this.runSystems();
+        this.runSystems(this);
     }
 
     public render(renderer: WebGLRenderer) : void {

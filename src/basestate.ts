@@ -119,12 +119,13 @@ export abstract class BaseState {
 
     /**
      * Should be called by the state's update method.
+     * @param state Passed in so subsystems have access to the state's public members.
      */
-    protected runSystems() {
+    protected runSystems(state: BaseState) {
         this.systemRegistry.forEach(systemMap => {
             const key = Object.keys(systemMap)[0];
 
-            systemMap[key](this.entityRegistry[key], this);
+            systemMap[key](this.entityRegistry[key], state);
         });
     }
 }
