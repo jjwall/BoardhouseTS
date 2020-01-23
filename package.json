@@ -2,11 +2,11 @@
   "name": "boardhousets",
   "version": "1.0.0",
   "description": "Game framework / scaffolding written in TypeScript to rapidly develop prototypes.",
-  "main": "",
+  "private": true,
   "scripts": {
     "test": "jest tests",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "webpack-dev-server --open --config config/webpack.dev.js",
+    "build": "webpack --config config/webpack.prod.js"
   },
   "repository": {
     "type": "git",
