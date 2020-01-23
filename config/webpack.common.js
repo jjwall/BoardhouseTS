@@ -2,17 +2,13 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  context: path.resolve(__dirname, '..'),
   entry: './src/engine/main.ts',
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.(ts|tsx)$/,
         use: 'ts-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /\.tsx$/,
-        use: 'babel-loader',
         exclude: /node_modules/
       }
     ]
@@ -33,6 +29,6 @@ module.exports = {
   },
   output: {
     filename: 'scripts/boardhouse.bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '../dist')
   }
 }
