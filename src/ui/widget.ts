@@ -16,6 +16,7 @@ export class Widget extends Mesh {
     private _events: EventKeyToEventMap = {};
     public image: Mesh;
     public text: Mesh;
+    public text_params: { contents: string, font_size: number };
     constructor(type: string) {
         super();
         this._type = type;
@@ -43,7 +44,7 @@ export class Widget extends Mesh {
     public removeChild(child: Widget, scene: Scene): void {
         if (this._children.indexOf(child) !== -1) {
             this._children.splice(this._children.indexOf(child), 1);
-            
+
             for (let i = 0; i < child._children.length; i++) {
                 if (child._children[i]._type === "label") {
                     scene.remove(child._children[i]);
@@ -94,8 +95,8 @@ export class Widget extends Mesh {
 
 /**
  * Returns new Widget and add it's mesh to the scene.
- * @param type 
- * @param scene 
+ * @param type
+ * @param scene
  */
 export function createWidget(type: string): Widget {
     let widget = new Widget(type);

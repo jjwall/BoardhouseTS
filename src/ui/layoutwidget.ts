@@ -4,7 +4,7 @@ import { Widget } from "./widget";
 /**
  * Layout widget by updating Mesh properties for any relevant attribute.
  * Gets called when Widget is create or setState is called.
- * @param widget 
+ * @param widget
  */
 export function layoutWidget(widget: Widget): void {
     layoutCommonAttributes(widget);
@@ -92,53 +92,43 @@ function layoutPanelAttributes(widget: Widget) {
 }
 
 function layoutLabelAttributes(widget: Widget) {
-    let color: string;
-    let fontUrl: string;
-    let font_size: number;
-    
-    // Default color is black if not specified.
-    if (!widget.attr("color"))
-        color = "#000000";
-    else
-        color = widget.attr("color");
+    const color = widget.attr("color") || "#000000";
+    const fontUrl = widget.attr("font") || "./data/fonts/helvetiker_regular_typeface.json";
+    const font_size = Number(widget.attr("font_size") || 16);
+    const contents = widget.attr("contents") || "";
 
-    // Default font is helvetiker if not specified.
-    if (!widget.attr("font"))
-        fontUrl = "./data/fonts/helvetiker_regular_typeface.json";
-    else
-        fontUrl = widget.attr("font");
-    
-    // Default font size is 16 if not specified.
-    if (!widget.attr("font_size"))
-        font_size = 16;
-    else
-        font_size = Number(widget.attr("font_size"));
+    const generateGeometry = () => {
+        const font = Resources.instance.getFont(fontUrl);
+        const shapes = font.generateShapes(contents, font_size, 0);
+        const geometry = new ShapeBufferGeometry(shapes);
 
-    // Obtain font from resource cache.
-    let font = Resources.instance.getFont(fontUrl);
+        // Ensure font is centered on (parent) widget.
+        geometry.computeBoundingBox();
+        const xMid = - 0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
+        geometry.translate(xMid, 0, 0);
 
-    var material = new MeshBasicMaterial( {
-        color: color,
-        transparent: true,
-    });
-
-    const shapes = font.generateShapes(widget.attr("contents"), font_size, 0);
-    const geometry = new ShapeBufferGeometry(shapes);
-
-    // Ensure font is centered on (parent) widget.
-    geometry.computeBoundingBox();
-    const xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
-    geometry.translate(xMid, 0, 0);
-
-    const text = new Mesh(geometry, material);
-
+        return geometry;
+    };
 
     if (!widget.text) {
+        const geom = generateGeometry();
+
+        const material = new MeshBasicMaterial({
+            color: color,
+            transparent: true,
+        });
+
+        const text = new Mesh(geom, material);
+
         widget.add(text);
         widget.text = text;
+        widget.text_params = { contents, font_size };
     }
     else {
-        widget.text.geometry = geometry;
-        widget.text.material = material;
+        if (contents !== widget.text_params.contents || font_size !== widget.text_params.font_size) {
+            widget.text.geometry = generateGeometry();
+        }
+
+        (widget.text.material as MeshBasicMaterial).color.setStyle(color);
     }
 }
