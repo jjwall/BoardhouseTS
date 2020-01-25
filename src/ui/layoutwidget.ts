@@ -54,39 +54,62 @@ function layoutCommonAttributes(widget: Widget) {
 function layoutPanelAttributes(widget: Widget) {
     // Update plane geometry with height and width attributes.
     if (widget.attr("height") && widget.attr("width")) {
-        widget.geometry = new PlaneGeometry(Number(widget.attr("width")), Number(widget.attr("height")));
+        const width = Number(widget.attr("width"));
+        const height = Number(widget.attr("height"));
+
+        if (widget.geometry && widget.geometry instanceof PlaneGeometry) {
+            const { width: prevWidth, height: prevHeight } = (widget.geometry as PlaneGeometry).parameters;
+
+            if (width !== prevWidth || height !== prevHeight) {
+                widget.geometry = new PlaneGeometry(width, height);
+            }
+        } else {
+            widget.geometry = new PlaneGeometry(width, height);
+        }
     }
 
     // Update mesh's material with color attribute.
     if (widget.attr("color")) {
-        widget.material = new MeshBasicMaterial({color: widget.attr("color")});
+        if (widget.material) {
+            (widget.material as MeshBasicMaterial).color.setStyle(widget.attr("color"));
+        } else {
+            widget.material = new MeshBasicMaterial({color: widget.attr("color")});
+        }
     }
 
     // Update mesh's material and geometry based on img attribute.
     if (widget.attr("img")) {
         // Get scaleFactor if exists.
-        const scaleFactor: number = widget.attr("scale-factor") ? Number(widget.attr("scale-factor")) : 1;
-        const hasColor: boolean = widget.attr("color") ? true : false;
-        // Get texture from cached resources.
-        let imgMap = Resources.instance.getTexture(widget.attr("img"));
-        // Set magFilter to nearest for crisp looking pixels.
-        imgMap.magFilter = NearestFilter;
+        const scaleFactor = Number(widget.attr("scale-factor") || 1);
+        const hasColor = !!widget.attr("color");
 
-        // If color attr exists, add img mesh to widget.
-        if (hasColor) {
-            const geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
-            const material = new MeshBasicMaterial( { map: imgMap, transparent: true });
+        // Get texture from cached resources.
+        const imgMap = Resources.instance.getTexture(widget.attr("img"));
+
+        const width = imgMap.image.width * scaleFactor;
+        const height = imgMap.image.height * scaleFactor;
+
+        if (!widget.image) {
+            // Set magFilter to nearest for crisp looking pixels.
+            imgMap.magFilter = NearestFilter;
+
+            const geometry = new PlaneGeometry(width, height);
+            const material = new MeshBasicMaterial({ map: imgMap, transparent: true });
             const img = new Mesh(geometry, material);
 
-            if (!widget.image)
-                widget.add(img);
-
+            widget.add(img);
             widget.image = img;
-        }
-        // Otherwise, set widget's geometry and material to img mesh.
-        else {
-            widget.geometry = new PlaneGeometry(imgMap.image.width*scaleFactor, imgMap.image.height*scaleFactor);
-            widget.material = new MeshBasicMaterial( { map: imgMap, transparent: true });
+        } else {
+            const { width: prevWidth, height: prevHeight } = (widget.image.geometry as PlaneGeometry).parameters;
+            const material = widget.image.material as MeshBasicMaterial;
+
+            if (material.map !== imgMap) {
+                material.map = imgMap;
+            }
+
+            if (width !== prevWidth || height !== prevHeight) {
+                widget.image.geometry = new PlaneGeometry(width, height);
+            }
         }
     }
 }
@@ -97,21 +120,8 @@ function layoutLabelAttributes(widget: Widget) {
     const font_size = Number(widget.attr("font_size") || 16);
     const contents = widget.attr("contents") || "";
 
-    const generateGeometry = () => {
-        const font = Resources.instance.getFont(fontUrl);
-        const shapes = font.generateShapes(contents, font_size, 0);
-        const geometry = new ShapeBufferGeometry(shapes);
-
-        // Ensure font is centered on (parent) widget.
-        geometry.computeBoundingBox();
-        const xMid = - 0.5 * (geometry.boundingBox.max.x - geometry.boundingBox.min.x);
-        geometry.translate(xMid, 0, 0);
-
-        return geometry;
-    };
-
     if (!widget.text) {
-        const geom = generateGeometry();
+        const geom = Resources.instance.getTextGeometry(contents, fontUrl, font_size);
 
         const material = new MeshBasicMaterial({
             color: color,
@@ -122,11 +132,12 @@ function layoutLabelAttributes(widget: Widget) {
 
         widget.add(text);
         widget.text = text;
-        widget.text_params = { contents, font_size };
+        widget.text_params = { contents, fontUrl, font_size };
     }
     else {
-        if (contents !== widget.text_params.contents || font_size !== widget.text_params.font_size) {
-            widget.text.geometry = generateGeometry();
+        if (contents !== widget.text_params.contents || fontUrl !== widget.text_params.fontUrl || font_size !== widget.text_params.font_size) {
+            widget.text.geometry = Resources.instance.getTextGeometry(contents, fontUrl, font_size);
+            widget.text_params = { contents, fontUrl, font_size };
         }
 
         (widget.text.material as MeshBasicMaterial).color.setStyle(color);

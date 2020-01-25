@@ -16,7 +16,7 @@ export class Widget extends Mesh {
     private _events: EventKeyToEventMap = {};
     public image: Mesh;
     public text: Mesh;
-    public text_params: { contents: string, font_size: number };
+    public text_params: { contents: string, fontUrl: string, font_size: number };
     constructor(type: string) {
         super();
         this._type = type;

@@ -33,9 +33,1047 @@ export class Test extends Component<Props, State> {
                     <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
                         <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
                     </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
+                    <panel z_index="1" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png">
+                        <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
+                    </panel>
                     <panel left="-100" height="50" width="50" color={this.props.color} img="./data/textures/cottage.png"
                         onHover={() => this.props.hover()}
-                        onPlunge={() => this.props.plunge()} 
+                        onPlunge={() => this.props.plunge()}
                         onClick={() => this.props.toggle()}>
                     </panel>
                     <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.props.addClick()}>
