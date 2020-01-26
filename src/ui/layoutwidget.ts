@@ -23,27 +23,12 @@ export function layoutWidget(widget: Widget): void {
 }
 
 function layoutCommonAttributes(widget: Widget) {
-    if (widget.attr("position")) {
-        if (widget.attr("position") === "relative") {
-            if (widget.getParent()) {
-                widget.position.y = widget.getParent().position.y;
-                widget.position.x = widget.getParent().position.x;
-            }
-        }
-    }
-    else { // default to "relative"
-        if (widget.getParent()) {
-            widget.position.y = widget.getParent().position.y;
-                widget.position.x = widget.getParent().position.x;
-        }
-    }
-
     if (widget.attr("top")) {
-        widget.position.y -= Number(widget.attr("top"));
+        widget.position.y = -Number(widget.attr("top"));
     }
 
     if (widget.attr("left")) {
-        widget.position.x += Number(widget.attr("left"));
+        widget.position.x = Number(widget.attr("left"));
     }
 
     if (widget.attr("z_index")) {
@@ -81,7 +66,6 @@ function layoutPanelAttributes(widget: Widget) {
     if (widget.attr("img")) {
         // Get scaleFactor if exists.
         const scaleFactor = Number(widget.attr("scale-factor") || 1);
-        const hasColor = !!widget.attr("color");
 
         // Get texture from cached resources.
         const imgMap = Resources.instance.getTexture(widget.attr("img"));
@@ -97,7 +81,7 @@ function layoutPanelAttributes(widget: Widget) {
             const material = new MeshBasicMaterial({ map: imgMap, transparent: true });
             const img = new Mesh(geometry, material);
 
-            widget.add(img);
+            widget.setImage(img);
             widget.image = img;
         } else {
             const { width: prevWidth, height: prevHeight } = (widget.image.geometry as PlaneGeometry).parameters;
@@ -130,7 +114,7 @@ function layoutLabelAttributes(widget: Widget) {
 
         const text = new Mesh(geom, material);
 
-        widget.add(text);
+        widget.setImage(text);
         widget.text = text;
         widget.text_params = { contents, fontUrl, font_size };
     }

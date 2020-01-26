@@ -22,7 +22,7 @@ export function instantiate(element: JSXElement, scene: Scene): Instance {
         const childElements = element.children || [];
         const childInstances = childElements.map(childElement => instantiate(childElement, scene));
         const childWidgets = childInstances.map(childInstance => childInstance.widget);
-        childWidgets.forEach(childWidget => widget.appendChild(childWidget, scene));
+        childWidgets.forEach(childWidget => widget.appendChild(childWidget));
 
         const instance: WidgetInstance = {
             widget: widget,

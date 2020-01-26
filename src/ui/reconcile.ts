@@ -8,13 +8,13 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
     if (instance == null) {
         // Create instance.
         const newInstance = instantiate(element, scene);
-        parentWidget.appendChild(newInstance.widget, scene);
+        parentWidget.appendChild(newInstance.widget);
 
         return newInstance;
     }
     else if (element == null) {
         // Remove instance.
-        parentWidget.removeChild(instance.widget, scene);
+        parentWidget.removeChild(instance.widget);
 
         return null;
     }
@@ -43,7 +43,7 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
         componentInstance.widget = childInstance.widget;
         componentInstance.child = childInstance;
         componentInstance.element = element;
-        
+
         return componentInstance;
     }
 }

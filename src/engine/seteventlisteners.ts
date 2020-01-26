@@ -3,6 +3,7 @@ import { BaseState } from "../basestate";
 import { Widget } from "../ui/widget";
 import { Entity } from "./entity";
 import { last } from "./helpers";
+import { Vector3 } from "three";
 
 export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
     let hoveredWidgets: Widget[] = [];
@@ -120,13 +121,16 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
 function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
     if (widget.event("click") && widget.attr("height") && widget.attr("width")) {
-        const halfWidth: number = Number(widget.attr("width"))/2;
-        const halfHeight: number = Number(widget.attr("height"))/2;
+        const halfWidth = Number(widget.attr("width"))/2;
+        const halfHeight = Number(widget.attr("height"))/2;
 
-        if (e.offsetY > -widget.position.y - halfHeight
-            && e.offsetY - halfHeight < -widget.position.y
-            && e.offsetX > widget.position.x - halfWidth
-            && e.offsetX - halfWidth < widget.position.x)
+        const position = new Vector3();
+        widget.getWorldPosition(position);
+
+        if (e.offsetY > -position.y - halfHeight
+            && e.offsetY - halfHeight < -position.y
+            && e.offsetX > position.x - halfWidth
+            && e.offsetX - halfWidth < position.x)
         {
             // TODO: Make sure only top most widget's click event is triggered.
             // Right now it's triggering all widgets' click events if they are stacked.
@@ -134,11 +138,9 @@ function traverseTreeForOnClick(widget: Widget, e: MouseEvent) {
         }
     }
 
-    if (widget.childNodes.length > 0) {
-        widget.childNodes.forEach(child => {
-            traverseTreeForOnClick(child, e);
-        });
-    }
+    widget.childNodes.forEach(child => {
+        traverseTreeForOnClick(child, e);
+    });
 }
 
 function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: HTMLCanvasElement, e: MouseEvent) {
@@ -155,7 +157,7 @@ function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: 
             if (widgetIndex === -1) {
                 hoveredWidgets.push(widget);
                 widget.trigger("hover", e);
-                
+
                 // TODO: Remove this eventually...
                 canvas.setAttribute("class", "pointer");
             }

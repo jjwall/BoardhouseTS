@@ -21,8 +21,10 @@ export class MainMenuState extends BaseState {
 
         // Set up ui widget and instance.
         this.rootWidget = createWidget("root");
-        //let rootComponent = 
+        this.uiScene.add(this.rootWidget);
+        //let rootComponent =
         renderMainMenuUi(this.uiScene, this.rootWidget, this.startGame);
+        (window as any).scene = this.uiScene;
     }
 
     private startGame = (): void => {
