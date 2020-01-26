@@ -23,6 +23,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     });
 
     // keyboard controls
+    // visit https://keycode.info/ for other key codes.
     window.onkeydown = function(e: KeyboardEvent) {
         switch(e.keyCode) {
             case 37: // left
