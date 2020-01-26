@@ -24,96 +24,100 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
     // keyboard controls
     window.onkeydown = function(e: KeyboardEvent) {
-        // left
-        if (e.keyCode === 37) {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.left = true;
-                }
-            });
-        }
+        switch(e.keyCode) {
+            case 37: // left
+            case 65: // w
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.left = true;
+                    }
+                });
+                break;
 
-        // right
-        if (e.keyCode === 39) {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.right = true;
-                }
-            });
-        }
+            case 39: // right
+            case 68: // d
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.right = true;
+                    }
+                });
+                break;
 
-        // up
-        if (e.keyCode === 38 || e.key === 'w') {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.up = true;
-                }
-            });
-        }
+            case 38: // up
+            case 87: // w
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.up = true;
+                    }
+                });
+                break;
+            
+            case 40: // down
+            case 83: // s
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.down = true;
+                    }
+                });
+                break;
 
-        // down
-        if (e.keyCode === 40 || e.key === 's') {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.down = true;
-                }
-            });
-        }
-
-        // spacebar
-        if (e.keyCode === 90) {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.attack = true;
-                }
-            });
+            case 32: // spacebar
+            case 90: // z
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.attack = true;
+                    }
+                });
+                break;
         }
     }
 
     window.onkeyup = function(e) {
-        // left
-        if (e.keyCode === 37) {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.left = false;
-                }
-            });
-        }
+        switch(e.keyCode) {
+            case 37: // left
+            case 65: // w
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.left = false;
+                    }
+                });
+                break;
 
-        // right
-        if (e.keyCode === 39) {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.right = false;
-                }
-            });
-        }
+            case 39: // right
+            case 68: // d
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.right = false;
+                    }
+                });
+                break;
 
-        // up
-        if (e.keyCode === 38 || e.key === 'w') {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.up = false;
-                }
-            });
-        }
+            case 38: // up
+            case 87: // w
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.up = false;
+                    }
+                });
+                break;
+            
+            case 40: // down
+            case 83: // s
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.down = false;
+                    }
+                });
+                break;
 
-        // down
-        if (e.keyCode === 40 || e.key === 's') {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.down = false;
-                }
-            });
-        }
-
-        // spacebar
-        if (e.keyCode === 90) {
-            last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
-                if (ent.control) {
-                    ent.control.attack = false;
-                }
-            });
+            case 32: // spacebar
+            case 90: // z
+                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                    if (ent.control) {
+                        ent.control.attack = false;
+                    }
+                });
+                break;
         }
     }
 }
@@ -157,14 +161,14 @@ function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: 
                 widget.trigger("hover", e);
                 
                 // TODO: Remove this eventually...
-                canvas.setAttribute("class", "pointer");
+                canvas.setAttribute("class", "pointer"); // pointer cursor
             }
         }
         else {
             if (widgetIndex > -1) {
                 widget.trigger("plunge", e);
                 hoveredWidgets.splice(widgetIndex);
-                canvas.setAttribute("class", "default");
+                canvas.setAttribute("class", "default"); // arrow cursor
             }
         }
     }
