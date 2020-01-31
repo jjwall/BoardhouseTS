@@ -30,9 +30,9 @@ interface State {
 export class Root extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
-        this.state = { 
-            ticks: 50, 
-            clicks: 0, 
+        this.state = {
+            ticks: 50,
+            clicks: 0,
             color: "#00FFFF",
             hidden: false,
         };
@@ -65,6 +65,7 @@ export class Root extends Component<Props, State> {
     }
 
     public toggle = (): void => {
+        console.log('hi');
         if (this.state.hidden) {
             this.setState({
                 hidden: false

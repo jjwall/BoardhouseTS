@@ -1,4 +1,4 @@
-import { Mesh, Scene } from "three";
+import { Mesh, Scene, Group, Object3D, Matrix4 } from "three";
 
 interface AttrKeyToAttrValueMap {
     [key: string]: string;
@@ -11,15 +11,19 @@ interface EventKeyToEventMap {
 export class Widget extends Mesh {
     private _type: string;
     private _parent: Widget;
-    private _children: Widget[] = [];
     private _attributes: AttrKeyToAttrValueMap = {};
     private _events: EventKeyToEventMap = {};
+    private _children: Widget[] = [];
+    private _widgetChildren: Group = new Group();
+    private _imageChildren: Group = new Group();
     public image: Mesh;
     public text: Mesh;
-    public text_params: { contents: string, font_size: number };
+    public text_params: { contents: string, fontUrl: string, font_size: number };
     constructor(type: string) {
         super();
         this._type = type;
+        this.add(this._widgetChildren);
+        this.add(this._imageChildren);
     }
     public getType(): string {
         return this._type;
@@ -31,40 +35,40 @@ export class Widget extends Mesh {
         return this._children;
     }
     public get lastChild(): Widget {
-        return this._children[this._children.length - 1];
+        return this.childNodes[this.childNodes.length - 1];
     }
-    public appendChild(child: Widget, scene: Scene): void {
-        scene.add(child);
+    public setImage(img: Mesh): void {
+        this.clearImage();
+        this._imageChildren.add(img);
+        this.image = img;
+    }
+    public clearImage(): void {
+        if (this.image) {
+            this._imageChildren.remove(this.image);
+            this.image = null;
+        }
+    }
+    public appendChild(child: Widget): void {
+        this._widgetChildren.add(child);
+        this._children.push(child);
         child._parent = this;
         if (this.attr("z_index")) {
             child.setAttr("z_index", this.attr("z_index"));
         }
-        this._children.push(child);
     }
-    public removeChild(child: Widget, scene: Scene): void {
-        if (this._children.indexOf(child) !== -1) {
-            this._children.splice(this._children.indexOf(child), 1);
-
-            for (let i = 0; i < child._children.length; i++) {
-                if (child._children[i]._type === "label") {
-                    scene.remove(child._children[i]);
-                }
-            }
-
-            if (child.image)
-                scene.remove(child);
-        }
+    public removeChild(child: Widget): void {
+        this._widgetChildren.remove(child);
+        this._children.splice(this._children.indexOf(child), 1);
+        child.parent = null;
     }
     public replaceChild(newChild: Widget, childToReplace: Widget): void {
         const index = this._children.indexOf(childToReplace);
 
-        if (childToReplace.text)
-            newChild.text = childToReplace.text;
-
-        if (childToReplace.image)
-            newChild.image = childToReplace.image;
+        this._widgetChildren.remove(childToReplace);
+        this._widgetChildren.add(newChild);
 
         this._children[index] = newChild;
+        childToReplace.parent = null;
     }
     public setAttr(name: string, value: string): void {
         this._attributes[name] = value;

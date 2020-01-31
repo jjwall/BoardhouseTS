@@ -39,6 +39,9 @@ export class GameState extends BaseState {
 
         // Set up ui widget and instance.
         this.rootWidget = createWidget("root");
+
+        this.uiScene.add(this.rootWidget);
+
         let rootComponent = renderGameUi(this.uiScene, this.rootWidget);
 
         // Register systems.
@@ -60,7 +63,7 @@ export class GameState extends BaseState {
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
-        player.timer = initializeTimer(250, () => { 
+        player.timer = initializeTimer(250, () => {
             // this.removeEntity(player);
             // Remove player sprite from scene.
             // this.gameScene.remove(player.sprite);
