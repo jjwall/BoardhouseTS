@@ -23,43 +23,35 @@ export function layoutWidget(widget: Widget): void {
 }
 
 function layoutCommonAttributes(widget: Widget) {
-    if (widget.attr("top")) {
-        widget.position.y = -Number(widget.attr("top"));
-    }
-
-    if (widget.attr("left")) {
-        widget.position.x = Number(widget.attr("left"));
-    }
-
-    if (widget.attr("z_index")) {
-        widget.position.z = Number(widget.attr("z_index"));
-    }
+    widget.position.y = -Number(widget.attr("top") || 0);
+    widget.position.x = Number(widget.attr("left") || 0);
+    widget.position.z = Number(widget.attr("z_index") || 0);
 }
 
 function layoutPanelAttributes(widget: Widget) {
     // Update plane geometry with height and width attributes.
-    if (widget.attr("height") && widget.attr("width")) {
-        const width = Number(widget.attr("width"));
-        const height = Number(widget.attr("height"));
+    const width = Number(widget.attr("width") || 0);
+    const height = Number(widget.attr("height") || 0);
 
-        if (widget.geometry && widget.geometry instanceof PlaneGeometry) {
-            const { width: prevWidth, height: prevHeight } = (widget.geometry as PlaneGeometry).parameters;
+    if (widget.geometry && widget.geometry instanceof PlaneGeometry) {
+        const { width: prevWidth, height: prevHeight } = (widget.geometry as PlaneGeometry).parameters;
 
-            if (width !== prevWidth || height !== prevHeight) {
-                widget.geometry = new PlaneGeometry(width, height);
-            }
-        } else {
+        if (width !== prevWidth || height !== prevHeight) {
             widget.geometry = new PlaneGeometry(width, height);
         }
+    } else {
+        widget.geometry = new PlaneGeometry(width, height);
     }
 
     // Update mesh's material with color attribute.
-    if (widget.attr("color")) {
-        if (widget.material) {
-            (widget.material as MeshBasicMaterial).color.setStyle(widget.attr("color"));
-        } else {
-            widget.material = new MeshBasicMaterial({color: widget.attr("color")});
-        }
+    const color = widget.attr("color");
+
+    if (color) {
+        (widget.material as MeshBasicMaterial).transparent = false;
+        (widget.material as MeshBasicMaterial).color.setStyle(color);
+    } else {
+        (widget.material as MeshBasicMaterial).transparent = true;
+        (widget.material as MeshBasicMaterial).opacity = 0;
     }
 
     // Update mesh's material and geometry based on img attribute.
@@ -82,7 +74,6 @@ function layoutPanelAttributes(widget: Widget) {
             const img = new Mesh(geometry, material);
 
             widget.setImage(img);
-            widget.image = img;
         } else {
             const { width: prevWidth, height: prevHeight } = (widget.image.geometry as PlaneGeometry).parameters;
             const material = widget.image.material as MeshBasicMaterial;
@@ -95,6 +86,8 @@ function layoutPanelAttributes(widget: Widget) {
                 widget.image.geometry = new PlaneGeometry(width, height);
             }
         }
+    } else {
+        widget.clearImage();
     }
 }
 

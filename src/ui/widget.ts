@@ -37,12 +37,16 @@ export class Widget extends Mesh {
     public get lastChild(): Widget {
         return this.childNodes[this.childNodes.length - 1];
     }
-    public setImage(img: Object3D): void {
-        const toRemove = [...this._imageChildren.children];
-        for (const c of toRemove) {
-            this._imageChildren.remove(c);
-        }
+    public setImage(img: Mesh): void {
+        this.clearImage();
         this._imageChildren.add(img);
+        this.image = img;
+    }
+    public clearImage(): void {
+        if (this.image) {
+            this._imageChildren.remove(this.image);
+            this.image = null;
+        }
     }
     public appendChild(child: Widget): void {
         this._widgetChildren.add(child);
