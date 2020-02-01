@@ -4,6 +4,11 @@ import { HurtBoxTypes, SequenceTypes } from "./enums";
 import { Vector3 } from "three";
 
 /**
+ * Control system: Movement left, right, up, down
+ * Attacking, getting attacked
+ */
+
+/**
  * Control system.
  * @param ents Ents from the controllableEntities registry.
  */

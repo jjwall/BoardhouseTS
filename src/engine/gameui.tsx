@@ -4,7 +4,11 @@ import { JSXElement } from "../ui/interfaces";
 import { Scene } from "THREE";
 import { Component } from "../ui/component";
 
-interface Props {
+/**
+ * Game state's UI elements
+ */
+
+ interface Props {
     ticks: number,
     clicks: number,
     color: string,

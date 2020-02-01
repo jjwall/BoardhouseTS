@@ -6,6 +6,10 @@ import { Scene } from "THREE";
 import { Widget } from "../ui/widget";
 import { Component } from "../ui/component";
 
+/**
+ * Main Menu UI objects
+ */
+
 export function renderMainMenuUi(scene: Scene, rootWidget: Widget, startGame: () => void): MainMenuRoot {
     let rootInstance = renderWidget(<MainMenuRoot startGame = {startGame} />, rootWidget, scene);
 
@@ -26,23 +30,23 @@ export class MainMenuRoot extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
         this.state = {
-            panelColor: "#228B22",
-            fontColor: "#0000FF",
+            panelColor: "#1f22dc",
+            fontColor: "#C9CFFF", // Start color
             start: false,
         }
     }
 
     public hover = (): void => {
         this.setState({
-            fontColor: "#FF0000",
-            panelColor: "#00FFFF"
+            panelColor: "#3439FF", 
+            fontColor: "#ffffff" // Hover color
         });
     }
 
     public plunge = (): void => {
         this.setState({
-            fontColor: "#0000FF",
-            panelColor: "#228B22"
+            panelColor: "#1f22dc",
+            fontColor: "#C9CFFF" // Idle color
         });
     }
 
@@ -52,12 +56,14 @@ export class MainMenuRoot extends Component<Props, State> {
 
     render(): JSXElement {
         return(
-            <panel height="70" width="300" color={this.state.panelColor} top="360" left="640"
-                onHover={() => this.hover()}
-                onPlunge={() => this.plunge()}
-                onClick={() => this.triggerStartGame()}>
-                <label top="10" color={this.state.fontColor} contents="start"></label>
-            </panel>
+            <div>
+                <panel height="70" width="300" color={this.state.panelColor} top="360" left="640"
+                    onHover={() => this.hover()}
+                    onPlunge={() => this.plunge()}
+                    onClick={() => this.triggerStartGame()}>
+                    <label top="10" color={this.state.fontColor} contents="start"></label>
+                </panel>
+            </div>
         )
     }
 }

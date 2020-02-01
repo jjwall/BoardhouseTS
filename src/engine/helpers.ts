@@ -12,6 +12,10 @@ import { Resources } from "../resourcemanager";
 import { SequenceTypes } from "./enums";
 
 /**
+ * Helper for audio, hitbox and hurtbox graphics
+ */
+
+/**
  * Helper method to play audio.
  * @param url Path to audio file.
  * @param volume Optional param to set the volume. Must be >= 0 && <= 1.

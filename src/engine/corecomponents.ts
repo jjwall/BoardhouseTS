@@ -7,6 +7,15 @@ import { AnimationSchema } from "./engineinterfaces";
 import { HurtBoxTypes, SequenceTypes } from "./enums";
 
 /**
+ * Position component
+ * Velocity component
+ * Hitbox component
+ * Hurtbox component
+ * Animation component
+ * Timeout timer
+ */
+
+/**
  * Position component.
  */
 export interface PositionComponent {

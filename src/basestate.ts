@@ -2,6 +2,11 @@ import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./frameworki
 import { WebGLRenderer } from "THREE";
 import { Widget } from "./ui/widget";
 
+/**
+ * Registry of entities
+ * Registry of state systems
+ */
+
 export abstract class BaseState {
     protected constructor(stateStack: BaseState[]) {
         this.stateStack = stateStack;

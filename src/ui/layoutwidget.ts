@@ -1,6 +1,16 @@
 import { Mesh, MeshBasicMaterial, PlaneGeometry, NearestFilter, ShapeBufferGeometry } from "three";
 import { Resources } from "./../resourcemanager";
 import { Widget } from "./widget";
+
+/**
+ * Widget properties
+ * Position
+ * Width/Height
+ * Color
+ * Image/Texture
+ * Label font and color
+ */
+
 /**
  * Layout widget by updating Mesh properties for any relevant attribute.
  * Gets called when Widget is create or setState is called.

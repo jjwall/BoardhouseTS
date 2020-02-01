@@ -6,6 +6,13 @@ import { Entity } from "./entity";
 import { Resources } from "../resourcemanager";
 
 /**
+ * Animation System
+ * Collision System
+ * Position System
+ * Timer System
+ */
+
+/**
  * Rudimentary velocity implementation... will replace directions with
  * angle and magnitude later on
  */
