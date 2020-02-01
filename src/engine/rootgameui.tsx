@@ -7,6 +7,9 @@ import { Widget } from "../ui/widget";
 import { Component } from "../ui/component";
 import { Test } from "./gameui";
 
+/**
+ * Root UI element/component object
+ */
 
 export function renderGameUi(scene: Scene, rootWidget: Widget): Root {
     let rootInstance = renderWidget(<Root />, rootWidget, scene);

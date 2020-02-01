@@ -25,6 +25,10 @@ import { ControlComponent } from "./controlcomponent";
 import { AnimationSchema } from "./engineinterfaces";
 
 /**
+ * Initializes sprites, velocities, animations, etc.
+ */
+
+/**
  * Helper for intializing an entity's animation blob and starting sequence.
  * @param startingSequence 
  * @param animBlob 

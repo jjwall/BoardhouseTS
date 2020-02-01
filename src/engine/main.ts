@@ -6,6 +6,10 @@ import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./mainmenustate";
 import { GameState } from "./gamestate";
 
+/**
+ * Starts program
+ */
+
 // TODO: Remove hurtBox component. Only use HitBox. HitBox will take a type and a
 // list of things it collided with (flags). Component will be "hitBoxes" and it will
 // have a list of hitbox components each entity can have. Each hitbox will have a reference

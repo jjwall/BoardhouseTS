@@ -1,4 +1,8 @@
 /**
+ * Scale the canvas to the window 
+ */
+
+/**
  * kittykatattack is the author of this scaling function.
  * Source can be found here:
  * https://github.com/kittykatattack/scaleToWindow

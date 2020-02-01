@@ -4,6 +4,10 @@ import { createWidget } from "./widget";
 import { createComponent } from "./component";
 import { Scene } from "three";
 
+/**
+ * Instantiate JSX UI element
+ */
+
 export function instantiate(element: JSXElement, scene: Scene): Instance {
     if (typeof element === "string")
         throw Error('If you are trying to set text try: <label contents="Hello world!"/>');

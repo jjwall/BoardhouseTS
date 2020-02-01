@@ -2,6 +2,10 @@ import { ComponentInstance, JSXElement } from "./interfaces";
 import { reconcile } from "./reconcile";
 import { Scene } from "THREE";
 
+/**
+ * Update or create component
+ */
+
 export abstract class Component<Props, State> {
     public state: State;
     public props: Readonly<Props>;

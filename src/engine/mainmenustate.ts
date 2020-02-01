@@ -5,6 +5,10 @@ import { Widget, createWidget } from "../ui/widget";
 import { GameState } from "./gamestate";
 import { renderMainMenuUi, MainMenuRoot } from "./rootmainmenuui";
 
+/**
+ * Main Menu state
+ */
+
 export class MainMenuState extends BaseState {
     public uiScene: Scene;
     public uiCamera: Camera;
@@ -14,7 +18,7 @@ export class MainMenuState extends BaseState {
 
         // Set up ui scene.
         this.uiScene = new Scene();
-        this.uiScene.background = new Color("#FFFFFF");
+        this.uiScene.background = new Color("#000000");
 
         // Set up ui camera.
         this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);

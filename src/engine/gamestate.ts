@@ -12,10 +12,10 @@ import { createWidget } from "../ui/widget";
 import { layoutWidget } from "../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootgameui";
 
-
 /**
  * GameState that handles updating of all game-related systems.
  */
+
 export class GameState extends BaseState {
     public gameScene: Scene;
     public gameCamera: Camera;
