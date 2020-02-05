@@ -9,6 +9,7 @@ import {
     Vector3,
 } from "three";
 import { 
+    HitBoxTypes,
     HurtBoxTypes,
     SequenceTypes,
 } from "./enums";
@@ -23,6 +24,7 @@ import {
 import { Resources } from "../resourcemanager";
 import { ControlComponent } from "./controlcomponent";
 import { AnimationSchema } from "./engineinterfaces";
+import { Entity } from "./entity";
 
 /**
  * Initializes sprites, velocities, animations, etc.
@@ -56,6 +58,8 @@ export function initializeControls(): ControlComponent {
         right: false,
         up: false,
         down: false,
+        camera: null,
+        mousePos: null,
     };
 }
 
@@ -63,16 +67,17 @@ export function initializeControls(): ControlComponent {
  * Helper for initializing an entity's hit box component.
  * Note: ``onHit`` callback should be set independently.
  * @param entMesh An entity's mesh A.K.A. sprite to be set before calling this function.
- * @param collidesWith List of HurtBox types the HitBox can collide with.
- * @param heightOverride (Optional) Exact number of pixels to set for the hurtBox's height.
+ * @param collideType This entity's HitBox type.
+ * @param collidesWith List of HitBox types the HitBox can collide with.
+ * @param heightOverride (Optional) Exact number of pixels to set for the hitBox's height.
  * Must also set ``widthOverride`` for this to take effect.
- * @param widthOverride (Optional) Exact number of pixels to set for the hurtBox's width.
+ * @param widthOverride (Optional) Exact number of pixels to set for the hitBox's width.
  * Must also set ``heightOverride`` for this to take effect.
- * @param offsetX (Default 0) Number of pixels to offset the hurtbox's x position.
- * @param offsetY (Default 0) Number of pixels to offset the hurtbox's y position.
+ * @param offsetX (Default 0) Number of pixels to offset the hitbox's x position.
+ * @param offsetY (Default 0) Number of pixels to offset the hitbox's y position.
  */
-export function initializeHitBox(entMesh: Mesh, collidesWith: HurtBoxTypes[], heightOverride?: number, widthOverride?: number, offsetX: number = 0, offsetY: number = 0) : HitBoxComponent {
-    let hitBox: HitBoxComponent = { collidesWith: collidesWith, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
+export function initializeHitBox(entMesh: Mesh, collideType: HitBoxTypes, collidesWith: HitBoxTypes[], collidesWithHurtbox: HurtBoxTypes[], heightOverride?: number, widthOverride?: number, offsetX: number = 0, offsetY: number = 0) : HitBoxComponent {
+    let hitBox: HitBoxComponent = { collideType: collideType, collidesWith: collidesWith, collidesWithHurtbox: collidesWithHurtbox, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
 
     if (heightOverride && widthOverride) {
         if (heightOverride <= 0 || widthOverride <= 0)
@@ -128,8 +133,8 @@ export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, heightO
  * @param zPos 
  * @param startingDirection optional param. If not specified, direction will be: Vector3(1, 0, 0).
  */
-export function initializePosition(xPos: number, yPos: number, zPos: number, startingDirection?: Vector3): PositionComponent {
-    let position: PositionComponent = { loc: new Vector3(xPos, yPos, zPos), dir: null };
+export function initializePosition(xPos: number, yPos: number, zPos: number, startingDirection?: Vector3, wrap?: boolean): PositionComponent {
+    let position: PositionComponent = { loc: new Vector3(xPos, yPos, zPos), dir: null, wrap: false };
 
     if (startingDirection) {
         position.dir = startingDirection;
@@ -138,6 +143,10 @@ export function initializePosition(xPos: number, yPos: number, zPos: number, sta
         position.dir = new Vector3(1, 0, 0);
     }
       
+    if (wrap !== undefined) {
+        position.wrap = wrap;
+    }
+
     return position;
 }
 

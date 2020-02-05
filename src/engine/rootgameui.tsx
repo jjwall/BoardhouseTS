@@ -68,7 +68,6 @@ export class Root extends Component<Props, State> {
     }
 
     public toggle = (): void => {
-        console.log('hi');
         if (this.state.hidden) {
             this.setState({
                 hidden: false

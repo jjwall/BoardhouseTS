@@ -50,7 +50,7 @@ export function controlSystem(ents: ReadonlyArray<Entity>){
                 //     collidesWith: [HurtBoxTypes.test], 
                 //     height: 50, 
                 //     width: 50, 
-                //     onHit: function() { console.log("hit")
+                //     onHit: function() {
                 // }};
                 //ents.push(attack);
             }
