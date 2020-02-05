@@ -1,10 +1,12 @@
 import {
     Vector3,
     Euler,
+    Mesh,
 } from "three";
 import { Entity } from "./entity";
 import { AnimationSchema } from "./engineinterfaces";
-import { HurtBoxTypes, SequenceTypes } from "./enums";
+import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./enums";
+import { Manifold } from "./commontypes";
 
 /**
  * Position component
@@ -23,6 +25,8 @@ export interface PositionComponent {
     loc: Vector3;
     /** Direction vector. */
     dir: Vector3;
+    /** Wraparound behavior. */
+    wrap: boolean;
 }
 
 /**
@@ -40,13 +44,14 @@ export interface VelocityComponent {
  * any of the "collidesWith" enum entries, entity will "hit" them.
  */
 export interface HitBoxComponent {
-    // collideType: Collidables;
-    collidesWith: HurtBoxTypes[];
+    collideType: HitBoxTypes;
+    collidesWithHurtbox: HurtBoxTypes[];
+    collidesWith: HitBoxTypes[];
     height: number;
     width: number;
     offsetX: number;
     offsetY: number;
-    onHit?: (hittingEnt: Entity, hurtingEnt: Entity) => void;
+    onHit?: (self: Entity, other: Entity, manifold: Manifold) => void;
 }
 
 /**
@@ -61,6 +66,7 @@ export interface HurtBoxComponent {
     offsetX: number;
     offsetY: number;
     onHurt?: (hurtingEnt: Entity, hittingEnt: Entity) => void;
+    onHit?: (self: Entity, other: Entity, manifold: Manifold) => void;
 }
 
 /**

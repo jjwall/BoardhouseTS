@@ -2,7 +2,7 @@ import { initializeAnimation, initializeControls, initializeHitBox, initializeHu
 import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./helpers";
-import { HurtBoxTypes, SequenceTypes } from "./enums";
+import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./enums";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { playerAnim } from "../../data/animations/player";
@@ -21,6 +21,10 @@ export class GameState extends BaseState {
     public gameCamera: Camera;
     public uiScene: Scene;
     public uiCamera: Camera;
+
+    public playerEntity: Entity;
+    public turnOnHitboxes = true; // turn this off when done testing
+
     public rootWidget: Widget;
     constructor(stateStack: BaseState[]) {
         super(stateStack);
@@ -56,6 +60,8 @@ export class GameState extends BaseState {
 
         // Set up player entity.
         let player = new Entity();
+        player.HitBoxTypes = HitBoxTypes.PLAYER;
+        this.playerEntity = player;
         player.pos = initializePosition(150, 150, 5);
         player.sprite = initializeSprite("./data/textures/msknight.png", this.gameScene, 4);
         player.control = initializeControls();
@@ -69,18 +75,27 @@ export class GameState extends BaseState {
             // this.gameScene.remove(player.sprite);
             // this.stateStack.pop();
         });
-        setHurtBoxGraphic(player.sprite, player.hurtBox);
+        player.hitBox = initializeHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], [], 50, 50, 100, -10);
+        if (this.turnOnHitboxes) setHitBoxGraphic(player.sprite, player.hitBox);
+        if (this.turnOnHitboxes) setHurtBoxGraphic(player.sprite, player.hurtBox);
+        player.hitBox.onHit = function(player, other) {
+            if (other.HitBoxTypes == HitBoxTypes.ENEMY) {
+                //playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false);
+                //player.vel.positional.copy(other.vel.positional.clone().multiplyScalar(8));
+            }
+        }
+
         this.registerEntity(player);
 
         // Set up enemy entity.
         let enemy = new Entity();
-        enemy.pos = initializePosition(300, 100, 4);
-        enemy.sprite = initializeSprite("./data/textures/cottage.png", this.gameScene, 4);
-        enemy.hitBox = initializeHitBox(enemy.sprite, [HurtBoxTypes.test], 50, 50, 100, 200);
-        setHitBoxGraphic(enemy.sprite, enemy.hitBox);
+        enemy.pos = initializePosition(750, 200, 4);
+        enemy.sprite = initializeSprite("./data/textures/cottage.png", this.gameScene, 8);
+        enemy.hitBox = initializeHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
+        if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
-            console.log("ouch!");
             rootComponent.addClick();
+            playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false);
         }
 
         this.registerEntity(enemy);

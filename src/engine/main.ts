@@ -35,6 +35,7 @@ loadTextures([
     "./data/textures/girl.png",
     "./data/textures/msknight.png",
     "./data/textures/snow.png",
+    "./data/textures/space4096Square.png",
 ]).then((textures) => {
     // cache off textures
     Resources.instance.setTextures(textures);
@@ -46,7 +47,8 @@ loadTextures([
         Resources.instance.setFonts(fonts);
 
         loadAudioElements([
-            "./data/audio/Pale_Blue.mp3"
+            "./data/audio/Pale_Blue.mp3",
+            "./data/audio/SFX_Bonk2.wav",
         ]).then((audioElements) => {
             // cache off audio elements
             Resources.instance.setAudioElements(audioElements);
@@ -72,6 +74,11 @@ function main(canvasContainer: HTMLElement) {
 
     // append canvas element to canvas container
     canvasContainer.append(renderer.domElement);
+
+    //disable right click context menu
+    canvasContainer.oncontextmenu = function (e) {
+        e.preventDefault();
+    };
 
     // initialize state stack
     let stateStack: BaseState[] = [];

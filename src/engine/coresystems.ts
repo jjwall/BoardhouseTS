@@ -1,9 +1,11 @@
 import {
     MeshBasicMaterial,
     NearestFilter,
+    PlaneGeometry,
 } from "three";
 import { Entity } from "./entity";
 import { Resources } from "../resourcemanager";
+import { Rect, Manifold, getManifold, getHitbox } from "./commontypes";
 
 /**
  * Animation System
@@ -54,28 +56,40 @@ export function animationSystem(ents: ReadonlyArray<Entity>) : void {
  * Hurting ents must have hurtBox and pos components.
  */
 export function collisionSystem(ents: ReadonlyArray<Entity>) {
-    ents.forEach(hittingEnt => {
-        if (hittingEnt.hitBox && hittingEnt.pos) {
-            ents.forEach(hurtingEnt => {
-                if (hurtingEnt.hurtBox && hurtingEnt.pos) {
-                    if (hittingEnt.hitBox.collidesWith.indexOf(hurtingEnt.hurtBox.type) > -1) {
-                        if (hittingEnt.pos.loc.x + hittingEnt.hitBox.offsetX - hittingEnt.hitBox.width/2 < hurtingEnt.pos.loc.x + hurtingEnt.hurtBox.offsetX + hurtingEnt.hurtBox.width/2 &&
-                            hittingEnt.pos.loc.x + hittingEnt.hitBox.offsetX + hittingEnt.hitBox.width/2 > hurtingEnt.pos.loc.x + hurtingEnt.hurtBox.offsetX - hurtingEnt.hurtBox.width/2 &&
-                            hittingEnt.pos.loc.y + hittingEnt.hitBox.offsetY - hittingEnt.hitBox.height/2 < hurtingEnt.pos.loc.y + hurtingEnt.hurtBox.offsetY + hurtingEnt.hurtBox.height/2 &&
-                            hittingEnt.pos.loc.y + hittingEnt.hitBox.offsetY + hittingEnt.hitBox.height/2 > hurtingEnt.pos.loc.y + hurtingEnt.hurtBox.offsetY - hurtingEnt.hurtBox.height/2) {
-                            if (hittingEnt.hitBox.onHit) {
-                                hittingEnt.hitBox.onHit(hittingEnt, hurtingEnt);
-                            }
+    type Body = {
+        ent: Entity;
+        rect: Rect;
+    };
 
-                            if (hurtingEnt.hurtBox.onHurt) {
-                                hurtingEnt.hurtBox.onHurt(hurtingEnt, hittingEnt);
-                            }
-                        }
-                    }
-                }
-            });
+    const tryOnHit = (a: Entity, b: Entity, m: Manifold) => {
+        if (a.hitBox.onHit && a.hitBox.collidesWith.includes(b.hitBox.collideType)) {
+            a.hitBox.onHit(a, b, m);
         }
-    });
+    };
+
+    const allBodies = ents
+        .filter(e => e.hitBox && e.pos)
+        .map((e): Body => ({ ent: e, rect: getHitbox(e) }));
+
+    allBodies.sort((a, b) => a.rect.left - b.rect.left);
+
+    let bodyWindow = [] as Body[];
+
+    for (const body of allBodies) {
+        bodyWindow = bodyWindow.filter(otherBody => body.rect.left <= otherBody.rect.right);
+
+        for (const otherBody of bodyWindow) {
+            const manifold = getManifold(body.rect, otherBody.rect);
+
+            if (manifold.width > 0 && manifold.height > 0) {
+                // console.log('hit');
+                tryOnHit(body.ent, otherBody.ent, manifold);
+                tryOnHit(otherBody.ent, body.ent, manifold);
+            }
+        }
+
+        bodyWindow.push(body);
+    }
 }
 
 /**

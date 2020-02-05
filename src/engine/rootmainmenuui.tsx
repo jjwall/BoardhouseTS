@@ -30,23 +30,23 @@ export class MainMenuRoot extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
         this.state = {
-            panelColor: "#1f22dc",
-            fontColor: "#C9CFFF", // Start color
+            panelColor: "#1f22dc", // Start button color
+            fontColor: "#C9CFFF", // Start text color
             start: false,
         }
     }
 
     public hover = (): void => {
         this.setState({
-            panelColor: "#3439FF", 
-            fontColor: "#ffffff" // Hover color
+            panelColor: "#3439FF", // Hover button color
+            fontColor: "#ffffff" // Hover text color
         });
     }
 
     public plunge = (): void => {
         this.setState({
-            panelColor: "#1f22dc",
-            fontColor: "#C9CFFF" // Idle color
+            panelColor: "#1f22dc", // Idle button color
+            fontColor: "#C9CFFF" // Idle text color
         });
     }
 
@@ -57,7 +57,17 @@ export class MainMenuRoot extends Component<Props, State> {
     render(): JSXElement {
         return(
             <div>
-                <panel height="70" width="300" color={this.state.panelColor} top="360" left="640"
+                <panel 
+                    z_index="-1" width="1280" height="720" color="#282828" img="./data/textures/space4096Square.png" 
+                    left="640" top="390"
+                />
+                <panel height="120" /*color="red"*/ width="600" top="200" left="640">
+                    <label top="50" color="#C9CFFF" font_size="100" contents="Game"></label>
+                </panel>
+                <panel height="120" /*color="red"*/ width="800" top="400" left="640">
+                    <label top="50" color="#C9CFFF" font_size="100" contents="Name"></label>
+                </panel>
+                <panel height="70" width="300" color={this.state.panelColor} top="600" left="640"
                     onHover={() => this.hover()}
                     onPlunge={() => this.plunge()}
                     onClick={() => this.triggerStartGame()}>

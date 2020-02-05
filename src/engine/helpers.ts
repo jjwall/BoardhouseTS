@@ -83,6 +83,7 @@ export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent) : void 
     const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
     hitBoxMesh.position.x += hitBox.offsetX;
     hitBoxMesh.position.y += hitBox.offsetY;
+    // TODO // Don't rotate hitbox graphic with the parent object, actual hitbox does not rotate.
     entMesh.add(hitBoxMesh);
 }
 
