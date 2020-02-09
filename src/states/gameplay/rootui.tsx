@@ -1,11 +1,11 @@
 // /** @jsx createJSXElement */
-import { createJSXElement } from "../ui/createjsxelement";
-import { JSXElement, ComponentInstance } from "../ui/interfaces";
-import { renderWidget } from "../ui/renderwidget";
+import { createJSXElement } from "./../../ui/createjsxelement";
+import { JSXElement, ComponentInstance } from "./../../ui/interfaces";
+import { renderWidget } from "./../../ui/renderwidget";
 import { Scene } from "THREE";
-import { Widget } from "../ui/widget";
-import { Component } from "../ui/component";
-import { Test } from "./gameui";
+import { Widget } from "./../../ui/widget";
+import { Component } from "./../../ui/component";
+import { Test } from "./ui";
 
 /**
  * Root UI element/component object

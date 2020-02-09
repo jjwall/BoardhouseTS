@@ -4,7 +4,7 @@ import { BaseState } from "./basestate";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./mainmenustate";
-import { GameState } from "./gamestate";
+import { GamePlayState } from "./../states/gameplay/state";
 
 /**
  * Starts program

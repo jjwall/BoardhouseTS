@@ -2,7 +2,7 @@ import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { BaseState } from "./basestate";
 import { layoutWidget } from "../ui/layoutwidget";
 import { Widget, createWidget } from "../ui/widget";
-import { GameState } from "./gamestate";
+import { GamePlayState } from "./../states/gameplay/state";
 import { renderMainMenuUi, MainMenuRoot } from "./rootmainmenuui";
 
 /**
@@ -32,7 +32,7 @@ export class MainMenuState extends BaseState {
     }
 
     private startGame = (): void => {
-        let gameState = new GameState(this.stateStack);
+        let gameState = new GamePlayState(this.stateStack);
         this.stateStack.push(gameState);
     }
 

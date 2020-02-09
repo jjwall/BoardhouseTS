@@ -1,22 +1,22 @@
-import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializePosition, initializeVelocity, initializeTimer } from "./initializers";
-import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./coresystems";
+import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializePosition, initializeVelocity, initializeTimer } from "./../../engine/initializers";
+import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./../../engine/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
-import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./helpers";
-import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./enums";
-import { controlSystem } from "./controlsystem";
-import { Entity } from "./entity";
-import { playerAnim } from "../../data/animations/player";
-import { BaseState } from "./basestate";
-import { Widget } from "../ui/widget";
-import { createWidget } from "../ui/widget";
-import { layoutWidget } from "../ui/layoutwidget";
-import { renderGameUi, Root } from "./rootgameui";
+import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./../../engine/helpers";
+import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./../../engine/enums";
+import { controlSystem } from "./../../engine/controlsystem";
+import { Entity } from "./../../engine/entity";
+import { playerAnim } from "../../../data/animations/player";
+import { BaseState } from "./../../engine/basestate";
+import { Widget } from "../../ui/widget";
+import { createWidget } from "../../ui/widget";
+import { layoutWidget } from "../../ui/layoutwidget";
+import { renderGameUi, Root } from "./rootui";
 
 /**
  * GameState that handles updating of all game-related systems.
  */
 
-export class GameState extends BaseState {
+export class GamePlayState extends BaseState {
     public gameScene: Scene;
     public gameCamera: Camera;
     public uiScene: Scene;
