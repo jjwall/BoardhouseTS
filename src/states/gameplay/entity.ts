@@ -3,9 +3,9 @@ import { ControlComponent } from "../../components/control";
 import { AnimationComponent } from "./../../components/animation";
 import { PositionComponent } from "./../../components/position";
 import { VelocityComponent } from "./../../components/velocity";
+import { SpriteComponent } from "./../../components/sprite";
 import { TimerComponent } from "./../../components/timer";
 import { HitBoxTypes } from "./../../components/hitbox";
-import { Mesh } from "three";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
@@ -16,7 +16,7 @@ import { Mesh } from "three";
 export class Entity {
      public pos: PositionComponent;
      public vel: VelocityComponent;
-     public sprite: Mesh;
+     public sprite: SpriteComponent;
      public anim: AnimationComponent;
      public control: ControlComponent;
      public hitBox: HitBoxComponent;
