@@ -1,8 +1,8 @@
-import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializeTimer } from "./../../components/initializers";
+import { initializeAnimation, initializeControls, initializeSprite, initializeTimer } from "./../../components/initializers";
 import { collisionSystem, timerSystem, animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
-import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./../../engine/helpers";
-import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./../../engine/enums";
+import { playAudio } from "./../../engine/helpers";
+import { SequenceTypes } from "./../../engine/enums";
 import { controlSystem } from "./../../systems/controlsystem";
 import { Entity } from "./entity";
 import { playerAnim } from "../../../data/animations/player";
@@ -15,6 +15,7 @@ import { setPosition } from "./../../components/position"
 import { positionSystem } from "./../../systems/position";
 import { setVelocity } from "./../../components/velocity";
 import { velocitySystem } from "./../../systems/velocity";
+import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -62,7 +63,7 @@ export class GamePlayState extends BaseState {
 
         // Set up player entity.
         let player = new Entity();
-        player.HitBoxTypes = HitBoxTypes.PLAYER;
+        player.hitBoxTypes = HitBoxTypes.PLAYER;
         this.playerEntity = player;
         player.pos = setPosition(150, 150, 5);
         player.sprite = initializeSprite("./data/textures/msknight.png", this.gameScene, 4);
@@ -70,18 +71,18 @@ export class GamePlayState extends BaseState {
         player.vel = setVelocity(1);
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
-        player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
+        player.hurtBox = setHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
         player.timer = initializeTimer(250, () => {
             // this.removeEntity(player);
             // Remove player sprite from scene.
             // this.gameScene.remove(player.sprite);
             // this.stateStack.pop();
         });
-        player.hitBox = initializeHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], [], 50, 50, 100, -10);
+        player.hitBox = setHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], [], 50, 50, 100, -10);
         if (this.turnOnHitboxes) setHitBoxGraphic(player.sprite, player.hitBox);
         if (this.turnOnHitboxes) setHurtBoxGraphic(player.sprite, player.hurtBox);
         player.hitBox.onHit = function(player, other) {
-            if (other.HitBoxTypes == HitBoxTypes.ENEMY) {
+            if (other.hitBoxTypes == HitBoxTypes.ENEMY) {
                 //playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false);
                 //player.vel.positional.copy(other.vel.positional.clone().multiplyScalar(8));
             }
@@ -93,7 +94,7 @@ export class GamePlayState extends BaseState {
         let enemy = new Entity();
         enemy.pos = setPosition(750, 200, 4);
         enemy.sprite = initializeSprite("./data/textures/cottage.png", this.gameScene, 8);
-        enemy.hitBox = initializeHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
+        enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
         if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {
             rootComponent.addClick();

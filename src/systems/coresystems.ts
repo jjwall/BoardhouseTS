@@ -5,7 +5,7 @@ import {
 } from "three";
 import { Entity } from "./../states/gameplay/entity";
 import { Resources } from "./../engine/resourcemanager";
-import { Rect, Manifold, getManifold, getHitbox } from "./../engine/commontypes";
+import { Rect, Manifold, getManifold, getHitbox } from "./../components/hitbox";
 
 /**
  * Animation System

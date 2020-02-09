@@ -1,9 +1,10 @@
-import { AnimationComponent, HitBoxComponent, HurtBoxComponent, TimerComponent } from "./../../components/corecomponents";
+import { AnimationComponent, TimerComponent } from "./../../components/corecomponents";
 import { ControlComponent } from "./../../components/controlcomponent";
 import { Mesh } from "three";
-import { HitBoxTypes } from "./../../engine/enums";
+import { HitBoxTypes } from "./../../components/hitbox";
 import { PositionComponent } from "./../../components/position";
 import { VelocityComponent } from "./../../components/velocity";
+import { HitBoxComponent, HurtBoxComponent } from "./../../components/hitbox";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
@@ -12,7 +13,7 @@ import { VelocityComponent } from "./../../components/velocity";
  * the properties within the component.
  */
 export class Entity {
-     public HitBoxTypes: HitBoxTypes;
+     public hitBoxTypes: HitBoxTypes;
      public pos: PositionComponent;
      public vel: VelocityComponent;
      public sprite: Mesh;

@@ -9,14 +9,10 @@ import {
     Vector3,
 } from "three";
 import { 
-    HitBoxTypes,
-    HurtBoxTypes,
     SequenceTypes,
 } from "./../engine/enums";
 import {
     AnimationComponent,
-    HitBoxComponent,
-    HurtBoxComponent,
     TimerComponent,
 } from "./corecomponents";
 import { Resources } from "./../engine/resourcemanager";
@@ -61,68 +57,6 @@ export function initializeControls(): ControlComponent {
     };
 }
 
-/**
- * Helper for initializing an entity's hit box component.
- * Note: ``onHit`` callback should be set independently.
- * @param entMesh An entity's mesh A.K.A. sprite to be set before calling this function.
- * @param collideType This entity's HitBox type.
- * @param collidesWith List of HitBox types the HitBox can collide with.
- * @param heightOverride (Optional) Exact number of pixels to set for the hitBox's height.
- * Must also set ``widthOverride`` for this to take effect.
- * @param widthOverride (Optional) Exact number of pixels to set for the hitBox's width.
- * Must also set ``heightOverride`` for this to take effect.
- * @param offsetX (Default 0) Number of pixels to offset the hitbox's x position.
- * @param offsetY (Default 0) Number of pixels to offset the hitbox's y position.
- */
-export function initializeHitBox(entMesh: Mesh, collideType: HitBoxTypes, collidesWith: HitBoxTypes[], collidesWithHurtbox: HurtBoxTypes[], heightOverride?: number, widthOverride?: number, offsetX: number = 0, offsetY: number = 0) : HitBoxComponent {
-    let hitBox: HitBoxComponent = { collideType: collideType, collidesWith: collidesWith, collidesWithHurtbox: collidesWithHurtbox, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
-
-    if (heightOverride && widthOverride) {
-        if (heightOverride <= 0 || widthOverride <= 0)
-            throw Error("overrides can't be less than or equal to 0.");
-        hitBox.height = heightOverride;
-        hitBox.width = widthOverride;
-    }
-    else {
-        const boundingBox = new Box3().setFromObject(entMesh);
-
-        hitBox.height = boundingBox.max.y - boundingBox.min.y;
-        hitBox.width =  boundingBox.max.x - boundingBox.min.x;
-    }
-
-    return hitBox;
-}
-
-/**
- * Helper for initializing an entity's hurt box component.
- * Note: ``onHurt`` callback should be set independently.
- * @param entMesh An entity's mesh A.K.A. sprite to be set before calling this function.
- * @param hurtType HurtBox type.
- * @param heightOverride (Optional) Exact number of pixels to set for the hurtBox's height.
- * Must also set ``widthOverride`` for this to take effect.
- * @param widthOverride (Optional) Exact number of pixels to set for the hurtBox's width.
- * Must also set ``heightOverride`` for this to take effect.
- * @param offsetX (Default 0) Number of pixels to offset the hurtbox's x position.
- * @param offsetY (Default 0) Number of pixels to offset the hurtbox's y position.
- */
-export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, heightOverride?: number, widthOverride?: number, offsetX: number = 0, offsetY: number = 0) : HurtBoxComponent {
-    let hurtBox: HurtBoxComponent = { type: hurtType, height: 0, width: 0, offsetX: offsetX, offsetY: offsetY };
-
-    if (heightOverride && widthOverride) {
-        if (heightOverride <= 0 || widthOverride <= 0)
-            throw Error("overrides can't be less than or equal to 0.");
-        hurtBox.height = heightOverride;
-        hurtBox.width = widthOverride;
-    }
-    else {
-        const boundingBox = new Box3().setFromObject(entMesh);
-
-        hurtBox.height = boundingBox.max.y - boundingBox.min.y;
-        hurtBox.width =  boundingBox.max.x - boundingBox.min.x;
-    }
-
-    return hurtBox;
-}
 
 /**
  * Helper method to initialize sprite component for an entity. Also adds sprite to stage.

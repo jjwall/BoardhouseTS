@@ -5,11 +5,10 @@ import {
 } from "three";
 import { 
     AnimationComponent,
-    HurtBoxComponent,
-    HitBoxComponent,
 } from "./../components/corecomponents";
 import { Resources } from "./resourcemanager";
 import { SequenceTypes } from "./enums";
+import { HurtBoxComponent, HitBoxComponent } from "./../components/hitbox";
 
 /**
  * Helper for audio, hitbox and hurtbox graphics
@@ -56,36 +55,6 @@ export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent
     return anim;
 }
 
-/**
- * Helper to set visuals for a hurtBox.
- * Used for testing hit collision assumptions.
- * @param entMesh
- * @param hurtBox
- */
-export function setHurtBoxGraphic(entMesh: Mesh, hurtBox: HurtBoxComponent) : void {
-    const hurtBoxGeometry = new PlaneGeometry(hurtBox.width, hurtBox.height);
-    const hurtBoxMaterial = new MeshBasicMaterial({ color: "#228B22" });
-    const hurtBoxMesh = new Mesh(hurtBoxGeometry, hurtBoxMaterial);
-    hurtBoxMesh.position.x += hurtBox.offsetX;
-    hurtBoxMesh.position.y += hurtBox.offsetY;
-    entMesh.add(hurtBoxMesh);
-}
-
-/**
- * Helper to set visuals for a hitBox.
- * Used for testing hit collision assumptions.
- * @param entMesh
- * @param hitBox
- */
-export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent) : void {
-    const hitBoxGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
-    const hitBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
-    const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
-    hitBoxMesh.position.x += hitBox.offsetX;
-    hitBoxMesh.position.y += hitBox.offsetY;
-    // TODO // Don't rotate hitbox graphic with the parent object, actual hitbox does not rotate.
-    entMesh.add(hitBoxMesh);
-}
 
 /**
  * Clears all rendered elements from container and it's children.
