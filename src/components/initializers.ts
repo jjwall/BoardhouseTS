@@ -12,7 +12,7 @@ import {
     HitBoxTypes,
     HurtBoxTypes,
     SequenceTypes,
-} from "./enums";
+} from "./../engine/enums";
 import {
     AnimationComponent,
     HitBoxComponent,
@@ -21,10 +21,10 @@ import {
     VelocityComponent,
     TimerComponent,
 } from "./corecomponents";
-import { Resources } from "./resourcemanager";
+import { Resources } from "./../engine/resourcemanager";
 import { ControlComponent } from "./controlcomponent";
-import { AnimationSchema } from "./engineinterfaces";
-import { Entity } from "./entity";
+import { AnimationSchema } from "./../engine/engineinterfaces";
+import { Entity } from "./../states/../states/gameplay/entity";
 
 /**
  * Initializes sprites, velocities, animations, etc.

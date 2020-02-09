@@ -1,6 +1,6 @@
-import { Entity } from "./entity";
-import { changeSequence } from "./helpers";
-import { HurtBoxTypes, SequenceTypes } from "./enums";
+import { Entity } from "./../states/gameplay/entity";
+import { changeSequence } from "./../engine/helpers";
+import { HurtBoxTypes, SequenceTypes } from "./../engine/enums";
 import { Vector3 } from "three";
 
 /**

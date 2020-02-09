@@ -1,7 +1,7 @@
 import { scaleToWindow } from "./scaletowindow";
 import { BaseState } from "./basestate";
 import { Widget } from "../ui/widget";
-import { Entity } from "./entity";
+import { Entity } from "./../states/gameplay/entity";
 import { last } from "./helpers";
 import { Vector3 } from "three";
 

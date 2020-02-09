@@ -3,9 +3,9 @@ import {
     NearestFilter,
     PlaneGeometry,
 } from "three";
-import { Entity } from "./entity";
-import { Resources } from "./resourcemanager";
-import { Rect, Manifold, getManifold, getHitbox } from "./commontypes";
+import { Entity } from "./../states/gameplay/entity";
+import { Resources } from "./../engine/resourcemanager";
+import { Rect, Manifold, getManifold, getHitbox } from "./../engine/commontypes";
 
 /**
  * Animation System

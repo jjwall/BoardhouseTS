@@ -3,10 +3,10 @@ import {
     Euler,
     Mesh,
 } from "three";
-import { Entity } from "./entity";
-import { AnimationSchema } from "./engineinterfaces";
-import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./enums";
-import { Manifold } from "./commontypes";
+import { Entity } from "./../states/gameplay/entity";
+import { AnimationSchema } from "./../engine/engineinterfaces";
+import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./../engine/enums";
+import { Manifold } from "./../engine/commontypes";
 
 /**
  * Position component

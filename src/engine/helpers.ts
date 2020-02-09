@@ -7,7 +7,7 @@ import {
     AnimationComponent,
     HurtBoxComponent,
     HitBoxComponent,
-} from "./corecomponents";
+} from "./../components/corecomponents";
 import { Resources } from "./resourcemanager";
 import { SequenceTypes } from "./enums";
 

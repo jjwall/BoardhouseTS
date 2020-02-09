@@ -1,10 +1,10 @@
-import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializePosition, initializeVelocity, initializeTimer } from "./../../engine/initializers";
-import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./../../engine/coresystems";
+import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializePosition, initializeVelocity, initializeTimer } from "./../../components/initializers";
+import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./../../engine/helpers";
 import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./../../engine/enums";
-import { controlSystem } from "./../../engine/controlsystem";
-import { Entity } from "./../../engine/entity";
+import { controlSystem } from "./../../systems/controlsystem";
+import { Entity } from "./entity";
 import { playerAnim } from "../../../data/animations/player";
 import { BaseState } from "./../../engine/basestate";
 import { Widget } from "../../ui/widget";
