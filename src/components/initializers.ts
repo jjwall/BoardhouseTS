@@ -8,11 +8,8 @@ import {
     MeshBasicMaterial,
     Vector3,
 } from "three";
-import {
-    TimerComponent,
-} from "./corecomponents";
 import { Resources } from "./../engine/resourcemanager";
-import { ControlComponent } from "./controlcomponent";
+import { ControlComponent } from "./control";
 import { Entity } from "./../states/../states/gameplay/entity";
 
 /**
@@ -62,13 +59,4 @@ export function initializeSprite(url: string, scene: Scene, pixelRatio?: number)
     scene.add(sprite);
 
     return sprite;
-}
-
-/**
- * Helper to initialize timer component for an entity.
- * @param ticksUntilTimeout 
- * @param ontimeout 
- */
-export function initializeTimer(ticksUntilTimeout: number, ontimeout: () => void): TimerComponent {
-    return { ticks: ticksUntilTimeout, ontimeout: ontimeout };
 }

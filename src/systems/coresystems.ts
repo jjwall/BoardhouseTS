@@ -34,23 +34,3 @@ export function animationSystem(ents: ReadonlyArray<Entity>) : void {
     });
 }
 
-
-/**
- * Timer system.
- * @param ents 
- */
-export function timerSystem(ents: ReadonlyArray<Entity>) {
-    ents.forEach(ent => {
-        if (ent.timer) {
-            ent.timer.ticks--;
-
-            if (ent.timer.ticks <= 0) {
-                // Trigger ontimeout callback function.
-                ent.timer.ontimeout();
-
-                // Remove timer component from the entity.
-                ent.timer = undefined;
-            }
-        }
-    });
-}

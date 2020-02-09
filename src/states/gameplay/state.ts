@@ -1,5 +1,5 @@
-import { initializeControls, initializeSprite, initializeTimer } from "./../../components/initializers";
-import { timerSystem, animationSystem } from "./../../systems/coresystems";
+import { initializeControls, initializeSprite } from "./../../components/initializers";
+import { animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { playAudio } from "./../../engine/helpers";
 import { controlSystem } from "../../systems/control";
@@ -17,6 +17,8 @@ import { velocitySystem } from "./../../systems/velocity";
 import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
 import { collisionSystem } from "./../../systems/collision";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
+import { setTimer } from "./../../components/timer";
+import { timerSystem } from "./../../systems/timer";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -69,7 +71,7 @@ export class GamePlayState extends BaseState {
         player.vel.friction = 0.9;
         player.anim = setAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = setHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
-        player.timer = initializeTimer(250, () => {
+        player.timer = setTimer(250, () => {
             // this.removeEntity(player);
             // Remove player sprite from scene.
             // this.gameScene.remove(player.sprite);
