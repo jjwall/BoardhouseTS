@@ -18,16 +18,6 @@ import { Manifold } from "./../engine/commontypes";
  */
 
 /**
- * Velocity component.
- */
-export interface VelocityComponent {
-    acceleration: number;
-    positional: Vector3;
-    rotational: Euler;
-    friction?: number;
-}
-
-/**
  * HitBox Component that represents the area that when colliding with
  * any of the "collidesWith" enum entries, entity will "hit" them.
  */

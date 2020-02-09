@@ -1,5 +1,5 @@
-import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializeVelocity, initializeTimer } from "./../../components/initializers";
-import { collisionSystem, timerSystem, animationSystem, velocitySystem } from "./../../systems/coresystems";
+import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializeTimer } from "./../../components/initializers";
+import { collisionSystem, timerSystem, animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./../../engine/helpers";
 import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./../../engine/enums";
@@ -13,6 +13,8 @@ import { layoutWidget } from "../../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootui";
 import { setPosition } from "./../../components/position"
 import { positionSystem } from "./../../systems/position";
+import { setVelocity } from "./../../components/velocity";
+import { velocitySystem } from "./../../systems/velocity";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -23,10 +25,8 @@ export class GamePlayState extends BaseState {
     public gameCamera: Camera;
     public uiScene: Scene;
     public uiCamera: Camera;
-
     public playerEntity: Entity;
     public turnOnHitboxes = true; // turn this off when done testing
-
     public rootWidget: Widget;
     constructor(stateStack: BaseState[]) {
         super(stateStack);
@@ -67,7 +67,7 @@ export class GamePlayState extends BaseState {
         player.pos = setPosition(150, 150, 5);
         player.sprite = initializeSprite("./data/textures/msknight.png", this.gameScene, 4);
         player.control = initializeControls();
-        player.vel = initializeVelocity(1);
+        player.vel = setVelocity(1);
         player.vel.friction = 0.9;
         player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = initializeHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);

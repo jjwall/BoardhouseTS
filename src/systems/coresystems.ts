@@ -15,22 +15,6 @@ import { Rect, Manifold, getManifold, getHitbox } from "./../engine/commontypes"
  */
 
 /**
- * Rudimentary velocity implementation... will replace directions with
- * angle and magnitude later on
- */
-export function velocitySystem(ents: ReadonlyArray<Entity>) : void {
-    ents.forEach(ent => { 
-        if (ent.vel && ent.pos) {
-            if (ent.vel.friction) {
-                ent.vel.positional.multiplyScalar(ent.vel.friction);
-            }
-            ent.pos.loc.add(ent.vel.positional);
-            ent.pos.dir.applyEuler(ent.vel.rotational);
-        }
-    });
-}
-
-/**
  * Animation System.
  * @param ents Lists of ents to run system with. Must have anim and sprite components.
  */
