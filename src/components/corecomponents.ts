@@ -18,18 +18,6 @@ import { Manifold } from "./../engine/commontypes";
  */
 
 /**
- * Position component.
- */
-export interface PositionComponent {
-    /** Location vector. */
-    loc: Vector3;
-    /** Direction vector. */
-    dir: Vector3;
-    /** Wraparound behavior. */
-    wrap: boolean;
-}
-
-/**
  * Velocity component.
  */
 export interface VelocityComponent {

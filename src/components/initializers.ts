@@ -17,7 +17,6 @@ import {
     AnimationComponent,
     HitBoxComponent,
     HurtBoxComponent,
-    PositionComponent,
     VelocityComponent,
     TimerComponent,
 } from "./corecomponents";
@@ -124,30 +123,6 @@ export function initializeHurtBox(entMesh: Mesh, hurtType: HurtBoxTypes, heightO
     }
 
     return hurtBox;
-}
-
-/**
- * Helper for initializing an entity's position.
- * @param xPos 
- * @param yPos 
- * @param zPos 
- * @param startingDirection optional param. If not specified, direction will be: Vector3(1, 0, 0).
- */
-export function initializePosition(xPos: number, yPos: number, zPos: number, startingDirection?: Vector3, wrap?: boolean): PositionComponent {
-    let position: PositionComponent = { loc: new Vector3(xPos, yPos, zPos), dir: null, wrap: false };
-
-    if (startingDirection) {
-        position.dir = startingDirection;
-    }
-    else {
-        position.dir = new Vector3(1, 0, 0);
-    }
-      
-    if (wrap !== undefined) {
-        position.wrap = wrap;
-    }
-
-    return position;
 }
 
 /**

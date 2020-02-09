@@ -1,4 +1,4 @@
-import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializePosition, initializeVelocity, initializeTimer } from "./../../components/initializers";
+import { initializeAnimation, initializeControls, initializeHitBox, initializeHurtBox, initializeSprite, initializeVelocity, initializeTimer } from "./../../components/initializers";
 import { positionSystem, collisionSystem, timerSystem, animationSystem, velocitySystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { setHurtBoxGraphic, playAudio, setHitBoxGraphic } from "./../../engine/helpers";
@@ -11,6 +11,7 @@ import { Widget } from "../../ui/widget";
 import { createWidget } from "../../ui/widget";
 import { layoutWidget } from "../../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootui";
+import { setPosition } from "./../../components/position"
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -62,7 +63,7 @@ export class GamePlayState extends BaseState {
         let player = new Entity();
         player.HitBoxTypes = HitBoxTypes.PLAYER;
         this.playerEntity = player;
-        player.pos = initializePosition(150, 150, 5);
+        player.pos = setPosition(150, 150, 5);
         player.sprite = initializeSprite("./data/textures/msknight.png", this.gameScene, 4);
         player.control = initializeControls();
         player.vel = initializeVelocity(1);
@@ -89,7 +90,7 @@ export class GamePlayState extends BaseState {
 
         // Set up enemy entity.
         let enemy = new Entity();
-        enemy.pos = initializePosition(750, 200, 4);
+        enemy.pos = setPosition(750, 200, 4);
         enemy.sprite = initializeSprite("./data/textures/cottage.png", this.gameScene, 8);
         enemy.hitBox = initializeHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
         if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);

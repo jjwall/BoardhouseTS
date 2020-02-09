@@ -1,7 +1,8 @@
-import { PositionComponent, VelocityComponent, AnimationComponent, HitBoxComponent, HurtBoxComponent, TimerComponent } from "./../../components/corecomponents";
+import { VelocityComponent, AnimationComponent, HitBoxComponent, HurtBoxComponent, TimerComponent } from "./../../components/corecomponents";
 import { ControlComponent } from "./../../components/controlcomponent";
 import { Mesh } from "three";
 import { HitBoxTypes } from "./../../engine/enums";
+import { PositionComponent } from "./../../components/position";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
