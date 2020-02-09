@@ -1,5 +1,5 @@
 import { initializeAnimation, initializeControls, initializeSprite, initializeTimer } from "./../../components/initializers";
-import { collisionSystem, timerSystem, animationSystem } from "./../../systems/coresystems";
+import { timerSystem, animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { playAudio } from "./../../engine/helpers";
 import { SequenceTypes } from "./../../engine/enums";
@@ -16,6 +16,7 @@ import { positionSystem } from "./../../systems/position";
 import { setVelocity } from "./../../components/velocity";
 import { velocitySystem } from "./../../systems/velocity";
 import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
+import { collisionSystem } from "./../../systems/collision";
 
 /**
  * GameState that handles updating of all game-related systems.
