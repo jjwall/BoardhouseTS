@@ -1,18 +1,6 @@
-import {
-    MeshBasicMaterial,
-    NearestFilter,
-    PlaneGeometry,
-} from "three";
-import { Entity } from "./../states/gameplay/entity";
+import { MeshBasicMaterial, NearestFilter, Mesh } from "three";
+import { AnimationComponent } from "./../components/animation";
 import { Resources } from "./../engine/resourcemanager";
-import { Rect, Manifold, getManifold, getHitbox } from "./../components/hitbox";
-
-/**
- * Animation System
- * Collision System
- * Position System
- * Timer System
- */
 
 /**
  * Animation System.
@@ -34,3 +22,7 @@ export function animationSystem(ents: ReadonlyArray<Entity>) : void {
     });
 }
 
+type Entity = {
+    anim: AnimationComponent;
+    sprite: Mesh;
+}

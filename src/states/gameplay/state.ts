@@ -1,5 +1,4 @@
 import { initializeControls, initializeSprite } from "./../../components/initializers";
-import { animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { playAudio } from "./../../engine/helpers";
 import { controlSystem } from "../../systems/control";
@@ -17,6 +16,7 @@ import { velocitySystem } from "./../../systems/velocity";
 import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
 import { collisionSystem } from "./../../systems/collision";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
+import { animationSystem } from "./../../systems/animation";
 import { setTimer } from "./../../components/timer";
 import { timerSystem } from "./../../systems/timer";
 
