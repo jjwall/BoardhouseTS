@@ -93,19 +93,6 @@ export function collisionSystem(ents: ReadonlyArray<Entity>) {
 }
 
 /**
- * Position system.
- * @param ents
- */
-export function positionSystem(ents: ReadonlyArray<Entity>) {
-    ents.forEach(ent => {
-        if (ent.sprite && ent.pos) {
-            ent.sprite.position.copy(ent.pos.loc);
-            ent.sprite.rotation.set(0, 0, Math.atan2(ent.pos.dir.y, ent.pos.dir.x));
-        }
-    });
-}
-
-/**
  * Timer system.
  * @param ents 
  */
