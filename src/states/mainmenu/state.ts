@@ -1,9 +1,9 @@
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
-import { BaseState } from "./basestate";
-import { layoutWidget } from "../ui/layoutwidget";
-import { Widget, createWidget } from "../ui/widget";
-import { GamePlayState } from "./../states/gameplay/state";
-import { renderMainMenuUi, MainMenuRoot } from "./rootmainmenuui";
+import { BaseState } from "./../../engine/basestate";
+import { layoutWidget } from "./../../ui/layoutwidget";
+import { Widget, createWidget } from "./../../ui/widget";
+import { GamePlayState } from "./../../states/gameplay/state";
+import { renderMainMenuUi, MainMenuRoot } from "./rootui";
 
 /**
  * Main Menu state

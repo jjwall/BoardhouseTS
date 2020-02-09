@@ -3,7 +3,7 @@ import { Resources, loadTextures, loadAudioElements, loadFonts } from "./resourc
 import { BaseState } from "./basestate";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
-import { MainMenuState } from "./mainmenustate";
+import { MainMenuState } from "./../states/mainmenu/state";
 import { GamePlayState } from "./../states/gameplay/state";
 
 /**
