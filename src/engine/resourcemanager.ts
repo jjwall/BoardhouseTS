@@ -1,12 +1,5 @@
-import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./frameworkinterfaces";
+import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./interfaces";
 import { Texture, TextureLoader, Font, FontLoader, BufferGeometry, ShapeBufferGeometry} from "three";
-
-/**
- * Textures
- * Fonts
- * Audio
- * Text Geometry
- */
 
 export class Resources
 {

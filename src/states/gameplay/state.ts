@@ -2,7 +2,7 @@ import { initializeControls, initializeSprite, initializeTimer } from "./../../c
 import { timerSystem, animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { playAudio } from "./../../engine/helpers";
-import { controlSystem } from "./../../systems/controlsystem";
+import { controlSystem } from "../../systems/control";
 import { Entity } from "./entity";
 import { playerAnim } from "./../../animations/player";
 import { BaseState } from "./../../engine/basestate";
@@ -17,10 +17,6 @@ import { velocitySystem } from "./../../systems/velocity";
 import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
 import { collisionSystem } from "./../../systems/collision";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
-
-/**
- * GameState that handles updating of all game-related systems.
- */
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;

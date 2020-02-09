@@ -2,10 +2,6 @@ import { Widget } from "./widget";
 import { Component } from "./component";
 import { Scene } from "three";
 
-/**
- * Interfaces
- */
-
 export interface JSXElement {
     type: string | { new(props: {}, scene: Scene): Component<{}, any> } ;
     props: object;

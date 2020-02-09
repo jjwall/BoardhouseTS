@@ -6,10 +6,6 @@ import { Scene } from "THREE";
 import { Widget } from "./../../ui/widget";
 import { Component } from "./../../ui/component";
 
-/**
- * Main Menu UI objects
- */
-
 export function renderMainMenuUi(scene: Scene, rootWidget: Widget, startGame: () => void): MainMenuRoot {
     let rootInstance = renderWidget(<MainMenuRoot startGame = {startGame} />, rootWidget, scene);
 

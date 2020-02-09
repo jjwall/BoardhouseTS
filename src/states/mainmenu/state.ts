@@ -5,10 +5,6 @@ import { Widget, createWidget } from "./../../ui/widget";
 import { GamePlayState } from "./../../states/gameplay/state";
 import { renderMainMenuUi, MainMenuRoot } from "./rootui";
 
-/**
- * Main Menu state
- */
-
 export class MainMenuState extends BaseState {
     public uiScene: Scene;
     public uiCamera: Camera;

@@ -5,12 +5,6 @@ import { Entity } from "./../states/gameplay/entity";
 import { last } from "./helpers";
 import { Vector3 } from "three";
 
-/**
- * Key Controls
- * Hover
- * Click
- */
-
 export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
     let hoveredWidgets: Widget[] = [];
     // call first to scale to current window dimensions

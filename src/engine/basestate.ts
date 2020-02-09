@@ -1,11 +1,6 @@
-import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./frameworkinterfaces";
+import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
 import { WebGLRenderer } from "THREE";
 import { Widget } from "../ui/widget";
-
-/**
- * Registry of entities
- * Registry of state systems
- */
 
 export abstract class BaseState {
     protected constructor(stateStack: BaseState[]) {

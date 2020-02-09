@@ -1,9 +1,5 @@
 import { JSXElement } from "./interfaces";
 
-/**
- * Create JSX Element
- */
-
 export function createJSXElement(type: string, config: object, ...args: JSXElement[]): JSXElement {
     const props = Object.assign({}, config);
     const hasChildren = args.length > 0;

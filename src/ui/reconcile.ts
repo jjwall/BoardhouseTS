@@ -4,10 +4,6 @@ import { instantiate } from "./instantiate";
 import { Widget } from "./widget";
 import { Scene } from "three";
 
-/**
- * Update a componentinstance, create new instance if necessary
- */
-
 export function reconcile(parentWidget: Widget, instance: Instance, element: JSXElement, scene: Scene): Instance {
     if (instance == null) {
         // Create instance.

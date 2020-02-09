@@ -1,5 +1,5 @@
-import { Entity } from "./../states/gameplay/entity";
-import { changeSequence, SequenceTypes } from "./../components/animation";
+import { Entity } from "../states/gameplay/entity";
+import { changeSequence, SequenceTypes } from "../components/animation";
 import { Vector3 } from "three";
 
 /**

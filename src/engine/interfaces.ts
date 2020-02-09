@@ -1,10 +1,6 @@
 import { BaseState } from "./basestate";
 import { Texture, Font } from "three";
 
-/**
- * Maps
- */
-
 export interface RegistryKeyToSystemMap {
     [key: string]: (ents: ReadonlyArray<Object>, state: BaseState) => void;
 }

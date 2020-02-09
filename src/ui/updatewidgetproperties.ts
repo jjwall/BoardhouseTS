@@ -1,9 +1,5 @@
 import { Widget } from "./widget";
 
-/**
- * Update widget properties
- */
-
 export function updateWidgetProperties(widget: Widget, prevProps: object, nextProps: object): void {
     const isEvent = name => name.startsWith("on");
     const isAttribute = name => !isEvent(name);

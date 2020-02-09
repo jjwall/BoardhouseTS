@@ -1,9 +1,5 @@
 import { Mesh, Scene, Group, Object3D, Matrix4 } from "three";
 
-/**
- * Connects widget to THREE (I think)
- */
-
 interface AttrKeyToAttrValueMap {
     [key: string]: string;
 }
