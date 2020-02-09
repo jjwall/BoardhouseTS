@@ -1,5 +1,5 @@
 import { Mesh, MeshBasicMaterial, PlaneGeometry, NearestFilter, ShapeBufferGeometry } from "three";
-import { Resources } from "./../resourcemanager";
+import { Resources } from "./../engine/resourcemanager";
 import { Widget } from "./widget";
 
 /**

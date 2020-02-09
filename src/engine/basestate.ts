@@ -1,6 +1,6 @@
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./frameworkinterfaces";
 import { WebGLRenderer } from "THREE";
-import { Widget } from "./ui/widget";
+import { Widget } from "../ui/widget";
 
 /**
  * Registry of entities

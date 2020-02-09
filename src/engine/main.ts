@@ -1,6 +1,6 @@
 import { WebGLRenderer } from "three";
-import { Resources, loadTextures, loadAudioElements, loadFonts } from "../resourcemanager";
-import { BaseState } from "../basestate";
+import { Resources, loadTextures, loadAudioElements, loadFonts } from "./resourcemanager";
+import { BaseState } from "./basestate";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./mainmenustate";

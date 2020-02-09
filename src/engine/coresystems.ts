@@ -4,7 +4,7 @@ import {
     PlaneGeometry,
 } from "three";
 import { Entity } from "./entity";
-import { Resources } from "../resourcemanager";
+import { Resources } from "./resourcemanager";
 import { Rect, Manifold, getManifold, getHitbox } from "./commontypes";
 
 /**

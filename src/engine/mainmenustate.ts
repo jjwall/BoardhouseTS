@@ -1,5 +1,5 @@
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
-import { BaseState } from "../basestate";
+import { BaseState } from "./basestate";
 import { layoutWidget } from "../ui/layoutwidget";
 import { Widget, createWidget } from "../ui/widget";
 import { GameState } from "./gamestate";

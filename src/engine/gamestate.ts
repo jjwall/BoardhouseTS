@@ -6,7 +6,7 @@ import { HitBoxTypes, HurtBoxTypes, SequenceTypes } from "./enums";
 import { controlSystem } from "./controlsystem";
 import { Entity } from "./entity";
 import { playerAnim } from "../../data/animations/player";
-import { BaseState } from "../basestate";
+import { BaseState } from "./basestate";
 import { Widget } from "../ui/widget";
 import { createWidget } from "../ui/widget";
 import { layoutWidget } from "../ui/layoutwidget";

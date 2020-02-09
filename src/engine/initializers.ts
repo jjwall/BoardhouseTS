@@ -21,7 +21,7 @@ import {
     VelocityComponent,
     TimerComponent,
 } from "./corecomponents";
-import { Resources } from "../resourcemanager";
+import { Resources } from "./resourcemanager";
 import { ControlComponent } from "./controlcomponent";
 import { AnimationSchema } from "./engineinterfaces";
 import { Entity } from "./entity";
