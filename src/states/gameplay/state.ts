@@ -1,6 +1,6 @@
-import { initializeControls, initializeSprite } from "./../../components/initializers";
-import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
+import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera, FirstPersonControls } from "three";
 import { playAudio } from "./../../engine/helpers";
+import { setControl } from "./../../components/control";
 import { controlSystem } from "../../systems/control";
 import { Entity } from "./entity";
 import { playerAnim } from "./../../animations/player";
@@ -9,7 +9,7 @@ import { Widget } from "./../../ui/widget";
 import { createWidget } from "../../ui/widget";
 import { layoutWidget } from "../../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootui";
-import { setPosition } from "./../../components/position"
+import { setPosition } from "./../../components/position";
 import { positionSystem } from "./../../systems/position";
 import { setVelocity } from "./../../components/velocity";
 import { velocitySystem } from "./../../systems/velocity";
@@ -19,6 +19,7 @@ import { setAnimation, SequenceTypes } from "./../../components/animation";
 import { animationSystem } from "./../../systems/animation";
 import { setTimer } from "./../../components/timer";
 import { timerSystem } from "./../../systems/timer";
+import { setSprite } from "./../../components/sprite";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -65,8 +66,8 @@ export class GamePlayState extends BaseState {
         player.hitBoxTypes = HitBoxTypes.PLAYER;
         this.playerEntity = player;
         player.pos = setPosition(150, 150, 5);
-        player.sprite = initializeSprite("./data/textures/msknight.png", this.gameScene, 4);
-        player.control = initializeControls();
+        player.sprite = setSprite("./data/textures/msknight.png", this.gameScene, 4);
+        player.control = setControl();
         player.vel = setVelocity(1);
         player.vel.friction = 0.9;
         player.anim = setAnimation(SequenceTypes.walk, playerAnim);
@@ -92,7 +93,7 @@ export class GamePlayState extends BaseState {
         // Set up enemy entity.
         let enemy = new Entity();
         enemy.pos = setPosition(750, 200, 4);
-        enemy.sprite = initializeSprite("./data/textures/cottage.png", this.gameScene, 8);
+        enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, 8);
         enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
         if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = function() {

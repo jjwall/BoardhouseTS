@@ -16,3 +16,21 @@ export interface ControlComponent {
     camera: Camera;
     mousePos: Vector3;
 }
+
+/**
+ * Helper for initializing ControlComponent with starting values.
+ */
+export function setControl(): ControlComponent {
+    return {
+        jump: false,
+        attack: false,
+        attackTimer: 0,
+        attacked: false,
+        left: false,
+        right: false,
+        up: false,
+        down: false,
+        camera: null,
+        mousePos: null,
+    };
+}

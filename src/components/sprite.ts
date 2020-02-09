@@ -1,41 +1,5 @@
-import {
-    Box3,
-    Mesh,
-    Scene,
-    Euler,
-    NearestFilter,
-    PlaneGeometry,
-    MeshBasicMaterial,
-    Vector3,
-} from "three";
+import { Mesh, Scene, NearestFilter, PlaneGeometry, MeshBasicMaterial } from "three";
 import { Resources } from "./../engine/resourcemanager";
-import { ControlComponent } from "./control";
-import { Entity } from "./../states/../states/gameplay/entity";
-
-/**
- * Initializes sprites, velocities, animations, etc.
- */
-
-
-/**
- * Helper for initializing ControlComponent with starting values.
- * at creation of the object.
- */
-export function initializeControls(): ControlComponent {
-    return {
-        jump: false,
-        attack: false,
-        attackTimer: 0,
-        attacked: false,
-        left: false,
-        right: false,
-        up: false,
-        down: false,
-        camera: null,
-        mousePos: null,
-    };
-}
-
 
 /**
  * Helper method to initialize sprite component for an entity. Also adds sprite to stage.
@@ -43,7 +7,7 @@ export function initializeControls(): ControlComponent {
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function initializeSprite(url: string, scene: Scene, pixelRatio?: number) : Mesh {
+export function setSprite(url: string, scene: Scene, pixelRatio?: number) : Mesh {
     if (!pixelRatio) {
         pixelRatio = 1;
     }
