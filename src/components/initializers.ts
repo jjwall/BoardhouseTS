@@ -8,35 +8,17 @@ import {
     MeshBasicMaterial,
     Vector3,
 } from "three";
-import { 
-    SequenceTypes,
-} from "./../engine/enums";
 import {
-    AnimationComponent,
     TimerComponent,
 } from "./corecomponents";
 import { Resources } from "./../engine/resourcemanager";
 import { ControlComponent } from "./controlcomponent";
-import { AnimationSchema } from "./../engine/engineinterfaces";
 import { Entity } from "./../states/../states/gameplay/entity";
 
 /**
  * Initializes sprites, velocities, animations, etc.
  */
 
-/**
- * Helper for intializing an entity's animation blob and starting sequence.
- * @param startingSequence 
- * @param animBlob 
- */
-export function initializeAnimation(startingSequence: SequenceTypes, animBlob: AnimationSchema) : AnimationComponent {
-    return {
-        sequence: startingSequence,
-        blob: animBlob,
-        ticks: animBlob[startingSequence][0].ticks,
-        frame: 0,
-    }
-}
 
 /**
  * Helper for initializing ControlComponent with starting values.

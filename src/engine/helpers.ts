@@ -1,14 +1,4 @@
-import {
-    Mesh,
-    MeshBasicMaterial,
-    PlaneGeometry,
-} from "three";
-import { 
-    AnimationComponent,
-} from "./../components/corecomponents";
 import { Resources } from "./resourcemanager";
-import { SequenceTypes } from "./enums";
-import { HurtBoxComponent, HitBoxComponent } from "./../components/hitbox";
 
 /**
  * Helper for audio, hitbox and hurtbox graphics
@@ -39,22 +29,6 @@ export function playAudio(url: string, volume?: number, loop?: boolean) : void {
             throw Error(`Your browser threw "${ex}". To resolve this on Chrome, go to chrome://flags/#autoplay-policy and set the Autoplay-policy to "No user gesture is required."`);
         });
 }
-
-/**
- * Helper for swapping out an animation sequence.
- * @param sequence 
- * @param anim 
- * @param frame 
- */
-export function changeSequence(sequence: SequenceTypes, anim: AnimationComponent, frame: number = 0) : AnimationComponent {
-    if (anim.sequence !== sequence) {
-        anim.sequence = sequence;
-        anim.frame = frame;
-    }
-    
-    return anim;
-}
-
 
 /**
  * Clears all rendered elements from container and it's children.

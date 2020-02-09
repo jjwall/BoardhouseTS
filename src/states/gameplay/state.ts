@@ -1,13 +1,12 @@
-import { initializeAnimation, initializeControls, initializeSprite, initializeTimer } from "./../../components/initializers";
+import { initializeControls, initializeSprite, initializeTimer } from "./../../components/initializers";
 import { timerSystem, animationSystem } from "./../../systems/coresystems";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { playAudio } from "./../../engine/helpers";
-import { SequenceTypes } from "./../../engine/enums";
 import { controlSystem } from "./../../systems/controlsystem";
 import { Entity } from "./entity";
-import { playerAnim } from "../../../data/animations/player";
+import { playerAnim } from "./../../animations/player";
 import { BaseState } from "./../../engine/basestate";
-import { Widget } from "../../ui/widget";
+import { Widget } from "./../../ui/widget";
 import { createWidget } from "../../ui/widget";
 import { layoutWidget } from "../../ui/layoutwidget";
 import { renderGameUi, Root } from "./rootui";
@@ -17,6 +16,7 @@ import { setVelocity } from "./../../components/velocity";
 import { velocitySystem } from "./../../systems/velocity";
 import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
 import { collisionSystem } from "./../../systems/collision";
+import { setAnimation, SequenceTypes } from "./../../components/animation";
 
 /**
  * GameState that handles updating of all game-related systems.
@@ -71,7 +71,7 @@ export class GamePlayState extends BaseState {
         player.control = initializeControls();
         player.vel = setVelocity(1);
         player.vel.friction = 0.9;
-        player.anim = initializeAnimation(SequenceTypes.walk, playerAnim);
+        player.anim = setAnimation(SequenceTypes.walk, playerAnim);
         player.hurtBox = setHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
         player.timer = initializeTimer(250, () => {
             // this.removeEntity(player);

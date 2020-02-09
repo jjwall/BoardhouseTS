@@ -1,10 +1,11 @@
-import { AnimationComponent, TimerComponent } from "./../../components/corecomponents";
+import { TimerComponent } from "./../../components/corecomponents";
 import { ControlComponent } from "./../../components/controlcomponent";
 import { Mesh } from "three";
 import { HitBoxTypes } from "./../../components/hitbox";
 import { PositionComponent } from "./../../components/position";
 import { VelocityComponent } from "./../../components/velocity";
 import { HitBoxComponent, HurtBoxComponent } from "./../../components/hitbox";
+import { AnimationComponent } from "./../../components/animation";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
