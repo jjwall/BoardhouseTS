@@ -1,8 +1,8 @@
 import { Widget } from "./widget";
 
-export function updateWidgetProperties(widget: Widget, prevProps: object, nextProps: object): void {
-    const isEvent = name => name.startsWith("on");
-    const isAttribute = name => !isEvent(name);
+export function updateWidgetProperties(widget: Widget, prevProps: object, nextProps: {[index: string]: any}): void {
+    const isEvent = (name: string) => name.startsWith("on");
+    const isAttribute = (name: string) => !isEvent(name);
 
     // Remove event listeners.
     Object.keys(prevProps).filter(isEvent).forEach(name => {

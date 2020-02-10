@@ -48,11 +48,11 @@ export function reconcile(parentWidget: Widget, instance: Instance, element: JSX
     }
 }
 
-function reconcileChildren(instance: WidgetInstance, element: JSXElement, scene: Scene): WidgetInstance[] {
+function reconcileChildren(instance: WidgetInstance, element: JSXElement, scene: Scene): WidgetInstance[] | Instance[] {
     const widget = instance.widget;
     const childInstances = instance.children;
     const nextChildElements = element.children || [];
-    const newChildInstances = [];
+    const newChildInstances: Instance[] = [];
     const count = Math.max(childInstances.length, nextChildElements.length);
 
     for (let i = 0; i < count; i++) {

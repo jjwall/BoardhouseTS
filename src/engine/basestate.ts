@@ -53,7 +53,7 @@ export abstract class BaseState {
      * and every specific registry for each ecsKey component match.
      * @param ent 
      */
-    protected registerEntity<E>(ent: E) {
+    protected registerEntity<E extends {[index: string]: any}>(ent: E) {
         let entityComponents: Array<string> = [];
 
         for (var component in ent) {
