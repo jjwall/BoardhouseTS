@@ -20,6 +20,8 @@ import { animationSystem } from "./../../systems/animation";
 import { setTimer } from "./../../components/timer";
 import { timerSystem } from "./../../systems/timer";
 import { setSprite } from "./../../components/sprite";
+import { setCooldown } from "./../../components/cooldown";
+import { cooldownSystem } from "./../../systems/cooldown";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -29,6 +31,11 @@ export class GamePlayState extends BaseState {
     public playerEntity: Entity;
     public turnOnHitboxes = true; // turn this off when done testing
     public rootWidget: Widget;
+    public rootComponent: Root;
+
+    // Set up game state.
+    public clicks: number = 0;
+    
     constructor(stateStack: BaseState[]) {
         super(stateStack);
         // Set up game scene.
@@ -49,7 +56,7 @@ export class GamePlayState extends BaseState {
 
         this.uiScene.add(this.rootWidget);
 
-        let rootComponent = renderGameUi(this.uiScene, this.rootWidget);
+        this.rootComponent = renderGameUi(this.uiScene, this.rootWidget, { addClicks: this.addClicks });
 
         // Register systems.
         this.registerSystem(controlSystem, "control");
@@ -58,6 +65,7 @@ export class GamePlayState extends BaseState {
         this.registerSystem(animationSystem);
         this.registerSystem(timerSystem);
         this.registerSystem(positionSystem);
+        this.registerSystem(cooldownSystem);
 
         playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
@@ -81,10 +89,16 @@ export class GamePlayState extends BaseState {
         player.hitBox = setHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], [], 50, 50, 100, -10);
         if (this.turnOnHitboxes) setHitBoxGraphic(player.sprite, player.hitBox);
         if (this.turnOnHitboxes) setHurtBoxGraphic(player.sprite, player.hurtBox);
-        player.hitBox.onHit = function(player, other) {
-            if (other.hitBoxTypes == HitBoxTypes.ENEMY) {
-                //playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false);
-                //player.vel.positional.copy(other.vel.positional.clone().multiplyScalar(8));
+        player.cooldown = setCooldown(7);
+        player.hitBox.onHit = (self, other) => {
+            if (other.hitBox.collideType === HitBoxTypes.ENEMY) {
+                if (player.cooldown.restartCooldown()) {
+                    this.addClicks(other);
+                }
+    
+                if (this.clicks === 100) {
+                    this.removeEntity(other);
+                }
             }
         }
 
@@ -96,12 +110,28 @@ export class GamePlayState extends BaseState {
         enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, 8);
         enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
         if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);
-        enemy.hitBox.onHit = function() {
-            rootComponent.addClick();
-            playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false);
+        enemy.hitBox.onHit = (self, other) => { 
+            // TODO // Link this to player hurtbox for new hurtbox testing
         }
 
         this.registerEntity(enemy);
+    }
+
+    public addClicks: Function = () => { 
+        this.clicks++;
+        this.rootComponent.setClicks(this.clicks);
+        playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
+    }
+
+    public removeEntity(ent: Entity) {
+        super.removeEntity(ent);
+        if (ent.sprite) {
+            this.gameScene.remove(ent.sprite);
+        }
+
+        // if (ent.health && ent.health.mesh) {
+        //     this.gameScene.remove(ent.health.mesh);
+        // }
     }
 
     public update() : void {

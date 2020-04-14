@@ -7,8 +7,8 @@ import { Widget } from "./../../ui/widget";
 import { Component } from "./../../ui/component";
 import { Test } from "./ui";
 
-export function renderGameUi(scene: Scene, rootWidget: Widget): Root {
-    let rootInstance = renderWidget(<Root />, rootWidget, scene);
+export function renderGameUi(scene: Scene, rootWidget: Widget, props: {}): Root {
+    let rootInstance = renderWidget(<Root { ...props }/>, rootWidget, scene);
 
     return rootInstance.component as Root;
 }
@@ -17,6 +17,7 @@ export function renderGameUi(scene: Scene, rootWidget: Widget): Root {
 interface Props {
     // name: string;
     // initial_state: object
+    addClicks?: Function,
 }
 
 interface State {
@@ -40,8 +41,14 @@ export class Root extends Component<Props, State> {
     }
 
     public addClick = (): void => {
+        if (!!this.props.addClicks) {
+            this.props.addClicks();
+        }
+    }
+
+    public setClicks = (clicks: number) => {
         this.setState({
-            clicks: this.state.clicks + 1
+            clicks: clicks
         });
     }
 
