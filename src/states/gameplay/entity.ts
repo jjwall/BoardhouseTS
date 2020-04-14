@@ -6,6 +6,7 @@ import { VelocityComponent } from "./../../components/velocity";
 import { SpriteComponent } from "./../../components/sprite";
 import { TimerComponent } from "./../../components/timer";
 import { HitBoxTypes } from "./../../components/hitbox";
+import { CooldownComponent } from "../../components/cooldown";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
@@ -14,13 +15,14 @@ import { HitBoxTypes } from "./../../components/hitbox";
  * the properties within the component.
  */
 export class Entity {
-     public pos: PositionComponent;
-     public vel: VelocityComponent;
-     public sprite: SpriteComponent;
-     public anim: AnimationComponent;
-     public control: ControlComponent;
-     public hitBox: HitBoxComponent;
-     public hurtBox: HurtBoxComponent;
-     public hitBoxTypes: HitBoxTypes;
-     public timer: TimerComponent;
+     public pos?: PositionComponent;
+     public vel?: VelocityComponent;
+     public sprite?: SpriteComponent;
+     public anim?: AnimationComponent;
+     public control?: ControlComponent;
+     public hitBox?: HitBoxComponent;
+     public hurtBox?: HurtBoxComponent;
+     public hitBoxTypes?: HitBoxTypes;
+     public timer?: TimerComponent;
+     public cooldown?: CooldownComponent;
 }

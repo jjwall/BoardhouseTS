@@ -28,7 +28,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     window.onkeydown = function(e: KeyboardEvent) {
         switch(e.keyCode) {
             case 37: // left
-            case 65: // w
+            case 65: // a
                 last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.left = true;
@@ -74,10 +74,10 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
         }
     }
 
-    window.onkeyup = function(e) {
+    window.onkeyup = function(e: KeyboardEvent) {
         switch(e.keyCode) {
             case 37: // left
-            case 65: // w
+            case 65: // a
                 last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.left = false;
@@ -154,10 +154,13 @@ function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: 
         const halfHeight: number = Number(widget.attr("height"))/2;
         let widgetIndex: number = hoveredWidgets.indexOf(widget);
 
-        if (e.offsetY > -widget.position.y - halfHeight
-            && e.offsetY - halfHeight < -widget.position.y
-            && e.offsetX > widget.position.x - halfWidth
-            && e.offsetX - halfWidth < widget.position.x)
+        const position = new Vector3();
+        widget.getWorldPosition(position);
+
+        if (e.offsetY > -position.y - halfHeight
+            && e.offsetY - halfHeight < -position.y
+            && e.offsetX > position.x - halfWidth
+            && e.offsetX - halfWidth < position.x)
         {
             if (widgetIndex === -1) {
                 hoveredWidgets.push(widget);
