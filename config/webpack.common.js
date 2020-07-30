@@ -14,12 +14,13 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([
+    new CopyWebpackPlugin({
+      patterns: [
         { from: './index.html' },
         { from: './style.css' },
         { from: './data', to: './data' },
         { from: './node_modules/three/build/three.min.js', to: './scripts' }
-    ])
+    ]})
   ],
   resolve: {
     extensions: [ '.tsx', '.jsx', '.ts', '.js' ]
