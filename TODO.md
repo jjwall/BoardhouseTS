@@ -12,7 +12,8 @@
 * Hard code a sprite mesh into the resource loader and have sprites transform that to prevent recreating a new sprite mesh every time we need a new sprite
 * Remove hurtBox code in lieu of hitBox changes
 * Update three.js
-* Add gyroscopes
+* Add (three.js) gyroscopes
+    > This will be helpful for locking hitBoxes in place if entities have rotations
 * Add screen shake method back to game state
 * Set up Behavior generator type
 * Set up ``archetypes`` directory to output pre-constructed entities

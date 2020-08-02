@@ -34,14 +34,6 @@ export function playAudio(url: string, volume?: number, loop?: boolean, clone?: 
 }
 
 /**
- * Clears all rendered elements from container and it's children.
- * @param baseContainer 
- */
-// export function clearStage(baseContainer: PIXI.Container) {
-//     baseContainer.destroy({children:true, texture:true, baseTexture:true});
-// }
-
-/**
  * 
  * @param array generic array
  * 

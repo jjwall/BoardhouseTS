@@ -50,16 +50,19 @@ export function setHitBox(entMesh: Mesh, collideType: HitBoxTypes, collidesWith:
 /**
  * Helper to set visuals for a hitBox.
  * Used for testing hit collision assumptions.
- * @param entMesh
+ * @param entMesh should be optional. Not every hitBox will have an associated ent mesh.
  * @param hitBox
+ * @param color color of hitBox graphic.
  */
-export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent) : void {
+export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent, color: string = "#DC143C") : void {
+    // if (!color) color = "#DC143C";
     const hitBoxGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
-    const hitBoxMaterial = new MeshBasicMaterial({ color: "#DC143C" });
+    const hitBoxMaterial = new MeshBasicMaterial({ color: color });
     const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
     hitBoxMesh.position.x += hitBox.offsetX;
     hitBoxMesh.position.y += hitBox.offsetY;
     // TODO // Don't rotate hitbox graphic with the parent object, actual hitbox does not rotate.
+    // -> need to add gyroscope from three.js for this
     entMesh.add(hitBoxMesh);
 }
 
@@ -110,5 +113,4 @@ export type Manifold = Rect & {
 type Entity = {
     pos: PositionComponent;
     hitBox: HitBoxComponent;
-    hitBoxTypes: HitBoxTypes;
 }

@@ -106,11 +106,11 @@ export class GamePlayState extends BaseState {
         enemy.pos = setPosition(750, 200, 4);
         enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, 8);
         enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], 0, 0, 0, 0);
-        if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);
-        enemy.hitBox.onHit = (self, other) => { 
-            // TODO // Link this to player hurtbox for new hurtbox testing
-            // this.registerEntity(other);
-            // #228B22 -> green
+        if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox, "#228B22");
+        enemy.hitBox.onHit = (self, other) => {
+            // if (other.hitBox.collideType === HitBoxTypes.PLAYER) {
+            //     this.removeEntity(other);
+            // }
         }
 
         this.registerEntity(enemy);
