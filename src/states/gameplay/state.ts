@@ -13,7 +13,7 @@ import { setPosition } from "./../../components/position";
 import { positionSystem } from "./../../systems/position";
 import { setVelocity } from "./../../components/velocity";
 import { velocitySystem } from "./../../systems/velocity";
-import { HitBoxTypes, HurtBoxTypes, setHitBox, setHurtBox, setHitBoxGraphic, setHurtBoxGraphic } from "./../../components/hitbox";
+import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
 import { collisionSystem } from "./../../systems/collision";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
 import { animationSystem } from "./../../systems/animation";
@@ -71,7 +71,6 @@ export class GamePlayState extends BaseState {
 
         // Set up player entity.
         let player = new Entity();
-        player.hitBoxTypes = HitBoxTypes.PLAYER;
         this.playerEntity = player;
         player.pos = setPosition(150, 150, 5);
         player.sprite = setSprite("./data/textures/msknight.png", this.gameScene, 4);
@@ -79,17 +78,15 @@ export class GamePlayState extends BaseState {
         player.vel = setVelocity(1);
         player.vel.friction = 0.9;
         player.anim = setAnimation(SequenceTypes.walk, playerAnim);
-        player.hurtBox = setHurtBox(player.sprite, HurtBoxTypes.test, 50, 50, -300, -100);
         player.timer = setTimer(250, () => {
             // this.removeEntity(player);
             // Remove player sprite from scene.
             // this.gameScene.remove(player.sprite);
             // this.stateStack.pop();
         });
-        player.hitBox = setHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], [], 50, 50, 100, -10);
+        player.hitBox = setHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], 50, 50, 100, -10);
         if (this.turnOnHitboxes) setHitBoxGraphic(player.sprite, player.hitBox);
-        if (this.turnOnHitboxes) setHurtBoxGraphic(player.sprite, player.hurtBox);
-        player.cooldown = setCooldown(7);
+        player.cooldown = setCooldown(20);
         player.hitBox.onHit = (self, other) => {
             if (other.hitBox.collideType === HitBoxTypes.ENEMY) {
                 if (player.cooldown.restartCooldown()) {
@@ -108,10 +105,12 @@ export class GamePlayState extends BaseState {
         let enemy = new Entity();
         enemy.pos = setPosition(750, 200, 4);
         enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, 8);
-        enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], [], 0, 0, 0, 0);
+        enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], 0, 0, 0, 0);
         if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox);
         enemy.hitBox.onHit = (self, other) => { 
             // TODO // Link this to player hurtbox for new hurtbox testing
+            // this.registerEntity(other);
+            // #228B22 -> green
         }
 
         this.registerEntity(enemy);

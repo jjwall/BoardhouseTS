@@ -1,5 +1,3 @@
-``TO-DO (06/19/2019):``
-
 |   Mark  | Description |
 |:-------:|:---------:|
 | bullet | work not started |

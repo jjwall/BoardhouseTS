@@ -1,11 +1,10 @@
-import { HitBoxComponent, HurtBoxComponent } from "./../../components/hitbox";
+import { HitBoxComponent } from "./../../components/hitbox";
 import { ControlComponent } from "../../components/control";
 import { AnimationComponent } from "./../../components/animation";
 import { PositionComponent } from "./../../components/position";
 import { VelocityComponent } from "./../../components/velocity";
 import { SpriteComponent } from "./../../components/sprite";
 import { TimerComponent } from "./../../components/timer";
-import { HitBoxTypes } from "./../../components/hitbox";
 import { CooldownComponent } from "../../components/cooldown";
 
 /**
@@ -21,8 +20,6 @@ export class Entity {
      public anim?: AnimationComponent;
      public control?: ControlComponent;
      public hitBox?: HitBoxComponent;
-     public hurtBox?: HurtBoxComponent;
-     public hitBoxTypes?: HitBoxTypes;
      public timer?: TimerComponent;
      public cooldown?: CooldownComponent;
 }

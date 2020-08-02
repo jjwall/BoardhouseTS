@@ -1,10 +1,9 @@
-import { Rect, Manifold, getHitbox, getManifold, HitBoxComponent, HurtBoxComponent, HitBoxTypes } from "./../components/hitbox";
+import { Rect, Manifold, getHitbox, getManifold, HitBoxComponent, HitBoxTypes } from "./../components/hitbox";
 import { PositionComponent } from "./../components/position";
 
 /**
  * Collision system.
  * @param ents List of ents to run system with. Hitting ents must have hitBox and pos components.
- * Hurting ents must have hurtBox and pos components.
  */
 export function collisionSystem(ents: ReadonlyArray<Entity>) {
     type Body = {
@@ -46,6 +45,5 @@ export function collisionSystem(ents: ReadonlyArray<Entity>) {
 type Entity = {
     pos: PositionComponent;
     hitBox: HitBoxComponent;
-    hurtBox: HurtBoxComponent;
     hitBoxTypes: HitBoxTypes;
 }
