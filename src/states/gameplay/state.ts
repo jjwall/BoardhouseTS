@@ -1,4 +1,6 @@
-import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera, FirstPersonControls } from "three";
+import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
+import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
+import { setAnimation, SequenceTypes } from "./../../components/animation";
 import { playAudio } from "./../../engine/helpers";
 import { setControl } from "./../../components/control";
 import { controlSystem } from "../../systems/control";
@@ -13,9 +15,7 @@ import { setPosition } from "./../../components/position";
 import { positionSystem } from "./../../systems/position";
 import { setVelocity } from "./../../components/velocity";
 import { velocitySystem } from "./../../systems/velocity";
-import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
 import { collisionSystem } from "./../../systems/collision";
-import { setAnimation, SequenceTypes } from "./../../components/animation";
 import { animationSystem } from "./../../systems/animation";
 import { setTimer } from "./../../components/timer";
 import { timerSystem } from "./../../systems/timer";
@@ -119,9 +119,46 @@ export class GamePlayState extends BaseState {
     public addClicks: Function = () => { 
         this.clicks++;
         this.rootComponent.setClicks(this.clicks);
+        this.screenShake(false);
         playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
     }
 
+    /**
+     * Triggers a screen shake to the game camera.
+     * @param shakeUi Param to shake UI camera as well. Defaults to true.
+     */
+    private screenShake(shakeUi: boolean = true) {
+        for (let i = 1; i < 10; i++) {
+            let randomYVal = Math.floor(Math.random() * (8 - 0 + 1)) + 0;
+            let randomXVal = Math.floor(Math.random() * (8 - 0 + 1)) + 0;
+            randomYVal *= Math.floor(Math.random()*2) == 1 ? 1 : -1;
+            randomXVal *= Math.floor(Math.random()*2) == 1 ? 1 : -1;
+            this.gameCamera.translateX(randomXVal);
+            this.gameCamera.translateY(randomYVal);
+
+            if (shakeUi) {
+                this.uiCamera.translateX(randomXVal);
+                this.uiCamera.translateY(randomYVal);
+            }
+
+            let timer = new Entity();
+            timer.timer = setTimer(2 * i, () => {
+                this.gameCamera.translateX(randomXVal * -1);
+                this.gameCamera.translateY(randomYVal * -1);
+
+                if (shakeUi) {
+                    this.uiCamera.translateX(randomXVal * -1);
+                    this.uiCamera.translateY(randomYVal * -1);
+                }
+            });
+            this.registerEntity(timer);
+        }
+    }
+
+    /**
+     * Overriden method from base state to remove an ent's sprite from scene as well.
+     * @param ent 
+     */
     public removeEntity(ent: Entity) {
         super.removeEntity(ent);
         if (ent.sprite) {

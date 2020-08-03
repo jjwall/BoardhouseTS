@@ -10,7 +10,6 @@
     > Add ``activateEvents`` and ``deactivateEvents`` abstract methods on ``baseState``. Override ``push`` and ``pop`` methods of ``stateStack`` to call these new methods
 * Set up ``archetypes`` directory to output pre-constructed entities
 * Set up lose state
-* :runner: Add screen shake method back to game state
 * Set up Behavior generator type
 * Create loading bar. Might need to set up canvas prior to everything else to render loading bar
 * Fix callback hell scenario when adding additional loaders
@@ -31,6 +30,7 @@
 * Add particle effect renderer
 * Swap out usage of HTMLAudioElement with web audio API (not started)
 * Write geometry loader. Add new geometry folder in assets where each file is a separate geometry i.e. plane.ts create and returns a 1x1 plane
+* Start on Wiki to explain the various parts of the engine. Setting up new projects, helper methods, adding new components, systems, and consuming existing APIs, etc. etc.
 * Setup VSCode debugging
 * Name framework pieces of Boardhouse library in a type definition file
 * Add library as an npm package
@@ -51,6 +51,7 @@
 
     // Search engine: "typescript module resolution"
 ``Finished``
+* :heavy_check_mark: Add screen shake method back to game state
 * :heavy_check_mark: Remove hurtBox code in lieu of hitBox changes
 * :heavy_check_mark: ``NoImplicitAny`` true
 * :heavy_check_mark: Move new collision stuff over
