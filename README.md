@@ -16,14 +16,12 @@ This is a game framework / engine written in TypeScript to rapidly develop proto
 * State system for managing menu / game / scene states
 * Entity-component system
 * Simple animation engine (swaps out textures)
-* Texture loader
+* Texture, audio, and font loaders
+* React-like UI layer
+* And much more!
 
 ### To-Do:
-* React-like virtual DOM for UI components
-* Entity registry for automating component setting
-* Loaders for audio and geometries
-* Sophisticated animation engine using tilemaps
-* Level editor
+See [TODO.md](TODO.md) for current list of features to be implemented.
 
 ___
 ### Build Instructions:
