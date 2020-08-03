@@ -1,16 +1,17 @@
-import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
+import { Scene, Camera, Color, OrthographicCamera } from "three";
 import { BaseState } from "./../../engine/basestate";
 import { layoutWidget } from "./../../ui/layoutwidget";
 import { Widget, createWidget } from "./../../ui/widget";
 import { GamePlayState } from "./../../states/gameplay/state";
 import { renderMainMenuUi, MainMenuRoot } from "./rootui";
+import { Engine } from "./../../engine/engine";
 
 export class MainMenuState extends BaseState {
     public uiScene: Scene;
     public uiCamera: Camera;
     public rootWidget: Widget;
-    constructor(stateStack: BaseState[]) {
-        super(stateStack);
+    constructor(engine: Engine, stateStack: BaseState[]) {
+        super(engine, stateStack);
 
         // Set up ui scene.
         this.uiScene = new Scene();
@@ -28,18 +29,18 @@ export class MainMenuState extends BaseState {
     }
 
     private startGame = (): void => {
-        let gameState = new GamePlayState(this.stateStack);
+        let gameState = new GamePlayState(this.engine, this.stateStack);
         this.stateStack.push(gameState);
     }
 
     public update(): void {}
 
-    public render(renderer: WebGLRenderer) : void {
-        renderer.clear();
-        renderer.clearDepth();
-        renderer.render(this.uiScene, this.uiCamera);
+    public render() : void {
+        this.engine.renderer.clear();
+        this.engine.renderer.clearDepth();
+        this.engine.renderer.render(this.uiScene, this.uiCamera);
 
         // Render UI updates.
-        layoutWidget(this.rootWidget);
+        layoutWidget(this.rootWidget, this.engine);
     }
 }

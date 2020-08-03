@@ -8,6 +8,7 @@
 
 * Set up event listeners specific to each state. Remove events of previous state before setting them up.
     > Add ``activateEvents`` and ``deactivateEvents`` abstract methods on ``baseState``. Override ``push`` and ``pop`` methods of ``stateStack`` to call these new methods
+* Clean up changes do to adding Engine class. I.e. move setSprite to engline class.
 * Set up ``archetypes`` directory to output pre-constructed entities
 * Set up lose state
 * Set up Behavior generator type

@@ -1,7 +1,6 @@
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
-import { playAudio } from "./../../engine/helpers";
 import { setControl } from "./../../components/control";
 import { controlSystem } from "../../systems/control";
 import { Entity } from "./entity";
@@ -22,6 +21,7 @@ import { timerSystem } from "./../../systems/timer";
 import { setSprite } from "./../../components/sprite";
 import { setCooldown } from "./../../components/cooldown";
 import { cooldownSystem } from "./../../systems/cooldown";
+import { Engine } from "../../engine/engine";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -36,8 +36,8 @@ export class GamePlayState extends BaseState {
     // Set up game state.
     public clicks: number = 0;
     
-    constructor(stateStack: BaseState[]) {
-        super(stateStack);
+    constructor(engine: Engine, stateStack: BaseState[]) {
+        super(engine, stateStack);
         // Set up game scene.
         this.gameScene = new Scene();
         this.gameScene.background = new Color("#FFFFFF");
@@ -67,13 +67,13 @@ export class GamePlayState extends BaseState {
         this.registerSystem(positionSystem);
         this.registerSystem(cooldownSystem);
 
-        playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
+        this.engine.playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
         // Set up player entity.
         let player = new Entity();
         this.playerEntity = player;
         player.pos = setPosition(150, 150, 5);
-        player.sprite = setSprite("./data/textures/msknight.png", this.gameScene, 4);
+        player.sprite = setSprite("./data/textures/msknight.png", this.gameScene, this.engine, 4);
         player.control = setControl();
         player.vel = setVelocity(1);
         player.vel.friction = 0.9;
@@ -104,7 +104,7 @@ export class GamePlayState extends BaseState {
         // Set up enemy entity.
         let enemy = new Entity();
         enemy.pos = setPosition(750, 200, 4);
-        enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, 8);
+        enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, this.engine, 8);
         enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], 0, 0, 0, 0);
         if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox, "#228B22");
         enemy.hitBox.onHit = (self, other) => {
@@ -120,7 +120,7 @@ export class GamePlayState extends BaseState {
         this.clicks++;
         this.rootComponent.setClicks(this.clicks);
         this.screenShake(false);
-        playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
+        this.engine.playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
     }
 
     /**
@@ -174,13 +174,13 @@ export class GamePlayState extends BaseState {
         this.runSystems(this);
     }
 
-    public render(renderer: WebGLRenderer) : void {
-        renderer.clear();
-        renderer.render(this.gameScene, this.gameCamera);
-        renderer.clearDepth();
-        renderer.render(this.uiScene, this.uiCamera);
+    public render() : void {
+        this.engine.renderer.clear();
+        this.engine.renderer.render(this.gameScene, this.gameCamera);
+        this.engine.renderer.clearDepth();
+        this.engine.renderer.render(this.uiScene, this.uiCamera);
 
         // Render UI updates.
-        layoutWidget(this.rootWidget);
+        layoutWidget(this.rootWidget, this.engine);
     }
 }

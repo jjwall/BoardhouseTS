@@ -1,10 +1,13 @@
 import { WebGLRenderer } from "three";
-import { Resources, loadTextures, loadAudioElements, loadFonts } from "./resourcemanager";
+import { Engine } from "./engine";
+import { loadTextures, loadAudioElements, loadFonts } from "./engine";
 import { BaseState } from "./basestate";
 import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./../states/mainmenu/state";
 import { GamePlayState } from "./../states/gameplay/state";
+
+const engine = new Engine();
 
 loadTextures([
     "./data/textures/cottage.png",
@@ -14,20 +17,20 @@ loadTextures([
     "./data/textures/space4096Square.png",
 ]).then((textures) => {
     // cache off textures
-    Resources.instance.setTextures(textures);
+    engine.setTextures(textures);
 
     loadFonts([
         "./data/fonts/helvetiker_regular_typeface.json"
     ]).then((fonts) => {
         // cache off fonts
-        Resources.instance.setFonts(fonts);
+        engine.setFonts(fonts);
 
         loadAudioElements([
             "./data/audio/Pale_Blue.mp3",
             "./data/audio/SFX_Bonk2.wav",
         ]).then((audioElements) => {
             // cache off audio elements
-            Resources.instance.setAudioElements(audioElements);
+            engine.setAudioElements(audioElements);
 
             // start game
             main(<HTMLElement>document.getElementById("canvasContainer"));
@@ -47,6 +50,7 @@ function main(canvasContainer: HTMLElement) {
     const renderer = new WebGLRenderer();
     renderer.setSize(1280, 720);
     renderer.autoClear = false;
+    engine.renderer = renderer;
 
     // append canvas element to canvas container
     canvasContainer.append(renderer.domElement);
@@ -58,7 +62,7 @@ function main(canvasContainer: HTMLElement) {
 
     // initialize state stack
     let stateStack: BaseState[] = [];
-    let mainMenuState = new MainMenuState(stateStack);
+    let mainMenuState = new MainMenuState(engine, stateStack);
     stateStack.push(mainMenuState);
     // let gameState = new GameState(stateStack);
     // stateStack.push(gameState);
@@ -96,7 +100,7 @@ function main(canvasContainer: HTMLElement) {
                 
         if (stateStack.length > 0) {
             // call render on last element in state stack
-            last(stateStack).render(renderer);
+            last(stateStack).render();
         }
         else {
             throw "No states to render";

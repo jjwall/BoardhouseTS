@@ -1,19 +1,22 @@
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
-import { WebGLRenderer } from "THREE";
+import { Engine } from "./engine"
 import { Widget } from "../ui/widget";
 
 export abstract class BaseState {
-    protected constructor(stateStack: BaseState[]) {
+    protected constructor(engine: Engine, stateStack: BaseState[]) {
+        this.engine = engine;
         this.stateStack = stateStack;
     }
 
     public abstract update() : void;
 
-    public abstract render(renderer: WebGLRenderer) : void;
+    public abstract render() : void;
 
     public rootWidget: Widget;
 
     protected stateStack: BaseState[];
+
+    public engine: Engine;
 
     private ecsKeys: Array<string> = [];
 

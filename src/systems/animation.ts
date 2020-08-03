@@ -1,12 +1,12 @@
 import { MeshBasicMaterial, NearestFilter, Mesh } from "three";
 import { AnimationComponent } from "./../components/animation";
-import { Resources } from "./../engine/resourcemanager";
+import { BaseState } from "../engine/basestate";
 
 /**
  * Animation System.
  * @param ents Lists of ents to run system with. Must have anim and sprite components.
  */
-export function animationSystem(ents: ReadonlyArray<Entity>) : void {
+export function animationSystem(ents: ReadonlyArray<Entity>, state: BaseState) : void {
     ents.forEach(ent => {
         if (ent.anim && ent.sprite) {
             ent.anim.ticks--;
@@ -14,7 +14,7 @@ export function animationSystem(ents: ReadonlyArray<Entity>) : void {
                 ent.anim.frame = ent.anim.blob[ent.anim.sequence][ent.anim.frame].nextFrame;
                 ent.anim.ticks = ent.anim.blob[ent.anim.sequence][ent.anim.frame].ticks;
 
-                const newSpriteMap = Resources.instance.getTexture(ent.anim.blob[ent.anim.sequence][ent.anim.frame].texture);
+                const newSpriteMap = state.engine.getTexture(ent.anim.blob[ent.anim.sequence][ent.anim.frame].texture);
                 newSpriteMap.magFilter = NearestFilter;
                 ent.sprite.material = new MeshBasicMaterial({ map: newSpriteMap, transparent: true });
             }

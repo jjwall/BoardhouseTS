@@ -1,5 +1,5 @@
 import { Mesh, MeshBasicMaterial, PlaneGeometry, NearestFilter, ShapeBufferGeometry } from "three";
-import { Resources } from "./../engine/resourcemanager";
+import { Engine } from "./../engine/engine";
 import { Widget } from "./widget";
 
 /**
@@ -16,19 +16,19 @@ import { Widget } from "./widget";
  * Gets called when Widget is create or setState is called.
  * @param widget
  */
-export function layoutWidget(widget: Widget): void {
+export function layoutWidget(widget: Widget, engine: Engine): void {
     layoutCommonAttributes(widget);
 
     if (widget.getType() === "panel") {
-        layoutPanelAttributes(widget);
+        layoutPanelAttributes(widget, engine);
     }
 
     if (widget.getType() === "label" && widget.attr("contents")) {
-        layoutLabelAttributes(widget);
+        layoutLabelAttributes(widget, engine);
     }
 
     widget.childNodes.forEach(child => {
-        layoutWidget(child);
+        layoutWidget(child, engine);
     })
 }
 
@@ -38,7 +38,7 @@ function layoutCommonAttributes(widget: Widget) {
     widget.position.z = Number(widget.attr("z_index") || 0);
 }
 
-function layoutPanelAttributes(widget: Widget) {
+function layoutPanelAttributes(widget: Widget, engine: Engine) {
     // Update plane geometry with height and width attributes.
     const width = Number(widget.attr("width") || 0);
     const height = Number(widget.attr("height") || 0);
@@ -70,7 +70,7 @@ function layoutPanelAttributes(widget: Widget) {
         const scaleFactor = Number(widget.attr("scale-factor") || 1);
 
         // Get texture from cached resources.
-        const imgMap = Resources.instance.getTexture(widget.attr("img"));
+        const imgMap = engine.getTexture(widget.attr("img"));
 
         const width = imgMap.image.width * scaleFactor;
         const height = imgMap.image.height * scaleFactor;
@@ -101,14 +101,14 @@ function layoutPanelAttributes(widget: Widget) {
     }
 }
 
-function layoutLabelAttributes(widget: Widget) {
+function layoutLabelAttributes(widget: Widget, engine: Engine) {
     const color = widget.attr("color") || "#000000";
     const fontUrl = widget.attr("font") || "./data/fonts/helvetiker_regular_typeface.json";
     const font_size = Number(widget.attr("font_size") || 16);
     const contents = widget.attr("contents") || "";
 
     if (!widget.text) {
-        const geom = Resources.instance.getTextGeometry(contents, fontUrl, font_size);
+        const geom = engine.getTextGeometry(contents, fontUrl, font_size);
 
         const material = new MeshBasicMaterial({
             color: color,
@@ -123,7 +123,7 @@ function layoutLabelAttributes(widget: Widget) {
     }
     else {
         if (contents !== widget.text_params.contents || fontUrl !== widget.text_params.fontUrl || font_size !== widget.text_params.font_size) {
-            widget.text.geometry = Resources.instance.getTextGeometry(contents, fontUrl, font_size);
+            widget.text.geometry = engine.getTextGeometry(contents, fontUrl, font_size);
             widget.text_params = { contents, fontUrl, font_size };
         }
 

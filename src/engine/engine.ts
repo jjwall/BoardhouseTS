@@ -1,10 +1,9 @@
 import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./interfaces";
-import { Texture, TextureLoader, Font, FontLoader, BufferGeometry, ShapeBufferGeometry} from "three";
+import { Texture, TextureLoader, Font, FontLoader, BufferGeometry, ShapeBufferGeometry, WebGLRenderer} from "three";
 
-export class Resources
+export class Engine
 {
-    private static _instance: Resources;
-
+    public renderer: WebGLRenderer;
     private _textures: UrlToTextureMap = {};
 
     private _fonts: UrlToFontMap = {};
@@ -12,12 +11,6 @@ export class Resources
     private _audioElements: UrlToAudioMap = {};
 
     private _textGeometries: { [k: string]: BufferGeometry } = {};
-
-    private constructor() {}
-
-    public static get instance() {
-        return this._instance || (this._instance = new this());
-    }
 
     public getTexture(url: string) {
         if (!this._textures[url]) {
@@ -61,7 +54,7 @@ export class Resources
         if (geom) {
             return geom;
         } else {
-            const font = Resources.instance.getFont(fontUrl);
+            const font = this.getFont(fontUrl);
             const shapes = font.generateShapes(contents, font_size, 0);
             const geometry = new ShapeBufferGeometry(shapes);
 
@@ -74,6 +67,28 @@ export class Resources
 
             return geometry;
         }
+    }
+
+    public playAudio(url: string, volume?: number, loop?: boolean, clone?: boolean) : void {
+        let audio = clone ?
+            this.getAudioElement(url).cloneNode(true) as HTMLAudioElement :
+            this.getAudioElement(url);
+    
+        if (volume) {
+            if (volume < 0 || volume > 1)
+                throw Error("volume can't be a value less than 0 or greater than 1.");
+    
+            audio.volume = volume;
+        }
+    
+        if (loop) {
+            audio.loop = loop;
+        }
+    
+        audio.play()
+            .catch(function(ex) {
+                throw Error(`Your browser threw "${ex}". To resolve this on Chrome, go to chrome://flags/#autoplay-policy and set the Autoplay-policy to "No user gesture is required."`);
+            });
     }
 }
 

@@ -1,5 +1,5 @@
 import { Mesh, Scene, NearestFilter, PlaneGeometry, MeshBasicMaterial } from "three";
-import { Resources } from "./../engine/resourcemanager";
+import { Engine } from "./../engine/engine";
 
 export type SpriteComponent = Mesh;
 
@@ -9,13 +9,13 @@ export type SpriteComponent = Mesh;
  * @param scene THREE.Scene.
  * @param pixelRatio Number of pixels to scale texture's height and width by.
  */
-export function setSprite(url: string, scene: Scene, pixelRatio?: number) : SpriteComponent {
+export function setSprite(url: string, scene: Scene, engine: Engine, pixelRatio?: number) : SpriteComponent {
     if (!pixelRatio) {
         pixelRatio = 1;
     }
     
     // get texture from cached resources
-    let spriteMap = Resources.instance.getTexture(url);
+    let spriteMap = engine.getTexture(url);
     // load geometry (consider caching these as well)
     var geometry = new PlaneGeometry(spriteMap.image.width*pixelRatio, spriteMap.image.height*pixelRatio);
     // set magFilter to nearest for crisp looking pixels
