@@ -1,4 +1,4 @@
-import { Mesh, Box3, PlaneGeometry, MeshBasicMaterial } from "three";
+import { Mesh, Box3, PlaneGeometry, EdgesGeometry, LineSegments, LineBasicMaterial, MeshBasicMaterial } from "three";
 import { PositionComponent } from "./position";
 
 /**
@@ -50,20 +50,21 @@ export function setHitBox(entMesh: Mesh, collideType: HitBoxTypes, collidesWith:
 /**
  * Helper to set visuals for a hitBox.
  * Used for testing hit collision assumptions.
- * @param entMesh should be optional. Not every hitBox will have an associated ent mesh.
+ * @param entMesh Could be optional. Not every hitBox will have an associated ent mesh.
+ * However, would need a way to remove it if added directly to scene.
  * @param hitBox
- * @param color color of hitBox graphic.
+ * @param color color of hitBox graphic. Defaults to red if no parameter is passed in.
  */
 export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent, color: string = "#DC143C") : void {
-    // if (!color) color = "#DC143C";
-    const hitBoxGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
-    const hitBoxMaterial = new MeshBasicMaterial({ color: color });
-    const hitBoxMesh = new Mesh(hitBoxGeometry, hitBoxMaterial);
-    hitBoxMesh.position.x += hitBox.offsetX;
-    hitBoxMesh.position.y += hitBox.offsetY;
+    const hitBoxPlaneGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
+    const hitBoxEdgesGeometry = new EdgesGeometry(hitBoxPlaneGeometry);
+    const hitBoxMaterial = new LineBasicMaterial({ color: color });
+    const hitBoxWireframe = new LineSegments(hitBoxEdgesGeometry, hitBoxMaterial);
+    hitBoxWireframe.position.x += hitBox.offsetX;
+    hitBoxWireframe.position.y += hitBox.offsetY;
     // TODO // Don't rotate hitbox graphic with the parent object, actual hitbox does not rotate.
     // -> need to add gyroscope from three.js for this
-    entMesh.add(hitBoxMesh);
+    entMesh.add(hitBoxWireframe);
 }
 
 export const getHitbox = (e: Entity): Rect => ({
