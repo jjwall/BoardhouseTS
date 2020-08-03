@@ -6,30 +6,6 @@ import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./../states/mainmenu/state";
 import { GamePlayState } from "./../states/gameplay/state";
 
-/**
- * Starts program
- */
-
-// TODO: Remove hurtBox component. Only use HitBox. HitBox will take a type and a
-// list of things it collided with (flags). Component will be "hitBoxes" and it will
-// have a list of hitbox components each entity can have. Each hitbox will have a reference
-// to the entity for the mark and sweep alg. Setting hurt box and hit box can remain the same
-// just add a color parameter or something
-// TODO: Scan & sweep alg for collision system (not started)
-// TODO: Fix callback hell scenario when adding additional loaders (not started)
-// TODO: Add scene transitions (not started)
-// TODO: Write geometry loader (not started)
-// TODO: Set up VSCode debugging (in progress)
-// ----- (start sbo prototype at this point)
-// TODO: Implement screen shake (not started)
-// TODO: Write custom shaders
-// TODO: Add particle effect renderer (not started)
-// TODO: Make generic key binder (not started)
-// TODO: Add unit tests (not started)
-// TODO: Create level editor (not started)
-// TODO: Add custom Vector3 method.
-// TODO: Swap out usage of HTMLAudioElement with web audio API (not started)
-
 loadTextures([
     "./data/textures/cottage.png",
     "./data/textures/girl.png",
