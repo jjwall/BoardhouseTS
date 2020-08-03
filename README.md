@@ -1,4 +1,12 @@
-# BoardhouseTS
+<!--lint disable no-literal-urls-->
+<p align="center">
+    <img
+      alt="BoardhouseTS"
+      src="./data/textures/boardhouse_logo1.png"
+      width="400"
+    />
+</p>
+
 This is a game framework / engine written in TypeScript to rapidly develop prototypes.
 
 ### Includes:
