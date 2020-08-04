@@ -15,3 +15,21 @@ BoardhouseTS is a game engine written in TypeScript to rapidly develop prototype
 
 
 ## Examples
+The following are games that were developed using some iteration of Boardhouse:
+
+### Ludum Dare 43: Creatures of the Night
+<p align="center">
+    <img
+        alt="BoardhouseTS"
+        src="./assets/images/creatures.png"
+            width="800"
+    />
+</p>
+
+* Play it here: https://gizmolo.itch.io/creatures-of-the-night
+* Ludum Dare submission: https://ldjam.com/events/ludum-dare/43/creatures-of-the-night
+* Source code: https://github.com/jjwall/LD43
+
+Developed by:
+
+* [jjwall](https://github.com/jjwall/) - **Jacob Wallace**
