@@ -1,2 +1,6 @@
 remote_theme: pmarsceill/just-the-docs
 logo: "assets/images/boardhouse_logo2.png"
+
+aux_links:
+  "BoardhouseTS on GitHub":
+    - "//github.com/jjwall/BoardhouseTS"
