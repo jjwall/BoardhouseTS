@@ -1,6 +1,14 @@
+# Jekyll theme
 remote_theme: pmarsceill/just-the-docs
+
+# Logo to display on top left corner of page
 logo: "assets/images/boardhouse_logo2.png"
 
+# Link that displays on top right corner of page
 aux_links:
   "BoardhouseTS on GitHub":
     - "//github.com/jjwall/BoardhouseTS"
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
