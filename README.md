@@ -3,7 +3,7 @@
     <a href="https://jjwall.github.io/BoardhouseTS/">
         <img
             alt="BoardhouseTS"
-            src="./data/textures/boardhouse_logo2.png"
+            src="./docs/assets/images/boardhouse_logo2.png"
             width="600"
         />
     </a>
