@@ -1,10 +1,12 @@
 <!--lint disable no-literal-urls-->
 <p align="center">
-    <img
-      alt="BoardhouseTS"
-      src="./data/textures/boardhouse_logo2.png"
-      width="600"
-    />
+    <a href="https://jjwall.github.io/BoardhouseTS/">
+        <img
+            alt="BoardhouseTS"
+            src="./data/textures/boardhouse_logo2.png"
+            width="600"
+        />
+    </a>
 </p>
 
 This is a game framework / engine written in TypeScript to rapidly develop prototypes.
