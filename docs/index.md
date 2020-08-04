@@ -18,6 +18,8 @@ BoardhouseTS is a game engine written in TypeScript to rapidly develop prototype
 1. TOC
 {:toc}
 
+---
+
 # Examples
 {: .no_toc }
 The following are games that were developed using some iteration of Boardhouse:
