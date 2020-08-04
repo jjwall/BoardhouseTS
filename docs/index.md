@@ -45,11 +45,16 @@ Developed by:
 <p align="center">
     <img
         alt="Pale Blue Dot"
-        src="./assets/images/pale_blue_dot1.png"
-            width="800"
+        src="./assets/images/pale_blue_dot.png"
+        width="800"
     />
 </p>
 
 * Play it here: [https://wiredoverload.itch.io/pale-blue-dot](https://wiredoverload.itch.io/pale-blue-dot)
 * Global Game Jam submission: [https://globalgamejam.org/2019/games/pale-blue-dot-2](https://globalgamejam.org/2019/games/pale-blue-dot-2)
 * Source code: [https://github.com/WiredOverload/PaleBlueDot](https://github.com/WiredOverload/PaleBlueDot)
+
+Developed by:
+* [apples](https://github.com/apples/) - **Jeramy Harrison**
+* [jjwall](https://github.com/jjwall/) - **Jacob Wallace**
+* [WiredOverload](https://github.com/WiredOverload/) - **Michael Hodges**
