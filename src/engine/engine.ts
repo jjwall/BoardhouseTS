@@ -1,9 +1,13 @@
 import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./interfaces";
 import { Texture, TextureLoader, Font, FontLoader, BufferGeometry, ShapeBufferGeometry, WebGLRenderer} from "three";
+import { BaseState } from "./basestate";
 
 export class Engine
 {
     public renderer: WebGLRenderer;
+
+    public stateStack: BaseState[] = [];
+    
     private _textures: UrlToTextureMap = {};
 
     private _fonts: UrlToFontMap = {};

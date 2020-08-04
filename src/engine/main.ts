@@ -9,21 +9,22 @@ import { GamePlayState } from "./../states/gameplay/state";
 
 const engine = new Engine();
 
-loadTextures([
-    "./data/textures/cottage.png",
-    "./data/textures/girl.png",
-    "./data/textures/msknight.png",
-    "./data/textures/snow.png",
-    "./data/textures/space4096Square.png",
-]).then((textures) => {
-    // cache off textures
-    engine.setTextures(textures);
 
-    loadFonts([
-        "./data/fonts/helvetiker_regular_typeface.json"
-    ]).then((fonts) => {
-        // cache off fonts
-        engine.setFonts(fonts);
+loadFonts([
+    "./data/fonts/helvetiker_regular_typeface.json"
+]).then((fonts) => {
+    // cache off fonts
+    engine.setFonts(fonts);
+
+    loadTextures([
+        "./data/textures/cottage.png",
+        "./data/textures/girl.png",
+        "./data/textures/msknight.png",
+        "./data/textures/snow.png",
+        "./data/textures/space4096Square.png",
+    ]).then((textures) => {
+        // cache off textures
+        engine.setTextures(textures);
 
         loadAudioElements([
             "./data/audio/Pale_Blue.mp3",
@@ -61,11 +62,10 @@ function main(canvasContainer: HTMLElement) {
     };
 
     // initialize state stack
-    let stateStack: BaseState[] = [];
-    let mainMenuState = new MainMenuState(engine, stateStack);
-    stateStack.push(mainMenuState);
-    // let gameState = new GameState(stateStack);
-    // stateStack.push(gameState);
+    const mainMenuState = new MainMenuState(engine);
+    engine.stateStack.push(mainMenuState);
+    // const gameState = new GameState(stateStack);
+    // engine.stateStack.push(gameState);
 
     let fps: number = 0;
     let totalTime: number = 0;
@@ -74,13 +74,13 @@ function main(canvasContainer: HTMLElement) {
     // fpsWidget.setText("FPS:");
 
     // set up event listeners
-    setEventListeners(renderer.domElement, stateStack);
+    setEventListeners(renderer.domElement, engine);
 
     // logic update loop
     setInterval(function (): void {
-        if (stateStack.length > 0) {
+        if (engine.stateStack.length > 0) {
             // call update on last element in state stack
-            last(stateStack).update();
+            last(engine.stateStack).update();
         }
         else {
             throw "No states to update";
@@ -98,9 +98,9 @@ function main(canvasContainer: HTMLElement) {
         totalTime = timeStamp;
         fps = 1 / (currentTime / 1000);
                 
-        if (stateStack.length > 0) {
+        if (engine.stateStack.length > 0) {
             // call render on last element in state stack
-            last(stateStack).render();
+            last(engine.stateStack).render();
         }
         else {
             throw "No states to render";

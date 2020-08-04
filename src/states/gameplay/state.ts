@@ -36,8 +36,8 @@ export class GamePlayState extends BaseState {
     // Set up game state.
     public clicks: number = 0;
     
-    constructor(engine: Engine, stateStack: BaseState[]) {
-        super(engine, stateStack);
+    constructor(engine: Engine) {
+        super(engine);
         // Set up game scene.
         this.gameScene = new Scene();
         this.gameScene.background = new Color("#FFFFFF");

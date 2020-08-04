@@ -3,9 +3,8 @@ import { Engine } from "./engine"
 import { Widget } from "../ui/widget";
 
 export abstract class BaseState {
-    protected constructor(engine: Engine, stateStack: BaseState[]) {
+    protected constructor(engine: Engine) {
         this.engine = engine;
-        this.stateStack = stateStack;
     }
 
     public abstract update() : void;

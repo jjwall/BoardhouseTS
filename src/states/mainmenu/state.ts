@@ -10,8 +10,8 @@ export class MainMenuState extends BaseState {
     public uiScene: Scene;
     public uiCamera: Camera;
     public rootWidget: Widget;
-    constructor(engine: Engine, stateStack: BaseState[]) {
-        super(engine, stateStack);
+    constructor(engine: Engine) {
+        super(engine);
 
         // Set up ui scene.
         this.uiScene = new Scene();
@@ -29,8 +29,8 @@ export class MainMenuState extends BaseState {
     }
 
     private startGame = (): void => {
-        let gameState = new GamePlayState(this.engine, this.stateStack);
-        this.stateStack.push(gameState);
+        let gameState = new GamePlayState(this.engine);
+        this.engine.stateStack.push(gameState);
     }
 
     public update(): void {}

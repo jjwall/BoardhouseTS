@@ -4,8 +4,9 @@ import { Widget } from "../ui/widget";
 import { Entity } from "./../states/gameplay/entity";
 import { last } from "./helpers";
 import { Vector3 } from "three";
+import { Engine } from "./engine";
 
-export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseState[]) {
+export function setEventListeners(canvas: HTMLCanvasElement, engine: Engine) {
     let hoveredWidgets: Widget[] = [];
     // call first to scale to current window dimensions
     scaleToWindow(canvas);
@@ -15,12 +16,12 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
     });
 
     canvas.addEventListener("mousedown", function (e: MouseEvent) {
-        traverseTreeForOnClick(last(stateStack).rootWidget, e);
+        traverseTreeForOnClick(last(engine.stateStack).rootWidget, e);
         canvas.setAttribute("class", "default");
     });
 
     canvas.addEventListener("mousemove", function (e: MouseEvent) {
-        traverseTreeForHover(last(stateStack).rootWidget, hoveredWidgets, canvas, e);
+        traverseTreeForHover(last(engine.stateStack).rootWidget, hoveredWidgets, canvas, e);
     });
 
     // keyboard controls
@@ -29,7 +30,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
         switch(e.keyCode) {
             case 37: // left
             case 65: // a
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.left = true;
                     }
@@ -38,7 +39,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
             case 39: // right
             case 68: // d
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.right = true;
                     }
@@ -47,7 +48,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
             case 38: // up
             case 87: // w
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.up = true;
                     }
@@ -56,7 +57,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
             
             case 40: // down
             case 83: // s
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.down = true;
                     }
@@ -65,7 +66,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
             case 32: // spacebar
             case 90: // z
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.attack = true;
                     }
@@ -78,7 +79,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
         switch(e.keyCode) {
             case 37: // left
             case 65: // a
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.left = false;
                     }
@@ -87,7 +88,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
             case 39: // right
             case 68: // d
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.right = false;
                     }
@@ -96,7 +97,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
             case 38: // up
             case 87: // w
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.up = false;
                     }
@@ -105,7 +106,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
             
             case 40: // down
             case 83: // s
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.down = false;
                     }
@@ -114,7 +115,7 @@ export function setEventListeners(canvas: HTMLCanvasElement, stateStack: BaseSta
 
             case 32: // spacebar
             case 90: // z
-                last(stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
+                last(engine.stateStack).getEntitiesByKey<Entity>("control").forEach(ent=> {
                     if (ent.control) {
                         ent.control.attack = false;
                     }
