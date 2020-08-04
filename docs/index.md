@@ -69,3 +69,26 @@ Developed by:
 * Play it here: [https://gizmolo.itch.io/space-base-continuum](https://gizmolo.itch.io/space-base-continuum)
 * Ludum Dare submission: [https://ldjam.com/events/ludum-dare/45/space-base-continuum](https://ldjam.com/events/ludum-dare/45/space-base-continuum)
 * Source code: [https://github.com/jjwall/LD45](https://github.com/jjwall/LD45)
+
+Developed by:
+
+* [jjwall](https://github.com/jjwall/) - **Jacob Wallace**
+
+## **Global Game Jam 2020: Occupational Hazards**
+
+<p align="center">
+    <img
+        alt="Occupational Hazards"
+        src="./assets/images/hazards.png"
+        width="800"
+    />
+</p>
+
+* Play it here: [https://alchemical.itch.io/occupational-hazards](https://alchemical.itch.io/occupational-hazards)
+* Global Game Jam submission: [https://globalgamejam.org/2020/games/occupational-hazards-5](https://globalgamejam.org/2020/games/occupational-hazards-5)
+* Source code: [https://github.com/apples/ggj2020](https://github.com/apples/ggj2020)
+
+Developed by:
+* [apples](https://github.com/apples/) - **Jeramy Harrison**
+* [jrvaughan917](https://github.com/jrvaughan917/) - **James Vaughan**
+* [WiredOverload](https://github.com/WiredOverload/) - **Michael Hodges**
