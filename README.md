@@ -3,7 +3,7 @@
     <a href="https://jjwall.github.io/BoardhouseTS/">
         <img
             alt="BoardhouseTS"
-            src="./docs/assets/images/boardhouse_logo2.png"
+            src="./docs/assets/images/boardhouse_logo_med.png"
             width="600"
         />
     </a>
@@ -51,3 +51,7 @@ A: The API is being fleshed out and I will bundle up the core features as an npm
 
 #### Q: How do I use it?
 A: Once the project is considered "feature complete" I will add a wiki detailing the steps to get a simple project started using the framework.
+
+---
+
+For more information please visit the Boardhouse web page: [https://jjwall.github.io/BoardhouseTS/](https://jjwall.github.io/BoardhouseTS/)

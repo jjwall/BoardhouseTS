@@ -2,7 +2,7 @@
 remote_theme: pmarsceill/just-the-docs
 
 # Logo to display on top left corner of page
-logo: "assets/images/boardhouse_logo2.png"
+logo: "assets/images/boardhouse_logo_med.png"
 
 # Link that displays on top right corner of page
 aux_links:
