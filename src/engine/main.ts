@@ -6,15 +6,24 @@ import { last } from "./helpers";
 import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./../states/mainmenu/state";
 import { GamePlayState } from "./../states/gameplay/state";
+import { LoadState } from "../states/load/state";
 
+// initialize engine
 const engine = new Engine();
 
+// initialize state stack
+const loadState = new LoadState(engine);
+engine.stateStack.push(loadState);
 
+// load fonts first then call main
 loadFonts([
     "./data/fonts/helvetiker_regular_typeface.json"
 ]).then((fonts) => {
     // cache off fonts
     engine.setFonts(fonts);
+
+    // Call main to start updating and rendering.
+    main(<HTMLElement>document.getElementById("canvasContainer"));
 
     loadTextures([
         "./data/textures/cottage.png",
@@ -33,8 +42,10 @@ loadFonts([
             // cache off audio elements
             engine.setAudioElements(audioElements);
 
-            // start game
-            main(<HTMLElement>document.getElementById("canvasContainer"));
+            // pop load state, push main state
+            engine.stateStack.pop();
+            const mainMenuState = new MainMenuState(engine);
+            engine.stateStack.push(mainMenuState);
         });
     });
 });
@@ -56,16 +67,10 @@ function main(canvasContainer: HTMLElement) {
     // append canvas element to canvas container
     canvasContainer.append(renderer.domElement);
 
-    //disable right click context menu
+    // disable right click context menu
     canvasContainer.oncontextmenu = function (e) {
         e.preventDefault();
     };
-
-    // initialize state stack
-    const mainMenuState = new MainMenuState(engine);
-    engine.stateStack.push(mainMenuState);
-    // const gameState = new GameState(stateStack);
-    // engine.stateStack.push(gameState);
 
     let fps: number = 0;
     let totalTime: number = 0;
