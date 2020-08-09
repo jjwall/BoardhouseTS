@@ -11,6 +11,10 @@ export abstract class BaseState {
 
     public abstract render() : void;
 
+    public abstract activateEvents() : void;
+
+    public abstract deactivateEvents(): void;
+
     public rootWidget: Widget;
 
     protected stateStack: BaseState[];

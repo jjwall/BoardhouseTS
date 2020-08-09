@@ -170,6 +170,14 @@ export class GamePlayState extends BaseState {
         // }
     }
 
+    public activateEvents() : void {
+        console.log("activate gameplay events!!");
+    }
+
+    public deactivateEvents() : void {
+        console.log("deactivate gameplay events!!");
+    }
+
     public update() : void {
         this.runSystems(this);
     }

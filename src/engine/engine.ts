@@ -1,12 +1,13 @@
 import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./interfaces";
 import { BufferGeometry, ShapeBufferGeometry, WebGLRenderer} from "three";
 import { BaseState } from "./basestate";
+import { last } from "./helpers";
 
 export class Engine
 {
     public renderer: WebGLRenderer;
 
-    public stateStack: BaseState[] = [];
+    public stateStack: StateStack = new StateStack();
     
     private _textures: UrlToTextureMap = {};
 
@@ -93,5 +94,36 @@ export class Engine
             .catch(function(ex) {
                 throw Error(`Your browser threw "${ex}". To resolve this on Chrome, go to chrome://flags/#autoplay-policy and set the Autoplay-policy to "No user gesture is required."`);
             });
+    }
+}
+
+/**
+ * StateStack is a modified version of Array<T> so that pop() and push()
+ * can be overriden to call states' activateEvents and deactivateEvents methods
+ * for easier transition between states by automatically handling event changes.
+ * Idea: scene transitions could happen here too.
+ */
+class StateStack extends Array<BaseState> {
+    public pop(): BaseState | undefined {
+        const poppedElement = super.pop();
+        // Deactivate events on popped state.
+        poppedElement.deactivateEvents();
+        // Activate events on last state in stateStack.
+        if (this.length > 0)
+            last(this).activateEvents();
+
+        return poppedElement;
+    }
+
+    public push(...items: BaseState[]): number {
+        // Deactivate events on current state.
+        if (this.length > 0)
+            last(this).deactivateEvents();
+
+        const newLength = super.push(...items);
+        // Activate events on newly pushed state.
+        last(this).activateEvents();
+
+        return newLength;
     }
 }

@@ -6,14 +6,14 @@
 
 ``Priorities:``
 
-* Set up event listeners specific to each state. Remove events of previous state before setting them up.
+* :runner: Set up event listeners specific to each state. Remove events of previous state before setting them up.
     > Add ``activateEvents`` and ``deactivateEvents`` abstract methods on ``baseState``. Override ``push`` and ``pop`` methods of ``stateStack`` to call these new methods
 * Clean up changes do to adding Engine class. I.e. move setSprite to engline class.
 * Set up ``archetypes`` directory to output pre-constructed entities
 * Set up lose state
 * Set up Behavior generator type
-* Create loading bar. Might need to set up canvas prior to everything else to render loading bar
-* Fix callback hell scenario when adding additional loaders
+* :runner: Create loading bar. Might need to set up canvas prior to everything else to render loading bar
+* :runner: Fix callback hell scenario when adding additional loaders
 * Add scene transitions
 * Update three.js
 * Add (three.js) gyroscopes

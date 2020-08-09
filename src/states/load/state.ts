@@ -25,7 +25,11 @@ export class LoadState extends BaseState {
         renderLoadUi(this.uiScene, this.rootWidget);
     }
 
-    public update(): void {}
+    public activateEvents() : void {}
+
+    public deactivateEvents() : void {}
+
+    public update() : void {}
 
     public render() : void {
         this.engine.renderer.clear();

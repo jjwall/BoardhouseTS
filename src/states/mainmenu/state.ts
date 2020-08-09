@@ -33,7 +33,15 @@ export class MainMenuState extends BaseState {
         this.engine.stateStack.push(gameState);
     }
 
-    public update(): void {}
+    public activateEvents() : void {
+        console.log("activate main menu events");
+    }
+
+    public deactivateEvents() : void {
+        console.log("deactivate main menu events");
+    }
+
+    public update() : void {}
 
     public render() : void {
         this.engine.renderer.clear();
