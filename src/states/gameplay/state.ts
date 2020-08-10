@@ -1,4 +1,5 @@
 import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
+import { handleKeyDownEvent, handleKeyUpEvent } from "../../events/keyboardevents";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
@@ -24,7 +25,6 @@ import { setCooldown } from "./../../components/cooldown";
 import { cooldownSystem } from "./../../systems/cooldown";
 import { Engine } from "../../engine/engine";
 import { EventTypes } from "./../../events/eventtypes";
-import { handleKeyDownEvent, handleKeyUpEvent } from "../../events/keyboardevents";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
