@@ -6,23 +6,22 @@ import { last } from "./helpers";
 import { Vector3 } from "three";
 import { Engine } from "./engine";
 
-export function setEventListeners(canvas: HTMLCanvasElement, engine: Engine) {
+export function setEventListeners(engine: Engine) {
     let hoveredWidgets: Widget[] = [];
     // call first to scale to current window dimensions
-    scaleToWindow(canvas);
+    scaleToWindow(engine.renderer.domElement);
 
     window.addEventListener("resize", function () {
-        scaleToWindow(canvas);
+        scaleToWindow(engine.renderer.domElement);
     });
 
-    canvas.addEventListener("mousedown", function (e: MouseEvent) {
+    engine.renderer.domElement.addEventListener("mousedown", function (e: MouseEvent) {
         last(engine.stateStack).handleEvent(e);
-        traverseTreeForOnClick(last(engine.stateStack).rootWidget, e);
         // canvas.setAttribute("class", "default");
     });
 
-    canvas.addEventListener("mousemove", function (e: MouseEvent) {
-        traverseTreeForHover(last(engine.stateStack).rootWidget, hoveredWidgets, canvas, e);
+    engine.renderer.domElement.addEventListener("mousemove", function (e: MouseEvent) {
+        last(engine.stateStack).handleEvent(e);
     });
 
     // keyboard controls
@@ -186,5 +185,4 @@ function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: 
             traverseTreeForHover(child, hoveredWidgets, canvas, e);
         });
     }
-
 }

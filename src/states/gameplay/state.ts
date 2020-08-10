@@ -1,3 +1,4 @@
+import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
@@ -22,6 +23,7 @@ import { setSprite } from "./../../components/sprite";
 import { setCooldown } from "./../../components/cooldown";
 import { cooldownSystem } from "./../../systems/cooldown";
 import { Engine } from "../../engine/engine";
+import { EventTypes } from "./../../events/eventtypes";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -171,7 +173,15 @@ export class GamePlayState extends BaseState {
     }
 
     public handleEvent(e: Event) : void {
-
+        console.log(e.type);
+        switch(e.type) {
+            case EventTypes.MOUSE_DOWN: {
+                traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
+            }
+            case EventTypes.MOUSE_MOVE: {
+                traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
+            }
+        }
     }
 
     public update() : void {

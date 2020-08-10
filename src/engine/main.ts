@@ -80,7 +80,7 @@ function main(canvasContainer: HTMLElement) {
     // fpsWidget.setText("FPS:");
 
     // set up global event listeners
-    setEventListeners(renderer.domElement, engine);
+    setEventListeners(engine);
 
     // logic update loop
     setInterval(function (): void {

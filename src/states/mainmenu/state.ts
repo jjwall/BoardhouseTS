@@ -1,3 +1,4 @@
+import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
 import { Scene, Camera, Color, OrthographicCamera } from "three";
 import { BaseState } from "./../../engine/basestate";
 import { layoutWidget } from "./../../ui/layoutwidget";
@@ -5,6 +6,7 @@ import { Widget, createWidget } from "./../../ui/widget";
 import { GamePlayState } from "./../../states/gameplay/state";
 import { renderMainMenuUi, MainMenuRoot } from "./rootui";
 import { Engine } from "./../../engine/engine";
+import { EventTypes } from "./../../events/eventtypes";
 
 export class MainMenuState extends BaseState {
     public uiScene: Scene;
@@ -36,8 +38,11 @@ export class MainMenuState extends BaseState {
     public handleEvent(e: Event) : void {
         console.log(e.type);
         switch(e.type) {
-            case "mousedown": {
-
+            case EventTypes.MOUSE_DOWN: {
+                traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
+            }
+            case EventTypes.MOUSE_MOVE: {
+                traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
             }
         }
     }

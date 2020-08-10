@@ -1,4 +1,4 @@
 export enum EventTypes {
-    CLICK,
-    HOVER,
+    MOUSE_DOWN = "mousedown",
+    MOUSE_MOVE = "mousemove",
 }
