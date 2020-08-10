@@ -24,6 +24,7 @@ import { setCooldown } from "./../../components/cooldown";
 import { cooldownSystem } from "./../../systems/cooldown";
 import { Engine } from "../../engine/engine";
 import { EventTypes } from "./../../events/eventtypes";
+import { handleKeyDownEvent, handleKeyUpEvent } from "../../events/keyboardevents";
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -173,14 +174,19 @@ export class GamePlayState extends BaseState {
     }
 
     public handleEvent(e: Event) : void {
-        console.log(e.type);
         switch(e.type) {
-            case EventTypes.MOUSE_DOWN: {
+            case EventTypes.MOUSE_DOWN:
                 traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
-            }
-            case EventTypes.MOUSE_MOVE: {
+                break;
+            case EventTypes.MOUSE_MOVE:
                 traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
-            }
+                break;
+            case EventTypes.KEY_DOWN:
+                handleKeyDownEvent(this, (e as KeyboardEvent));
+                break;
+            case EventTypes.KEY_UP:
+                handleKeyUpEvent(this, e as KeyboardEvent);
+                break;
         }
     }
 

@@ -36,14 +36,13 @@ export class MainMenuState extends BaseState {
     }
 
     public handleEvent(e: Event) : void {
-        console.log(e.type);
         switch(e.type) {
-            case EventTypes.MOUSE_DOWN: {
+            case EventTypes.MOUSE_DOWN:
                 traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
-            }
-            case EventTypes.MOUSE_MOVE: {
+                break;
+            case EventTypes.MOUSE_MOVE:
                 traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
-            }
+                break;
         }
     }
 

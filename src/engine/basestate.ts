@@ -16,8 +16,6 @@ export abstract class BaseState {
 
     public rootWidget: Widget;
 
-    protected stateStack: BaseState[];
-
     public engine: Engine;
 
     private ecsKeys: Array<string> = [];
