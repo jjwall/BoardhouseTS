@@ -1,6 +1,7 @@
 import { RegistryKeyToSystemMap, RegistryKeyToEntityListMap } from "./interfaces";
 import { Engine } from "./engine"
 import { Widget } from "../ui/widget";
+// import { EventTypes } from "../events/eventtypes";
 
 export abstract class BaseState {
     protected constructor(engine: Engine) {
@@ -11,9 +12,7 @@ export abstract class BaseState {
 
     public abstract render() : void;
 
-    public abstract activateEvents() : void;
-
-    public abstract deactivateEvents(): void;
+    public abstract handleEvent(e: Event) : void;
 
     public rootWidget: Widget;
 

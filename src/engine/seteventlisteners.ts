@@ -16,8 +16,9 @@ export function setEventListeners(canvas: HTMLCanvasElement, engine: Engine) {
     });
 
     canvas.addEventListener("mousedown", function (e: MouseEvent) {
+        last(engine.stateStack).handleEvent(e);
         traverseTreeForOnClick(last(engine.stateStack).rootWidget, e);
-        canvas.setAttribute("class", "default");
+        // canvas.setAttribute("class", "default");
     });
 
     canvas.addEventListener("mousemove", function (e: MouseEvent) {
@@ -168,14 +169,14 @@ function traverseTreeForHover(widget: Widget, hoveredWidgets: Widget[], canvas: 
                 widget.trigger("hover", e);
 
                 // TODO: Remove this eventually...
-                canvas.setAttribute("class", "pointer"); // pointer cursor
+                // canvas.setAttribute("class", "pointer"); // pointer cursor
             }
         }
         else {
             if (widgetIndex > -1) {
                 widget.trigger("plunge", e);
                 hoveredWidgets.splice(widgetIndex);
-                canvas.setAttribute("class", "default"); // arrow cursor
+                // canvas.setAttribute("class", "default"); // arrow cursor
             }
         }
     }

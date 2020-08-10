@@ -3,6 +3,7 @@ import { Engine } from "./engine";
 import { loadTextures, loadAudioElements, loadFonts } from "./loaders";
 import { BaseState } from "./basestate";
 import { last } from "./helpers";
+// import { activateGlobalEvents } from "./globalevents";
 import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./../states/mainmenu/state";
 import { GamePlayState } from "./../states/gameplay/state";
@@ -78,7 +79,7 @@ function main(canvasContainer: HTMLElement) {
     // let fpsWidget = BoardhouseUI.CreateWidget();
     // fpsWidget.setText("FPS:");
 
-    // set up event listeners
+    // set up global event listeners
     setEventListeners(renderer.domElement, engine);
 
     // logic update loop

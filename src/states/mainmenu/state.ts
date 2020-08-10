@@ -33,12 +33,13 @@ export class MainMenuState extends BaseState {
         this.engine.stateStack.push(gameState);
     }
 
-    public activateEvents() : void {
-        console.log("activate main menu events");
-    }
+    public handleEvent(e: Event) : void {
+        console.log(e.type);
+        switch(e.type) {
+            case "mousedown": {
 
-    public deactivateEvents() : void {
-        console.log("deactivate main menu events");
+            }
+        }
     }
 
     public update() : void {}
