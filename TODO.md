@@ -6,8 +6,6 @@
 
 ``Priorities:``
 
-* :runner: Set up event listeners specific to each state. Remove events of previous state before setting them up.
-    > Add ``activateEvents`` and ``deactivateEvents`` abstract methods on ``baseState``. Override ``push`` and ``pop`` methods of ``stateStack`` to call these new methods
 * Clean up changes do to adding Engine class. I.e. move setSprite to engline class.
 * Set up ``archetypes`` directory to output pre-constructed entities
 * Set up lose state
@@ -52,6 +50,7 @@
 
     // Search engine: "typescript module resolution"
 ``Finished``
+* :heavy checkmark: event handling now happens in state. Event listeners are set up at start of engine
 * :heavy_check_mark: Add screen shake method back to game state
 * :heavy_check_mark: Remove hurtBox code in lieu of hitBox changes
 * :heavy_check_mark: ``NoImplicitAny`` true
