@@ -37,8 +37,8 @@ loadFonts([
         engine.setTextures(textures);
 
         loadAudioElements([
-            "./data/audio/Pale_Blue.mp3",
-            "./data/audio/SFX_Bonk2.wav",
+            // "./data/audio/Pale_Blue.mp3",
+            // "./data/audio/SFX_Bonk2.wav",
         ]).then((audioElements) => {
             // cache off audio elements
             engine.setAudioElements(audioElements);

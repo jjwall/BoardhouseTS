@@ -7,6 +7,7 @@ import { GamePlayState } from "./../../states/gameplay/state";
 import { renderMainMenuUi, MainMenuRoot } from "./rootui";
 import { Engine } from "./../../engine/engine";
 import { EventTypes } from "./../../events/eventtypes";
+import { handleTouchStartEvent } from "../../events/touchevents";
 
 export class MainMenuState extends BaseState {
     public uiScene: Scene;
@@ -42,6 +43,9 @@ export class MainMenuState extends BaseState {
                 break;
             case EventTypes.MOUSE_MOVE:
                 traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
+                break;
+            case EventTypes.TOUCH_START:
+                handleTouchStartEvent(this.rootWidget, e as TouchEvent);
                 break;
         }
     }

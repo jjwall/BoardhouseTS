@@ -18,6 +18,10 @@ export function setEventListeners(engine: Engine) {
         last(engine.stateStack).handleEvent(e);
     });
 
+    engine.renderer.domElement.addEventListener("touchstart", function (e: TouchEvent) {
+        last(engine.stateStack).handleEvent(e);
+    });
+
     window.onkeydown = function(e: KeyboardEvent) {
         last(engine.stateStack).handleEvent(e);
     }

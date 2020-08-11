@@ -70,7 +70,7 @@ export class GamePlayState extends BaseState {
         this.registerSystem(positionSystem);
         this.registerSystem(cooldownSystem);
 
-        this.engine.playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
+        // this.engine.playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
 
         // Set up player entity.
         let player = new Entity();
@@ -123,7 +123,7 @@ export class GamePlayState extends BaseState {
         this.clicks++;
         this.rootComponent.setClicks(this.clicks);
         this.screenShake(false);
-        this.engine.playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
+        // this.engine.playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
     }
 
     /**
