@@ -6,7 +6,6 @@
 
 ``Priorities:``
 
-* Clean up changes do to adding Engine class. I.e. move setSprite to engline class.
 * Set up ``archetypes`` directory to output pre-constructed entities
 * Set up lose state
 * Set up Behavior generator type
@@ -16,11 +15,12 @@
 * Update three.js
 * Add (three.js) gyroscopes
     > This will be helpful for locking hitBoxes in place if entities have rotations
-* Hard code a sprite mesh into the resource loader and have sprites transform that to prevent recreating a new sprite mesh every time we need a new sprite
 * Turn ``StrictNullChecks`` on
 
 ``Secondaries:``
 * Make generic key binder. Custom controls for the given platform. Will need a clean looking keyboard UI that shows which keys are used in the game, what they do, and an easy way to rebind these controls (good home screen idea too for game jams)
+* Hard code a sprite mesh into the engine class and have sprites transform that to prevent recreating a new sprite mesh every time we need a new sprite
+* Clean up changes from adding Engine class. I.e. move setSprite to engline class.
 * Write script to export project to electron using ``electron-builder``
     > Electron will now use ``dist`` folder. Web build will now use ``www`` folder
 * Create skeletal animation data interpreter system that takes skeletal anim data from a program like blender and applies it to specified assets. State machine for animation data. Look into using three.js' animation layer
@@ -29,7 +29,7 @@
 * Add particle effect renderer
 * Swap out usage of HTMLAudioElement with web audio API (not started)
 * Write geometry loader. Add new geometry folder in assets where each file is a separate geometry i.e. plane.ts create and returns a 1x1 plane
-* Start on Wiki to explain the various parts of the engine. Setting up new projects, helper methods, adding new components, systems, and consuming existing APIs, etc. etc.
+* :runner: Start on Wiki to explain the various parts of the engine. Setting up new projects, helper methods, adding new components, systems, and consuming existing APIs, etc. etc.
 * Setup VSCode debugging
 * Name framework pieces of Boardhouse library in a type definition file
 * Add library as an npm package
@@ -50,7 +50,7 @@
 
     // Search engine: "typescript module resolution"
 ``Finished``
-* :heavy checkmark: event handling now happens in state. Event listeners are set up at start of engine
+* :heavy_checkmark: event handling now happens in state. Event listeners are set up at start of engine
 * :heavy_check_mark: Add screen shake method back to game state
 * :heavy_check_mark: Remove hurtBox code in lieu of hitBox changes
 * :heavy_check_mark: ``NoImplicitAny`` true
