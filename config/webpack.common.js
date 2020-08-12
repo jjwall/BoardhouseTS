@@ -18,6 +18,7 @@ module.exports = {
       patterns: [
         { from: './index.html' },
         { from: './style.css' },
+        { from: './favicon.ico' },
         { from: './data', to: './data' },
         { from: './node_modules/three/build/three.min.js', to: './scripts' }
     ]})
