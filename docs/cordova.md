@@ -16,6 +16,12 @@ cordova create path [id [name [config]]] [options]
 
 Or follow the directions for creating a Cordova app [here](https://cordova.apache.org/docs/en/latest/guide/cli/index.html#create-the-app).
 
+Add your targeted platform(s):
+
+```
+cordova platform add ios
+```
+
 Since Boardhouse uses [three.js to load some external files](https://threejs.org/docs/#manual/en/introduction/How-to-run-things-locally), you'll want to add the [Cordova httpd plugin](https://github.com/floatinghotpot/cordova-httpd). I used [this fork](https://github.com/communico/cordova-httpd) as it was a few commits ahead of the original source code:
 
 ```
