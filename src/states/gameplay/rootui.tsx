@@ -6,8 +6,11 @@ import { Scene } from "THREE";
 import { Widget } from "./../../ui/widget";
 import { Component } from "./../../ui/component";
 import { Test } from "./ui";
+import { TouchControlButton } from "./../../ui/corecomponents/touchcontrolbutton";
+import { TouchControls } from "./touchcontrols";
+import { FPS } from "../../ui/corecomponents/fps";
 
-export function renderGameUi(scene: Scene, rootWidget: Widget, props: {}): Root {
+export function renderGamePlayUi(scene: Scene, rootWidget: Widget, props: Props): Root {
     let rootInstance = renderWidget(<Root { ...props }/>, rootWidget, scene);
 
     return rootInstance.component as Root;
@@ -17,7 +20,16 @@ export function renderGameUi(scene: Scene, rootWidget: Widget, props: {}): Root 
 interface Props {
     // name: string;
     // initial_state: object
-    addClicks?: Function,
+    addClicks: Function,
+    displayFPS: boolean;
+    leftPress: () => void;
+    leftUnpress: () => void;
+    rightPress: () => void;
+    rightUnpress: () => void;
+    upPress: () => void;
+    upUnpress: () => void;
+    downPress: () => void;
+    downUnpress: () => void;
 }
 
 interface State {
@@ -25,12 +37,14 @@ interface State {
     clicks: number;
     color: string;
     hidden: boolean;
+    currentFPS: number;
 }
 
 export class Root extends Component<Props, State> {
     constructor(props: Props, scene: Scene) {
         super(props, scene);
         this.state = {
+            currentFPS: 0,
             ticks: 50,
             clicks: 0,
             color: "#00FFFF",
@@ -58,15 +72,9 @@ export class Root extends Component<Props, State> {
         });
     }
 
-    public hover = (): void => {
+    public updateFPS = (currentFPS: number): void => {
         this.setState({
-            color: "#FF0000"
-        });
-    }
-
-    public plunge = (): void => {
-        this.setState({
-            color: "#00FFFF"
+            currentFPS: currentFPS
         });
     }
 
@@ -85,15 +93,33 @@ export class Root extends Component<Props, State> {
 
     render(): JSXElement {
         return(
-            <Test ticks = {this.state.ticks}
-                clicks = {this.state.clicks}
-                color = {this.state.color}
-                hidden = {this.state.hidden}
-                hover = {this.hover}
-                plunge = {this.plunge}
-                addClick = {this.addClick}
-                toggle = {this.toggle}
-            />
+            // <Test ticks = {this.state.ticks}
+            //     clicks = {this.state.clicks}
+            //     color = {this.state.color}
+            //     hidden = {this.state.hidden}
+            //     press = {this.press}
+            //     unpress = {this.unpress}
+            //     addClick = {this.addClick}
+            //     toggle = {this.toggle}>
+            // </Test>
+            <panel>
+                <FPS 
+                    displayFPS={this.props.displayFPS}
+                    currentFPS={this.state.currentFPS}
+                ></FPS>
+                <TouchControls
+                    top="250"
+                    left="50"
+                    upPress={this.props.upPress}
+                    upUnpress={this.props.upUnpress}
+                    leftPress={this.props.leftPress}
+                    leftUnpress={this.props.leftUnpress}
+                    rightPress={this.props.rightPress}
+                    rightUnpress={this.props.rightUnpress}
+                    downPress={this.props.downPress}
+                    downUnpress={this.props.downUnpress}
+                />
+            </panel>
         )
     }
 }

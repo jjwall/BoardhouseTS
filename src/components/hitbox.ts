@@ -1,5 +1,6 @@
 import { Mesh, Box3, PlaneGeometry, EdgesGeometry, LineSegments, LineBasicMaterial, MeshBasicMaterial } from "three";
 import { PositionComponent } from "./position";
+import { Engine } from "../engine/engine";
 
 /**
  * HitBox Component that represents the area that when colliding with
@@ -55,16 +56,18 @@ export function setHitBox(entMesh: Mesh, collideType: HitBoxTypes, collidesWith:
  * @param hitBox
  * @param color color of hitBox graphic. Defaults to red if no parameter is passed in.
  */
-export function setHitBoxGraphic(entMesh: Mesh, hitBox: HitBoxComponent, color: string = "#DC143C") : void {
-    const hitBoxPlaneGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
-    const hitBoxEdgesGeometry = new EdgesGeometry(hitBoxPlaneGeometry);
-    const hitBoxMaterial = new LineBasicMaterial({ color: color });
-    const hitBoxWireframe = new LineSegments(hitBoxEdgesGeometry, hitBoxMaterial);
-    hitBoxWireframe.position.x += hitBox.offsetX;
-    hitBoxWireframe.position.y += hitBox.offsetY;
-    // TODO // Don't rotate hitbox graphic with the parent object, actual hitbox does not rotate.
-    // -> need to add gyroscope from three.js for this
-    entMesh.add(hitBoxWireframe);
+export function setHitBoxGraphic(engine: Engine, entMesh: Mesh, hitBox: HitBoxComponent, color: string = "#DC143C") : void {
+    if (engine.displayHitBoxes) {
+        const hitBoxPlaneGeometry = new PlaneGeometry(hitBox.width, hitBox.height);
+        const hitBoxEdgesGeometry = new EdgesGeometry(hitBoxPlaneGeometry);
+        const hitBoxMaterial = new LineBasicMaterial({ color: color });
+        const hitBoxWireframe = new LineSegments(hitBoxEdgesGeometry, hitBoxMaterial);
+        hitBoxWireframe.position.x += hitBox.offsetX;
+        hitBoxWireframe.position.y += hitBox.offsetY;
+        // TODO // Don't rotate hitbox graphic with the parent object, actual hitbox does not rotate.
+        // -> need to add gyroscope from three.js for this
+        entMesh.add(hitBoxWireframe);
+    }
 }
 
 export const getHitbox = (e: Entity): Rect => ({

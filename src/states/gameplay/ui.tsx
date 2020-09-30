@@ -4,13 +4,13 @@ import { JSXElement } from "./../../ui/interfaces";
 import { Scene } from "THREE";
 import { Component } from "./../../ui/component";
 
- interface Props {
+interface Props {
     ticks: number,
     clicks: number,
     color: string,
     hidden: boolean,
-    hover: () => void,
-    plunge: () => void,
+    press: () => void,
+    unpress: () => void,
     addClick: () => void,
     toggle: () => void,
 }
@@ -34,9 +34,9 @@ export class Test extends Component<Props, State> {
                         <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
                     </panel>
                     <panel left="-100" height="50" width="50" color={this.props.color} img="./data/textures/cottage.png"
-                        onHover={() => this.props.hover()}
-                        onPlunge={() => this.props.plunge()}
-                        onClick={() => this.props.toggle()}>
+                        onPress={() => this.props.press()}
+                        onUnpress={() => this.props.unpress()}
+                        onSubmit={() => this.props.toggle()}>
                     </panel>
                     <panel left="100" height="50" width="50" color="#00FFFF" img="./data/textures/cottage.png" onClick={()=> this.props.addClick()}>
                         <label z_index="2" top="10" color="#FF0000" contents={this.props.clicks.toString()}></label>
@@ -51,9 +51,9 @@ export class Test extends Component<Props, State> {
                         <label z_index="2" top="10" color="#0000FF" contents={this.props.ticks.toString()}></label>
                     </panel>
                     <panel left="-50" height="50" width="50" color={this.props.color} img="./data/textures/cottage.png"
-                        onHover={() => this.props.hover()}
-                        onPlunge={() => this.props.plunge()}
-                        onClick={() => this.props.toggle()}>
+                        onPress={() => this.props.press()}
+                        onUnpress={() => this.props.unpress()}
+                        onSubmit={() => this.props.toggle()}>
                     </panel>
                 </panel>
             )

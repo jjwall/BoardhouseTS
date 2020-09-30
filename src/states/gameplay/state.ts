@@ -1,5 +1,6 @@
-// import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
+import { handleMouseDownEvent, handleMouseUpEvent } from "../../events/mouseevents";
 import { handleKeyDownEvent, handleKeyUpEvent } from "../../events/keyboardevents";
+import { handlePointerDownEvent, handlePointerUpEvent } from "../../events/pointerevents";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
 import { setAnimation, SequenceTypes } from "./../../components/animation";
@@ -11,7 +12,7 @@ import { BaseState } from "./../../engine/basestate";
 import { Widget } from "./../../ui/widget";
 import { createWidget } from "../../ui/widget";
 import { layoutWidget } from "../../ui/layoutwidget";
-import { renderGameUi, Root } from "./rootui";
+import { renderGamePlayUi, Root } from "./rootui";
 import { setPosition } from "./../../components/position";
 import { positionSystem } from "./../../systems/position";
 import { setVelocity } from "./../../components/velocity";
@@ -32,7 +33,6 @@ export class GamePlayState extends BaseState {
     public uiScene: Scene;
     public uiCamera: Camera;
     public playerEntity: Entity;
-    public turnOnHitboxes = true; // turn this off when done testing
     public rootWidget: Widget;
     public rootComponent: Root;
 
@@ -59,7 +59,20 @@ export class GamePlayState extends BaseState {
 
         this.uiScene.add(this.rootWidget);
 
-        this.rootComponent = renderGameUi(this.uiScene, this.rootWidget, { addClicks: this.addClicks });
+        this.rootComponent = renderGamePlayUi(this.uiScene, this.rootWidget, 
+            { 
+                addClicks: this.addClicks,
+                displayFPS: engine.displayFPS,
+                rightPress: this.rightPress,
+                rightUnpress: this.rightUnpress,
+                leftPress: this.leftPress,
+                leftUnpress: this.leftUnpress,
+                upPress: this.upPress,
+                upUnpress: this.upUnpress,
+                downPress: this.downPress,
+                downUnpress: this.downUnpress,
+            }
+        );
 
         // Register systems.
         this.registerSystem(controlSystem, "control");
@@ -88,7 +101,7 @@ export class GamePlayState extends BaseState {
             // this.stateStack.pop();
         });
         player.hitBox = setHitBox(player.sprite, HitBoxTypes.PLAYER, [HitBoxTypes.ENEMY], 50, 50, 100, -10);
-        if (this.turnOnHitboxes) setHitBoxGraphic(player.sprite, player.hitBox);
+        setHitBoxGraphic(engine, player.sprite, player.hitBox);
         player.cooldown = setCooldown(20);
         player.hitBox.onHit = (self, other) => {
             if (other.hitBox.collideType === HitBoxTypes.ENEMY) {
@@ -109,7 +122,7 @@ export class GamePlayState extends BaseState {
         enemy.pos = setPosition(750, 200, 4);
         enemy.sprite = setSprite("./data/textures/cottage.png", this.gameScene, this.engine, 8);
         enemy.hitBox = setHitBox(enemy.sprite, HitBoxTypes.ENEMY, [HitBoxTypes.PLAYER], 0, 0, 0, 0);
-        if (this.turnOnHitboxes) setHitBoxGraphic(enemy.sprite, enemy.hitBox, "#228B22");
+        setHitBoxGraphic(engine, enemy.sprite, enemy.hitBox, "#228B22");
         enemy.hitBox.onHit = (self, other) => {
             // if (other.hitBox.collideType === HitBoxTypes.PLAYER) {
             //     this.removeEntity(other);
@@ -124,6 +137,70 @@ export class GamePlayState extends BaseState {
         this.rootComponent.setClicks(this.clicks);
         this.screenShake(false);
         this.engine.playAudio("./data/audio/SFX_Bonk2.wav", this.gameScene, this.gameCamera, .2);
+    }
+
+    public rightPress = (): void  => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.right = true;
+            }
+        });
+    }
+
+    public rightUnpress = (): void => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.right = false;
+            }
+        });
+    }
+
+    public leftPress = (): void  => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.left = true;
+            }
+        });
+    }
+
+    public leftUnpress = (): void => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.left = false;
+            }
+        });
+    }
+
+    public upPress = (): void  => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.up = true;
+            }
+        });
+    }
+
+    public upUnpress = (): void => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.up = false;
+            }
+        });
+    }
+
+    public downPress = (): void  => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.down = true;
+            }
+        });
+    }
+
+    public downUnpress = (): void => {
+        this.getEntitiesByKey<Entity>("control").forEach(ent=> {
+            if (ent.control) {
+                ent.control.down = false;
+            }
+        });
     }
 
     /**
@@ -175,14 +252,20 @@ export class GamePlayState extends BaseState {
 
     public handleEvent(e: Event) : void {
         switch(e.type) {
-            // case EventTypes.MOUSE_DOWN:
-            //     traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
-            //     break;
-            // case EventTypes.MOUSE_MOVE:
-            //     traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
-            //     break;
+            case EventTypes.POINTER_DOWN:
+                handlePointerDownEvent(this.rootWidget, e as PointerEvent);
+                 break;
+            case EventTypes.POINTER_UP:
+                handlePointerUpEvent(e as PointerEvent);
+                break;
+            case EventTypes.MOUSE_DOWN:
+                handleMouseDownEvent(this.rootWidget, e as MouseEvent);
+                break;
+            case EventTypes.MOUSE_UP:
+                handleMouseUpEvent(e as MouseEvent);
+                break;
             case EventTypes.KEY_DOWN:
-                handleKeyDownEvent(this, (e as KeyboardEvent));
+                handleKeyDownEvent(this, e as KeyboardEvent);
                 break;
             case EventTypes.KEY_UP:
                 handleKeyUpEvent(this, e as KeyboardEvent);
@@ -192,6 +275,9 @@ export class GamePlayState extends BaseState {
 
     public update() : void {
         this.runSystems(this);
+
+        if (this.engine.displayFPS)
+            this.rootComponent.updateFPS(this.engine.FPS);
     }
 
     public render() : void {

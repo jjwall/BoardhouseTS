@@ -70,29 +70,24 @@ export class MainMenuRoot extends Component<Props, State> {
                     pixel-ratio="4"
                 >
                 </panel> */}
-                {/* <panel 
-                    height="200"//{this.props.engine.screenHeight * .1} 
-                    width="550"//{this.props.engine.screenWidth * .5} 
-                    color={this.state.panelColor} 
-                    top={this.props.engine.screenHeight * .5} 
-                    left={this.props.engine.screenWidth * .5}
-                    onHover={() => this.hover()}
-                    onPlunge={() => this.plunge()}
-                    onClick={() => this.triggerStartGame()}>
-                    <label top="35" color={this.state.fontColor} contents="Adventure" font_size="75"></label>
-                </panel> */}
+                <panel height="120" /*color="red"*/ width="600" top="150" left="640">
+                    <label top="50" color="#C9CFFF" font_size="100" contents="Game"></label>
+                </panel>
+                <panel height="120" /*color="red"*/ width="800" top="350" left="640">
+                    <label top="50" color="#C9CFFF" font_size="100" contents="Name"></label>
+                </panel>
                 <Button
-                    height="200"
-                    width="550"
-                    top={this.props.engine.screenHeight * .5}
+                    height="50"
+                    width="200"
+                    top={this.props.engine.screenHeight * .75}
                     left={this.props.engine.screenWidth * .5}
                     pressedLayout="#3439FF"
                     unpressedLayout="#1f22dc"
-                    contents="Adventure"
-                    fontSize="75"
+                    contents="Play"
+                    fontSize="20"
                     pressedFontColor="#C9CFFF"
                     unpressedFontColor="#ffffff"
-                    fontTop="35"
+                    fontTop="10"
                     submit={() => this.triggerStartGame()}>
                 </Button>
             </div>
