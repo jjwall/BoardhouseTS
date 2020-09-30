@@ -5,20 +5,38 @@ export function setEventListeners(engine: Engine) {
     // call first to scale to current window dimensions
     scaleToWindow(engine.renderer.domElement);
 
+    if (engine.globalErrorHandling)
+        window.onerror = function(message, source, lineno, colno, error) { 
+            alert(error);
+        };
+
     window.addEventListener("resize", function () {
         scaleToWindow(engine.renderer.domElement);
     });
 
+    // No event handling needed for touchstart since we are using pointerdown instead.
+    engine.renderer.domElement.addEventListener("touchstart", function (e: TouchEvent) {
+        // This prevents the small vibration or "haptic feedback" from triggering after a long press.
+        // We don't want this since it's not useful feedback for users.
+        e.preventDefault();
+    });
+
     engine.renderer.domElement.addEventListener("mousedown", function (e: MouseEvent) {
         last(engine.stateStack).handleEvent(e);
-        // canvas.setAttribute("class", "default");
     });
 
-    engine.renderer.domElement.addEventListener("mousemove", function (e: MouseEvent) {
+    engine.renderer.domElement.addEventListener("mouseup", function (e: MouseEvent) {
         last(engine.stateStack).handleEvent(e);
     });
 
-    engine.renderer.domElement.addEventListener("touchstart", function (e: TouchEvent) {
+    engine.renderer.domElement.addEventListener("pointerdown", function (e: PointerEvent) {
+        e.preventDefault(); // Prevents MouseEvent from also firing.
+
+        last(engine.stateStack).handleEvent(e);
+    });
+
+    engine.renderer.domElement.addEventListener("pointerup", function (e: PointerEvent) {
+        e.preventDefault(); // Prevents MouseEvent from also firing.
         last(engine.stateStack).handleEvent(e);
     });
 

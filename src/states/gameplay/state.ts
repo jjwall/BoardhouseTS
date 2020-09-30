@@ -1,4 +1,4 @@
-import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
+// import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
 import { handleKeyDownEvent, handleKeyUpEvent } from "../../events/keyboardevents";
 import { Scene, Camera, Color, WebGLRenderer, OrthographicCamera } from "three";
 import { HitBoxTypes, setHitBox, setHitBoxGraphic } from "./../../components/hitbox";
@@ -175,12 +175,12 @@ export class GamePlayState extends BaseState {
 
     public handleEvent(e: Event) : void {
         switch(e.type) {
-            case EventTypes.MOUSE_DOWN:
-                traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
-                break;
-            case EventTypes.MOUSE_MOVE:
-                traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
-                break;
+            // case EventTypes.MOUSE_DOWN:
+            //     traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
+            //     break;
+            // case EventTypes.MOUSE_MOVE:
+            //     traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
+            //     break;
             case EventTypes.KEY_DOWN:
                 handleKeyDownEvent(this, (e as KeyboardEvent));
                 break;

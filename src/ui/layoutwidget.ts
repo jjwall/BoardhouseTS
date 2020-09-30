@@ -40,8 +40,8 @@ function layoutCommonAttributes(widget: Widget) {
 
 function layoutPanelAttributes(widget: Widget, engine: Engine) {
     // Update plane geometry with height and width attributes.
-    const width = Number(widget.attr("width") || 0);
-    const height = Number(widget.attr("height") || 0);
+    let width = Number(widget.attr("width") || 0);
+    let height = Number(widget.attr("height") || 0);
 
     if (widget.geometry && widget.geometry instanceof PlaneGeometry) {
         const { width: prevWidth, height: prevHeight } = (widget.geometry as PlaneGeometry).parameters;
@@ -66,14 +66,22 @@ function layoutPanelAttributes(widget: Widget, engine: Engine) {
 
     // Update mesh's material and geometry based on img attribute.
     if (widget.attr("img")) {
-        // Get scaleFactor if exists.
-        const scaleFactor = Number(widget.attr("scale-factor") || 1);
+        // Get pixel-ratio if exists.
+        const pixelRatio = Number(widget.attr("pixel-ratio") || 1);
 
         // Get texture from cached resources.
         const imgMap = engine.getTexture(widget.attr("img"));
 
-        const width = imgMap.image.width * scaleFactor;
-        const height = imgMap.image.height * scaleFactor;
+        // Scale width & height by pixel ratio.
+        if (!widget.attr("width"))
+            width = imgMap.image.width * pixelRatio;
+        else
+            width = width * pixelRatio;
+
+        if (!widget.attr("height"))
+            height = imgMap.image.height * pixelRatio;
+        else
+            height = height * pixelRatio;            
 
         if (!widget.image) {
             // Set magFilter to nearest for crisp looking pixels.

@@ -1,4 +1,4 @@
-import { traverseTreeForOnClick, traverseTreeForHover, hoveredWidgets } from "../../events/mouseevents";
+import { handleMouseDownEvent, handleMouseUpEvent } from "../../events/mouseevents";
 import { Scene, Camera, Color, OrthographicCamera } from "three";
 import { BaseState } from "./../../engine/basestate";
 import { layoutWidget } from "./../../ui/layoutwidget";
@@ -7,7 +7,8 @@ import { GamePlayState } from "./../../states/gameplay/state";
 import { renderMainMenuUi, MainMenuRoot } from "./rootui";
 import { Engine } from "./../../engine/engine";
 import { EventTypes } from "./../../events/eventtypes";
-import { handleTouchStartEvent } from "../../events/touchevents";
+import { handleTouchStartEvent, handleTouchEndEvent } from "../../events/touchevents";
+import { handlePointerDownEvent, handlePointerUpEvent } from "../../events/pointerevents";
 
 export class MainMenuState extends BaseState {
     public uiScene: Scene;
@@ -27,7 +28,7 @@ export class MainMenuState extends BaseState {
         this.rootWidget = createWidget("root");
         this.uiScene.add(this.rootWidget);
         //let rootComponent =
-        renderMainMenuUi(this.uiScene, this.rootWidget, this.startGame);
+        renderMainMenuUi(this.uiScene, this.rootWidget, engine, this.startGame);
         (window as any).scene = this.uiScene;
     }
 
@@ -38,14 +39,17 @@ export class MainMenuState extends BaseState {
 
     public handleEvent(e: Event) : void {
         switch(e.type) {
+            case EventTypes.POINTER_DOWN:
+                handlePointerDownEvent(this.rootWidget, e as PointerEvent);
+                 break;
+            case EventTypes.POINTER_UP:
+                handlePointerUpEvent(e as PointerEvent);
+                break;
             case EventTypes.MOUSE_DOWN:
-                traverseTreeForOnClick(this.rootWidget, e as MouseEvent);
+                handleMouseDownEvent(this.rootWidget, e as MouseEvent);
                 break;
-            case EventTypes.MOUSE_MOVE:
-                traverseTreeForHover(this.rootWidget, hoveredWidgets, this.engine.renderer.domElement, e as MouseEvent);
-                break;
-            case EventTypes.TOUCH_START:
-                handleTouchStartEvent(this.rootWidget, e as TouchEvent);
+            case EventTypes.MOUSE_UP:
+                handleMouseUpEvent(e as MouseEvent);
                 break;
         }
     }

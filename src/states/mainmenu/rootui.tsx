@@ -5,14 +5,17 @@ import { renderWidget } from "./../../ui/renderwidget";
 import { Scene } from "THREE";
 import { Widget } from "./../../ui/widget";
 import { Component } from "./../../ui/component";
+import { Engine } from "./../../engine/engine";
+import { Button } from "./../../ui/corecomponents/button";
 
-export function renderMainMenuUi(scene: Scene, rootWidget: Widget, startGame: () => void): MainMenuRoot {
-    let rootInstance = renderWidget(<MainMenuRoot startGame = {startGame} />, rootWidget, scene);
+export function renderMainMenuUi(scene: Scene, rootWidget: Widget, engine: Engine, startGame: () => void): MainMenuRoot {
+    let rootInstance = renderWidget(<MainMenuRoot engine = {engine} startGame = {startGame} />, rootWidget, scene);
 
     return rootInstance.component as MainMenuRoot;
 }
 
 interface Props {
+    engine: Engine,
     startGame: () => void;
 }
 
@@ -54,21 +57,44 @@ export class MainMenuRoot extends Component<Props, State> {
         return(
             <div>
                 <panel 
-                    z_index="-1" width="1280" height="720" color="#282828" img="./data/textures/space4096Square.png" 
-                    left="640" top="390"
+                    z_index="-1"
+                    img="./data/textures/space4096Square.png" 
+                    pixel-ratio="2"
                 />
-                <panel height="120" /*color="red"*/ width="600" top="200" left="640">
-                    <label top="50" color="#C9CFFF" font_size="100" contents="Game"></label>
-                </panel>
-                <panel height="120" /*color="red"*/ width="800" top="400" left="640">
-                    <label top="50" color="#C9CFFF" font_size="100" contents="Name"></label>
-                </panel>
-                <panel height="70" width="300" color={this.state.panelColor} top="600" left="640"
+                {/* <panel 
+                    height="300"
+                    width="300"
+                    top={.2 * this.props.engine.screenHeight} 
+                    left={.5 * this.props.engine.screenWidth}
+                    img="./data/textures/logo.png"
+                    pixel-ratio="4"
+                >
+                </panel> */}
+                {/* <panel 
+                    height="200"//{this.props.engine.screenHeight * .1} 
+                    width="550"//{this.props.engine.screenWidth * .5} 
+                    color={this.state.panelColor} 
+                    top={this.props.engine.screenHeight * .5} 
+                    left={this.props.engine.screenWidth * .5}
                     onHover={() => this.hover()}
                     onPlunge={() => this.plunge()}
                     onClick={() => this.triggerStartGame()}>
-                    <label top="10" color={this.state.fontColor} contents="start"></label>
-                </panel>
+                    <label top="35" color={this.state.fontColor} contents="Adventure" font_size="75"></label>
+                </panel> */}
+                <Button
+                    height="200"
+                    width="550"
+                    top={this.props.engine.screenHeight * .5}
+                    left={this.props.engine.screenWidth * .5}
+                    pressedLayout="#3439FF"
+                    unpressedLayout="#1f22dc"
+                    contents="Adventure"
+                    fontSize="75"
+                    pressedFontColor="#C9CFFF"
+                    unpressedFontColor="#ffffff"
+                    fontTop="35"
+                    submit={() => this.triggerStartGame()}>
+                </Button>
             </div>
         )
     }

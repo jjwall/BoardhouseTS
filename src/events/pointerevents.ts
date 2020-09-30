@@ -1,13 +1,13 @@
 import { Widget } from "../ui/widget";
 import { Vector3 } from "three";
 
-let clickedWidgets: Widget[] = [];
+let pressedWidgets: Widget[] = [];
 
-export function handleMouseDownEvent(widget: Widget, e: MouseEvent) {
+export function handlePointerDownEvent(widget: Widget, e: PointerEvent) {
     if (widget.event("press") && widget.event("unpress") && widget.attr("height") && widget.attr("width")) {
         const halfWidth = Number(widget.attr("width"))/2;
         const halfHeight = Number(widget.attr("height"))/2;
-        const widgetIndex: number = clickedWidgets.indexOf(widget);
+        const widgetIndex: number = pressedWidgets.indexOf(widget);
         const position = new Vector3();
         widget.getWorldPosition(position);
 
@@ -19,23 +19,25 @@ export function handleMouseDownEvent(widget: Widget, e: MouseEvent) {
         {
             // WidgetIndex necessary?
             if (widgetIndex === -1) {
-                clickedWidgets.push(widget);
+                pressedWidgets.push(widget);
                 widget.trigger("press", e);
             }
         }
     }
 
     widget.childNodes.forEach(child => {
-        handleMouseDownEvent(child, e);
+        handlePointerDownEvent(child, e);
     });
 }
 
-export function handleMouseUpEvent(e: MouseEvent) {
-    for (let i = 0; i < clickedWidgets.length; i++) {
-        const halfWidth = Number(clickedWidgets[0].attr("width"))/2;
-        const halfHeight = Number(clickedWidgets[0].attr("height"))/2;
+// For making controls like KartRider work.. a little more effore will need to be put into this.
+// Currently can really only handle pressing one button at a time. Unpress will be triggered on all buttons
+export function handlePointerUpEvent(e: PointerEvent) {
+    for (let i = 0; i < pressedWidgets.length; i++) {
+        const halfWidth = Number(pressedWidgets[0].attr("width"))/2;
+        const halfHeight = Number(pressedWidgets[0].attr("height"))/2;
         const position = new Vector3();
-        clickedWidgets[0].getWorldPosition(position);
+        pressedWidgets[0].getWorldPosition(position);
 
         // TODO: use sweep & prune alg instead of AABB
         if (e.offsetY > -position.y - halfHeight
@@ -47,15 +49,15 @@ export function handleMouseUpEvent(e: MouseEvent) {
             // Right now it's triggering all widgets' submit events if they are stacked.
 
             // Trigger events.
-            clickedWidgets[i].trigger("submit", e);
-            clickedWidgets[i].trigger("unpress", e);
+            pressedWidgets[i].trigger("submit", e);
+            pressedWidgets[i].trigger("unpress", e);
         }
         else {
             // Cursor release when off of button so don't trigger click.
-            clickedWidgets[i].trigger("unpress", e);
+            pressedWidgets[i].trigger("unpress", e);
         }
     }
 
-    // Clear clickedWidgets.
-    clickedWidgets = [];
+    // Clear pressedWidgets.
+    pressedWidgets = [];
 }
