@@ -8,6 +8,11 @@
         "outDir": "dist/",
         "sourceMap": true,
         "jsx": "react",
-        "jsxFactory": "createJSXElement"
+        "jsxFactory": "createJSXElement",
+        "baseUrl": ".",
+        "paths": {
+            "three": ["node_modules/three/src/Three"],
+            "THREE": ["node_modules/three/src/Three"]
+        }
     }
 }

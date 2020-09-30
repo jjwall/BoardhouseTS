@@ -17,6 +17,6 @@ export interface UrlToFontMap {
     [url: string]: Font;
 }
 
-export interface UrlToAudioMap {
-    [url: string]: HTMLAudioElement;
+export interface UrlToAudioBufferMap {
+    [url: string]: AudioBuffer;
 }

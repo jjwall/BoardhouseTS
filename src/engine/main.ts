@@ -1,54 +1,45 @@
 import { WebGLRenderer } from "three";
-import { Engine } from "./engine";
-import { loadTextures, loadAudioElements, loadFonts } from "./loaders";
-import { BaseState } from "./basestate";
+import { Engine, EngineConfig } from "./engine";
 import { last } from "./helpers";
-// import { activateGlobalEvents } from "./globalevents";
 import { setEventListeners } from "./seteventlisteners";
 import { MainMenuState } from "./../states/mainmenu/state";
 import { GamePlayState } from "./../states/gameplay/state";
 import { LoadState } from "../states/load/state";
 
-// initialize engine
-const engine = new Engine();
-
-// initialize state stack
-const loadState = new LoadState(engine);
-engine.stateStack.push(loadState);
-
-// load fonts first then call main
-loadFonts([
-    "./data/fonts/helvetiker_regular_typeface.json"
-]).then((fonts) => {
-    // cache off fonts
-    engine.setFonts(fonts);
-
-    // Call main to start updating and rendering.
-    main(<HTMLElement>document.getElementById("canvasContainer"));
-
-    loadTextures([
+const config: EngineConfig = {
+    screenWidth: 1280,
+    screenHeight: 720,
+    gameTicksPerSecond: 60,
+    displayFPS: true,
+    displayHitBoxes: true,
+    globalErrorHandling: true,
+    fontUrls: [
+        "./data/fonts/helvetiker_regular_typeface.json"
+    ],
+    textureUrls: [
         "./data/textures/cottage.png",
         "./data/textures/girl.png",
         "./data/textures/msknight.png",
         "./data/textures/snow.png",
         "./data/textures/space4096Square.png",
-    ]).then((textures) => {
-        // cache off textures
-        engine.setTextures(textures);
+        // "./data/textures/logo.png",
+    ],
+    audioUrls: [
+        "./data/audio/Pale_Blue.mp3",
+        "./data/audio/SFX_Bonk2.wav",
+    ],
+}
 
-        loadAudioElements([
-            // "./data/audio/Pale_Blue.mp3",
-            // "./data/audio/SFX_Bonk2.wav",
-        ]).then((audioElements) => {
-            // cache off audio elements
-            engine.setAudioElements(audioElements);
+const engine = new Engine(config);
 
-            // pop load state, push main state
-            engine.stateStack.pop();
-            const mainMenuState = new MainMenuState(engine);
-            engine.stateStack.push(mainMenuState);
-        });
-    });
+// Removing loading state for now.
+// const loadState = new LoadState(engine);
+// engine.stateStack.push(loadState);
+
+engine.loadAssets().then(() => {
+    const mainMenuState = new MainMenuState(engine);
+    engine.stateStack.push(mainMenuState);
+    main(<HTMLElement>document.getElementById("canvasContainer"));
 });
 
 /**
@@ -61,7 +52,7 @@ loadFonts([
 function main(canvasContainer: HTMLElement) {
     // set up renderer
     const renderer = new WebGLRenderer();
-    renderer.setSize(1280, 720);
+    renderer.setSize(engine.screenWidth, engine.screenHeight);
     renderer.autoClear = false;
     engine.renderer = renderer;
 
@@ -69,7 +60,7 @@ function main(canvasContainer: HTMLElement) {
     canvasContainer.append(renderer.domElement);
 
     // disable right click context menu
-    canvasContainer.oncontextmenu = function (e) {
+    renderer.domElement.oncontextmenu = function (e) {
         e.preventDefault();
     };
 
@@ -91,18 +82,14 @@ function main(canvasContainer: HTMLElement) {
         else {
             throw "No states to update";
         }
-
-        // log FPS
-        // fpsWidget.setText("FPS: " + Math.round(fps));
-        // BoardhouseUI.ReconcilePixiDom(fpsWidget, app.stage);
-    }, 16);
+    }, engine.millisecondsPerGameTick);
 
     // render update loop
     function renderLoop(timeStamp: number) {
         requestAnimationFrame(renderLoop);
         currentTime = timeStamp - totalTime;
         totalTime = timeStamp;
-        fps = 1 / (currentTime / 1000);
+        engine.FPS = Math.round(1 / (currentTime / 1000));
                 
         if (engine.stateStack.length > 0) {
             // call render on last element in state stack

@@ -46,13 +46,13 @@ export class GamePlayState extends BaseState {
         this.gameScene.background = new Color("#FFFFFF");
 
         // Set up game camera.
-        this.gameCamera = new OrthographicCamera(0, 1280, 720, 0, -1000, 1000);
+        this.gameCamera = new OrthographicCamera(0, engine.screenWidth, engine.screenHeight, 0, -1000, 1000);
 
         // Set up ui scene.
         this.uiScene = new Scene();
 
         // Set up ui camera.
-        this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);
+        this.uiCamera = new OrthographicCamera(0, engine.screenWidth, 0, -engine.screenHeight, -1000, 1000);
 
         // Set up ui widget and instance.
         this.rootWidget = createWidget("root");
@@ -70,7 +70,7 @@ export class GamePlayState extends BaseState {
         this.registerSystem(positionSystem);
         this.registerSystem(cooldownSystem);
 
-        // this.engine.playAudio("./data/audio/Pale_Blue.mp3", 0.3, true);
+        this.engine.playAudio("./data/audio/Pale_Blue.mp3", this.gameScene, this.gameCamera, 0.3, true);
 
         // Set up player entity.
         let player = new Entity();
@@ -123,7 +123,7 @@ export class GamePlayState extends BaseState {
         this.clicks++;
         this.rootComponent.setClicks(this.clicks);
         this.screenShake(false);
-        // this.engine.playAudio("./data/audio/SFX_Bonk2.wav", 0.3, false, true);
+        this.engine.playAudio("./data/audio/SFX_Bonk2.wav", this.gameScene, this.gameCamera, .2);
     }
 
     /**

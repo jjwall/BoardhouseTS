@@ -21,7 +21,7 @@ export class MainMenuState extends BaseState {
         this.uiScene.background = new Color("#000000");
 
         // Set up ui camera.
-        this.uiCamera = new OrthographicCamera(0, 1280, 0, -720, -1000, 1000);
+        this.uiCamera = new OrthographicCamera(0, engine.screenWidth, 0, -engine.screenHeight, -1000, 1000);
 
         // Set up ui widget and instance.
         this.rootWidget = createWidget("root");

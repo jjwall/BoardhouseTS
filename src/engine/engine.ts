@@ -1,34 +1,90 @@
-import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./interfaces";
-import { BufferGeometry, ShapeBufferGeometry, WebGLRenderer} from "three";
+import { UrlToTextureMap, UrlToFontMap, UrlToAudioBufferMap } from "./interfaces";
+import { BufferGeometry, ShapeBufferGeometry, WebGLRenderer, Audio, AudioListener, Scene, Camera} from "three";
+import { loadFonts, loadTextures, loadAudioBuffers } from "./loaders";
 import { BaseState } from "./basestate";
-import { last } from "./helpers";
+
+export interface EngineConfig {
+    screenWidth: number;
+    screenHeight: number;
+    gameTicksPerSecond: number;
+    displayFPS: boolean;
+    displayHitBoxes: boolean;
+    globalErrorHandling: boolean;
+    fontUrls: string[];
+    textureUrls: string[];
+    audioUrls: string[];
+}
 
 export class Engine
 {
+    constructor(config: EngineConfig) {
+        this.screenWidth = config.screenWidth;
+        this.screenHeight = config.screenHeight;
+        this.millisecondsPerGameTick = 1000 / config.gameTicksPerSecond;
+        this.displayFPS = config.displayFPS;
+        this.displayHitBoxes = config.displayHitBoxes;
+        this.globalErrorHandling = config.globalErrorHandling;
+        this.fontUrls = config.fontUrls;
+        this.textureUrls = config.textureUrls;
+        this.audioUrls = config.audioUrls;
+    }
+
+    public screenWidth: number;
+
+    public screenHeight: number;
+
+    public millisecondsPerGameTick: number;
+
+    public displayFPS: boolean;
+
+    public globalErrorHandling: boolean;
+
+    public displayHitBoxes: boolean;
+
+    public FPS: number;
+
     public renderer: WebGLRenderer;
 
     public stateStack: BaseState[] = [];
 
     // public stateStack: StateStack = new StateStack();
+
+    public fontUrls: string[];
+
+    public textureUrls: string[];
+
+    public audioUrls: string[];
     
     private _textures: UrlToTextureMap = {};
 
     private _fonts: UrlToFontMap = {};
 
-    private _audioElements: UrlToAudioMap = {};
+    private _audioBuffers: UrlToAudioBufferMap = {};
 
     private _textGeometries: { [k: string]: BufferGeometry } = {};
 
-    public getTexture(url: string) {
-        if (!this._textures[url]) {
-            throw new Error("Texture not found. Check url and ensure texture url is being passed in to loadTextures().");
-        }
-
-        return this._textures[url];
+    private setFonts(value: UrlToFontMap) {
+        this._fonts = value;
     }
 
-    public setTextures(value: UrlToTextureMap) {
+    private setTextures(value: UrlToTextureMap) {
         this._textures = value;
+    }
+
+    private setAudioBuffers(value: UrlToAudioBufferMap) {
+        this._audioBuffers = value;
+    }
+
+    public async loadAssets() {
+        await Promise.all([
+            loadFonts(this.fontUrls),
+            loadTextures(this.textureUrls),
+            loadAudioBuffers(this.audioUrls)
+        ]).then((assets) => {
+            this.setFonts(assets[0]);
+            this.setTextures(assets[1]);
+            this.setAudioBuffers(assets[2]);
+        });
     }
 
     public getFont(url: string) {
@@ -39,20 +95,20 @@ export class Engine
         return this._fonts[url];
     }
 
-    public setFonts(value: UrlToFontMap) {
-        this._fonts = value;
-    }
-
-    public getAudioElement(url: string) {
-        if (!this._audioElements[url]) {
-            throw new Error("Audio element no found. Check url and ensure audio element url is being passed in to loadAudioElements().");
+    public getTexture(url: string) {
+        if (!this._textures[url]) {
+            throw new Error("Texture not found. Check url and ensure texture url is being passed in to loadTextures().");
         }
 
-        return this._audioElements[url];
+        return this._textures[url];
     }
 
-    public setAudioElements(value: UrlToAudioMap) {
-        this._audioElements = value;
+    public getAudioBuffer(url: string) {
+        if (!this._audioBuffers[url]) {
+            throw new Error("Audio element not found. Check url and ensure audio element url is being passed in to loadAudioElements().");
+        }
+
+        return this._audioBuffers[url];
     }
 
     public getTextGeometry(contents: string, fontUrl: string, font_size: number) {
@@ -62,7 +118,7 @@ export class Engine
             return geom;
         } else {
             const font = this.getFont(fontUrl);
-            const shapes = font.generateShapes(contents, font_size, 0);
+            const shapes = font.generateShapes(contents, font_size);
             const geometry = new ShapeBufferGeometry(shapes);
 
             // Ensure font is centered on (parent) widget.
@@ -76,26 +132,29 @@ export class Engine
         }
     }
 
-    public playAudio(url: string, volume?: number, loop?: boolean, clone?: boolean) : void {
-        let audio = clone ?
-            this.getAudioElement(url).cloneNode(true) as HTMLAudioElement :
-            this.getAudioElement(url);
-    
+    public playAudio(url: string, scene: Scene, camera: Camera, volume?: number, loop?: boolean) {
+        const audioListener = new AudioListener();
+        const audio = new Audio(audioListener);
+
+        // add the listener to the camera
+        camera.add(audioListener);
+
+        // add the audio object to the scene
+        scene.add(audio);
+
+        audio.setBuffer(this.getAudioBuffer(url));
+
         if (volume) {
             if (volume < 0 || volume > 1)
                 throw Error("volume can't be a value less than 0 or greater than 1.");
-    
-            audio.volume = volume;
+            
+            audio.setVolume(volume);
         }
-    
-        if (loop) {
+
+        if (loop)
             audio.loop = loop;
-        }
-    
-        audio.play()
-            .catch(function(ex) {
-                throw Error(`Your browser threw "${ex}". To resolve this on Chrome, go to chrome://flags/#autoplay-policy and set the Autoplay-policy to "No user gesture is required."`);
-            });
+
+        audio.play();
     }
 }
 

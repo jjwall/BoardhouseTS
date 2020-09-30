@@ -1,5 +1,5 @@
-import { UrlToTextureMap, UrlToFontMap, UrlToAudioMap } from "./interfaces";
-import { Texture, TextureLoader, Font, FontLoader } from "three";
+import { UrlToTextureMap, UrlToFontMap, UrlToAudioBufferMap } from "./interfaces";
+import { Texture, TextureLoader, Font, FontLoader, AudioLoader } from "three";
 
 export async function loadTextures(urls: string[]) : Promise<UrlToTextureMap> {
     const loader = new TextureLoader();
@@ -41,24 +41,23 @@ export async function loadFonts(urls: string[]) : Promise<UrlToFontMap> {
     return cachedFonts;
 }
 
-export async function loadAudioElements(urls: string[]) : Promise<UrlToAudioMap> {
-    const promises = urls.map((url) =>
-        new Promise<HTMLAudioElement>((resolve) => {
-            const audioElement = new Audio(url);
+export async function loadAudioBuffers(urls: string[]) : Promise<UrlToAudioBufferMap> {
+    const loader = new AudioLoader();
+    let promises: Promise<AudioBuffer>[] = [];
 
-            audioElement.oncanplaythrough = () => {
-                return resolve(audioElement);
-            }
-        })
-    );
-
-    const audioElements = await Promise.all(promises);
-
-    const cachedAudioElements: UrlToAudioMap = {};
-
-    audioElements.forEach((audio, i) => {
-        cachedAudioElements[urls[i]] = audio;
+    urls.forEach(url => {
+        promises.push(new Promise<AudioBuffer>((resolve) => {
+            loader.load(url, (audBuf) => resolve(audBuf))
+        }));
     });
 
-    return cachedAudioElements;
+    const audioBuffers = await Promise.all(promises);
+
+    const cachedAudioBuffers: UrlToAudioBufferMap = {};
+
+    audioBuffers.forEach((audio, i) => {
+        cachedAudioBuffers[urls[i]] = audio;
+    });
+
+    return cachedAudioBuffers;
 }
