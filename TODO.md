@@ -10,12 +10,10 @@
 * Set up lose state
 * Set up Behavior generator type
 * :runner: Create loading bar. Might need to set up canvas prior to everything else to render loading bar
-* :runner: Fix callback hell scenario when adding additional loaders
-* Add scene transitions
-* Update three.js
 * Add (three.js) gyroscopes
     > This will be helpful for locking hitBoxes in place if entities have rotations
 * Turn ``StrictNullChecks`` on
+* Add core ui components: input box, button, touch button, radio button, checkbox, etc.
 
 ``Secondaries:``
 * Make generic key binder. Custom controls for the given platform. Will need a clean looking keyboard UI that shows which keys are used in the game, what they do, and an easy way to rebind these controls (good home screen idea too for game jams)
@@ -60,3 +58,6 @@
     > See current parent -> child passing usage with state
 * :heavy_check_mark: Update ``removeChild()`` method on ``Widget`` class so UI can be hidden and/or deleted. Use empty three JS methods for both text and sprite properties.
 * :heavy_check_mark: update TypeScript compiler
+* :heavy_check_mark: Fix callback hell scenario when adding additional loaders
+* Add scene transitions
+* :heavy_check_mark: Update three.js

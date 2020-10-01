@@ -9,6 +9,7 @@ import { Test } from "./ui";
 import { TouchControlButton } from "./../../ui/corecomponents/touchcontrolbutton";
 import { TouchControls } from "./touchcontrols";
 import { FPS } from "../../ui/corecomponents/fps";
+import { InputBox } from "../../ui/corecomponents/inputbox";
 
 export function renderGamePlayUi(scene: Scene, rootWidget: Widget, props: Props): Root {
     let rootInstance = renderWidget(<Root { ...props }/>, rootWidget, scene);
@@ -118,6 +119,16 @@ export class Root extends Component<Props, State> {
                     rightUnpress={this.props.rightUnpress}
                     downPress={this.props.downPress}
                     downUnpress={this.props.downUnpress}
+                />
+                <InputBox
+                    focusColor="#FFFFFF"
+                    blurColor="#C9CFFF"
+                    borderColor="#000000"
+                    top="200"
+                    left="200"
+                    width={100}
+                    height={50}
+                    submit={()=>{}}
                 />
             </panel>
         )
