@@ -26,6 +26,32 @@ import { setCooldown } from "./../../components/cooldown";
 import { cooldownSystem } from "./../../systems/cooldown";
 import { Engine } from "../../engine/engine";
 import { EventTypes } from "./../../events/eventtypes";
+import { behaviorSystem } from "../../systems/behavior";
+import { setBehaviorGenerator } from "../../components/behavior";
+
+function* enemyBehavior(entity: Entity): Generator<void, never> {
+    let dir = 'left';
+
+    while (true) {
+        if (entity.pos.loc.x <= 750) {
+            dir = 'right';
+        }
+        if (entity.pos.loc.x >= 1000) {
+            dir = 'left';
+        }
+
+        switch (dir) {
+            case 'left':
+                entity.vel.positional.setX(-3);
+                break;
+            case 'right':
+                entity.vel.positional.setX(3);
+                break;
+        }
+
+        yield;
+    }
+}
 
 export class GamePlayState extends BaseState {
     public gameScene: Scene;
@@ -76,6 +102,7 @@ export class GamePlayState extends BaseState {
 
         // Register systems.
         this.registerSystem(controlSystem, "control");
+        this.registerSystem(behaviorSystem);
         this.registerSystem(velocitySystem);
         this.registerSystem(collisionSystem);
         this.registerSystem(animationSystem);
@@ -128,6 +155,8 @@ export class GamePlayState extends BaseState {
             //     this.removeEntity(other);
             // }
         }
+        enemy.vel = setVelocity(0);
+        enemy.behavior = setBehaviorGenerator(enemyBehavior);
 
         this.registerEntity(enemy);
     }
