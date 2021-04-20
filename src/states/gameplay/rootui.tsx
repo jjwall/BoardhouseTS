@@ -39,6 +39,7 @@ interface State {
     color: string;
     hidden: boolean;
     currentFPS: number;
+    currentKey: string;
 }
 
 export class Root extends Component<Props, State> {
@@ -50,6 +51,7 @@ export class Root extends Component<Props, State> {
             clicks: 0,
             color: "#00FFFF",
             hidden: false,
+            currentKey: "",
         };
 
         setInterval(() => this.tick(), 1000);
@@ -65,6 +67,12 @@ export class Root extends Component<Props, State> {
         this.setState({
             clicks: clicks
         });
+    }
+
+    public setKeyPress = (key: string) => {
+        this.setState({
+            currentKey: key
+        })
     }
 
     public tick = (): void => {
@@ -126,9 +134,11 @@ export class Root extends Component<Props, State> {
                     borderColor="#000000"
                     top="200"
                     left="200"
-                    width={100}
+                    width={250}
                     height={50}
-                    submit={()=>{}}
+                    fontTop="5"
+                    placeholder="Type Text"
+                    currentKey={this.state.currentKey}
                 />
             </panel>
         )

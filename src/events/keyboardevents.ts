@@ -4,6 +4,7 @@ import { Entity } from "./../states/gameplay/entity";
 // keyboard controls
 // visit https://keycode.info/ for other key codes.
 export let handleKeyDownEvent = (state: BaseState, e: KeyboardEvent) => {
+    console.log(e);
     switch(e.keyCode) {
         case 37: // left
         case 65: // a

@@ -87,7 +87,7 @@ Developed by:
     />
 </p>
 
-* Play it here: [https://gizmolo.itch.io/creatures-of-the-night](https://github.com/jjwall/)
+* Play it here: [https://gizmolo.itch.io/creatures-of-the-night](https://gizmolo.itch.io/creatures-of-the-night)
 * Ludum Dare submission: [https://ldjam.com/events/ludum-dare/43/creatures-of-the-night](https://ldjam.com/events/ludum-dare/43/creatures-of-the-night)
 * Source code: [https://github.com/jjwall/LD43](https://github.com/jjwall/LD43)
 

@@ -13,7 +13,8 @@
 * Add (three.js) gyroscopes
     > This will be helpful for locking hitBoxes in place if entities have rotations
 * Turn ``StrictNullChecks`` on
-* Add core ui components: input box, button, touch button, radio button, checkbox, etc.
+* Add core ui components: (done) input box, (done) button, (done) touch button, radio button, checkbox, etc.
+* Fuse mouseevents and pointevents code files together. Should be able to just have one of those.
 
 ``Secondaries:``
 * Make generic key binder. Custom controls for the given platform. Will need a clean looking keyboard UI that shows which keys are used in the game, what they do, and an easy way to rebind these controls (good home screen idea too for game jams)

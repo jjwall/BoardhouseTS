@@ -139,6 +139,10 @@ export class GamePlayState extends BaseState {
         this.engine.playAudio("./data/audio/SFX_Bonk2.wav", this.gameScene, this.gameCamera, .2);
     }
 
+    public registerKeyPress = (key: string): void => {
+        this.rootComponent.setKeyPress(key);
+    }
+
     public rightPress = (): void  => {
         this.getEntitiesByKey<Entity>("control").forEach(ent=> {
             if (ent.control) {
@@ -266,6 +270,7 @@ export class GamePlayState extends BaseState {
                 break;
             case EventTypes.KEY_DOWN:
                 handleKeyDownEvent(this, e as KeyboardEvent);
+                this.registerKeyPress((e as KeyboardEvent).key);
                 break;
             case EventTypes.KEY_UP:
                 handleKeyUpEvent(this, e as KeyboardEvent);

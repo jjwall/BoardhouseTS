@@ -5,7 +5,7 @@ let pressedWidgets: Widget[] = [];
 let focusedWidget: Widget;
 
 export function handlePointerDownEvent(widget: Widget, e: PointerEvent) {
-    if ((widget.event("press") || widget.event("unpress") || widget.event("submit")) && widget.attr("height") && widget.attr("width")) {
+    if ((widget.event("press") || widget.event("unpress") || widget.event("submit") || (widget.event("focus") && (widget.event("blur")))) && widget.attr("height") && widget.attr("width")) {
         const halfWidth = Number(widget.attr("width"))/2;
         const halfHeight = Number(widget.attr("height"))/2;
         const widgetIndex: number = pressedWidgets.indexOf(widget);
