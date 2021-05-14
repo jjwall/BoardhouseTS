@@ -78,8 +78,13 @@ export abstract class BaseState {
             }
 
             // If registered to specified list, but component is undefined, remove entity from list due to re-registering.
-            if (this.entityRegistry[key].indexOf(ent) !== -1 && !ent[key]) {
-                this.entityRegistry[key].splice(this.entityRegistry[key].indexOf(ent), 1);
+            try {
+                if (this.entityRegistry[key].indexOf(ent) !== -1 && !ent[key]) {
+                    this.entityRegistry[key].splice(this.entityRegistry[key].indexOf(ent), 1);
+                }
+            }
+            catch (err) {
+                console.log(`Trying to remove an entity from entitryRegistry of ecs key: "${key}" but this registry has not been set up yet. To remedy this solution, make sure to register an entity with ALL ecs registered components`);
             }
         });
 
