@@ -6,6 +6,7 @@ import { VelocityComponent } from "./../../components/velocity";
 import { SpriteComponent } from "./../../components/sprite";
 import { TimerComponent } from "./../../components/timer";
 import { CooldownComponent } from "../../components/cooldown";
+import { BehaviorComponent } from "src/components/behavior";
 
 /**
  * Class to represent an entity in the game. No constructor as an entity can
@@ -22,4 +23,5 @@ export class Entity {
      public hitBox?: HitBoxComponent;
      public timer?: TimerComponent;
      public cooldown?: CooldownComponent;
+     public behavior?: BehaviorComponent;
 }
